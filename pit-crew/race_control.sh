@@ -24,6 +24,6 @@ case "${1:-}" in
   cleanup)
     for rg in $(az group list --query "[?starts_with(name,'rg-ai901')].name" -o tsv); do echo "deleting $rg"; az group delete -n $rg --yes --no-wait; done
     sleep 60
-    az cognitiveservices account list-deleted --query "[?starts_with(name,'ai901')].{name:name,location:location,rg:resourceGroup}" -o tsv | while read -r name loc rg; do echo "purging $name"; az cognitiveservices account purge -n "$name" -g "$rg" -l "$loc" -o none || true; done ;;
+    az cognitiveservices account list-deleted --query "[?starts_with(name,'ai901')].{name:name,location:location,id:id}" -o tsv | while read -r name loc id; do rg=$(echo "$id" | sed -E 's#.*/resourceGroups/([^/]+)/.*#\1#'); echo "purging $name ($rg, $loc)"; az cognitiveservices account purge -n "$name" -g "$rg" -l "$loc" -o none || true; done ;;
   *) sed -n '2,8p' "$0" ;;
 esac
