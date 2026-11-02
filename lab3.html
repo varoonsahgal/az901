@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" data-page="lab3">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lap 3 · Pit crew · AI-901 Grand Prix</title>
+<meta name="description" content="Build and test a single-agent solution in the Microsoft Foundry portal: instructions, a knowledge file with File search, a Code interpreter tool, a published preview app, and a 20-line Python client using agent_reference.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Lap 3 · Pit crew · AI-901 Grand Prix"><meta property="og:description" content="Build and test a single-agent solution in the Microsoft Foundry portal: instructions, a knowledge file with File search, a Code interpreter tool, a published preview app, and a 20-line Python client using agent_reference."><meta property="og:type" content="website"><meta property="og:image" content="https://varoonsahgal.github.io/az901/images/og.png">
+<script>try{var t=localStorage.getItem('ai901-gp:theme');if(t)document.documentElement.setAttribute('data-theme',JSON.parse(t))}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1220'/%3E%3Cpath d='M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z' fill='%23E10600'/%3E%3Ccircle cx='12' cy='22' r='2.4' fill='%23FACC15'/%3E%3Ccircle cx='22' cy='22' r='2.4' fill='%23FACC15'/%3E%3C/svg%3E">
+</head>
+<body data-page="lab3" class="hue-lab3">
+<a class="skip" href="#main">Skip to content</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
+  <nav class="nav" aria-label="Laps">
+      <a href="index.html">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" aria-current=page><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
+      <a href="instructor.html">🏁 Race control</a>
+  </nav>
+  <div class="tools">
+    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
+  <div>
+    <p class="eyebrow">Lap 3 of 7 · Pit crew</p>
+    <h1>Pit crew · build and test an agent</h1>
+    <p class="lede">A chat model answers. An agent gets things done: it follows standing instructions, remembers the conversation, and uses tools, such as searching the warranty guide or running a calculation, to finish the job. In this lap you build velo-warranty-expert in the Foundry portal, watch it cite section numbers instead of guessing, publish it as a web app, and call it from Python.</p>
+    <div class="mast-meta"><span class="chip"><b>Time</b> 60 min</span><span class="chip"><b>Difficulty</b> Beginner · portal first, then a short Python client</span><span class="chip"><b>Services</b> Foundry Agent Service · File search · Code interpreter · Foundry SDK</span><span class="chip"><b>Exam weight</b> Part of Implement AI solutions · 55–60%</span></div>
+    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Create and test a single-agent solution in the Foundry portal</span><span class="obj">🎯 Create a lightweight client application for an agent</span><span class="obj">🎯 Identify scenarios for generative and agentic AI workloads</span></div>
+  </div>
+  <div class="mast-art"></div>
+</div></section>
+<main id="main" class="labwrap">
+<details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-reload-your-pit-board">Part 1 · Reload your pit board</a></li><li><a href="#part-2-build-the-agent-in-the-portal">Part 2 · Build the agent in the portal</a></li><li><a href="#part-3-give-an-agent-a-calculator-code-interpreter">Part 3 · Give an agent a calculator · Code interpreter</a></li><li><a href="#part-4-publish-and-call-it-from-code">Part 4 · Publish and call it from code</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
+
+<div class="callout note"><div class="ico">🔧</div><div><span class="box-lbl">The story so far</span><p>Yesterday's Velo invented a two-year battery warranty. Today you give it the real guide and the discipline to use it. The service desk also wants a version that can do arithmetic on invoices without rounding errors. Both are <em>agents</em>: the same model, plus instructions, plus tools.</p></div></div>
+
+<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<div class="vocab">
+  <div><b>Agent</b>A named, versioned definition: a <strong>model</strong>, <strong>instructions</strong> (its standing system prompt), and a list of <strong>tools</strong> it may use. You talk to it through a <strong>conversation</strong> that it keeps for you.</div>
+  <div><b>Foundry Agent Service</b>The managed runtime inside your project that stores agents, runs them, calls their tools, keeps conversation state, traces every step, and exposes them to apps and channels.</div>
+  <div><b>Tools</b><em>File search</em> (your documents, chunked and embedded into a vector store), <em>Code interpreter</em> (a Python sandbox), <em>Web search</em> / Bing grounding, <em>Function</em> tools (your own APIs), <em>MCP</em> servers, <em>Azure AI Search</em>, OpenAPI tools, browser automation.</div>
+  <div><b>Conversation</b>The thread of messages between a user and an agent. The service stores it; your client just passes its id. "New conversation" is a fresh memory.</div>
+  <div><b>agent_reference</b>How a client names the agent it wants: <code>{"name": "velo-warranty-expert", "version": "1", "type": "agent_reference"}</code> sent with a Responses API call. The older <code>agent</code> property is deprecated and the service rejects it.</div>
+  <div><b>Publish</b>Turn an agent into something people can reach: a preview web app, Microsoft 365 Copilot and Teams, or your own app through the SDK.</div>
+</div>
+<figure class="figure plain"><svg viewBox="0 0 900 190" width="100%" role="img" aria-label="An agent is a model plus instructions plus tools, run by the Foundry Agent Service, used by clients through a conversation" style="font-family:Inter,system-ui,sans-serif;font-size:13px">
+  <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#5B6779"/></marker></defs>
+  <rect x="10" y="30" width="170" height="120" rx="14" fill="#fff" stroke="#DFE4EE"/><text x="95" y="58" text-anchor="middle" font-weight="600" fill="#1B2437">Clients</text><text x="95" y="82" text-anchor="middle" fill="#5B6779">Agent playground</text><text x="95" y="100" text-anchor="middle" fill="#5B6779">Preview web app</text><text x="95" y="118" text-anchor="middle" fill="#5B6779">agent_client.py</text><text x="95" y="136" text-anchor="middle" fill="#5B6779">Teams · Copilot</text>
+  <path d="M182 90H228" stroke="#5B6779" stroke-width="1.5" marker-end="url(#a3)"/><text x="205" y="80" text-anchor="middle" fill="#5B6779" font-size="11">conversation</text>
+  <rect x="240" y="14" width="420" height="160" rx="16" fill="#0B1220"/><text x="450" y="40" text-anchor="middle" fill="#FACC15" font-weight="700" letter-spacing="2" font-size="12">FOUNDRY AGENT SERVICE · in your project</text>
+  <rect x="258" y="56" width="384" height="100" rx="12" fill="#142036" stroke="#1F2D47"/><text x="276" y="80" fill="#fff" font-weight="600">velo-warranty-expert · v1</text>
+  <text x="276" y="102" fill="#86EFAC" font-family="JetBrains Mono,monospace" font-size="12">model: gpt-4-1-mini</text><text x="276" y="122" fill="#B6C2D6" font-size="12">instructions: answer ONLY from the guide, cite the section</text><text x="276" y="142" fill="#B6C2D6" font-size="12">tools: file_search(velocity-warranty-kb)</text>
+  <path d="M662 90H708" stroke="#5B6779" stroke-width="1.5" marker-end="url(#a3)"/>
+  <rect x="720" y="30" width="170" height="120" rx="14" fill="#fff" stroke="#DFE4EE"/><text x="805" y="58" text-anchor="middle" font-weight="600" fill="#1B2437">Tools</text><text x="805" y="82" text-anchor="middle" fill="#5B6779">vector store (guide.md)</text><text x="805" y="100" text-anchor="middle" fill="#5B6779">code sandbox</text><text x="805" y="118" text-anchor="middle" fill="#5B6779">web search · functions</text><text x="805" y="136" text-anchor="middle" fill="#5B6779">MCP · AI Search</text>
+</svg><figcaption>Clients send messages into a conversation; the service runs the agent, which may call tools several times before answering.</figcaption></figure>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Agentic AI is the workload where the model <em>chooses actions</em>. On the exam: an agent = model + instructions + tools; File search gives it your documents (grounding); Code interpreter lets it compute; function tools call your systems; conversations hold context; a client references the agent by name and version through the Foundry SDK's OpenAI client and the Responses API. Responsible-AI points: instructions are guardrails, tools get least privilege, keep a human in the loop for consequential actions, use tracing and evaluations.</p></div></div>
+
+<h2 id="part-1-reload-your-pit-board">Part 1 · Reload your pit board</h2>
+<pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
+export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
+curl -sO https://varoonsahgal.github.io/az901/downloads/velocity-warranty-guide.md     <span class="cm"># the knowledge file (also below)</span></code></pre>
+<details class="reveal concept"><summary>The knowledge file · velocity-warranty-guide.md (what the agent will read)</summary><div class="body"><pre><code># Velocity Motors Warranty Guide — 2026 edition (excerpt)
+
+## 1. Basic (bumper-to-bumper) coverage
+All new Velocity vehicles are covered for 4 years or 50,000 miles, whichever comes first, against defects in materials or workmanship. Wear items (brake pads, wiper blades, tires, bulbs) are excluded after 12 months / 12,000 miles.
+
+## 2. Powertrain coverage
+Engine, transmission, drive axles and (for hybrids) the hybrid control module are covered for 6 years or 70,000 miles.
+
+## 3. Corrosion
+Perforation from rust is covered for 7 years with unlimited miles. Surface rust is not covered.
+
+## 4. Electric vehicle components (Velocity Volt)
+4.1 Drive unit and on-board charger: 8 years or 100,000 miles.
+4.2 High-voltage battery: 8 years or 100,000 miles, whichever comes first, against defects AND against capacity loss below 70% of the original rated capacity.
+4.3 Transferability: all Velocity warranties transfer automatically to subsequent owners at no cost for the remainder of the original term.
+4.4 Exclusions: damage from flooding, racing or track use, or charging with non-approved chargers is not covered.
+
+## 5. Roadside assistance
+24/7 roadside assistance (towing to the nearest Velocity dealer, flat-tire change, jump start, lockout) is included for 5 years with unlimited miles.
+
+## 6. Certified Pre-Owned (CPO)
+CPO vehicles receive a 12-month / 12,000-mile comprehensive warranty that begins when the original basic warranty ends, plus the remainder of the powertrain coverage. A 172-point inspection is performed before sale.
+
+## 7. How to make a claim
+Bring the vehicle to any authorized Velocity Motors dealer. There is no deductible for warranty repairs. Loaner vehicles are provided for repairs expected to take more than 4 hours.</code></pre></div></details>
+
+<h2 id="part-2-build-the-agent-in-the-portal">Part 2 · Build the agent in the portal</h2>
+<ol class="steps">
+  <li><p>Open <a href="https://ai.azure.com">ai.azure.com</a> (<strong>New Foundry</strong> on) and your project. On the <strong>Home</strong> page select <strong>Start building</strong> in the <strong>Build an agent</strong> tile (or go to <strong>Build</strong> → <strong>Agents</strong> → <strong>New agent</strong>).</p></li>
+  <li><p>Name it <code>velo-warranty-expert</code>. If asked for an <strong>Interaction mode</strong>, choose <strong>Text</strong>. In the <strong>Model</strong> list confirm <code>gpt-4-1-mini</code> is selected (it lists your deployments).</p></li>
+  <li><p>In <strong>Instructions</strong> paste exactly:</p>
+<pre><code>You are the Velocity Motors warranty expert. Answer ONLY from the warranty guide in your file search knowledge; quote the section number. If the guide does not cover it, say so.</code></pre>
+<p>Select <strong>Save</strong>.</p></li>
+  <li><p>Test before adding knowledge. In the <strong>Chat</strong> pane ask: <code>Does the Volt battery warranty transfer to a second owner, and what capacity loss is covered?</code> With no file to search, a well-behaved agent says it cannot find the guide, or hedges. Note the answer; you will compare.</p>
+<p>For contrast, here is a plain prompt-only agent (<code>velo-pit-crew</code>, instructions "answer briefly; if you don't know a Velocity-specific fact, say so and suggest the guide"). It is helpful and it remembers "rotors" refers to the same car, but it can only guess:</p>
+<img class="shot" src="images/shots/lab3-agent-prompt.png" alt="Prompt-only agent conversation: brake pads at 41,000 miles are wear items, rotors likewise, check the guide" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Add knowledge.</strong> In the left pane expand <strong>Tools</strong> (sometimes labelled <strong>Knowledge</strong> and <strong>Tools</strong>), select <strong>Add</strong> → <strong>File search</strong> (or <strong>Files</strong>), upload <code>velocity-warranty-guide.md</code>, and confirm. The portal creates a <em>vector store</em>: the file is split into chunks and embedded so the agent can retrieve the right section. Select <strong>Save</strong> again.</p></li>
+  <li><p>Select <strong>New chat</strong> and ask the battery question again, then <code>Is there a deductible for warranty repairs, and do I get a loaner car?</code>, then the trap: <code>Does the warranty cover a cracked windshield from a rock on the highway?</code></p>
+<img class="shot" src="images/shots/lab3-agent-knowledge.png" alt="Knowledge agent conversation: battery warranty 8 years/100,000 miles transfers (section 4), no deductible and loaner over 4 hours (section 7), windshield from road debris not covered (section 1); file_search_call shown" loading="lazy" title="Click to zoom">
+<p>Three things happened. It answered from the guide with section numbers. It used the tool (the response contains a <code>file_search_call</code> item before the message). And on the windshield question it reasoned from section 1's wording to "not covered" rather than inventing a glass clause. If you want it stricter still, add to the instructions: "If no section states the answer, reply: The guide does not say."</p></li>
+  <li><p>Open the <strong>YAML</strong> tab on the right of the agent playground. That is the whole agent: model, parameters, instructions, tools. Agents are versioned; every <strong>Save</strong> after a change can create a new version, which is what clients pin to.</p></li>
+  <li><p>Optional: <strong>Add</strong> → <strong>Web search</strong>, then ask <code>Find the nearest Velocity Motors dealer to Dayton, Ohio</code>. (It will find real dealers of other brands; Velocity is fictional. The point is seeing a second tool get called.) Remove it afterwards to keep the warranty expert honest.</p></li>
+</ol>
+<div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">The other way in</span><p>From the <em>model</em> playground in Lap 2 you can select <strong>Save as agent</strong> at the top right: your instructions, parameters and any tools become an agent in one click. Same object, different door.</p></div></div>
+
+<h2 id="part-3-give-an-agent-a-calculator-code-interpreter">Part 3 · Give an agent a calculator · Code interpreter</h2>
+<p>Language models are poor at arithmetic because they predict tokens, not sums. The Code interpreter tool gives an agent a Python sandbox: it writes the code, runs it, and reports the result.</p>
+<ol class="steps">
+  <li><p>Create a second agent, <code>velo-data-analyst</code>, model <code>gpt-4-1-mini</code>, instructions: <code>You are a data analyst for Velocity Motors. Use the code interpreter to compute answers precisely and show the Python you ran.</code> Under <strong>Tools</strong> → <strong>Add</strong> → <strong>Code interpreter</strong>. Save.</p></li>
+  <li><p>Ask: <code>Service invoice lines: pads 189.00, rotors 2 x 120.00, labor 2.5 h x 145.00, rotation 29.95, supplies 18.50. Sales tax 7.5%. What is the total?</code></p>
+<img class="shot" src="images/shots/lab3-agent-code.png" alt="Code interpreter agent: explains the steps, runs Python, returns subtotal $839.95, tax $63.00, total $902.95" loading="lazy" title="Click to zoom">
+<p>Subtotal $839.95, tax $63.00, total <strong>$902.95</strong>, computed, not guessed. (Lap 6 extracts the same numbers from the invoice PDF; together that is an automated audit.) You can also upload a CSV and ask for a chart; the sandbox returns image files.</p></li>
+</ol>
+
+<h2 id="part-4-publish-and-call-it-from-code">Part 4 · Publish and call it from code</h2>
+<ol class="steps">
+  <li><p><strong>Preview web app.</strong> In the agent playground of <code>velo-warranty-expert</code>, open the <strong>Publish</strong> drop-down at the top of the chat pane and select <strong>Preview web app</strong>. A chat page opens in a new tab; ask it the battery question. This is how a non-technical colleague would test your agent today. The same menu offers Microsoft 365 Copilot and Teams for real users.</p></li>
+  <li><p><strong>See the client code.</strong> Select <strong>&lt;/&gt; Continue in code</strong> (or <strong>Call agent</strong>). The Python sample installs <code>azure-ai-projects&gt;=2.1.0</code>, creates an <code>AIProjectClient</code> with <code>DefaultAzureCredential()</code>, calls <code>get_openai_client()</code>, and sends a prompt with <code>responses.create(...)</code> passing <code>extra_body={"agent_reference": {"name": "velo-warranty-expert", "version": "1", "type": "agent_reference"}}</code>. Our version of that sample, with a conversation and a loop:</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/agent_client.py
+cat agent_client.py</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 3 · A lightweight client for the agent you built in the Foundry portal.
+
+Run:  python agent_client.py &quot;your question&quot;      (or no argument for an interactive loop)
+Needs: pip install azure-ai-projects azure-identity   and   az login
+Env:   PROJECT_ENDPOINT   AGENT_NAME (default velo-warranty-expert)   AGENT_VERSION (default 1)
+&quot;&quot;&quot;
+import os, sys
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+project = AIProjectClient(endpoint=os.environ[&quot;PROJECT_ENDPOINT&quot;], credential=DefaultAzureCredential())
+client = project.get_openai_client()
+agent = {&quot;name&quot;: os.environ.get(&quot;AGENT_NAME&quot;, &quot;velo-warranty-expert&quot;), &quot;version&quot;: os.environ.get(&quot;AGENT_VERSION&quot;, &quot;1&quot;), &quot;type&quot;: &quot;agent_reference&quot;}
+
+conversation = client.conversations.create()          # the agent remembers everything in this conversation
+print(f&quot;Talking to agent {agent[&#x27;name&#x27;]} v{agent[&#x27;version&#x27;]} · conversation {conversation.id[:18]}…&quot;)
+
+def ask(text):
+    r = client.responses.create(conversation=conversation.id, input=text, extra_body={&quot;agent_reference&quot;: agent})
+    tools = [o.type for o in r.output if o.type != &quot;message&quot;]          # e.g. file_search_call, code_interpreter_call
+    print(f&quot;\n{agent[&#x27;name&#x27;]}&gt; {r.output_text}&quot;)
+    if tools: print(f&quot;   [tools used: {&#x27;, &#x27;.join(tools)}]&quot;)
+
+if len(sys.argv) &gt; 1:
+    ask(&quot; &quot;.join(sys.argv[1:]))
+else:
+    while (q := input(&quot;\nYou&gt; &quot;).strip()).lower() not in (&quot;quit&quot;, &quot;exit&quot;, &quot;&quot;):
+        ask(q)</code></pre></li>
+  <li><p>Run it against both agents:</p>
+<pre><code>python agent_client.py "A customer bought a used 2023 Volt last week. How long is the battery still covered, and what paperwork do they need for a claim?"
+AGENT_NAME=velo-pit-crew python agent_client.py "Quick: what tire pressure should I tell a Summit owner?"</code></pre>
+<pre><code><span class="out">Talking to agent velo-warranty-expert v1 · conversation conv_01548291ed26a…
+
+velo-warranty-expert&gt; The high-voltage battery on a 2023 Velocity Volt is covered for 8 years or 100,000 miles, whichever comes first, against defects and against capacity loss below 70% of the original rated capacity. Since all Velocity warranties transfer automatically to subsequent owners for the remainder of the original term at no cost, the customer who bought the used 2023 Volt last week will still have this battery warranty coverage for the time and mileage remaining within that 8-year/100,000-mile period.
+
+To make a warranty claim, the customer needs to bring the vehicle to any authorized Velocity Motors dealer. There is no deductible for warranty repairs. Loaner vehicles are provided for repairs expected to take more than 4 hours. It does not specify any additional paperwork needed besides taking the vehicle to the dealer for the claim【5:4.2, 4.3, 7†velocity-warranty-guide.md】.
+   [tools used: file_search_call]
+Talking to agent velo-pit-crew v1 · conversation conv_052f7bf41d806…
+
+velo-pit-crew&gt; For a Velocity Summit, the recommended tire pressure is typically 35 PSI. Double-check the owner&#x27;s manual or the sticker inside the driver’s door to confirm for the specific model year.</span></code></pre>
+<p>The marker <code>【5:4.2, 4.3, 7†velocity-warranty-guide.md】</code> is the file-search citation: chunk 5, sections 4.2, 4.3 and 7 of the guide. A real app would render it as a link. And <code>[tools used: file_search_call]</code> is our client printing the tool items from <code>r.output</code>.</p></li>
+  <li><p><strong>Create an agent from code</strong> (optional, for the curious). Everything the portal did is three calls in the SDK:</p>
+<pre><code>from azure.ai.projects.models import PromptAgentDefinition, FileSearchTool, CodeInterpreterTool
+openai = project.get_openai_client()
+vs = openai.vector_stores.create(name="velocity-warranty-kb")
+openai.vector_stores.files.upload_and_poll(vector_store_id=vs.id, file=open("velocity-warranty-guide.md", "rb"))
+agent = project.agents.create_version(agent_name="velo-warranty-expert",
+    definition=PromptAgentDefinition(model="gpt-4-1-mini", instructions="…", tools=[FileSearchTool(vector_store_ids=[vs.id])]))
+conversation = openai.conversations.create()
+r = openai.responses.create(conversation=conversation.id, input="Does the Volt battery warranty transfer?",
+    extra_body={"agent_reference": {"name": agent.name, "version": str(agent.version), "type": "agent_reference"}})
+print(r.output_text)</code></pre></li>
+</ol>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>Your project lists two agents (<strong>Build</strong> → <strong>Agents</strong>): <code>velo-warranty-expert</code> with a File search tool and <code>velo-data-analyst</code> with Code interpreter. The warranty expert cites section numbers and declines what the guide does not cover; the preview web app opens; <code>agent_client.py</code> returns an answer with <code>[tools used: file_search_call]</code>.</p></div></div>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+<details class="reveal hint"><summary>400 "The 'agent' property is deprecated. Use 'agent_reference' instead."</summary><div class="body"><p>Older samples send <code>extra_body={"agent": {...}}</code>. The service now wants <code>agent_reference</code> with <code>name</code>, <code>version</code> and <code>type</code>. Our script already does.</p></div></details>
+<details class="reveal hint"><summary>The agent answers from general knowledge instead of the file</summary><div class="body"><p>Check the file finished indexing (the vector store shows the file as completed), that the tool is attached to the <em>saved</em> version you are calling, and that the instructions say "only from the file". Start a new chat; old conversations keep old context.</p></div></details>
+<details class="reveal hint"><summary>"Model deployment not found" or a quota error when creating the agent</summary><div class="body"><p>The Model list shows deployments in <em>this</em> project's resource. Pick <code>gpt-4-1-mini</code>; if it is missing, go back to Lap 0 and deploy it. If the portal insists on deploying a gpt-5 model and quota fails, choose <strong>Browse more models</strong> and select your existing deployment.</p></div></details>
+<details class="reveal hint"><summary>Python: PermissionDenied on the project endpoint</summary><div class="body"><p>Agents require an Entra ID role on the Foundry resource: <strong>Azure AI User</strong> (or Azure AI Developer). Keys do not work for the project endpoint. Ask race control.</p></div></details>
+
+<h2 id="quick-quiz">Quick quiz</h2>
+<details class="reveal quiz"><summary>What three things define an agent in Foundry?</summary><div class="body"><p>A <strong>model</strong>, <strong>instructions</strong>, and <strong>tools</strong> (plus a name and version). Conversations are state the service keeps for it.</p></div></details>
+<details class="reveal quiz"><summary>Which tool lets the agent answer from your PDF and markdown files?</summary><div class="body"><p><strong>File search</strong>: files are chunked and embedded into a vector store the agent queries. Code interpreter runs Python; Web search browses the internet; function tools call your APIs.</p></div></details>
+<details class="reveal quiz"><summary>How does a Python client say which agent to use?</summary><div class="body"><p>By passing <code>extra_body={"agent_reference": {"name": …, "version": …, "type": "agent_reference"}}</code> to <code>responses.create</code> on the OpenAI client returned by <code>AIProjectClient.get_openai_client()</code>.</p></div></details>
+<details class="reveal quiz"><summary>Why did the agent compute $902.95 correctly when a plain model might not?</summary><div class="body"><p>It used the <strong>Code interpreter</strong> tool to run Python instead of predicting digits token by token.</p></div></details>
+<details class="reveal quiz"><summary>Fastest way to let a colleague try your agent without code?</summary><div class="body"><p><strong>Publish</strong> → <strong>Preview web app</strong> in the agent playground.</p></div></details>
+
+<h2 id="pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</h2>
+<ul>
+  <li>An agent is a model plus instructions plus tools, run and remembered by the Foundry Agent Service.</li>
+  <li>File search turns documents into knowledge the agent can cite; Code interpreter turns it into a reliable calculator.</li>
+  <li>Conversations carry context; new chat means new memory.</li>
+  <li>Publish gives you a preview web app; the Foundry SDK gives you a client in a handful of lines, pinned to an agent name and version with <code>agent_reference</code>.</li>
+  <li>Guardrails for agents are instructions, least-privilege tools, tracing and a human in the loop.</li>
+</ul>
+<p>Next: Velo learns to listen and speak. <a href="lab4.html">Lap 4 · Radio check →</a></p>
+<nav class="pager" aria-label="Lap navigation"><a href="lab2.html"><small>◀ Previous</small>Lap 2 · Pole position</a><a href="lab4.html" style="text-align:right"><small>Next ▶</small>Lap 4 · Radio check</a></nav>
+</main>
+<footer>
+  <div>AI-901 Grand Prix · a one-day, car-themed path through Microsoft exam AI-901 · built for Velocity Motors (a fictional company). Not affiliated with Microsoft.</div>
+  <div><a href="https://github.com/varoonsahgal/az901">Source on GitHub</a> · <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Official AI-901 study guide</a> · <a href="instructor.html">Race control</a> · <a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

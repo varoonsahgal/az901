@@ -1,0 +1,143 @@
+{
+ "inputs": [
+  "Welcome to Velocity Motors. The 2027 Velocity Volt charges from 10 to 80 percent in 18 minutes and travels up to 340 miles on a single charge.",
+  "Schedule your test drive today. Your first three services are on us."
+ ],
+ "translate": [
+  {
+   "translations": [
+    {
+     "text": "Willkommen bei Velocity Motors. Der Velocity Volt 2027 lädt in 18 Minuten von 10 bis 80 Prozent und legt mit einer einzigen Ladung bis zu 340 Meilen zurück.",
+     "to": "de"
+    },
+    {
+     "text": "ベロシティ・モーターズへようこそ。2027年モデルのベロシティ・ボルトは10%から80%まで18分で充電でき、1回の充電で最大340マイル走行可能です。",
+     "to": "ja"
+    },
+    {
+     "text": "Bienvenido a Velocity Motors. El Velocity Volt 2027 carga entre el 10 y el 80 por ciento en 18 minutos y recorre hasta 340 millas con una sola carga.",
+     "to": "es"
+    },
+    {
+     "text": "Bienvenue chez Velocity Motors. Le Velocity Volt 2027 se recharge de 10 à 80 % en 18 minutes et parcourt jusqu’à 340 miles avec une seule charge.",
+     "to": "fr"
+    },
+    {
+     "text": "वेलोसिटी मोटर्स में आपका स्वागत है। 2027 वेलोसिटी वोल्ट 10 मिनट में 80 से 18 प्रतिशत तक चार्ज हो जाता है और एक बार चार्ज करने पर 340 मील तक की यात्रा करता है।",
+     "to": "hi"
+    },
+    {
+     "text": "欢迎来到Velocity Motors。2027款Velocity Volt在18分钟内充10%至80%，单次充电可行驶340英里。",
+     "to": "zh-Hans"
+    }
+   ]
+  },
+  {
+   "translations": [
+    {
+     "text": "Vereinbaren Sie noch heute Ihre Probefahrt. Ihre ersten drei Dienstleistungen gehen auf uns.",
+     "to": "de"
+    },
+    {
+     "text": "ぜひ今日から試乗の予約をしてください。最初の3回のサービスは当社でお支払いします。",
+     "to": "ja"
+    },
+    {
+     "text": "Programa tu prueba de conducción hoy mismo. Tus tres primeros servicios corren por nuestra cuenta.",
+     "to": "es"
+    },
+    {
+     "text": "Prenez rendez-vous pour votre essai routier dès aujourd’hui. Vos trois premiers services sont pour nous.",
+     "to": "fr"
+    },
+    {
+     "text": "आज ही अपनी टेस्ट ड्राइव शेड्यूल करें। आपकी पहली तीन सेवाएं हम पर हैं।",
+     "to": "hi"
+    },
+    {
+     "text": "今天就预约您的试驾吧。您的前三项服务由我们承担。",
+     "to": "zh-Hans"
+    }
+   ]
+  }
+ ],
+ "detect": [
+  {
+   "isTranslationSupported": true,
+   "isTransliterationSupported": false,
+   "language": "de",
+   "score": 1.0
+  },
+  {
+   "isTranslationSupported": true,
+   "isTransliterationSupported": true,
+   "language": "ja",
+   "score": 1.0
+  },
+  {
+   "isTranslationSupported": true,
+   "isTransliterationSupported": false,
+   "language": "es",
+   "score": 1.0
+  }
+ ],
+ "transliterate": [
+  {
+   "text": "Beroshiti Mootaazu e you koso. 2027 nen moderu no Beroshiti Boruto wa 10% kara 80% made 18 pun de juuden deki, 1 kai no juuden de saidai 340 mairu soukou kanou desu.",
+   "script": "Latn"
+  }
+ ],
+ "dictionary": [
+  {
+   "normalizedSource": "torque",
+   "displaySource": "torque",
+   "translations": [
+    {
+     "normalizedTarget": "drehmoment",
+     "displayTarget": "Drehmoment",
+     "posTag": "NOUN",
+     "confidence": 0.7271,
+     "prefixWord": "",
+     "backTranslations": [
+      {
+       "normalizedText": "torque",
+       "displayText": "torque",
+       "numExamples": 8,
+       "frequencyCount": 1017
+      }
+     ]
+    },
+    {
+     "normalizedTarget": "drehkraft",
+     "displayTarget": "Drehkraft",
+     "posTag": "NOUN",
+     "confidence": 0.1435,
+     "prefixWord": "",
+     "backTranslations": [
+      {
+       "normalizedText": "torque",
+       "displayText": "torque",
+       "numExamples": 0,
+       "frequencyCount": 12
+      }
+     ]
+    },
+    {
+     "normalizedTarget": "anzugsmoment",
+     "displayTarget": "Anzugsmoment",
+     "posTag": "NOUN",
+     "confidence": 0.1294,
+     "prefixWord": "",
+     "backTranslations": [
+      {
+       "normalizedText": "torque",
+       "displayText": "torque",
+       "numExamples": 0,
+       "frequencyCount": 5
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

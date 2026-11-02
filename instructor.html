@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-page="instructor">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Race control · AI-901 Grand Prix</title>
+<meta name="description" content="Instructor guide for the AI-901 Grand Prix: subscription preparation, roles and quotas for twenty students, the run sheet, costs, cleanup, and how every screenshot on this site was produced.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Race control · AI-901 Grand Prix"><meta property="og:description" content="Instructor guide for the AI-901 Grand Prix: subscription preparation, roles and quotas for twenty students, the run sheet, costs, cleanup, and how every screenshot on this site was produced."><meta property="og:type" content="website"><meta property="og:image" content="https://varoonsahgal.github.io/az901/images/og.png">
+<script>try{var t=localStorage.getItem('ai901-gp:theme');if(t)document.documentElement.setAttribute('data-theme',JSON.parse(t))}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1220'/%3E%3Cpath d='M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z' fill='%23E10600'/%3E%3Ccircle cx='12' cy='22' r='2.4' fill='%23FACC15'/%3E%3Ccircle cx='22' cy='22' r='2.4' fill='%23FACC15'/%3E%3C/svg%3E">
+</head>
+<body data-page="instructor" class="hue-instructor">
+<a class="skip" href="#main">Skip to content</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
+  <nav class="nav" aria-label="Laps">
+      <a href="index.html">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
+      <a href="instructor.html" aria-current=page>🏁 Race control</a>
+  </nav>
+  <div class="tools">
+    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
+  <div>
+    <p class="eyebrow">Race control · for the instructor</p>
+    <h1>Race control · setup, costs and cleanup</h1>
+    <p class="lede">Everything the person at the pit wall needs: what to prepare the day before, how twenty people share one subscription without collisions, what the day costs, how to delete it all, and exactly how the material on this site was verified.</p>
+    <div class="mast-meta"><span class="chip"><b>Prep time</b> 45 min the day before</span><span class="chip"><b>Students</b> up to 20 in one subscription (quota-bound)</span><span class="chip"><b>Region</b> East US 2</span><span class="chip"><b>Budget</b> about $2–4 per student</span></div>
+    
+  </div>
+  <div class="mast-art"></div>
+</div></section>
+<main id="main" class="labwrap">
+<details class="toc" open><summary>On this page</summary><ol><li><a href="#the-day-before">The day before</a></li><li><a href="#run-sheet">Run sheet</a></li><li><a href="#what-the-day-costs">What the day costs</a></li><li><a href="#what-the-verification-run-actually-cost">What the verification run actually cost</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#verification">How this site was verified, and what the screenshots are</a></li></ol></details>
+
+<h2 id="the-day-before">The day before</h2>
+<ol class="steps">
+  <li><p><strong>One subscription, Owner access for you.</strong> Students need <strong>Contributor</strong> (to create resource groups and resources) and <strong>Azure AI User</strong> (data-plane access to Foundry projects and agents) at subscription scope. Put their sign-in names in <code>students.txt</code>, one per line, and run the helper:</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/race_control.sh &amp;&amp; chmod +x race_control.sh
+./race_control.sh prep                 <span class="cm"># registers providers, prints the quotas that matter</span>
+./race_control.sh roles students.txt   <span class="cm"># Contributor + Azure AI User per student</span></code></pre>
+<p>If everyone signs in with one shared account instead, grant that account the two roles once; the student-number scheme still keeps resources apart.</p></li>
+  <li><p><strong>Check quotas in East US 2.</strong> The numbers that bound class size on a fresh subscription (yours may differ; the <code>prep</code> command prints them):</p>
+<table>
+<thead><tr><th>Quota</th><th>Typical limit</th><th>Per student</th><th>Fits</th></tr></thead>
+<tbody>
+<tr><td><code>OpenAI.Standard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>10K</td><td>20 exactly, with no headroom for your own demo: deploy <em>your</em> gpt-4.1-mini in another region (we used East US), or request a quota increase in advance (Azure portal → Quotas → Azure OpenAI; usually approved within hours), or tell students to deploy at 8K.</td></tr>
+<tr><td><code>OpenAI.GlobalStandard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>—</td><td>A second pool: half the class can deploy Global Standard instead if Standard runs dry.</td></tr>
+<tr><td><code>OpenAI.GlobalStandard.gpt-audio-mini</code> (TPM)</td><td>30K</td><td>1K</td><td>20 with room.</td></tr>
+<tr><td><code>AIServices.GlobalStandard.FLUX.2-pro</code> (capacity units)</td><td>30</td><td>1</td><td>20 with room; each unit is one request per minute.</td></tr>
+<tr><td><code>OpenAI.Standard.text-embedding-3-large</code> (TPM)</td><td>350K+</td><td>10K</td><td>Fine.</td></tr>
+<tr><td><code>AIServices.S0.AccountCount</code></td><td>100</td><td>1</td><td>Fine.</td></tr>
+<tr><td><code>OpenAI.Standard.gpt4.1</code> (TPM)</td><td>50K</td><td>—</td><td>Only you need it, for the <code>prebuilt-invoice</code> demo in Lap 6.</td></tr>
+</tbody></table></li>
+  <li><p><strong>Build your own garage (student s00)</strong> by running Lap 0 yourself in East US (not East US 2) so your deployments do not eat the class's Standard quota, plus for Lap 6: a <code>gpt-4-1</code> deployment and the Content Understanding defaults mapping <code>prebuilt-analyzer-completion</code> to it. Run every lab once; it takes about three hours and surfaces anything Microsoft changed since this site was built.</p></li>
+  <li><p><strong>Whiteboard:</strong> student numbers s01–s20 next to names; the site URL; the three rules (your number is your namespace; S0 never F0; small deployments). <strong>Headphones</strong> for Lap 4.</p></li>
+  <li><p><strong>Cloud Shell</strong> works without a storage account in ephemeral mode. If your tenant blocks it, students can use a laptop with <code>az</code> and Python 3.10+; every command on the site is plain bash.</p></li>
+</ol>
+
+<h2 id="run-sheet">Run sheet</h2>
+<div class="track">
+  <div class="t">08:45</div><div class="w"><b>Doors</b> <span>— site open on the projector at the index page; numbers on the board.</span></div>
+  <div class="t">09:00</div><div class="w"><b>Lap 0</b> <span>— 30 min. Watch for name collisions and the East US / East US 2 mistake. Checkpoint: everyone has a caption from the first call.</span></div>
+  <div class="t">09:30</div><div class="w"><b>Lap 1</b> <span>— 60 min. The principles grid and the workload sort are discussion material; run them as a group. Content Safety hands-on in the last 20 minutes.</span></div>
+  <div class="t">10:30</div><div class="w"><span>Break 15 min</span></div>
+  <div class="t">10:45</div><div class="w"><b>Lap 2</b> <span>— 60 min. Make sure everyone sees the hallucinated warranty before the grounded answer; it is the moment of the day. The chat client needs the Azure AI User role: check it in Lap 0 if you can.</span></div>
+  <div class="t">11:45</div><div class="w"><b>Lap 3</b> <span>— 60 min. Agent creation in the portal is click-heavy; pair up. Preview web app is the applause moment.</span></div>
+  <div class="t">12:45</div><div class="w"><span>Lunch 45 min</span></div>
+  <div class="t">13:30</div><div class="w"><b>Lap 4</b> <span>— 60 min. Voice mode needs microphones and a quiet room; skip it if the room is loud and play the audio files instead. gpt-audio-mini deployment first, then the scripts.</span></div>
+  <div class="t">14:30</div><div class="w"><b>Lap 5</b> <span>— 50 min. FLUX at capacity 1 is one image a minute per student; stagger prompts and nobody waits.</span></div>
+  <div class="t">15:20</div><div class="w"><span>Break 10 min</span></div>
+  <div class="t">15:30</div><div class="w"><b>Lap 6</b> <span>— 50 min. The embedding deployment and the defaults PATCH must happen before the custom analyzer; the sticker schema is the core exercise, video is optional.</span></div>
+  <div class="t">16:20</div><div class="w"><b>Lap 7</b> <span>— 40 min. 25 minutes of practice exam, then everyone runs the delete command before leaving. Run <code>./race_control.sh status</code> to confirm.</span></div>
+  <div class="t">17:00</div><div class="w"><b>Cleanup</b> <span>— <code>./race_control.sh cleanup</code> deletes any leftover rg-ai901-* group and purges soft-deleted names.</span></div>
+</div>
+
+<h2 id="what-the-day-costs">What the day costs</h2>
+<p>Everything is pay-per-use; nothing in the labs is hourly except what students forget to delete. Estimated list prices for one student following every lab (November 2026, East US 2; check your price sheet):</p>
+<table>
+<thead><tr><th>Item</th><th>Volume per student</th><th>Approx. cost</th></tr></thead>
+<tbody>
+<tr><td>gpt-4.1-mini tokens (chat, agents, vision prompts, Content Understanding fields)</td><td>≈ 150K input + 30K output</td><td>$0.11</td></tr>
+<tr><td>gpt-audio-mini (two spoken exchanges)</td><td>≈ 1K audio tokens</td><td>$0.05</td></tr>
+<tr><td>FLUX.2-pro images</td><td>3–5 images</td><td>$0.15–0.30</td></tr>
+<tr><td>Azure AI Vision analyses (lot photos, OCR)</td><td>≈ 40 calls</td><td>$0.06</td></tr>
+<tr><td>Azure AI Language (sentiment, key phrases, entities, PII, summarization) and Translator</td><td>≈ 30 records</td><td>$0.05</td></tr>
+<tr><td>Azure Speech (TTS ≈ 2K characters, STT ≈ 2 min)</td><td>—</td><td>$0.10</td></tr>
+<tr><td>Content Safety</td><td>≈ 10 calls</td><td>$0.01</td></tr>
+<tr><td>Content Understanding (document pages, images, 1 min audio, 18 s video, plus the GPT tokens above)</td><td>≈ 12 analyses</td><td>$0.60–1.50</td></tr>
+<tr><td>Agent file search storage, embeddings</td><td>one small file</td><td>&lt; $0.01</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td><strong>≈ $1.20–2.20, call it $2–4 with retries and curiosity</strong></td></tr>
+</tbody></table>
+<p>The instructor's verification run that produced this site is itemised in the next section.</p>
+
+<h2 id="what-the-verification-run-actually-cost">What the verification run actually cost</h2>
+<p>Azure Cost Management for the instructor resource group, 1–2 November 2026, as of the morning after (billing data keeps arriving for about 24 hours, so the final figure will be a little higher). This run exercised every lab several times, generated five images, ran Content Understanding on video, and included an Azure Machine Learning AutoML experiment that was dropped from the course when the AI-901 outline turned out not to cover classic ML.</p>
+<table><thead><tr><th>Category</th><th>Meter</th><th>Cost (USD)</th></tr></thead><tbody><tr><td>Virtual Machines</td><td>D12/DS12</td><td style="text-align:right;font-family:var(--mono)">$0.257</td></tr><tr><td>Foundry Models</td><td>Flux 1.1 Pro glbl Images</td><td style="text-align:right;font-family:var(--mono)">$0.120</td></tr><tr><td>Foundry Tools</td><td>Image Analysis Group 2 Transactions</td><td style="text-align:right;font-family:var(--mono)">$0.080</td></tr><tr><td>Foundry Tools</td><td>Standard Text Records</td><td style="text-align:right;font-family:var(--mono)">$0.053</td></tr><tr><td>Foundry Tools</td><td>Image Analysis Group 1 Transactions</td><td style="text-align:right;font-family:var(--mono)">$0.049</td></tr><tr><td>Storage</td><td>S4 LRS Disk Operations</td><td style="text-align:right;font-family:var(--mono)">$0.038</td></tr><tr><td>Load Balancer</td><td>Standard Included LB Rules and Outbound Rules</td><td style="text-align:right;font-family:var(--mono)">$0.030</td></tr><tr><td>Foundry Tools</td><td>Doc Content Extraction Standard Pages</td><td style="text-align:right;font-family:var(--mono)">$0.025</td></tr><tr><td>Foundry Models</td><td>gpt 4.1 Outp regnl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.023</td></tr><tr><td>Foundry Models</td><td>gpt 4.1 Inp regnl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.022</td></tr><tr><td>Foundry Tools</td><td>S1 Neural Text To Speech Characters</td><td style="text-align:right;font-family:var(--mono)">$0.020</td></tr><tr><td>Foundry Tools</td><td>Image Analysis Group 1-1 Transactions</td><td style="text-align:right;font-family:var(--mono)">$0.017</td></tr><tr><td>Foundry Tools</td><td>Std Contextualization Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.016</td></tr><tr><td>Foundry Tools</td><td>Video Content Extraction</td><td style="text-align:right;font-family:var(--mono)">$0.015</td></tr><tr><td>Load Balancer</td><td>Standard Data Processed</td><td style="text-align:right;font-family:var(--mono)">$0.014</td></tr><tr><td>Foundry Tools</td><td>S1 Standard Characters</td><td style="text-align:right;font-family:var(--mono)">$0.013</td></tr><tr><td>Foundry Models</td><td>gpt 4.1 mini Inp regnl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.011</td></tr><tr><td>Foundry Tools</td><td>S0 Pre-built Pages</td><td style="text-align:right;font-family:var(--mono)">$0.010</td></tr><tr><td>Foundry Tools</td><td>Standard Summarization Text Records</td><td style="text-align:right;font-family:var(--mono)">$0.010</td></tr><tr><td>Foundry Models</td><td>gpt aud mini Outp glbl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.008</td></tr><tr><td>Storage</td><td>Hot LRS Write Operations</td><td style="text-align:right;font-family:var(--mono)">$0.008</td></tr><tr><td>Foundry Models</td><td>gpt 4.1 mini Outp regnl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.006</td></tr><tr><td>Virtual Network</td><td>Standard IPv4 Static Public IP</td><td style="text-align:right;font-family:var(--mono)">$0.006</td></tr><tr><td>Foundry Tools</td><td>S1 Speech To Text</td><td style="text-align:right;font-family:var(--mono)">$0.006</td></tr><tr><td>Storage</td><td>S10 LRS Disk</td><td style="text-align:right;font-family:var(--mono)">$0.006</td></tr><tr><td>Foundry Tools</td><td>Audio Content Extraction</td><td style="text-align:right;font-family:var(--mono)">$0.005</td></tr><tr><td>Foundry Models</td><td>gpt 4.1 cached Inp regnl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.005</td></tr><tr><td>Storage</td><td>LRS List and Create Container Operations</td><td style="text-align:right;font-family:var(--mono)">$0.002</td></tr><tr><td>Foundry Models</td><td>gpt aud mini Inp glbl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.002</td></tr><tr><td>Foundry Tools</td><td>S0 Read Pages</td><td style="text-align:right;font-family:var(--mono)">$0.002</td></tr><tr><td>Foundry Tools</td><td>Standard Images</td><td style="text-align:right;font-family:var(--mono)">$0.001</td></tr><tr><td>Foundry Models</td><td>gpt 4.1 mini cached Inp regnl Tokens</td><td style="text-align:right;font-family:var(--mono)">$0.001</td></tr><tr><td>Storage</td><td>Hot Read Operations</td><td style="text-align:right;font-family:var(--mono)">$0.001</td></tr><tr><td colspan="2"><strong>Total recorded so far</strong></td><td style="text-align:right;font-family:var(--mono)"><strong>$0.88</strong></td></tr></tbody></table>
+<p>Meters below $0.001 are omitted. Per-student cost for the labs alone is lower than this run because students do not repeat each lab, do not run AutoML, and generate fewer images.</p>
+
+<h2 id="cleanup">Cleanup</h2>
+<pre><code>./race_control.sh status      <span class="cm"># what is left</span>
+./race_control.sh cleanup     <span class="cm"># delete every rg-ai901-* and purge soft-deleted Foundry names</span>
+az role assignment list --query "[?roleDefinitionName=='Azure AI User' || roleDefinitionName=='Contributor'].{who:principalName,role:roleDefinitionName}" -o table   <span class="cm"># revoke student roles afterwards if the subscription lives on</span></code></pre>
+<div class="callout warning"><div class="ico">⚠️</div><div><span class="box-lbl">Soft delete</span><p>Deleting a resource group soft-deletes the Foundry resource for 48 hours and keeps its DNS name reserved. If you run the course again next week with the same student numbers, purge first or the names will be "already taken".</p></div></div>
+
+<h2 id="verification">How this site was verified, and what the screenshots are</h2>
+<ul>
+  <li><strong>Every API call on this site was executed</strong> against a real subscription on 1–2 November 2026 (Azure CLI 2.90, Python 3.11, Foundry SDK azure-ai-projects 2.10). The JSON responses are in <a href="downloads/results/">downloads/results/</a>.</li>
+  <li><strong>Screenshots of results</strong> (the cards with captions, fields, sentiment bars, agent conversations) are the real responses, rendered into a consistent card design so they are readable on a projector. Terminal screenshots show real CLI output; the instructor's resource names were replaced with the sample student <code>s07</code> and the region with East US 2, which is where students work.</li>
+  <li><strong>There are no screenshots of the Foundry or Azure portal.</strong> The portal requires an interactive browser session, which the build process did not have. Portal steps follow the <a href="https://microsoftlearning.github.io/mslearn-ai-fundamentals/">official Microsoft Learning exercises</a> for the same features, using their UI labels (New Foundry, Discover → Models, Instructions, Save as agent, Publish → Preview web app, Voice mode, Build → Services → Content Understanding). Expect drift; the Cloud Shell path on every page is the one that was executed.</li>
+  <li><strong>Things learned the hard way</strong>, already baked into the labs: Content Understanding's preview API versions return 410 (use 2025-11-01); analyzer IDs cannot contain hyphens; <code>prebuilt-invoice</code> requires gpt-4.1 or gpt-5-family models while custom analyzers accept gpt-4.1-mini; the agents API rejects the deprecated <code>agent</code> property in favour of <code>agent_reference</code>; FLUX deployments are rate-limited to one request per minute per capacity unit and are served from the <code>services.ai.azure.com</code> host; <code>gpt-audio-mini</code> and FLUX had quota in East US 2 but not East US on this subscription; Azure Machine Learning and AutoML were built and then removed because AI-901 dropped classic ML.</li>
+  <li><strong>Photos</strong> are public domain or CC0 from Wikimedia Commons (see <a href="credits.html">credits</a>); documents, audio, video and datasets were generated for the course; concept-car images were generated with FLUX models.</li>
+</ul>
+<nav class="pager" aria-label="Lap navigation"><a href="lab7.html"><small>◀ Previous</small>Lap 7 · Checkered flag</a><a href="index.html" style="text-align:right"><small>Finish</small>Back to the start</a></nav>
+</main>
+<footer>
+  <div>AI-901 Grand Prix · a one-day, car-themed path through Microsoft exam AI-901 · built for Velocity Motors (a fictional company). Not affiliated with Microsoft.</div>
+  <div><a href="https://github.com/varoonsahgal/az901">Source on GitHub</a> · <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Official AI-901 study guide</a> · <a href="instructor.html">Race control</a> · <a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

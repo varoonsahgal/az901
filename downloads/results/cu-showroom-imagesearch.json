@@ -1,0 +1,41 @@
+{
+ "id": "4f045f0f-b454-4630-9cd9-ebf673fc3a99",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "prebuilt-imageSearch",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T04:45:19Z",
+  "warnings": [],
+  "contents": [
+   {
+    "path": "input1",
+    "markdown": "![image](pages/1)\n",
+    "fields": {
+     "Summary": {
+      "type": "string",
+      "valueString": "The image shows a classic vintage car displayed indoors, likely in a museum or showroom. The car has a rounded design typical of mid-20th century automobiles, with prominent chrome detailing on the front grille and bumper. The photo is in black and white, highlighting the car's smooth curves and reflective surfaces. The background includes another vintage car partially visible on the left side and metallic wall panels, contributing to the retro atmosphere."
+     }
+    },
+    "kind": "document",
+    "startPageNumber": 1,
+    "endPageNumber": 1,
+    "unit": "pixel",
+    "pages": [
+     {
+      "pageNumber": 1,
+      "spans": []
+     }
+    ],
+    "analyzerId": "prebuilt-imageSearch",
+    "mimeType": "image/jpeg"
+   }
+  ]
+ },
+ "usage": {
+  "contextualizationTokens": 1000,
+  "tokens": {
+   "gpt-4.1-mini-input": 330,
+   "gpt-4.1-mini-output": 88
+  }
+ }
+}

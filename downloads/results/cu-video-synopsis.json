@@ -1,0 +1,204 @@
+{
+ "id": "a39a4e86-43b8-4583-b5c4-4ba53920a635",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "prebuilt-videoSynopsis",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T05:01:20Z",
+  "stringEncoding": "utf8",
+  "warnings": [],
+  "contents": [
+   {
+    "markdown": "# Video: 00:00.000 => 00:17.959\nWidth: 1280\nHeight: 720\n\nTranscript\n```\nWEBVTT\n\n00:00.110 --> 00:08.670\n<Speaker 1>Ladies and gentlemen, start your engines! The 2027 Velocity Volt goes from 10 to 80% charge in just 18 minutes.\n\n00:09.470 --> 00:13.750\n<Speaker 1>Velkommen by Velocity Motors.\n```\n\nKey Frames\n- 00:00.792 ![](keyFrame.792.jpg)\n- 00:01.583 ![](keyFrame.1583.jpg)\n- 00:02.375 ![](keyFrame.2375.jpg)\n- 00:03.167 ![](keyFrame.3167.jpg)\n- 00:04.750 ![](keyFrame.4750.jpg)\n- 00:05.542 ![](keyFrame.5542.jpg)\n- 00:06.333 ![](keyFrame.6333.jpg)\n- 00:07.125 ![](keyFrame.7125.jpg)\n- 00:08.750 ![](keyFrame.8750.jpg)\n- 00:09.542 ![](keyFrame.9542.jpg)\n- 00:10.333 ![](keyFrame.10333.jpg)\n- 00:11.125 ![](keyFrame.11125.jpg)\n- 00:12.750 ![](keyFrame.12750.jpg)\n- 00:13.542 ![](keyFrame.13542.jpg)\n- 00:14.333 ![](keyFrame.14333.jpg)\n- 00:15.125 ![](keyFrame.15125.jpg)\n- 00:16.625 ![](keyFrame.16625.jpg)\n- 00:17.292 ![](keyFrame.17292.jpg)",
+    "fields": {
+     "Summary": {
+      "type": "string",
+      "valueString": "The video showcases a variety of cars from different eras and settings. It begins with a modern silver Tesla displayed indoors near a Starbucks, followed by a black-and-white image of a vintage car in a museum-like setting. Next, a man wearing a beanie is seen standing beside a black SUV with a rooftop cargo box in an outdoor, natural environment. The sequence continues with a silver SUV parked on a roadside in a more urban or suburban area. Finally, the video features a bright orange classic car with a white roof parked in a lot with other vehicles in the background."
+     }
+    },
+    "kind": "audioVisual",
+    "startTimeMs": 0,
+    "endTimeMs": 17959,
+    "width": 1280,
+    "height": 720,
+    "KeyFrameTimesMs": [
+     792,
+     1583,
+     2375,
+     3167,
+     4750,
+     5542,
+     6333,
+     7125,
+     8750,
+     9542,
+     10333,
+     11125,
+     12750,
+     13542,
+     14333,
+     15125,
+     16625,
+     17292
+    ],
+    "transcriptPhrases": [
+     {
+      "speaker": "Speaker 1",
+      "startTimeMs": 110,
+      "endTimeMs": 8670,
+      "text": "Ladies and gentlemen, start your engines! The 2027 Velocity Volt goes from 10 to 80% charge in just 18 minutes.",
+      "confidence": 0.848,
+      "words": [
+       {
+        "startTimeMs": 110,
+        "endTimeMs": 470,
+        "text": "Ladies"
+       },
+       {
+        "startTimeMs": 470,
+        "endTimeMs": 590,
+        "text": "and"
+       },
+       {
+        "startTimeMs": 590,
+        "endTimeMs": 1070,
+        "text": "gentlemen,"
+       },
+       {
+        "startTimeMs": 1310,
+        "endTimeMs": 1630,
+        "text": "start"
+       },
+       {
+        "startTimeMs": 1630,
+        "endTimeMs": 1750,
+        "text": "your"
+       },
+       {
+        "startTimeMs": 1750,
+        "endTimeMs": 2350,
+        "text": "engines!"
+       },
+       {
+        "startTimeMs": 2670,
+        "endTimeMs": 2790,
+        "text": "The"
+       },
+       {
+        "startTimeMs": 2790,
+        "endTimeMs": 3550,
+        "text": "2027"
+       },
+       {
+        "startTimeMs": 3550,
+        "endTimeMs": 4030,
+        "text": "Velocity"
+       },
+       {
+        "startTimeMs": 4030,
+        "endTimeMs": 4430,
+        "text": "Volt"
+       },
+       {
+        "startTimeMs": 4430,
+        "endTimeMs": 4750,
+        "text": "goes"
+       },
+       {
+        "startTimeMs": 4750,
+        "endTimeMs": 4990,
+        "text": "from"
+       },
+       {
+        "startTimeMs": 4990,
+        "endTimeMs": 5470,
+        "text": "10"
+       },
+       {
+        "startTimeMs": 5470,
+        "endTimeMs": 6390,
+        "text": "to"
+       },
+       {
+        "startTimeMs": 6390,
+        "endTimeMs": 6430,
+        "text": "80%"
+       },
+       {
+        "startTimeMs": 6430,
+        "endTimeMs": 6990,
+        "text": "charge"
+       },
+       {
+        "startTimeMs": 7150,
+        "endTimeMs": 7310,
+        "text": "in"
+       },
+       {
+        "startTimeMs": 7310,
+        "endTimeMs": 7710,
+        "text": "just"
+       },
+       {
+        "startTimeMs": 7710,
+        "endTimeMs": 8190,
+        "text": "18"
+       },
+       {
+        "startTimeMs": 8190,
+        "endTimeMs": 8670,
+        "text": "minutes."
+       }
+      ],
+      "locale": "en-US"
+     },
+     {
+      "speaker": "Speaker 1",
+      "startTimeMs": 9470,
+      "endTimeMs": 13750,
+      "text": "Velkommen by Velocity Motors.",
+      "confidence": 0.848,
+      "words": [
+       {
+        "startTimeMs": 9470,
+        "endTimeMs": 10030,
+        "text": "Velkommen"
+       },
+       {
+        "startTimeMs": 10030,
+        "endTimeMs": 10190,
+        "text": "by"
+       },
+       {
+        "startTimeMs": 10190,
+        "endTimeMs": 11550,
+        "text": "Velocity"
+       },
+       {
+        "startTimeMs": 11950,
+        "endTimeMs": 13750,
+        "text": "Motors."
+       }
+      ],
+      "locale": "en-US"
+     }
+    ],
+    "cameraShotTimesMs": [
+     3958,
+     7958,
+     11958,
+     15958
+    ],
+    "mimeType": "video/mp4"
+   }
+  ]
+ },
+ "usage": {
+  "videoHours": 0.005,
+  "contextualizationTokens": 5000,
+  "tokens": {
+   "gpt-4.1-mini-input": 5089,
+   "gpt-4.1-mini-output": 343
+  }
+ }
+}

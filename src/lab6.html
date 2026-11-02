@@ -1,0 +1,215 @@
+<!--META {"title":"Lap 6 · Paperwork","desc":"Information extraction with Azure Content Understanding in Microsoft Foundry: a service invoice, a window sticker with your own field schema, lot photos classified into a table, a launch video and its audio, and a lightweight Python extractor.",
+"h1":"Paperwork · information extraction with Content Understanding",
+"lede":"Every dealership drowns in paper and pixels: invoices, window stickers, photos, recorded calls, launch videos. Azure Content Understanding turns all four kinds of content into the same thing: typed fields you can put in a database. In this lap you run the prebuilt analyzers, write your own schema, and finish with a 40-line extractor.",
+"chips":[["Time","50 min"],["Difficulty","Beginner · JSON schemas and curl, one Python script"],["Services","Azure Content Understanding (api 2025-11-01) · gpt-4.1-mini · text-embedding-3-large"],["Exam weight","Part of Implement AI solutions · 55–60%"]],
+"objectives":["Extract information from documents and forms by using Azure Content Understanding in Foundry Tools","Extract information from images by using Content Understanding","Extract information from audio and video by using Content Understanding","Build a lightweight application with information extraction capabilities by using Content Understanding","Identify techniques to extract information from text, images, audio, and videos"]}
+-->
+<div class="callout note"><div class="ico">🗂️</div><div><span class="box-lbl">The story so far</span><p>Finance keys 900 service invoices a month by hand. The used-car team retypes window stickers. Marketing cannot find the clip where the Volt's charging time is mentioned. The pit crew's answer is one service with one habit: send a file, get fields.</p></div></div>
+
+<h2>Part 0 · The idea in five minutes</h2>
+<div class="vocab">
+  <div><b>Content Understanding</b>A Foundry Tool that takes <strong>documents, images, audio and video</strong> and returns structured results: markdown of the content plus <em>fields</em> you define or that a prebuilt analyzer defines. It is the successor to the separate Document Intelligence, Video Indexer and speech-transcription pipelines for extraction work.</div>
+  <div><b>Analyzer</b>The unit of configuration. <em>Prebuilt</em> analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>, <code>prebuilt-idDocument</code>, <code>prebuilt-callCenter</code>, <code>prebuilt-videoSynopsis</code>…) know their fields already. <em>Custom</em> analyzers start from a base (<code>prebuilt-document</code>, <code>prebuilt-image</code>, <code>prebuilt-audio</code>, <code>prebuilt-video</code>) and add your <strong>field schema</strong>.</div>
+  <div><b>Field schema</b>Each field has a <code>type</code> (string, number, integer, boolean, date, array, object), a <code>method</code> (<code>extract</code> = copy what is on the page, with a source and confidence; <code>generate</code> = write it, e.g. a summary; <code>classify</code> = pick one of your <code>enum</code> values) and a description, which is the prompt the model follows.</div>
+  <div><b>Models behind it</b>OCR and layout need no model. Field extraction uses a GPT <em>completion</em> model and an <em>embedding</em> model that you deploy and register once per resource (<code>PATCH /contentunderstanding/defaults</code>). Prebuilt invoice wants gpt-4.1 or a gpt-5; custom analyzers are happy with gpt-4.1-mini.</div>
+  <div><b>The async pattern</b><code>POST …/analyzers/{id}:analyzeBinary</code> returns <code>202 Accepted</code> and an <code>Operation-Location</code> header; you GET that URL until <code>status</code> is <code>Succeeded</code>. Creating a custom analyzer works the same way.</div>
+  <div><b>Result shape</b><code>result.contents[]</code>: one entry per document, image, audio track or video segment, each with <code>markdown</code>, <code>fields</code> (<code>valueString</code>, <code>valueNumber</code>, <code>valueArray</code>…, plus <code>confidence</code> and <code>source</code> for extracted fields), and for media, <code>startTimeMs</code>/<code>endTimeMs</code>, transcripts and key frames.</div>
+</div>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Documents and forms → prebuilt analyzers or a custom schema on <code>prebuilt-document</code>. Images → a custom schema on <code>prebuilt-image</code> (classify / describe). Audio → transcript, then fields such as summary, topics, sentiment (<code>prebuilt-callCenter</code>). Video → shots, key frames, transcript, synopsis (<code>prebuilt-video</code>, <code>prebuilt-videoSynopsis</code>). The portal playground lives at <strong>Build → Services → Content Understanding</strong>; the API version is <code>2025-11-01</code>; analyzer IDs cannot contain hyphens; it is asynchronous.</p></div></div>
+
+<h2>Part 1 · Reload your pit board and register the models</h2>
+<pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
+export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
+export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY
+for f in service-invoice.pdf window-sticker.png velocity-teaser.mp4; do curl -sLO https://varoonsahgal.github.io/az901/downloads/$f; done
+curl -sLo narration.mp3 https://varoonsahgal.github.io/az901/media/velo-andrew-multilingual.mp3
+curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot</code></pre>
+<ol class="steps">
+  <li><p><strong>Deploy an embedding model</strong> (field extraction on documents needs one) next to your gpt-4.1-mini from Lap 0:</p>
+<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name text-embedding-3-large --model-name text-embedding-3-large --model-version 1 --model-format OpenAI \
+  --sku-name Standard --sku-capacity 10 -o table</code></pre></li>
+  <li><p><strong>Tell Content Understanding which deployments to use.</strong> The keys on the left are the service's model aliases; the values are your deployment names.</p>
+<pre><code>curl -s -X PATCH "$AI_ENDPOINT/contentunderstanding/defaults?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" \
+  -H "Content-Type: application/merge-patch+json" \
+  -d '{"modelDeployments":{"prebuilt-analyzer-completion-mini":"gpt-4-1-mini","prebuilt-analyzer-embedding":"text-embedding-3-large","gpt-4.1-mini":"gpt-4-1-mini","text-embedding-3-large":"text-embedding-3-large"}}'
+curl -s "$AI_ENDPOINT/contentunderstanding/analyzers?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '[.value[].analyzerId] | length, .[0:12]'</code></pre>
+<p>The second command lists the prebuilt analyzers (about 90, from <code>prebuilt-invoice</code> to <code>prebuilt-tax.us.w2</code> to <code>prebuilt-videoSynopsis</code>).</p></li>
+</ol>
+
+<h2>Part 2 · Documents</h2>
+<ol class="steps">
+  <li><p><strong>OCR and layout, no model needed.</strong> <code>prebuilt-document</code> returns markdown with headings, tables and reading order. Send the window sticker, then poll:</p>
+<pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-document:analyzeBinary?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: image/png" --data-binary @window-sticker.png | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
+sleep 8; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].markdown' | head -30</code></pre>
+<p>You get <code># 2026 VELOCITY STRATA SPORT</code>, the equipment list as bullets and the price table as HTML, in order. That markdown is what the model reads in the next step.</p></li>
+  <li><p><strong>A prebuilt form analyzer: the invoice.</strong> <code>prebuilt-invoice</code> knows thirty invoice fields and line items. It insists on a gpt-4.1 (or gpt-5-family) completion model, which the class does not deploy today; race control ran it, and the portal shows pre-prepared results. Here is the service invoice through it, typed values and all:</p>
+<img class="shot" src="images/shots/lab6-cu-invoice.png" alt="prebuilt-invoice fields with confidences: INV-48213, dates, customer, Net 14, subtotal 839.95, tax 63, total 902.95 USD, and five line items" loading="lazy" title="Click to zoom">
+<img class="shot" src="images/shots/lab6-extract-invoice.png" alt="Terminal: extract_info.py on the invoice printing typed fields" loading="lazy" title="Click to zoom">
+<p>Notice the field types: <code>TotalAmount</code> is a currency object with <code>Amount</code> and <code>CurrencyCode</code>, dates are ISO dates, and line items are an array of objects. Confidence is per field.</p>
+<p><em>Portal path:</em> in your project open <strong>Build</strong> → <strong>Services</strong> → <strong>Content Understanding</strong>. Select <strong>OCR/Read</strong>, confirm <strong>Modality</strong> is <strong>Document</strong>, upload <code>window-sticker.png</code> and <strong>Run analysis</strong>; read the <strong>Markdown</strong>, <strong>Paragraphs</strong> and <strong>Result</strong> tabs. Then select <strong>Layout</strong> and run again to see tables. Finally in the analyzer types list choose <strong>Procurement</strong> → <strong>Invoice</strong>; if prompted to deploy models select <strong>Cancel</strong> and review the pre-prepared <strong>Fields</strong>, <strong>Markdown</strong> and <strong>Code</strong> tabs. The Code tab is the same REST call you are making here, in Python.</p></li>
+</ol>
+
+<h2>Part 3 · Your own schema · the window sticker</h2>
+<ol class="steps">
+  <li><p>Describe the fields you want. The <code>description</code> is the instruction; <code>method</code> says whether to copy, write or choose.</p>
+<pre><code>cat &gt; sticker-analyzer.json &lt;&lt;'JSON'
+{
+  "description": "Velocity Motors window sticker key facts",
+  "baseAnalyzerId": "prebuilt-document",
+  "models": {"completion": "gpt-4.1-mini", "embedding": "text-embedding-3-large"},
+  "config": {"returnDetails": true, "enableOcr": true, "enableLayout": true, "estimateFieldSourceAndConfidence": true},
+  "fieldSchema": {
+    "name": "WindowSticker",
+    "fields": {
+      "ModelName":        {"type": "string",  "method": "extract", "description": "Model year, make and model"},
+      "VIN":              {"type": "string",  "method": "extract", "description": "17-character vehicle identification number"},
+      "TotalMSRP":        {"type": "number",  "method": "extract", "description": "Total MSRP in USD"},
+      "CombinedMPG":      {"type": "integer", "method": "extract", "description": "Combined fuel economy"},
+      "ExteriorColor":    {"type": "string",  "method": "extract"},
+      "AssemblyLocation": {"type": "string",  "method": "extract"},
+      "OptionalEquipment":{"type": "array",   "method": "generate", "description": "Optional extras added to the base price",
+                           "items": {"type": "object", "properties": {"Name": {"type": "string"}, "Price": {"type": "number"}}}}
+    }
+  }
+}
+JSON
+curl -s -i -X PUT "$AI_ENDPOINT/contentunderstanding/analyzers/velocityWindowSticker?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" -d @sticker-analyzer.json | grep -i -E "^HTTP|operation-location"</code></pre>
+<img class="shot" src="images/shots/lab6-cu-create-analyzer.png" alt="Terminal: PATCH defaults, then PUT the custom analyzer returning 201 Created and an operation-location" loading="lazy" title="Click to zoom">
+<p>Analyzer IDs may not contain hyphens (we learned that the hard way: <code>velocity-window-sticker</code> is rejected, <code>velocityWindowSticker</code> is fine). Creation is asynchronous; wait for the operation to say <code>Succeeded</code> (about 20 seconds).</p></li>
+  <li><p>Analyze the sticker with your analyzer, exactly as in Part 2 but with your ID, then read the fields:</p>
+<pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/velocityWindowSticker:analyzeBinary?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: image/png" --data-binary @window-sticker.png | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
+sleep 15; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.result.contents[0].fields | map_values({v: (.valueString // .valueNumber // .valueInteger // .valueArray), confidence}))'</code></pre>
+<img class="shot" src="images/shots/lab6-cu-sticker.png" alt="Window sticker beside the schema and the extracted fields: 2026 VELOCITY STRATA SPORT, VIN 1VMSTR8A3RA210077 at 0.98, MSRP 36445, 36 MPG, Velocity Red, Marysville Ohio, and the optional equipment array" loading="lazy" title="Click to zoom">
+<p>The VIN comes back at 0.98 confidence with its source location on the page; the generated array of options has no confidence because the model composed it. That distinction (extracted vs generated) is worth a sentence in any review process.</p></li>
+</ol>
+
+<h2>Part 4 · Images · lot photos into a table</h2>
+<p>The same idea on photographs. Base the analyzer on <code>prebuilt-image</code>, use <code>classify</code> with an <code>enum</code> where you want controlled values, and <code>generate</code> for free text.</p>
+<pre><code>cat &gt; lot-analyzer.json &lt;&lt;'JSON'
+{
+  "description": "Dealer lot photo triage",
+  "baseAnalyzerId": "prebuilt-image",
+  "models": {"completion": "gpt-4.1-mini"},
+  "config": {"returnDetails": true},
+  "fieldSchema": {"name": "LotPhoto", "fields": {
+    "VehicleType":  {"type": "string",  "method": "classify", "description": "Primary vehicle type in the photo", "enum": ["sedan","suv","pickup","minivan","coupe","motorcycle","bicycle","none"]},
+    "PrimaryColor": {"type": "string",  "method": "generate", "description": "Dominant color of the primary vehicle"},
+    "VehicleCount": {"type": "integer", "method": "generate", "description": "Number of motor vehicles visible"},
+    "PeopleVisible":{"type": "boolean", "method": "generate", "description": "True if any person is visible"},
+    "Setting":      {"type": "string",  "method": "classify", "description": "Where the photo was taken", "enum": ["dealer lot","street","highway","garage","showroom","other"]},
+    "Summary":      {"type": "string",  "method": "generate", "description": "One-sentence description a used-car listing could use"}
+  }}
+}
+JSON
+curl -s -i -X PUT "$AI_ENDPOINT/contentunderstanding/analyzers/velocityLotPhoto?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" -d @lot-analyzer.json | grep -i -E "^HTTP"
+sleep 20
+for f in suv-volvo-xc90 pickup-ford-f150 traffic-auckland bicycles-wall; do
+  OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/velocityLotPhoto:analyzeBinary?api-version=2025-11-01" \
+    -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: image/jpeg" --data-binary @lot/$f.jpg | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
+  sleep 12; echo "== $f"; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -c '.result.contents[0].fields | map_values(.valueString // .valueInteger // .valueBoolean)'
+done</code></pre>
+<img class="shot" src="images/shots/lab6-cu-lot-photos.png" alt="Six photos with VehicleType, PrimaryColor, VehicleCount, PeopleVisible, Setting and a generated summary each" loading="lazy" title="Click to zoom">
+<p>Six photos, one table. The traffic photo counted 38 vehicles; the convertible became a "coupe" because that was the closest allowed value, which is exactly what an enum is for.</p>
+
+<h2>Part 5 · Audio and video</h2>
+<ol class="steps">
+  <li><p><strong>Audio.</strong> <code>prebuilt-audio</code> transcribes with timestamps and speaker tags (no model needed); <code>prebuilt-callCenter</code> adds a summary, topics, companies and sentiment. Send the narration track:</p>
+<pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-audio:analyzeBinary?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: audio/mpeg" --data-binary @narration.mp3 | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
+sleep 20; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].markdown'</code></pre>
+<img class="shot" src="images/shots/lab6-cu-audio.png" alt="WebVTT transcript with speaker tags, and callCenter fields: summary, topics, companies, sentiment, categories" loading="lazy" title="Click to zoom">
+<audio controls src="media/velo-andrew-multilingual.mp3"></audio>
+<p>Note the transcript's weak spot: the German sentence "Willkommen bei" became "Velkommen by". Language detection in audio is per file; tell the analyzer the locales when you know them.</p></li>
+  <li><p><strong>Video.</strong> <code>prebuilt-video</code> returns structure (resolution, duration, key frames, transcript); <code>prebuilt-videoSynopsis</code> samples frames through the completion model and writes a synopsis. The 18-second launch teaser:</p>
+<pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-videoSynopsis:analyzeBinary?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: video/mp4" --data-binary @velocity-teaser.mp4 | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
+sleep 45; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].fields.Summary.valueString'</code></pre>
+<img class="shot" src="images/shots/lab6-cu-video.png" alt="Video structure (1280x720, 18 s, key frames, transcript) and a generated synopsis of the teaser" loading="lazy" title="Click to zoom">
+<video controls preload="none" src="downloads/velocity-teaser.mp4" style="width:100%;border-radius:10px;margin:.4em 0 1em"></video>
+<p>Frames cost tokens: a longer clip on a 10K-TPM deployment will hit <code>429</code>. For the class the 18-second teaser is safe; for production you size the deployment to the video.</p></li>
+</ol>
+
+<h2>Part 6 · The lightweight app</h2>
+<p>Everything above is one function: send bytes, poll, print fields. <code>extract_info.py</code> is that function with a command line. Any analyzer, any modality.</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/extract_info.py
+python extract_info.py velocityWindowSticker window-sticker.png
+python extract_info.py prebuilt-audio narration.mp3</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 6 · Information extraction with Azure Content Understanding (a Foundry Tool).
+Works on documents, images, audio and video. This script sends a file to an analyzer and prints the fields.
+
+Run:  python extract_info.py prebuilt-invoice service-invoice.pdf
+      python extract_info.py velocityWindowSticker window-sticker.png
+      python extract_info.py prebuilt-audio teaser.mp3
+Needs: pip install requests
+Env:   FOUNDRY_ENDPOINT_AI (https://&lt;resource&gt;.services.ai.azure.com)   AI_KEY
+&quot;&quot;&quot;
+import os, sys, time, mimetypes, requests
+
+analyzer, path = (sys.argv + [&quot;prebuilt-invoice&quot;, &quot;service-invoice.pdf&quot;])[1:3]
+base = os.environ[&quot;FOUNDRY_ENDPOINT_AI&quot;].rstrip(&quot;/&quot;) + &quot;/contentunderstanding&quot;
+ver = &quot;api-version=2025-11-01&quot;
+headers = {&quot;Ocp-Apim-Subscription-Key&quot;: os.environ[&quot;AI_KEY&quot;]}
+ctype = mimetypes.guess_type(path)[0] or &quot;application/octet-stream&quot;
+
+# 1) Start the analysis (long-running operation → 202 + Operation-Location)
+r = requests.post(f&quot;{base}/analyzers/{analyzer}:analyzeBinary?{ver}&quot;, headers={**headers, &quot;Content-Type&quot;: ctype}, data=open(path, &quot;rb&quot;).read())
+r.raise_for_status()
+op = r.headers[&quot;Operation-Location&quot;]
+print(f&quot;submitted {path} to {analyzer} …&quot;, end=&quot;&quot;, flush=True)
+
+# 2) Poll until it finishes
+while True:
+    time.sleep(3); result = requests.get(op, headers=headers).json()
+    print(&quot;.&quot;, end=&quot;&quot;, flush=True)
+    if result[&quot;status&quot;].lower() in (&quot;succeeded&quot;, &quot;failed&quot;): break
+print(&quot; &quot; + result[&quot;status&quot;])
+if result[&quot;status&quot;].lower() == &quot;failed&quot;: sys.exit(result.get(&quot;error&quot;))
+
+# 3) Read the results: every content item has markdown, and (for field analyzers) typed fields
+def value(f):
+    for k in (&quot;valueString&quot;, &quot;valueNumber&quot;, &quot;valueInteger&quot;, &quot;valueBoolean&quot;, &quot;valueDate&quot;):
+        if k in f: return f[k]
+    if &quot;valueArray&quot; in f: return [value(i) for i in f[&quot;valueArray&quot;]]
+    if &quot;valueObject&quot; in f: return {k: value(v) for k, v in f[&quot;valueObject&quot;].items()}
+    return f.get(&quot;content&quot;)
+
+for content in result[&quot;result&quot;][&quot;contents&quot;]:
+    span = f&quot; {content[&#x27;startTimeMs&#x27;]/1000:.1f}s→{content[&#x27;endTimeMs&#x27;]/1000:.1f}s&quot; if &quot;startTimeMs&quot; in content else &quot;&quot;
+    print(f&quot;\n── {content.get(&#x27;kind&#x27;, &#x27;content&#x27;)}{span} ──&quot;)
+    for name, field in content.get(&quot;fields&quot;, {}).items():
+        conf = f&quot;  (confidence {field[&#x27;confidence&#x27;]:.2f})&quot; if field.get(&quot;confidence&quot;) is not None else &quot;&quot;
+        print(f&quot;  {name:20s} {value(field)!s:.110}{conf}&quot;)
+    if not content.get(&quot;fields&quot;):
+        print(&quot;  markdown:&quot;, content.get(&quot;markdown&quot;, &quot;&quot;)[:600].replace(&quot;\n&quot;, &quot;\n            &quot;))</code></pre>
+<img class="shot" src="images/shots/lab6-extract-info.png" alt="Terminal: extract_info.py printing the window sticker fields with confidences" loading="lazy" title="Click to zoom">
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>Your resource has an embedding deployment and registered defaults; you created <code>velocityWindowSticker</code> and <code>velocityLotPhoto</code>; you have fields for the sticker, a table for four photos, a transcript for the narration and (optionally) a synopsis for the teaser; and <code>extract_info.py</code> runs.</p></div></div>
+
+<h2>Troubleshooting</h2>
+<details class="reveal hint"><summary>"The 'analyzerId' cannot contain '-'"</summary><div class="body"><p>Use letters and digits only: <code>velocityWindowSticker</code>, not <code>velocity-window-sticker</code>.</p></div></details>
+<details class="reveal hint"><summary>"Defaults have not yet been set to 'prebuilt-analyzer-embedding'"</summary><div class="body"><p>Run the <code>PATCH …/defaults</code> from Part 1 after deploying <code>text-embedding-3-large</code>. Custom document analyzers need both a completion and an embedding mapping.</p></div></details>
+<details class="reveal hint"><summary>"Provided model 'gpt-4.1-mini' is not supported by this analyzer"</summary><div class="body"><p>Some prebuilt analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>…) accept only gpt-4.1 or gpt-5-family models. <code>GET …/analyzers/prebuilt-invoice</code> shows <code>supportedModels</code>. Deploy one of those and map <code>prebuilt-analyzer-completion</code> to it, or use a custom schema on <code>prebuilt-document</code>, which accepts gpt-4.1-mini.</p></div></details>
+<details class="reveal hint"><summary>410 "The requested API version has been retired"</summary><div class="body"><p>The preview versions (2024-12-01-preview, 2025-05-01-preview) are gone. Use <code>api-version=2025-11-01</code>.</p></div></details>
+<details class="reveal hint"><summary>Status Failed with RateLimit / 429 inside the error</summary><div class="body"><p>The completion deployment ran out of tokens per minute, typically on video. Wait a minute and retry, shorten the clip, or raise the deployment capacity.</p></div></details>
+<details class="reveal hint"><summary>404 "Analyzer … with status 'Failed' is not ready"</summary><div class="body"><p>Creation failed (usually a model mapping problem). <code>GET …/analyzers/&lt;id&gt;</code> shows the error; <code>DELETE</code> it, fix the JSON, <code>PUT</code> again.</p></div></details>
+
+<h2>Quick quiz</h2>
+<details class="reveal quiz"><summary>Which base analyzer would you use for a custom schema over photographs?</summary><div class="body"><p><code>prebuilt-image</code>. Documents use <code>prebuilt-document</code>; audio and video use <code>prebuilt-audio</code> and <code>prebuilt-video</code>.</p></div></details>
+<details class="reveal quiz"><summary>What is the difference between <code>extract</code> and <code>generate</code> field methods?</summary><div class="body"><p><strong>Extract</strong> copies a value that appears in the content and returns its source and confidence; <strong>generate</strong> has the model compose a value (a summary, a count) with no source. <strong>Classify</strong> picks one of your enum values.</p></div></details>
+<details class="reveal quiz"><summary>You POST to <code>:analyzeBinary</code> and get 202. What next?</summary><div class="body"><p>GET the URL in the <code>Operation-Location</code> header until <code>status</code> is <code>Succeeded</code>, then read <code>result.contents</code>.</p></div></details>
+<details class="reveal quiz"><summary>Which prebuilt analyzer gives a summary, topics and sentiment for a recorded call?</summary><div class="body"><p><code>prebuilt-callCenter</code> (on top of the transcript that <code>prebuilt-audio</code> produces).</p></div></details>
+<details class="reveal quiz"><summary>Why does field extraction need model deployments but OCR does not?</summary><div class="body"><p>OCR and layout are classic vision models inside the service. Turning text into typed fields, writing summaries and classifying use a GPT completion model (and embeddings for retrieval over long documents), which you supply from your own deployments.</p></div></details>
+
+<h2>Pit wall debrief · what you learned</h2>
+<ul>
+  <li>Content Understanding is one API for documents, images, audio and video: analyzers, field schemas, async operations, typed results with confidence.</li>
+  <li>Prebuilt analyzers for common forms; custom analyzers (base + schema) for your own paperwork and photos.</li>
+  <li>Field methods: extract (with source), generate (composed), classify (enum). Models are registered once per resource.</li>
+  <li>Audio gives transcripts and call-center fields; video gives key frames, transcripts and a synopsis.</li>
+  <li><code>extract_info.py</code> is the lightweight extraction app: send, poll, print.</li>
+</ul>
+<p>Next: the checkered flag. <a href="lab7.html">Lap 7 · practice exam and cool-down →</a></p>

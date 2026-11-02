@@ -1,0 +1,34 @@
+{
+ "user_prompt_text": "Hey Velo, my brake warning light just came on while I was driving. Is it safe to keep driving to the dealership, or should I pull over?",
+ "api_version": "2025-01-01-preview",
+ "reply_transcript": "Safety first\u2014pull over immediately in a safe spot. Next, check your brake fluid level if possible, then contact roadside assistance or the dealership for help.",
+ "usage": {
+  "completion_tokens": 243,
+  "completion_tokens_details": {
+   "accepted_prediction_tokens": 0,
+   "audio_tokens": 196,
+   "reasoning_tokens": 0,
+   "rejected_prediction_tokens": 0,
+   "text_tokens": 47
+  },
+  "latency_checkpoint": {
+   "engine_tbt_ms": 4,
+   "engine_ttft_ms": 514,
+   "engine_ttlt_ms": 1511,
+   "pre_inference_ms": 952,
+   "service_tbt_ms": 4,
+   "service_ttft_ms": 1538,
+   "service_ttlt_ms": 2533,
+   "user_visible_ttft_ms": 586
+  },
+  "prompt_tokens": 128,
+  "prompt_tokens_details": {
+   "audio_tokens": 81,
+   "cached_tokens": 0,
+   "image_tokens": 0,
+   "text_tokens": 47
+  },
+  "total_tokens": 371
+ },
+ "model": "gpt-audio-mini-2025-10-06"
+}

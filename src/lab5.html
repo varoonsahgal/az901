@@ -1,0 +1,189 @@
+<!--META {"title":"Lap 5 · Eyes on the track","desc":"Computer vision for exam AI-901: Azure AI Vision captions, objects, people and OCR on lot photos; a multimodal GPT model reasoning about images; and concept-car images generated with FLUX in Microsoft Foundry.",
+"h1":"Eyes on the track · vision and image generation",
+"lede":"A dealership runs on pictures: lot photos, window stickers, VIN plates, damage shots, and the concept art that sells next year's model. This lap gives Velo two kinds of eyes (a fast structured one and a thoughtful one) and then lets it paint.",
+"chips":[["Time","50 min"],["Difficulty","Beginner"],["Services","Azure AI Vision · gpt-4.1-mini (image input) · FLUX.2-pro"],["Exam weight","Part of both domains · vision and image generation"]],
+"objectives":["Identify features and capabilities of computer vision and image-generation models","Interpret visual input in prompts by using a deployed multimodal model","Create new visual outputs by using generative models","Build a lightweight application that includes vision capabilities"]}
+-->
+<div class="callout note"><div class="ico">📸</div><div><span class="box-lbl">The story so far</span><p>The used-car team photographs every trade-in and then types the listing by hand. Service wants VINs read from door-jamb plates. Marketing wants a hero shot of the Volt on a wet track before the car exists. You have one Foundry resource and one deployed GPT model; today you add an image model.</p></div></div>
+
+<h2>Part 0 · The idea in five minutes</h2>
+<div class="vocab">
+  <div><b>Image classification</b>One label for the whole image ("SUV", "damaged"). Prebuilt tags, or a custom model trained on your photos.</div>
+  <div><b>Object detection</b>Labels <em>with bounding boxes</em>: where each car, person or bicycle is. Counting and locating.</div>
+  <div><b>Captioning and dense captions</b>A sentence for the image, or one sentence per region. Alt text, search, triage.</div>
+  <div><b>OCR (Read)</b>Text in images: printed and handwritten, with line and word polygons and confidence. Stickers, plates, notes.</div>
+  <div><b>People and faces</b>Azure AI Vision detects <em>people</em> (boxes). The separate Azure AI Face service detects and matches <em>faces</em>; identification is Limited Access and needs an approved use case: a responsible-AI gate, not a technical one.</div>
+  <div><b>Image generation</b>Text-to-image models (FLUX.2-pro, FLUX-1.1-pro, gpt-image-1-mini) and image editing. Controls: prompt, size, number, style; outputs carry provenance metadata (C2PA) so generated images can be recognised as such.</div>
+</div>
+<p>Two different tools look at an image today. <strong>Azure AI Vision</strong> (a Foundry Tool) is fast, cheap and structured: it returns JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. A <strong>multimodal model</strong> (gpt-4.1-mini with an image in the prompt) is slower and costs tokens, but it can <em>reason</em>: write a listing, suggest what to inspect, answer questions. Use Vision for counting and reading; use the model for judgement.</p>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Interpret visual input in prompts" = send an image to a multimodal chat model as an <code>image_url</code> (or <code>input_image</code>) content item alongside text. "Create new visual outputs" = deploy an image-generation model and call <code>images/generations</code> with a prompt. "Vision capabilities in an app" = either the Azure AI Vision SDK/REST (captions, objects, OCR) or the multimodal model, chosen by whether you need structure or judgement. Face recognition is restricted; people detection is not.</p></div></div>
+
+<h2>Part 1 · Reload your pit board and get the photos</h2>
+<pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
+export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
+export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
+export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
+export FOUNDRY_ENDPOINT=$ENDPOINT FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY CHAT_MODEL=gpt-4-1-mini IMAGE_MODEL=flux-2-pro
+curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot &amp;&amp; ls lot</code></pre>
+<p>Sixteen public-domain photos: sedans, an SUV, a pickup, a minivan, an EV, a classic, a motorcycle, bicycles, a traffic jam, a car wash, an engine bay, a showroom and a road trip. Credits are on the <a href="credits.html">credits page</a>.</p>
+
+<h2>Part 2 · Azure AI Vision · the fast, structured eye</h2>
+<ol class="steps">
+  <li><p>One request, every feature. Send the SUV photo as raw bytes and ask for caption, dense captions, tags, objects, people and text:</p>
+<pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=caption,denseCaptions,tags,objects,people,read&amp;gender-neutral-caption=true" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq '{caption: .captionResult, objects: [.objectsResult.values[] | {name: .tags[0].name, conf: .tags[0].confidence, box: .boundingBox}], tags: [.tagsResult.values[:8][] | .name]}'</code></pre>
+<img class="shot" src="images/shots/lab3-vision-curl.png" alt="curl image analysis returning caption 'a silver car parked in a parking lot' 0.84, one object station wagon, and tags" loading="lazy" title="Click to zoom">
+<img class="shot" src="images/shots/lab3-vision-card.png" alt="Card: caption, 32 tags with confidences, and dense captions with bounding boxes for the SUV photo" loading="lazy" title="Click to zoom">
+<p>Every feature returns a confidence. The caption is 0.84; the object detector called the SUV a "station wagon" at lower confidence. Structured, honest, and fast.</p></li>
+  <li><p>Try the busy one. The traffic jam returns <strong>11 objects</strong> with boxes; the bicycles photo returns cars <em>and</em> a bicycle; the road-trip photo detects a <em>person</em>. Here is what the JSON looks like drawn back onto the photos:</p>
+<div class="shots2"><img class="shot" src="images/vision/traffic-auckland-objects.jpg" alt="Traffic photo with 11 object bounding boxes and the caption 'a traffic jam on a highway'" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/bicycles-wall-objects.jpg" alt="Bicycles against a wall with car, van and bicycle boxes" loading="lazy" title="Click to zoom"></div>
+<div class="shots2"><img class="shot" src="images/vision/roadtrip-iceland-people.jpg" alt="Person detected beside a car" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-dense.jpg" alt="Dense captions: one sentence per region of the SUV photo" loading="lazy" title="Click to zoom"></div>
+<p>Run it on <code>lot/carwash.jpg</code> too. The caption we got was <em>"a small bushes in a field"</em> at 0.57. Low confidence is the model telling you to look yourself; thresholds belong in your app.</p>
+<div class="shots2"><img class="shot" src="images/vision/carwash-objects.jpg" alt="Car wash photo with a doubtful caption" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-tags.jpg" alt="Tags strip for the SUV photo" loading="lazy" title="Click to zoom"></div></li>
+  <li><p><strong>OCR.</strong> Point the <code>read</code> feature at documents instead of scenes. The window sticker returns 34 lines in reading order with word confidences; the VIN plate reads <code>1VMSTR8A3RA210077</code> correctly; the handwritten note reads seven lines and turns "100 ft-lb" into "100 ft-16".</p>
+<pre><code>for f in window-sticker vin-plate service-note; do curl -sLO https://varoonsahgal.github.io/az901/downloads/$f.png; done
+curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=read" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @vin-plate.png | jq '[.readResult.blocks[].lines[].text]'</code></pre>
+<img class="shot" src="images/shots/lab3-ocr-sticker-card.png" alt="OCR lines from the window sticker with minimum word confidence per line" loading="lazy" title="Click to zoom">
+<div class="shots2"><img class="shot" src="images/docs/vin-plate.png" alt="Synthetic VIN plate" loading="lazy" title="Click to zoom"><img class="shot" src="images/docs/service-note.png" alt="Handwritten service note" loading="lazy" title="Click to zoom"></div>
+<p>For typed fields out of documents (not just lines of text) you will use Content Understanding in Lap 6. OCR is the raw material.</p></li>
+</ol>
+
+<h2>Part 3 · The thoughtful eye · a multimodal model</h2>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Python path</button></div>
+  <div role="tabpanel">
+<ol class="steps">
+  <li><p>Open your project → <strong>Discover</strong> → <strong>Models</strong> → <code>gpt-4.1-mini</code> → your deployment → the <strong>model playground</strong>. Hide the navigation pane.</p></li>
+  <li><p>Set <strong>Instructions</strong> to <code>You are a Velocity Motors used-car appraiser.</code></p></li>
+  <li><p>In the chat pane select <strong>Upload image</strong> (the paperclip or image icon) and choose <code>lot/pickup-ford-f150.jpg</code>. Type <code>Describe this vehicle for a listing in 3 bullets, then suggest one thing to inspect.</code> and send.</p></li>
+  <li><p>Try <code>lot/engine-bay.jpg</code> with <code>What am I looking at and which routine maintenance items can you see?</code> Our run named the engine cover, the air intake and the coolant reservoir, for 144 image tokens at <em>low</em> detail:</p>
+<img class="shot" src="images/shots/lab6-multimodal.png" alt="Engine bay photo beside the model's four-bullet answer and token usage" loading="lazy" title="Click to zoom"></li>
+  <li><p>Select <strong>Call model</strong> (or <strong>View code</strong>) → <strong>Python</strong>. Note how the user message content is a list with an <code>input_text</code> item and an <code>input_image</code> item (in the chat-completions API: <code>text</code> and <code>image_url</code>). That list is the whole trick.</p></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p><code>vision_app.py</code> runs both eyes on one photo: Azure AI Vision through its SDK, then the multimodal model through the Foundry SDK, with the image sent as a base64 data URL.</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/vision_app.py
+python vision_app.py lot/pickup-ford-f150.jpg</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 5 · Vision two ways: Azure AI Vision (Foundry Tool) and a multimodal GPT model.
+
+Run:  python vision_app.py photo.jpg
+Needs: pip install azure-ai-vision-imageanalysis openai azure-identity azure-ai-projects
+Env:   FOUNDRY_ENDPOINT (https://&lt;resource&gt;.cognitiveservices.azure.com)  AI_KEY  PROJECT_ENDPOINT  CHAT_MODEL
+&quot;&quot;&quot;
+import os, sys, base64
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.vision.imageanalysis import ImageAnalysisClient
+from azure.ai.vision.imageanalysis.models import VisualFeatures
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+path = sys.argv[1] if len(sys.argv) &gt; 1 else &quot;photo.jpg&quot;
+image = open(path, &quot;rb&quot;).read()
+
+# 1) Azure AI Vision: fast, cheap, structured — captions, objects with boxes, OCR
+vision = ImageAnalysisClient(endpoint=os.environ[&quot;FOUNDRY_ENDPOINT&quot;], credential=AzureKeyCredential(os.environ[&quot;AI_KEY&quot;]))
+res = vision.analyze(image_data=image, visual_features=[VisualFeatures.CAPTION, VisualFeatures.OBJECTS, VisualFeatures.READ, VisualFeatures.TAGS], gender_neutral_caption=True)
+print(f&quot;── Azure AI Vision on {path} ──&quot;)
+print(f&quot;  caption : “{res.caption.text}” ({res.caption.confidence:.2f})&quot;)
+print(&quot;  objects :&quot;, &quot;, &quot;.join(f&quot;{o.tags[0].name} {o.tags[0].confidence:.2f} @ {o.bounding_box}&quot; for o in res.objects.list) or &quot;none&quot;)
+print(&quot;  tags    :&quot;, &quot;, &quot;.join(t.name for t in res.tags.list[:10]))
+if res.read and res.read.blocks:
+    print(&quot;  text    :&quot;, &quot; | &quot;.join(line.text for b in res.read.blocks for line in b.lines))
+
+# 2) A multimodal model: slower, costs tokens, but it can reason about what it sees
+project = AIProjectClient(endpoint=os.environ[&quot;PROJECT_ENDPOINT&quot;], credential=DefaultAzureCredential())
+client = project.get_openai_client()
+b64 = base64.b64encode(image).decode()
+r = client.chat.completions.create(model=os.environ.get(&quot;CHAT_MODEL&quot;, &quot;gpt-4-1-mini&quot;), max_tokens=250, messages=[
+    {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are a Velocity Motors used-car appraiser.&quot;},
+    {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: [
+        {&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Describe this vehicle for a listing (body style, color, condition clues) in 3 bullets, then suggest one thing to inspect.&quot;},
+        {&quot;type&quot;: &quot;image_url&quot;, &quot;image_url&quot;: {&quot;url&quot;: f&quot;data:image/jpeg;base64,{b64}&quot;, &quot;detail&quot;: &quot;low&quot;}}]}])
+print(f&quot;\n── {r.model} (multimodal) ──\n&quot; + r.choices[0].message.content)
+print(f&quot;  [{r.usage.prompt_tokens} prompt tokens incl. the image]&quot;)</code></pre>
+<pre><code><span class="out">── Azure AI Vision on pickup.jpg ──
+  caption : “a white truck parked in a lot” (0.77)
+  objects : car 0.52 @ {&#x27;x&#x27;: 4, &#x27;y&#x27;: 120, &#x27;w&#x27;: 193, &#x27;h&#x27;: 378}, car 0.80 @ {&#x27;x&#x27;: 0, &#x27;y&#x27;: 30, &#x27;w&#x27;: 894, &#x27;h&#x27;: 745}, car 0.71 @ {&#x27;x&#x27;: 438, &#x27;y&#x27;: 27, &#x27;w&#x27;: 931, &#x27;h&#x27;: 736}
+  tags    : tire, vehicle, land vehicle, wheel, transport, bumper, auto part, outdoor, pickup truck, grille
+  text    : Varen!
+
+── gpt-4.1-mini-2025-04-14 (multimodal) ──
+- Body Style: Four-door full-size pickup truck with a crew cab configuration.
+- Color: White exterior with a tan/gold lower trim accent.
+- Condition Clues: Exterior appears clean with no visible dents or major scratches; tires look to have adequate tread; side mirrors and trim seem intact.
+
+Suggested inspection: Check the condition and operation of the truck’s suspension and undercarriage for wear or damage, especially given the vehicle’s age and potential use.
+  [308 prompt tokens incl. the image]</span></code></pre>
+<p>Vision found three car boxes, tags and even a tiny bit of text; the model wrote the listing and suggested checking the suspension. <code>"detail": "low"</code> keeps the image at a fixed small token cost; use <code>"high"</code> when you need to read fine print.</p>
+  </div>
+</div>
+
+<h2>Part 4 · Paint it · image generation</h2>
+<ol class="steps">
+  <li><p><strong>Deploy an image model.</strong> Portal: <strong>Models</strong> → <strong>Deploy a base model</strong> → <strong>Collections</strong>: <em>Direct from Azure</em> → <strong>Inference tasks</strong>: <em>Text to image</em> → <strong>FLUX.2-pro</strong> (or <code>gpt-image-1-mini</code> if your subscription offers it) → <strong>Deploy</strong>, Global Standard, capacity 1. Or in Cloud Shell:</p>
+<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name flux-2-pro --model-name FLUX.2-pro --model-version 1 --model-format "Black Forest Labs" \
+  --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre>
+<p>Capacity 1 allows about <strong>one image per minute</strong>; a <code>429</code> means wait. Each image costs a few cents.</p></li>
+  <li><p><strong>Image playground.</strong> When the deployment finishes the image playground opens. Prompt: <code>Dramatic studio photo of the Velocity Volt, a sleek electric sedan concept car in deep metallic red, parked on a wet racetrack at golden hour, low angle, photorealistic</code>. Then <strong>View code</strong> → Python → the OpenAI SDK sample calls <code>images.generate</code> and saves <code>output.png</code>.</p></li>
+  <li><p><strong>The same call from Cloud Shell.</strong> The response carries the image as base64 in <code>data[0].b64_json</code>.</p>
+<pre><code>curl -s -X POST "$AI_ENDPOINT/openai/deployments/$IMAGE_MODEL/images/generations?api-version=2025-04-01-preview" \
+  -H "api-key: $KEY" -H "Content-Type: application/json" \
+  -d '{"prompt":"Clean product render of a Velocity Ridge hybrid pickup truck in glacier white, three-quarter front view, on a mountain road at sunrise, photorealistic","n":1,"size":"1024x768"}' \
+  | jq -r '.data[0].b64_json' | base64 -d &gt; ridge.png &amp;&amp; ls -la ridge.png</code></pre>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/make_image.py
+python make_image.py "Retro 1960s-style advertising poster for Velocity Motors: a cheerful family loading a surfboard onto a teal station wagon, bold typography reading VELOCITY" poster.png</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 5 · Generate an image with a Foundry image model (FLUX.2-pro, FLUX-1.1-pro, gpt-image-1-mini, ...).
+
+Run:  python make_image.py &quot;prompt text&quot; out.png
+Needs: pip install requests
+Env:   FOUNDRY_ENDPOINT_AI (https://&lt;resource&gt;.services.ai.azure.com)   AI_KEY   IMAGE_MODEL (deployment name, default flux-2-pro)
+Note:  a capacity-1 deployment allows about one request per minute; a 429 means wait 60 seconds and retry.
+&quot;&quot;&quot;
+import os, sys, base64, requests
+
+prompt = sys.argv[1] if len(sys.argv) &gt; 1 else &quot;A sleek Velocity Volt electric sedan on a wet racetrack at golden hour, photorealistic&quot;
+out = sys.argv[2] if len(sys.argv) &gt; 2 else &quot;out.png&quot;
+model = os.environ.get(&quot;IMAGE_MODEL&quot;, &quot;flux-2-pro&quot;)
+
+url = f&quot;{os.environ[&#x27;FOUNDRY_ENDPOINT_AI&#x27;].rstrip(&#x27;/&#x27;)}/openai/deployments/{model}/images/generations?api-version=2025-04-01-preview&quot;
+r = requests.post(url, headers={&quot;api-key&quot;: os.environ[&quot;AI_KEY&quot;], &quot;Content-Type&quot;: &quot;application/json&quot;},
+                  json={&quot;prompt&quot;: prompt, &quot;n&quot;: 1, &quot;size&quot;: &quot;1024x768&quot;, &quot;output_format&quot;: &quot;png&quot;}, timeout=180)
+if r.status_code == 429:
+    sys.exit(&quot;429: the deployment&#x27;s rate limit (about one image per minute at capacity 1) — wait a minute and try again&quot;)
+r.raise_for_status()
+open(out, &quot;wb&quot;).write(base64.b64decode(r.json()[&quot;data&quot;][0][&quot;b64_json&quot;]))
+print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · prompt: {prompt!r}&quot;)</code></pre>
+<p>What we got. The first two were generated with FLUX-1.1-pro while FLUX.2-pro's quota was being checked; the API and the prompts are the same.</p>
+<div class="shots2"><img class="shot" src="images/gen/flux-velocity-volt.jpg" alt="Generated: a red electric sedan concept car on a wet racetrack at golden hour" loading="lazy" title="Click to zoom"><img class="shot" src="images/gen/flux-velocity-ridge.jpg" alt="Generated: a white hybrid pickup on a mountain road at sunrise" loading="lazy" title="Click to zoom"></div>
+
+<img class="shot" src="images/shots/lab5-flux-card.png" alt="Card: prompt, generated image, endpoint and response keys" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Responsible use.</strong> Generated images from Foundry models include <em>content credentials</em> (C2PA provenance metadata). Do not generate real people, competitors' badges or copyrighted characters; the content filters will refuse some prompts and your brand team will refuse others. Label concept art as such in customer-facing material.</p></li>
+</ol>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You have a JSON analysis with boxes for at least two lot photos, the VIN read from the plate, a listing written by the model from a photo (portal or <code>vision_app.py</code>), a deployed <code>flux-2-pro</code> and at least one generated PNG.</p></div></div>
+
+<h2>Troubleshooting</h2>
+<details class="reveal hint"><summary>Vision returns 400 "InvalidImageSize" or "InvalidImageFormat"</summary><div class="body"><p>Images must be JPEG/PNG/GIF/BMP/WEBP/TIFF, under 20 MB, at least 50×50 and at most 16,000 px on a side. The <code>read</code> feature needs text at least about 10 px tall.</p></div></details>
+<details class="reveal hint"><summary>The model playground has no Upload image button</summary><div class="body"><p>Only multimodal models show it. Check the deployment selector says <code>gpt-4-1-mini</code> (or gpt-4o, gpt-5); embeddings and image models do not take image prompts.</p></div></details>
+<details class="reveal hint"><summary>Image generation: 429 RateLimitReached</summary><div class="body"><p>Capacity 1 = one request per minute. Wait 60 seconds. If the whole class is blocked, race control can raise one deployment's capacity.</p></div></details>
+<details class="reveal hint"><summary>Image generation: 404 on the openai.azure.com host</summary><div class="body"><p>Partner image models are served from the Foundry host: use <code>$AI_ENDPOINT</code> (<code>…services.ai.azure.com</code>) with <code>/openai/deployments/…</code>, as in the examples.</p></div></details>
+<details class="reveal hint"><summary>"The deployment type GlobalStandard is not available"</summary><div class="body"><p>Image models are Global Standard only; your resource must allow it (ours in East US 2 does). Check <code>az cognitiveservices usage list --location $LOC -o table | grep FLUX</code> for quota.</p></div></details>
+
+<h2>Quick quiz</h2>
+<details class="reveal quiz"><summary>You need to count cars in a lot photo. Which feature?</summary><div class="body"><p><strong>Object detection</strong> (the <code>objects</code> feature): labels with bounding boxes. Tags and captions do not locate anything.</p></div></details>
+<details class="reveal quiz"><summary>How do you send an image to a chat model in the API?</summary><div class="body"><p>As a content item in the user message: <code>{"type": "image_url", "image_url": {"url": "data:image/jpeg;base64,…"}}</code> (or <code>input_image</code> in the Responses API), next to a text item.</p></div></details>
+<details class="reveal quiz"><summary>Which Azure service identifies <em>who</em> a face belongs to, and what is special about it?</summary><div class="body"><p><strong>Azure AI Face</strong>; identification and verification are <strong>Limited Access</strong> and require an approved use case. Azure AI Vision only detects people.</p></div></details>
+<details class="reveal quiz"><summary>Which call produces a picture from a prompt?</summary><div class="body"><p><code>images/generations</code> on an image-model deployment (FLUX, gpt-image), returning base64 image data.</p></div></details>
+<details class="reveal quiz"><summary>When is Azure AI Vision the better choice over a multimodal GPT model?</summary><div class="body"><p>When you need structured output (boxes, OCR lines with coordinates), speed, and low cost at volume. Use the GPT model when you need reasoning or free-text judgement.</p></div></details>
+
+<h2>Pit wall debrief · what you learned</h2>
+<ul>
+  <li>Vision tasks: classification, detection, captioning, tagging, OCR, people; faces are a separate, restricted service.</li>
+  <li>Azure AI Vision returns structured JSON with confidences; a multimodal model returns judgement in prose. Pick by need.</li>
+  <li>Images go into a prompt as content items; <code>detail</code> sets the token cost.</li>
+  <li>Image models are deployed like any other (Global Standard, capacity in requests per minute) and called with <code>images/generations</code>.</li>
+  <li><code>vision_app.py</code> and <code>make_image.py</code> are your lightweight vision apps.</li>
+</ul>
+<p>Next: turn paperwork into data. <a href="lab6.html">Lap 6 · Paperwork →</a></p>

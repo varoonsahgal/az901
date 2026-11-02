@@ -1,0 +1,2638 @@
+{
+ "inputs": {
+  "reviews": [
+   [
+    "r1",
+    "en",
+    "Absolutely love my new Velocity Summit. The hybrid engine is whisper quiet, the seats are incredibly comfortable, and the panoramic roof makes every drive feel special. The infotainment system, however, is slow and crashed twice in the first week."
+   ],
+   [
+    "r2",
+    "en",
+    "Terrible experience at the Dayton dealership. I waited three hours for an oil change that was supposed to take forty-five minutes, and nobody apologized. The car itself is fine, but I will not be going back."
+   ],
+   [
+    "r3",
+    "en",
+    "The Velocity Volt gets about 290 miles of real-world range in summer. Charging at home is easy. Winter range drops to roughly 220 miles, which is disappointing but expected for an EV."
+   ],
+   [
+    "r4",
+    "en",
+    "Picked up a certified pre-owned Velocity Strata last month for $21,400. Great value. Brakes squeak a little in the morning but the service advisor, Priya, said it is normal for the pads."
+   ],
+   [
+    "r5",
+    "en",
+    "Meh. It is a car. It goes. The cupholders are too small for my travel mug."
+   ],
+   [
+    "r6",
+    "en",
+    "The Ridge pickup towed our 6,500 lb camper through the Rockies without breaking a sweat. Fuel economy was predictably awful, around 11 mpg while towing. Would buy again."
+   ]
+  ],
+  "multilingual": [
+   [
+    "m1",
+    "Der neue Velocity Summit ist ein fantastisches Familienauto. Sehr leise und sparsam."
+   ],
+   [
+    "m2",
+    "La Velocity Aero es r\u00e1pida, pero el maletero es demasiado peque\u00f1o para viajes largos."
+   ],
+   [
+    "m3",
+    "\u65b0\u3057\u3044\u30d9\u30ed\u30b7\u30c6\u30a3\u30fb\u30dc\u30eb\u30c8\u306f\u5145\u96fb\u304c\u901f\u304f\u3066\u3001\u901a\u52e4\u306b\u3074\u3063\u305f\u308a\u3067\u3059\u3002"
+   ],
+   [
+    "m4",
+    "Le concessionnaire de Lyon a \u00e9t\u00e9 tr\u00e8s professionnel. Livraison en trois jours seulement."
+   ],
+   [
+    "m5",
+    "The Velocity Dash is the perfect first car for my daughter. Safe, small, and cheap to insure."
+   ]
+  ],
+  "ticket": "Service ticket #48213. Customer Marcus Alvarez (phone 614-555-0188, email marcus.alvarez@example.com) reports a grinding noise from the front left wheel of his 2022 Velocity Summit, VIN 1VMSUM7K2NA048213, plate OHV-2291. Vehicle dropped off on 10/28/2026 at the Columbus Velocity Motors dealership. Customer pays with card ending 4421 and lives at 1840 Maple Grove Dr, Columbus, OH 43215. Advisor: Priya Natarajan.",
+  "press": "Velocity Motors today announced the 2027 Velocity Volt, the third generation of its all-electric sedan, at an event in Detroit. The new Volt uses an 800-volt architecture that allows charging from 10 to 80 percent in 18 minutes on a 350 kW charger. EPA-estimated range is 340 miles for the Long Range trim and 290 miles for the Standard trim. The company said the Volt will be built at its Marysville, Ohio plant, which has been retooled with a $1.2 billion investment and will employ 2,400 workers across two shifts. Pricing starts at $44,900 before incentives, roughly $3,000 less than the outgoing model. Chief executive Dana Whitfield said the lower price was made possible by a new lithium-iron-phosphate battery pack sourced from a joint venture in Tennessee. The Volt also debuts Velocity Pilot, a hands-free driver assistance system that works on 400,000 miles of mapped North American highways. Deliveries begin in the second quarter of 2027. Analysts noted that the Volt will compete directly with the Tesla Model 3 and the Hyundai Ioniq 6, and that the price cut puts pressure on rivals. Velocity Motors shares rose 4 percent in afternoon trading."
+ },
+ "results": {
+  "sentiment": {
+   "kind": "SentimentAnalysisResults",
+   "results": {
+    "documents": [
+     {
+      "id": "r1",
+      "sentiment": "mixed",
+      "confidenceScores": {
+       "positive": 0.65,
+       "neutral": 0.01,
+       "negative": 0.33
+      },
+      "sentences": [
+       {
+        "sentiment": "positive",
+        "confidenceScores": {
+         "positive": 1.0,
+         "neutral": 0.0,
+         "negative": 0.0
+        },
+        "offset": 0,
+        "length": 40,
+        "text": "Absolutely love my new Velocity Summit. ",
+        "targets": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 23,
+          "length": 15,
+          "text": "Velocity Summit",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/0/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 11,
+          "length": 4,
+          "text": "love",
+          "isNegated": false
+         }
+        ]
+       },
+       {
+        "sentiment": "positive",
+        "confidenceScores": {
+         "positive": 0.96,
+         "neutral": 0.04,
+         "negative": 0.0
+        },
+        "offset": 40,
+        "length": 129,
+        "text": "The hybrid engine is whisper quiet, the seats are incredibly comfortable, and the panoramic roof makes every drive feel special. ",
+        "targets": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 44,
+          "length": 13,
+          "text": "hybrid engine",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/1/assessments/0"
+           },
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/1/assessments/3"
+           }
+          ]
+         },
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 80,
+          "length": 5,
+          "text": "seats",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/1/assessments/1"
+           }
+          ]
+         },
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 122,
+          "length": 14,
+          "text": "panoramic roof",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/1/assessments/2"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 69,
+          "length": 5,
+          "text": "quiet",
+          "isNegated": false
+         },
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 101,
+          "length": 11,
+          "text": "comfortable",
+          "isNegated": false
+         },
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 160,
+          "length": 7,
+          "text": "special",
+          "isNegated": false
+         },
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 0.99,
+           "negative": 0.01
+          },
+          "offset": 61,
+          "length": 13,
+          "text": "whisper quiet",
+          "isNegated": false
+         }
+        ]
+       },
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 0.01,
+         "negative": 0.99
+        },
+        "offset": 169,
+        "length": 78,
+        "text": "The infotainment system, however, is slow and crashed twice in the first week.",
+        "targets": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.0,
+           "negative": 1.0
+          },
+          "offset": 173,
+          "length": 19,
+          "text": "infotainment system",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/2/assessments/0"
+           },
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/0/sentences/2/assessments/1"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.01,
+           "negative": 0.99
+          },
+          "offset": 206,
+          "length": 4,
+          "text": "slow",
+          "isNegated": false
+         },
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.0,
+           "negative": 1.0
+          },
+          "offset": 215,
+          "length": 7,
+          "text": "crashed",
+          "isNegated": false
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r2",
+      "sentiment": "negative",
+      "confidenceScores": {
+       "positive": 0.01,
+       "neutral": 0.04,
+       "negative": 0.95
+      },
+      "sentences": [
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 0.0,
+         "negative": 1.0
+        },
+        "offset": 0,
+        "length": 46,
+        "text": "Terrible experience at the Dayton dealership. ",
+        "targets": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.02,
+           "negative": 0.98
+          },
+          "offset": 9,
+          "length": 10,
+          "text": "experience",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/1/sentences/0/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.02,
+           "negative": 0.98
+          },
+          "offset": 0,
+          "length": 8,
+          "text": "Terrible",
+          "isNegated": false
+         }
+        ]
+       },
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 0.0,
+         "negative": 1.0
+        },
+        "offset": 46,
+        "length": 108,
+        "text": "I waited three hours for an oil change that was supposed to take forty-five minutes, and nobody apologized. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.04,
+         "neutral": 0.1,
+         "negative": 0.85
+        },
+        "offset": 154,
+        "length": 53,
+        "text": "The car itself is fine, but I will not be going back.",
+        "targets": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 158,
+          "length": 3,
+          "text": "car",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/1/sentences/2/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "mixed",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 172,
+          "length": 4,
+          "text": "fine",
+          "isNegated": false
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r3",
+      "sentiment": "mixed",
+      "confidenceScores": {
+       "positive": 0.48,
+       "neutral": 0.02,
+       "negative": 0.5
+      },
+      "sentences": [
+       {
+        "sentiment": "neutral",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 1.0,
+         "negative": 0.0
+        },
+        "offset": 0,
+        "length": 70,
+        "text": "The Velocity Volt gets about 290 miles of real-world range in summer. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "positive",
+        "confidenceScores": {
+         "positive": 0.96,
+         "neutral": 0.04,
+         "negative": 0.0
+        },
+        "offset": 70,
+        "length": 26,
+        "text": "Charging at home is easy. ",
+        "targets": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 70,
+          "length": 8,
+          "text": "Charging",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/2/sentences/1/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 90,
+          "length": 4,
+          "text": "easy",
+          "isNegated": false
+         }
+        ]
+       },
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 0.0,
+         "negative": 1.0
+        },
+        "offset": 96,
+        "length": 87,
+        "text": "Winter range drops to roughly 220 miles, which is disappointing but expected for an EV.",
+        "targets": [],
+        "assessments": []
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r4",
+      "sentiment": "positive",
+      "confidenceScores": {
+       "positive": 1.0,
+       "neutral": 0.0,
+       "negative": 0.0
+      },
+      "sentences": [
+       {
+        "sentiment": "neutral",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 1.0,
+         "negative": 0.0
+        },
+        "offset": 0,
+        "length": 72,
+        "text": "Picked up a certified pre-owned Velocity Strata last month for $21,400. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "positive",
+        "confidenceScores": {
+         "positive": 1.0,
+         "neutral": 0.0,
+         "negative": 0.0
+        },
+        "offset": 72,
+        "length": 13,
+        "text": "Great value. ",
+        "targets": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 78,
+          "length": 5,
+          "text": "value",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/3/sentences/1/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 1.0,
+           "negative": 0.0
+          },
+          "offset": 72,
+          "length": 5,
+          "text": "Great",
+          "isNegated": false
+         }
+        ]
+       },
+       {
+        "sentiment": "neutral",
+        "confidenceScores": {
+         "positive": 0.01,
+         "neutral": 0.98,
+         "negative": 0.02
+        },
+        "offset": 85,
+        "length": 101,
+        "text": "Brakes squeak a little in the morning but the service advisor, Priya, said it is normal for the pads.",
+        "targets": [
+         {
+          "sentiment": "positive",
+          "confidenceScores": {
+           "positive": 0.98,
+           "negative": 0.02
+          },
+          "offset": 181,
+          "length": 4,
+          "text": "pads",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/3/sentences/2/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "mixed",
+          "confidenceScores": {
+           "positive": 0.98,
+           "negative": 0.02
+          },
+          "offset": 166,
+          "length": 6,
+          "text": "normal",
+          "isNegated": false
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r5",
+      "sentiment": "negative",
+      "confidenceScores": {
+       "positive": 0.04,
+       "neutral": 0.21,
+       "negative": 0.76
+      },
+      "sentences": [
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.08,
+         "neutral": 0.41,
+         "negative": 0.51
+        },
+        "offset": 0,
+        "length": 5,
+        "text": "Meh. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "neutral",
+        "confidenceScores": {
+         "positive": 0.04,
+         "neutral": 0.83,
+         "negative": 0.13
+        },
+        "offset": 5,
+        "length": 13,
+        "text": "It is a car. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "neutral",
+        "confidenceScores": {
+         "positive": 0.08,
+         "neutral": 0.91,
+         "negative": 0.01
+        },
+        "offset": 18,
+        "length": 9,
+        "text": "It goes. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 0.0,
+         "negative": 1.0
+        },
+        "offset": 27,
+        "length": 47,
+        "text": "The cupholders are too small for my travel mug.",
+        "targets": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.0,
+           "negative": 1.0
+          },
+          "offset": 31,
+          "length": 10,
+          "text": "cupholders",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/4/sentences/3/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.0,
+           "negative": 1.0
+          },
+          "offset": 46,
+          "length": 9,
+          "text": "too small",
+          "isNegated": false
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r6",
+      "sentiment": "mixed",
+      "confidenceScores": {
+       "positive": 0.31,
+       "neutral": 0.15,
+       "negative": 0.54
+      },
+      "sentences": [
+       {
+        "sentiment": "neutral",
+        "confidenceScores": {
+         "positive": 0.19,
+         "neutral": 0.76,
+         "negative": 0.05
+        },
+        "offset": 0,
+        "length": 89,
+        "text": "The Ridge pickup towed our 6,500 lb camper through the Rockies without breaking a sweat. ",
+        "targets": [],
+        "assessments": []
+       },
+       {
+        "sentiment": "negative",
+        "confidenceScores": {
+         "positive": 0.0,
+         "neutral": 0.02,
+         "negative": 0.98
+        },
+        "offset": 89,
+        "length": 64,
+        "text": "Fuel economy was predictably awful, around 11 mpg while towing. ",
+        "targets": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.02,
+           "negative": 0.98
+          },
+          "offset": 89,
+          "length": 12,
+          "text": "Fuel economy",
+          "relations": [
+           {
+            "relationType": "assessment",
+            "ref": "#/documents/5/sentences/1/assessments/0"
+           }
+          ]
+         }
+        ],
+        "assessments": [
+         {
+          "sentiment": "negative",
+          "confidenceScores": {
+           "positive": 0.02,
+           "negative": 0.98
+          },
+          "offset": 118,
+          "length": 5,
+          "text": "awful",
+          "isNegated": false
+         }
+        ]
+       },
+       {
+        "sentiment": "positive",
+        "confidenceScores": {
+         "positive": 0.62,
+         "neutral": 0.28,
+         "negative": 0.1
+        },
+        "offset": 153,
+        "length": 16,
+        "text": "Would buy again.",
+        "targets": [],
+        "assessments": []
+       }
+      ],
+      "warnings": []
+     }
+    ],
+    "errors": [],
+    "modelVersion": "2025-01-01"
+   }
+  },
+  "keyPhrases": {
+   "kind": "KeyPhraseExtractionResults",
+   "results": {
+    "documents": [
+     {
+      "id": "r1",
+      "keyPhrases": [
+       "new Velocity Summit",
+       "hybrid engine",
+       "panoramic roof",
+       "infotainment system",
+       "first week",
+       "seats",
+       "drive"
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r2",
+      "keyPhrases": [
+       "Terrible experience",
+       "Dayton dealership",
+       "oil change",
+       "forty-five minutes",
+       "hours",
+       "car"
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r3",
+      "keyPhrases": [
+       "The Velocity Volt",
+       "real-world range",
+       "Winter range",
+       "290 miles",
+       "summer",
+       "Charging",
+       "home",
+       "220 miles",
+       "EV."
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r4",
+      "keyPhrases": [
+       "Great value",
+       "service advisor",
+       "certified",
+       "Brakes",
+       "morning",
+       "Priya",
+       "pads"
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r5",
+      "keyPhrases": [
+       "travel mug",
+       "Meh",
+       "car",
+       "cupholders"
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r6",
+      "keyPhrases": [
+       "The Ridge pickup",
+       "6,500 lb camper",
+       "Fuel economy",
+       "Rockies",
+       "sweat",
+       "11 mpg"
+      ],
+      "warnings": []
+     }
+    ],
+    "errors": [],
+    "modelVersion": "2022-10-01"
+   }
+  },
+  "entities": {
+   "kind": "EntityRecognitionResults",
+   "results": {
+    "documents": [
+     {
+      "id": "r1",
+      "entities": [
+       {
+        "text": "Velocity Summit",
+        "category": "Skill",
+        "type": "Skill",
+        "offset": 23,
+        "length": 15,
+        "confidenceScore": 0.66,
+        "tags": [
+         {
+          "name": "Skill",
+          "confidenceScore": 0.66
+         }
+        ]
+       },
+       {
+        "text": "hybrid engine",
+        "category": "Product",
+        "type": "Product",
+        "offset": 44,
+        "length": 13,
+        "confidenceScore": 0.85,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.85
+         }
+        ]
+       },
+       {
+        "text": "seats",
+        "category": "Product",
+        "type": "Product",
+        "offset": 80,
+        "length": 5,
+        "confidenceScore": 0.82,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.82
+         }
+        ]
+       },
+       {
+        "text": "panoramic roof",
+        "category": "Product",
+        "type": "Product",
+        "offset": 122,
+        "length": 14,
+        "confidenceScore": 0.5,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.5
+         }
+        ]
+       },
+       {
+        "text": "first",
+        "category": "Quantity",
+        "subcategory": "Ordinal",
+        "type": "Ordinal",
+        "offset": 236,
+        "length": 5,
+        "confidenceScore": 0.97,
+        "tags": [
+         {
+          "name": "Ordinal",
+          "confidenceScore": 0.97
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.97
+         }
+        ],
+        "metadata": {
+         "metadataKind": "OrdinalMetadata",
+         "offset": "1",
+         "relativeTo": "Start",
+         "value": "1"
+        }
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r2",
+      "entities": [
+       {
+        "text": "Dayton",
+        "category": "Organization",
+        "type": "Organization",
+        "offset": 27,
+        "length": 6,
+        "confidenceScore": 0.55,
+        "tags": [
+         {
+          "name": "Organization",
+          "confidenceScore": 0.55
+         }
+        ]
+       },
+       {
+        "text": "dealership",
+        "category": "Location",
+        "type": "Location",
+        "offset": 34,
+        "length": 10,
+        "confidenceScore": 0.46,
+        "tags": [
+         {
+          "name": "Location",
+          "confidenceScore": 0.46
+         }
+        ]
+       },
+       {
+        "text": "three hours",
+        "category": "DateTime",
+        "subcategory": "Duration",
+        "type": "Duration",
+        "offset": 55,
+        "length": 11,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "Duration",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "PT3H",
+           "duration": "PT3H"
+          }
+         ]
+        }
+       },
+       {
+        "text": "forty-five minutes",
+        "category": "DateTime",
+        "subcategory": "Duration",
+        "type": "Duration",
+        "offset": 111,
+        "length": 18,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "Duration",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "PT45M",
+           "duration": "PT45M"
+          }
+         ]
+        }
+       },
+       {
+        "text": "car",
+        "category": "Product",
+        "type": "Product",
+        "offset": 158,
+        "length": 3,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.99
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r3",
+      "entities": [
+       {
+        "text": "290 miles",
+        "category": "Quantity",
+        "subcategory": "Length",
+        "type": "Length",
+        "offset": 29,
+        "length": 9,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Length",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Dimension",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "LengthMetadata",
+         "unit": "Mile",
+         "value": 290.0
+        }
+       },
+       {
+        "text": "summer",
+        "category": "DateTime",
+        "subcategory": "DateRange",
+        "type": "DateRange",
+        "offset": 62,
+        "length": 6,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "DateRange",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "SU"
+          }
+         ]
+        }
+       },
+       {
+        "text": "Charging",
+        "category": "Skill",
+        "type": "Skill",
+        "offset": 70,
+        "length": 8,
+        "confidenceScore": 0.88,
+        "tags": [
+         {
+          "name": "Skill",
+          "confidenceScore": 0.88
+         }
+        ]
+       },
+       {
+        "text": "home",
+        "category": "Location",
+        "type": "Location",
+        "offset": 82,
+        "length": 4,
+        "confidenceScore": 0.95,
+        "tags": [
+         {
+          "name": "Location",
+          "confidenceScore": 0.95
+         }
+        ]
+       },
+       {
+        "text": "Winter",
+        "category": "DateTime",
+        "subcategory": "DateRange",
+        "type": "DateRange",
+        "offset": 96,
+        "length": 6,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "DateRange",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "WI"
+          }
+         ]
+        }
+       },
+       {
+        "text": "220 miles",
+        "category": "Quantity",
+        "subcategory": "Length",
+        "type": "Length",
+        "offset": 126,
+        "length": 9,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Length",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Dimension",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "LengthMetadata",
+         "unit": "Mile",
+         "value": 220.0
+        }
+       },
+       {
+        "text": "EV",
+        "category": "Product",
+        "type": "Product",
+        "offset": 180,
+        "length": 2,
+        "confidenceScore": 0.75,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.75
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r4",
+      "entities": [
+       {
+        "text": "Velocity Strata",
+        "category": "Product",
+        "type": "Product",
+        "offset": 32,
+        "length": 15,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.99
+         }
+        ]
+       },
+       {
+        "text": "last month",
+        "category": "DateTime",
+        "subcategory": "DateRange",
+        "type": "DateRange",
+        "offset": 48,
+        "length": 10,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "DateRange",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "2026-10",
+           "begin": "2026-10-01",
+           "end": "2026-11-01"
+          }
+         ]
+        }
+       },
+       {
+        "text": "$21,400",
+        "category": "Quantity",
+        "subcategory": "Currency",
+        "type": "Currency",
+        "offset": 63,
+        "length": 7,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Currency",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "CurrencyMetadata",
+         "unit": "Dollar",
+         "iso4217": "",
+         "value": 21400.0
+        }
+       },
+       {
+        "text": "in the morning",
+        "category": "DateTime",
+        "subcategory": "TimeRange",
+        "type": "TimeRange",
+        "offset": 108,
+        "length": 14,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "TimeRange",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "TMO",
+           "begin": "08:00:00",
+           "end": "12:00:00"
+          }
+         ]
+        }
+       },
+       {
+        "text": "service advisor",
+        "category": "PersonType",
+        "type": "PersonType",
+        "offset": 131,
+        "length": 15,
+        "confidenceScore": 0.9,
+        "tags": [
+         {
+          "name": "PersonType",
+          "confidenceScore": 0.9
+         }
+        ]
+       },
+       {
+        "text": "Priya",
+        "category": "Person",
+        "type": "Person",
+        "offset": 148,
+        "length": 5,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Person",
+          "confidenceScore": 1.0
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r5",
+      "entities": [
+       {
+        "text": "car",
+        "category": "Product",
+        "type": "Product",
+        "offset": 13,
+        "length": 3,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.99
+         }
+        ]
+       },
+       {
+        "text": "cupholders",
+        "category": "Product",
+        "type": "Product",
+        "offset": 31,
+        "length": 10,
+        "confidenceScore": 0.96,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.96
+         }
+        ]
+       },
+       {
+        "text": "travel mug",
+        "category": "Product",
+        "type": "Product",
+        "offset": 63,
+        "length": 10,
+        "confidenceScore": 0.85,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.85
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "r6",
+      "entities": [
+       {
+        "text": "Ridge pickup",
+        "category": "Product",
+        "type": "Product",
+        "offset": 4,
+        "length": 12,
+        "confidenceScore": 0.48,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.48
+         }
+        ]
+       },
+       {
+        "text": "6,500 lb",
+        "category": "Quantity",
+        "subcategory": "Weight",
+        "type": "Weight",
+        "offset": 27,
+        "length": 8,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "Weight",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Dimension",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.99
+         }
+        ],
+        "metadata": {
+         "metadataKind": "WeightMetadata",
+         "unit": "Pound",
+         "value": 6500.0
+        }
+       },
+       {
+        "text": "camper",
+        "category": "Product",
+        "type": "Product",
+        "offset": 36,
+        "length": 6,
+        "confidenceScore": 0.56,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.56
+         }
+        ]
+       },
+       {
+        "text": "Rockies",
+        "category": "Location",
+        "type": "Location",
+        "offset": 55,
+        "length": 7,
+        "confidenceScore": 0.94,
+        "tags": [
+         {
+          "name": "Location",
+          "confidenceScore": 0.94
+         }
+        ]
+       },
+       {
+        "text": "Fuel",
+        "category": "Product",
+        "type": "Product",
+        "offset": 89,
+        "length": 4,
+        "confidenceScore": 0.9,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.9
+         }
+        ]
+       },
+       {
+        "text": "11 mpg",
+        "category": "Quantity",
+        "subcategory": "Dimension",
+        "type": "Dimension",
+        "offset": 132,
+        "length": 6,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "Dimension",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.99
+         }
+        ]
+       },
+       {
+        "text": "towing",
+        "category": "Skill",
+        "type": "Skill",
+        "offset": 145,
+        "length": 6,
+        "confidenceScore": 0.9,
+        "tags": [
+         {
+          "name": "Skill",
+          "confidenceScore": 0.9
+         }
+        ]
+       }
+      ],
+      "warnings": []
+     },
+     {
+      "id": "press",
+      "entities": [
+       {
+        "text": "Velocity Motors",
+        "category": "Organization",
+        "type": "Organization",
+        "offset": 0,
+        "length": 15,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "Organization",
+          "confidenceScore": 0.99
+         }
+        ]
+       },
+       {
+        "text": "today",
+        "category": "DateTime",
+        "subcategory": "Date",
+        "type": "Date",
+        "offset": 16,
+        "length": 5,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "Date",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "DateMetadata",
+         "dateValues": [
+          {
+           "timex": "2026-11-02",
+           "value": "2026-11-02"
+          }
+         ]
+        }
+       },
+       {
+        "text": "2027 Velocity Volt",
+        "category": "Product",
+        "type": "Product",
+        "offset": 36,
+        "length": 18,
+        "confidenceScore": 0.82,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.82
+         }
+        ]
+       },
+       {
+        "text": "third",
+        "category": "Quantity",
+        "subcategory": "Ordinal",
+        "type": "Ordinal",
+        "offset": 60,
+        "length": 5,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Ordinal",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "OrdinalMetadata",
+         "offset": "3",
+         "relativeTo": "Start",
+         "value": "3"
+        }
+       },
+       {
+        "text": "sedan",
+        "category": "Product",
+        "type": "Product",
+        "offset": 97,
+        "length": 5,
+        "confidenceScore": 0.53,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.53
+         }
+        ]
+       },
+       {
+        "text": "Detroit",
+        "category": "Location",
+        "subcategory": "City",
+        "type": "City",
+        "offset": 119,
+        "length": 7,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "City",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "GPE",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Location",
+          "confidenceScore": 1.0
+         }
+        ]
+       },
+       {
+        "text": "800-volt",
+        "category": "Quantity",
+        "subcategory": "Dimension",
+        "type": "Dimension",
+        "offset": 149,
+        "length": 8,
+        "confidenceScore": 0.81,
+        "tags": [
+         {
+          "name": "Dimension",
+          "confidenceScore": 0.81
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.81
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.81
+         }
+        ]
+       },
+       {
+        "text": "architecture",
+        "category": "Skill",
+        "type": "Skill",
+        "offset": 158,
+        "length": 12,
+        "confidenceScore": 0.59,
+        "tags": [
+         {
+          "name": "Skill",
+          "confidenceScore": 0.59
+         }
+        ]
+       },
+       {
+        "text": "10 to 80 percent",
+        "category": "Quantity",
+        "subcategory": "Percentage",
+        "type": "Percentage",
+        "offset": 197,
+        "length": 16,
+        "confidenceScore": 0.81,
+        "tags": [
+         {
+          "name": "Percentage",
+          "confidenceScore": 0.81
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.81
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.81
+         }
+        ]
+       },
+       {
+        "text": "in 18 minutes",
+        "category": "DateTime",
+        "type": "DateAndTime",
+        "offset": 214,
+        "length": 13,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "DateAndTime",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "DateTimeMetadata",
+         "dateValues": [
+          {
+           "timex": "2026-11-02T04:10:15",
+           "value": "2026-11-02 04:10:15"
+          }
+         ]
+        }
+       },
+       {
+        "text": "350 kW",
+        "category": "Quantity",
+        "subcategory": "Dimension",
+        "type": "Dimension",
+        "offset": 233,
+        "length": 6,
+        "confidenceScore": 0.98,
+        "tags": [
+         {
+          "name": "Dimension",
+          "confidenceScore": 0.98
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.98
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.98
+         }
+        ]
+       },
+       {
+        "text": "charger",
+        "category": "Product",
+        "type": "Product",
+        "offset": 240,
+        "length": 7,
+        "confidenceScore": 0.63,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.63
+         }
+        ]
+       },
+       {
+        "text": "EPA",
+        "category": "Organization",
+        "subcategory": "StockExchange",
+        "type": "OrganizationStockExchange",
+        "offset": 249,
+        "length": 3,
+        "confidenceScore": 0.99,
+        "tags": [
+         {
+          "name": "OrganizationStockExchange",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Organization",
+          "confidenceScore": 0.99
+         }
+        ]
+       },
+       {
+        "text": "340 miles",
+        "category": "Quantity",
+        "subcategory": "Length",
+        "type": "Length",
+        "offset": 272,
+        "length": 9,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Length",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Dimension",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "LengthMetadata",
+         "unit": "Mile",
+         "value": 340.0
+        }
+       },
+       {
+        "text": "290 miles",
+        "category": "Quantity",
+        "subcategory": "Length",
+        "type": "Length",
+        "offset": 310,
+        "length": 9,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Length",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Dimension",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "LengthMetadata",
+         "unit": "Mile",
+         "value": 290.0
+        }
+       },
+       {
+        "text": "Volt",
+        "category": "Product",
+        "type": "Product",
+        "offset": 364,
+        "length": 4,
+        "confidenceScore": 0.54,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.54
+         }
+        ]
+       },
+       {
+        "text": "Marysville",
+        "category": "Location",
+        "subcategory": "City",
+        "type": "City",
+        "offset": 390,
+        "length": 10,
+        "confidenceScore": 0.98,
+        "tags": [
+         {
+          "name": "City",
+          "confidenceScore": 0.98
+         },
+         {
+          "name": "GPE",
+          "confidenceScore": 0.99
+         },
+         {
+          "name": "Location",
+          "confidenceScore": 1.0
+         }
+        ]
+       },
+       {
+        "text": "Ohio",
+        "category": "Location",
+        "subcategory": "State",
+        "type": "State",
+        "offset": 402,
+        "length": 4,
+        "confidenceScore": 0.87,
+        "tags": [
+         {
+          "name": "State",
+          "confidenceScore": 0.87
+         },
+         {
+          "name": "GPE",
+          "confidenceScore": 0.87
+         },
+         {
+          "name": "Location",
+          "confidenceScore": 0.87
+         }
+        ]
+       },
+       {
+        "text": "plant",
+        "category": "Location",
+        "type": "Location",
+        "offset": 407,
+        "length": 5,
+        "confidenceScore": 0.71,
+        "tags": [
+         {
+          "name": "Location",
+          "confidenceScore": 0.71
+         }
+        ]
+       },
+       {
+        "text": "$1.2 billion",
+        "category": "Quantity",
+        "subcategory": "Currency",
+        "type": "Currency",
+        "offset": 445,
+        "length": 12,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Currency",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "CurrencyMetadata",
+         "unit": "Dollar",
+         "iso4217": "",
+         "value": 1200000000.0
+        }
+       },
+       {
+        "text": "2,400",
+        "category": "Quantity",
+        "subcategory": "Number",
+        "type": "Number",
+        "offset": 485,
+        "length": 5,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "Number",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "NumberMetadata",
+         "numberKind": "Integer",
+         "value": 2400.0
+        }
+       },
+       {
+        "text": "workers",
+        "category": "PersonType",
+        "type": "PersonType",
+        "offset": 491,
+        "length": 7,
+        "confidenceScore": 0.95,
+        "tags": [
+         {
+          "name": "PersonType",
+          "confidenceScore": 0.95
+         }
+        ]
+       },
+       {
+        "text": "two",
+        "category": "Quantity",
+        "subcategory": "Number",
+        "type": "Number",
+        "offset": 506,
+        "length": 3,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "Number",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "NumberMetadata",
+         "numberKind": "Integer",
+         "value": 2.0
+        }
+       },
+       {
+        "text": "$44,900",
+        "category": "Quantity",
+        "subcategory": "Currency",
+        "type": "Currency",
+        "offset": 536,
+        "length": 7,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Currency",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "CurrencyMetadata",
+         "unit": "Dollar",
+         "iso4217": "",
+         "value": 44900.0
+        }
+       },
+       {
+        "text": "$3,000",
+        "category": "Quantity",
+        "subcategory": "Currency",
+        "type": "Currency",
+        "offset": 571,
+        "length": 6,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Currency",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "CurrencyMetadata",
+         "unit": "Dollar",
+         "iso4217": "",
+         "value": 3000.0
+        }
+       },
+       {
+        "text": "Chief executive",
+        "category": "PersonType",
+        "type": "PersonType",
+        "offset": 608,
+        "length": 15,
+        "confidenceScore": 0.51,
+        "tags": [
+         {
+          "name": "PersonType",
+          "confidenceScore": 0.51
+         }
+        ]
+       },
+       {
+        "text": "Dana Whitfield",
+        "category": "Person",
+        "type": "Person",
+        "offset": 624,
+        "length": 14,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Person",
+          "confidenceScore": 1.0
+         }
+        ]
+       },
+       {
+        "text": "lithium",
+        "category": "Product",
+        "type": "Product",
+        "offset": 687,
+        "length": 7,
+        "confidenceScore": 0.52,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.52
+         }
+        ]
+       },
+       {
+        "text": "battery pack",
+        "category": "Product",
+        "type": "Product",
+        "offset": 710,
+        "length": 12,
+        "confidenceScore": 0.58,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.58
+         }
+        ]
+       },
+       {
+        "text": "Tennessee",
+        "category": "Location",
+        "subcategory": "State",
+        "type": "State",
+        "offset": 755,
+        "length": 9,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "State",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "GPE",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Location",
+          "confidenceScore": 1.0
+         }
+        ]
+       },
+       {
+        "text": "Volt",
+        "category": "Organization",
+        "type": "Organization",
+        "offset": 770,
+        "length": 4,
+        "confidenceScore": 0.49,
+        "tags": [
+         {
+          "name": "Organization",
+          "confidenceScore": 0.49
+         }
+        ]
+       },
+       {
+        "text": "driver",
+        "category": "PersonType",
+        "type": "PersonType",
+        "offset": 816,
+        "length": 6,
+        "confidenceScore": 0.56,
+        "tags": [
+         {
+          "name": "PersonType",
+          "confidenceScore": 0.56
+         }
+        ]
+       },
+       {
+        "text": "400,000 miles",
+        "category": "Quantity",
+        "subcategory": "Length",
+        "type": "Length",
+        "offset": 855,
+        "length": 13,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Length",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Dimension",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "LengthMetadata",
+         "unit": "Mile",
+         "value": 400000.0
+        }
+       },
+       {
+        "text": "North American highways",
+        "category": "Location",
+        "type": "Location",
+        "offset": 879,
+        "length": 23,
+        "confidenceScore": 0.76,
+        "tags": [
+         {
+          "name": "Location",
+          "confidenceScore": 0.76
+         }
+        ]
+       },
+       {
+        "text": "the second quarter of 2027",
+        "category": "DateTime",
+        "subcategory": "DateRange",
+        "type": "DateRange",
+        "offset": 924,
+        "length": 26,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "DateRange",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "(2027-04-01,2027-07-01,P3M)",
+           "duration": "P3M",
+           "begin": "2027-04-01",
+           "end": "2027-07-01"
+          }
+         ]
+        }
+       },
+       {
+        "text": "Analysts",
+        "category": "PersonType",
+        "type": "PersonType",
+        "offset": 952,
+        "length": 8,
+        "confidenceScore": 0.96,
+        "tags": [
+         {
+          "name": "PersonType",
+          "confidenceScore": 0.96
+         }
+        ]
+       },
+       {
+        "text": "Volt",
+        "category": "Product",
+        "type": "Product",
+        "offset": 976,
+        "length": 4,
+        "confidenceScore": 0.89,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.89
+         }
+        ]
+       },
+       {
+        "text": "Tesla Model 3",
+        "category": "Product",
+        "type": "Product",
+        "offset": 1012,
+        "length": 13,
+        "confidenceScore": 0.95,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.95
+         }
+        ]
+       },
+       {
+        "text": "Hyundai Ioniq 6",
+        "category": "Product",
+        "type": "Product",
+        "offset": 1034,
+        "length": 15,
+        "confidenceScore": 0.97,
+        "tags": [
+         {
+          "name": "Product",
+          "confidenceScore": 0.97
+         }
+        ]
+       },
+       {
+        "text": "Velocity Motors",
+        "category": "Organization",
+        "type": "Organization",
+        "offset": 1099,
+        "length": 15,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Organization",
+          "confidenceScore": 1.0
+         }
+        ]
+       },
+       {
+        "text": "4 percent",
+        "category": "Quantity",
+        "subcategory": "Percentage",
+        "type": "Percentage",
+        "offset": 1127,
+        "length": 9,
+        "confidenceScore": 1.0,
+        "tags": [
+         {
+          "name": "Percentage",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Quantity",
+          "confidenceScore": 1.0
+         },
+         {
+          "name": "Numeric",
+          "confidenceScore": 1.0
+         }
+        ],
+        "metadata": {
+         "metadataKind": "NumberMetadata",
+         "numberKind": "Percent",
+         "value": 4.0
+        }
+       },
+       {
+        "text": "in afternoon",
+        "category": "DateTime",
+        "subcategory": "TimeRange",
+        "type": "TimeRange",
+        "offset": 1137,
+        "length": 12,
+        "confidenceScore": 0.8,
+        "tags": [
+         {
+          "name": "TimeRange",
+          "confidenceScore": 0.8
+         },
+         {
+          "name": "DateTime",
+          "confidenceScore": 0.8
+         }
+        ],
+        "metadata": {
+         "metadataKind": "TemporalSpanMetadata",
+         "spanValues": [
+          {
+           "timex": "TAF",
+           "begin": "12:00:00",
+           "end": "16:00:00"
+          }
+         ]
+        }
+       }
+      ],
+      "warnings": []
+     }
+    ],
+    "errors": [],
+    "modelVersion": "2026-05-01"
+   }
+  },
+  "pii": {
+   "kind": "PiiEntityRecognitionResults",
+   "results": {
+    "documents": [
+     {
+      "redactedText": "Service ticket #48213. ******** ************** (phone ************, email **************************) reports a grinding noise from the front left wheel of his 2022 Velocity Summit, VIN 1VMSUM7K2NA048213, plate OHV-2291. Vehicle dropped off on ********** at the ************************ dealership. ******** pays with card ending **** and lives at ***************************************. *******: ***************.",
+      "id": "ticket",
+      "entities": [
+       {
+        "text": "Customer",
+        "category": "PersonType",
+        "offset": 23,
+        "length": 8,
+        "confidenceScore": 0.95
+       },
+       {
+        "text": "Marcus Alvarez",
+        "category": "Person",
+        "offset": 32,
+        "length": 14,
+        "confidenceScore": 1.0
+       },
+       {
+        "text": "614-555-0188",
+        "category": "PhoneNumber",
+        "offset": 54,
+        "length": 12,
+        "confidenceScore": 1.0
+       },
+       {
+        "text": "marcus.alvarez@example.com",
+        "category": "Email",
+        "offset": 74,
+        "length": 26,
+        "confidenceScore": 0.8
+       },
+       {
+        "text": "10/28/2026",
+        "category": "DateTime",
+        "subcategory": "Date",
+        "offset": 244,
+        "length": 10,
+        "confidenceScore": 0.99
+       },
+       {
+        "text": "Columbus Velocity Motors",
+        "category": "Organization",
+        "offset": 262,
+        "length": 24,
+        "confidenceScore": 1.0
+       },
+       {
+        "text": "Customer",
+        "category": "PersonType",
+        "offset": 299,
+        "length": 8,
+        "confidenceScore": 0.98
+       },
+       {
+        "text": "4421",
+        "category": "Organization",
+        "offset": 330,
+        "length": 4,
+        "confidenceScore": 0.57
+       },
+       {
+        "text": "1840 Maple Grove Dr, Columbus, OH 43215",
+        "category": "Address",
+        "offset": 348,
+        "length": 39,
+        "confidenceScore": 1.0
+       },
+       {
+        "text": "Advisor",
+        "category": "PersonType",
+        "offset": 389,
+        "length": 7,
+        "confidenceScore": 0.91
+       },
+       {
+        "text": "Priya Natarajan",
+        "category": "Person",
+        "offset": 398,
+        "length": 15,
+        "confidenceScore": 1.0
+       }
+      ],
+      "warnings": []
+     }
+    ],
+    "errors": [],
+    "modelVersion": "2026-05-01"
+   }
+  },
+  "languageDetection": {
+   "kind": "LanguageDetectionResults",
+   "results": {
+    "documents": [
+     {
+      "id": "m1",
+      "warnings": [],
+      "detectedLanguage": {
+       "name": "German",
+       "iso6391Name": "de",
+       "confidenceScore": 1.0,
+       "scriptName": "Latin",
+       "scriptIso15924Code": "Latn"
+      }
+     },
+     {
+      "id": "m2",
+      "warnings": [],
+      "detectedLanguage": {
+       "name": "Spanish",
+       "iso6391Name": "es",
+       "confidenceScore": 1.0,
+       "scriptName": "Latin",
+       "scriptIso15924Code": "Latn"
+      }
+     },
+     {
+      "id": "m3",
+      "warnings": [],
+      "detectedLanguage": {
+       "name": "Japanese",
+       "iso6391Name": "ja",
+       "confidenceScore": 1.0,
+       "scriptName": "Japanese",
+       "scriptIso15924Code": "Jpan"
+      }
+     },
+     {
+      "id": "m4",
+      "warnings": [],
+      "detectedLanguage": {
+       "name": "French",
+       "iso6391Name": "fr",
+       "confidenceScore": 1.0,
+       "scriptName": "Latin",
+       "scriptIso15924Code": "Latn"
+      }
+     },
+     {
+      "id": "m5",
+      "warnings": [],
+      "detectedLanguage": {
+       "name": "English",
+       "iso6391Name": "en",
+       "confidenceScore": 1.0,
+       "scriptName": "Latin",
+       "scriptIso15924Code": "Latn"
+      }
+     }
+    ],
+    "errors": [],
+    "modelVersion": "2026-05-01"
+   }
+  },
+  "summarization": {
+   "jobId": "4618b986-4b6f-4b24-9290-ba9397689756",
+   "lastUpdatedDateTime": "2026-11-02T03:52:24Z",
+   "createdDateTime": "2026-11-02T03:52:17Z",
+   "expirationDateTime": "2026-11-03T03:52:17Z",
+   "status": "succeeded",
+   "errors": [],
+   "displayName": "press-summary",
+   "tasks": {
+    "completed": 2,
+    "failed": 0,
+    "inProgress": 0,
+    "total": 2,
+    "items": [
+     {
+      "kind": "ExtractiveSummarizationLROResults",
+      "taskName": "ext",
+      "lastUpdateDateTime": "2026-11-02T03:52:19.3254481Z",
+      "status": "succeeded",
+      "results": {
+       "documents": [
+        {
+         "id": "press",
+         "sentences": [
+          {
+           "text": "Velocity Motors today announced the 2027 Velocity Volt, the third generation of its all-electric sedan, at an event in Detroit.",
+           "rankScore": 0.74,
+           "offset": 0,
+           "length": 127
+          },
+          {
+           "text": "The company said the Volt will be built at its Marysville, Ohio plant, which has been retooled with a $1.2 billion investment and will employ 2,400 workers across two shifts.",
+           "rankScore": 1.0,
+           "offset": 343,
+           "length": 174
+          },
+          {
+           "text": "Pricing starts at $44,900 before incentives, roughly $3,000 less than the outgoing model.",
+           "rankScore": 0.95,
+           "offset": 518,
+           "length": 89
+          }
+         ],
+         "warnings": []
+        }
+       ],
+       "errors": [],
+       "modelVersion": "2024-11-04"
+      }
+     },
+     {
+      "kind": "AbstractiveSummarizationLROResults",
+      "taskName": "abs",
+      "lastUpdateDateTime": "2026-11-02T03:52:24.7507609Z",
+      "status": "succeeded",
+      "results": {
+       "documents": [
+        {
+         "summaries": [
+          {
+           "text": "Velocity Motors has unveiled the 2027 Velocity Volt, an all-electric sedan that represents the third generation of their lineup, featuring an 800-volt system that can charge from 10% to 80% in 18 minutes using a 350 kW charger. The EPA-estimated range is 340 miles for the Long Range version and 290 miles for the Standard trim. Priced to start at $44,900 before incentions, the Volt is positioned as a more affordable option compared to its predecessor and competes in the North American market against models like the Tesla Model 3 and Hyundai Ioniq 6. The Volt will be manufactured at the Marysville, Ohio facility, which has undergone a $1.2 billion upgrade to support its production, with plans to employ 2,400 workers. Velocity Motors' shares increased by 4% following the announcement, indicating positive market reception. Deliveries are scheduled to begin in the second quarter of 2027.",
+           "contexts": [
+            {
+             "offset": 0,
+             "length": 1158
+            }
+           ]
+          }
+         ],
+         "id": "press",
+         "warnings": []
+        }
+       ],
+       "errors": [],
+       "modelVersion": "2024-10-25-phi35"
+      }
+     }
+    ]
+   }
+  }
+ }
+}

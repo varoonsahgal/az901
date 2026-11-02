@@ -1,0 +1,25 @@
+{
+ "id": "7540696b-1b79-4546-822a-e7ec176050b4",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "prebuilt-audio",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T04:30:54Z",
+  "stringEncoding": "utf8",
+  "warnings": [],
+  "contents": [
+   {
+    "path": "input1",
+    "markdown": "# Audio: 00:00.000 => 00:13.944\n\nTranscript\n```\nWEBVTT\n\n00:00.110 --> 00:08.670\n<v Speaker 1>Ladies and gentlemen, start your engines! The 2027 Velocity Volt goes from 10 to 80% charge in just 18 minutes.\n\n00:09.470 --> 00:13.750\n<v Speaker 1>Velkommen by Velocity Motors.\n```",
+    "kind": "audioVisual",
+    "startTimeMs": 0,
+    "endTimeMs": 13944,
+    "analyzerId": "prebuilt-audio",
+    "mimeType": "audio/mpeg"
+   }
+  ]
+ },
+ "usage": {
+  "audioHours": 0.004
+ }
+}

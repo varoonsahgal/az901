@@ -1,0 +1,25 @@
+{
+ "id": "0fbce5e6-e9f7-450b-8bd8-025c28e57d80",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "prebuilt-video",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T04:30:27Z",
+  "stringEncoding": "utf8",
+  "warnings": [],
+  "contents": [
+   {
+    "markdown": "# Video: 00:00.000 => 00:17.959\nWidth: 1280\nHeight: 720\n\nTranscript\n```\nWEBVTT\n\n00:00.110 --> 00:08.670\n<Speaker 1>Ladies and gentlemen, start your engines! The 2027 Velocity Volt goes from 10 to 80% charge in just 18 minutes.\n\n00:09.470 --> 00:13.750\n<Speaker 1>Velkommen by Velocity Motors.\n```\n\nKey Frames\n- 00:00.792 ![](keyFrame.792.jpg)\n- 00:01.583 ![](keyFrame.1583.jpg)\n- 00:02.375 ![](keyFrame.2375.jpg)\n- 00:03.167 ![](keyFrame.3167.jpg)\n- 00:04.750 ![](keyFrame.4750.jpg)\n- 00:05.542 ![](keyFrame.5542.jpg)\n- 00:06.333 ![](keyFrame.6333.jpg)\n- 00:07.125 ![](keyFrame.7125.jpg)\n- 00:08.750 ![](keyFrame.8750.jpg)\n- 00:09.542 ![](keyFrame.9542.jpg)\n- 00:10.333 ![](keyFrame.10333.jpg)\n- 00:11.125 ![](keyFrame.11125.jpg)\n- 00:12.750 ![](keyFrame.12750.jpg)\n- 00:13.542 ![](keyFrame.13542.jpg)\n- 00:14.333 ![](keyFrame.14333.jpg)\n- 00:15.125 ![](keyFrame.15125.jpg)\n- 00:16.625 ![](keyFrame.16625.jpg)\n- 00:17.292 ![](keyFrame.17292.jpg)",
+    "kind": "audioVisual",
+    "startTimeMs": 0,
+    "endTimeMs": 17959,
+    "width": 1280,
+    "height": 720,
+    "mimeType": "video/mp4"
+   }
+  ]
+ },
+ "usage": {
+  "videoHours": 0.005
+ }
+}

@@ -1,0 +1,155 @@
+<!--META {"title":"Lap 0 · Pit lane","desc":"Set up your garage for the AI-901 Grand Prix: Azure Cloud Shell, your student number, one Microsoft Foundry resource, one project, one model deployment and your first AI call.",
+"h1":"Pit lane · set up your garage",
+"lede":"Every race starts in the pit lane. In thirty minutes you will have your own corner of Microsoft Foundry: a resource, a project, a deployed model and the keys to use them. Everything you build today lives here, and at the end of the day one command tears it all down.",
+"chips":[["Time","30 min"],["Difficulty","Beginner · nothing installed, everything in the browser"],["You build","1 resource group · 1 Foundry resource · 1 project · 1 gpt-4.1-mini deployment"],["Region","East US 2 for everyone"]],
+"objectives":["Deploy a model and interact with it in the Foundry portal","Identify appropriate model deployment options and configuration parameters"]}
+-->
+<div class="callout note"><div class="ico">🏎️</div><div><span class="box-lbl">The story so far</span><p>Welcome to <strong>Velocity Motors</strong>. Sales wants a chatbot, Service wants invoices read automatically, Marketing wants concept-car art by lunchtime and Legal wants to know what "responsible AI" means before anyone ships anything. You are the new AI pit crew. Today you prove all of it is possible in one day, in one Azure subscription, without stepping on the other nineteen crews doing the same thing beside you.</p></div></div>
+
+<div class="callout important"><div class="ico">🔢</div><div><span class="box-lbl">Before anything else: your number</span><p>Find your <strong>student number</strong> on the whiteboard (s01 to s20). Type it into the <strong>Pit board</strong> box in the top bar of this site. Every command on every page will rewrite itself with your number, like this: <code>rg-ai901-<span class="v" data-v="student">s07</span></code>. Twenty people share this subscription; your number is what keeps your resources yours.</p></div></div>
+
+<h2>Part 0 · The idea in five minutes</h2>
+<p>Azure AI is sold as dozens of services with dozens of names, and Microsoft renames them regularly. For the exam and for today you need exactly five nouns.</p>
+<div class="vocab">
+  <div><b>Microsoft Foundry</b>The platform (and the portal at <a href="https://ai.azure.com">ai.azure.com</a>) where you pick models, deploy them, build agents, and use the prebuilt AI tools. Until November 2025 it was called <em>Azure AI Foundry</em>; older docs and some exam questions still say that.</div>
+  <div><b>Foundry resource</b>The Azure resource that bills and secures everything. Its Azure type is <code>Microsoft.CognitiveServices/accounts</code> with <em>kind</em> <code>AIServices</code>. One resource gives you OpenAI models, Language, Speech, Vision, Content Safety and Content Understanding from <strong>one endpoint and one key</strong>. The prebuilt tools are now called <em>Foundry Tools</em> (formerly Azure AI services, formerly Cognitive Services).</div>
+  <div><b>Project</b>A workspace inside the resource: agents, files, connections, evaluations. The portal and the Foundry SDK talk to the <strong>project endpoint</strong>. You can have several projects per resource; today you make one.</div>
+  <div><b>Deployment</b>A model is a catalog entry (<code>gpt-4.1-mini</code>); a <strong>deployment</strong> is <em>your</em> running copy of it with a name you choose, a deployment type and a capacity in <strong>tokens per minute (TPM)</strong>. Code always calls the deployment name, never the model name.</div>
+  <div><b>Endpoint + key, or Entra ID</b>Two ways to authenticate. A <strong>key</strong> is a password for the whole resource (fine for a lab, rotate it in real life). <strong>Microsoft Entra ID</strong> uses <em>you</em> (your <code>az login</code>) plus a role such as <em>Azure AI User</em>. The Foundry SDK and agents use Entra ID; the classic tools accept either.</div>
+</div>
+
+<figure class="figure plain"><svg viewBox="0 0 900 300" width="100%" role="img" aria-label="One Foundry resource contains a project and model deployments and exposes several endpoints" style="font-family:Inter,system-ui,sans-serif">
+  <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#5B6779"/></marker></defs>
+  <rect x="20" y="20" width="520" height="260" rx="16" fill="#0B1220"/>
+  <text x="40" y="52" fill="#FACC15" font-size="13" font-weight="700" letter-spacing="2">FOUNDRY RESOURCE · kind AIServices · S0 · East US 2</text>
+  <text x="40" y="76" fill="#98A6BD" font-size="13">ai901-s07-pitcrew · one key · one bill</text>
+  <rect x="40" y="96" width="220" height="164" rx="12" fill="#142036" stroke="#1F2D47"/>
+  <text x="56" y="122" fill="#fff" font-size="14" font-weight="600">Project · proj-ai901-s07</text>
+  <text x="56" y="146" fill="#B6C2D6" font-size="12">agents · files · connections</text>
+  <text x="56" y="166" fill="#B6C2D6" font-size="12">evaluations · playgrounds</text>
+  <text x="56" y="200" fill="#38BDF8" font-size="12" font-family="JetBrains Mono,monospace">…/api/projects/proj-ai901-s07</text>
+  <rect x="280" y="96" width="240" height="164" rx="12" fill="#142036" stroke="#1F2D47"/>
+  <text x="296" y="122" fill="#fff" font-size="14" font-weight="600">Deployments</text>
+  <g font-size="12" font-family="JetBrains Mono,monospace"><text x="296" y="148" fill="#86EFAC">gpt-4-1-mini</text><text x="430" y="148" fill="#98A6BD">10K TPM</text>
+  <text x="296" y="170" fill="#86EFAC">gpt-audio-mini</text><text x="430" y="170" fill="#98A6BD">1K TPM</text>
+  <text x="296" y="192" fill="#86EFAC">flux-2-pro</text><text x="430" y="192" fill="#98A6BD">capacity 1</text></g>
+  <text x="296" y="236" fill="#B6C2D6" font-size="12">Standard · Global Standard · Provisioned</text>
+  <g font-size="12.5" fill="#1B2437"><rect x="600" y="40" width="280" height="40" rx="10" fill="#fff" stroke="#DFE4EE"/><text x="612" y="65" font-family="JetBrains Mono,monospace">…cognitiveservices.azure.com</text><text x="612" y="30" fill="#5B6779" font-size="11">Vision · Language · Speech · Safety</text>
+  <rect x="600" y="110" width="280" height="40" rx="10" fill="#fff" stroke="#DFE4EE"/><text x="612" y="135" font-family="JetBrains Mono,monospace">…openai.azure.com</text><text x="612" y="100" fill="#5B6779" font-size="11">OpenAI models · images · audio</text>
+  <rect x="600" y="180" width="280" height="40" rx="10" fill="#fff" stroke="#DFE4EE"/><text x="612" y="205" font-family="JetBrains Mono,monospace">…services.ai.azure.com</text><text x="612" y="170" fill="#5B6779" font-size="11">Foundry API · agents · Content Understanding</text></g>
+  <path d="M540 60H598M540 130H598M540 200H598" stroke="#5B6779" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="600" y="262" fill="#5B6779" font-size="12">Same resource, same key, three host names.</text>
+</svg><figcaption>Everything you create today, in one picture. The resource is the unit of billing and security; the project is the unit of work; deployments are the models you can call.</figcaption></figure>
+
+<h3>Deployment types, in one table</h3>
+<table>
+<thead><tr><th>Type</th><th>Where it runs</th><th>Pick it when</th></tr></thead>
+<tbody>
+<tr><td><strong>Standard</strong></td><td>Your resource's region only</td><td>Data must stay in-region; low to medium traffic. <em>Today's choice for gpt-4.1-mini.</em></td></tr>
+<tr><td><strong>Global Standard</strong></td><td>Routed to any Azure region with capacity</td><td>Best availability and newest models; data residency is not a constraint. Needed for <code>gpt-audio-mini</code> and FLUX.</td></tr>
+<tr><td><strong>Data Zone Standard</strong></td><td>Within a geography (EU or US)</td><td>A middle ground: more capacity than Standard, still inside a legal boundary.</td></tr>
+<tr><td><strong>Provisioned (PTU)</strong></td><td>Reserved throughput you pay for hourly</td><td>Predictable latency at high volume. Never for a lab.</td></tr>
+<tr><td><strong>Batch</strong></td><td>Asynchronous, 24-hour window</td><td>Millions of non-urgent requests at about half price.</td></tr>
+</tbody></table>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Expect questions like "a dealership must keep customer data in the United States; which deployment type?" (Data Zone or Standard) or "what does TPM limit?" (tokens per minute per deployment, drawn from a per-region quota). Capacity is set <em>per deployment</em>; quota is shared <em>per model per region per subscription</em>, which is exactly why twenty of us deploy small.</p></div></div>
+
+<h2>Part 1 · Open Cloud Shell</h2>
+<ol class="steps">
+  <li><p>Open <a href="https://portal.azure.com">portal.azure.com</a> and sign in with the account the instructor gave you. In the top bar click the <strong>Cloud Shell</strong> icon (<code>&gt;_</code>), or go straight to <a href="https://shell.azure.com">shell.azure.com</a>.</p></li>
+  <li><p>Choose <strong>Bash</strong>. If asked about storage, pick <strong>No storage account required</strong> (ephemeral). Nothing today needs files to survive between sessions; the pit-board block below rebuilds your variables in two seconds.</p></li>
+  <li><p>Confirm you are in the right subscription. You are already signed in inside Cloud Shell, so <code>az login</code> is only needed on your own laptop.</p>
+<pre><code>az account show --query "{subscription:name, id:id, user:user.name}" -o json</code></pre>
+<img class="shot" src="images/shots/lab0-login.png" alt="Cloud Shell showing az login with a device code and az account show output" loading="lazy" title="Click to zoom"></li>
+</ol>
+
+<h2>Part 2 · Your pit board variables</h2>
+<p>Paste this block at the start of <em>every</em> lab (and every new Cloud Shell session). It defines the names everything else uses. The values already contain your number if you set the pit board above.</p>
+<pre><code>export STUDENT=<span class="v" data-v="student">s07</span>                      <span class="cm"># your number from the whiteboard</span>
+export RG=rg-ai901-$STUDENT                 <span class="cm"># your resource group</span>
+export NAME=ai901-$STUDENT-pitcrew          <span class="cm"># your Foundry resource · must be unique worldwide</span>
+export LOC=eastus2                          <span class="cm"># everyone uses East US 2 today</span>
+export PROJECT=proj-ai901-$STUDENT          <span class="cm"># your Foundry project</span>
+echo $RG $NAME $LOC $PROJECT</code></pre>
+<div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Why a shared word like "pitcrew"?</span><p>The resource name becomes a DNS name, so it must be unique across all of Azure. <code>ai901-s07-pitcrew</code> will be free unless another Velocity crew used it; if creation says the name is taken, change <code>pitcrew</code> to anything else and re-export <code>NAME</code>. Keep the <code>ai901-s07-</code> prefix so the instructor can find it.</p></div></div>
+
+<h2>Part 3 · Build the garage</h2>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Cloud Shell path (exact)</button><button role="tab">Portal path (ai.azure.com)</button></div>
+  <div role="tabpanel">
+<ol class="steps">
+  <li><p><strong>Resource group.</strong> A folder for everything you build. Tags let race control find and cost every student's work.</p>
+<pre><code>az group create --name $RG --location $LOC --tags course=ai901 student=$STUDENT -o jsonc</code></pre>
+<img class="shot" src="images/shots/lab0-rg.png" alt="az group create output showing provisioningState Succeeded" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>The Foundry resource.</strong> One command, four decisions: kind <code>AIServices</code> (the multi-service kind), SKU <code>S0</code> (pay-per-use; never F0 in a shared subscription), a custom domain equal to the name (that is what gives you a private endpoint URL), and <code>--allow-project-management</code> so Foundry projects can live inside it. It takes about a minute.</p>
+<pre><code>az cognitiveservices account create --name $NAME --resource-group $RG --location $LOC \
+  --kind AIServices --sku S0 --custom-domain $NAME --assign-identity --allow-project-management true --yes \
+  --query "{name:name,kind:kind,sku:sku.name,location:location,endpoint:properties.endpoint,state:properties.provisioningState}" -o jsonc</code></pre>
+<img class="shot" src="images/shots/lab0-create-account.png" alt="Output of creating the AIServices resource with kind, sku S0 and endpoint" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Keys and endpoints.</strong> Two keys exist so you can rotate one while the other keeps working. Put them in variables; never paste them into chat, slides or Git.</p>
+<pre><code>az cognitiveservices account keys list --name $NAME --resource-group $RG -o jsonc
+export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
+export ENDPOINT=https://$NAME.cognitiveservices.azure.com     <span class="cm"># Vision · Language · Speech · Content Safety</span>
+export AI_ENDPOINT=https://$NAME.services.ai.azure.com        <span class="cm"># Foundry API · agents · Content Understanding</span>
+export AOAI_ENDPOINT=https://$NAME.openai.azure.com           <span class="cm"># OpenAI models · images · audio</span>
+echo $ENDPOINT</code></pre>
+<img class="shot" src="images/shots/lab0-keys.png" alt="Masked keys and the three endpoint host names" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>The project.</strong> This is what the Foundry portal and SDK connect to.</p>
+<pre><code>az cognitiveservices account project create --name $NAME --resource-group $RG --location $LOC \
+  --project-name $PROJECT --display-name "Velocity Motors AI ($STUDENT)" \
+  --query "{name:name,state:properties.provisioningState,endpoint:properties.endpoints.\"AI Foundry API\"}" -o jsonc
+export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
+<img class="shot" src="images/shots/lab0-project.png" alt="Project created with its Foundry API endpoint" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Deploy a model.</strong> <code>gpt-4.1-mini</code> is cheap, fast, understands images and (unlike the gpt-5 family) still lets you set <code>temperature</code>, which Lap 2 needs. Capacity 10 means 10,000 tokens per minute: plenty for one person, and twenty of them fit in the regional quota of 200K.</p>
+<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name gpt-4-1-mini --model-name gpt-4.1-mini --model-version 2025-04-14 --model-format OpenAI \
+  --sku-name Standard --sku-capacity 10 -o none
+az cognitiveservices account deployment list -n $NAME -g $RG -o table</code></pre>
+<img class="shot" src="images/shots/lab0-deploy.png" alt="Deployment list showing gpt-4-1-mini Standard capacity 10 Succeeded, and the regional quota usage" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Python libraries</strong> for the lightweight apps you will run later. Cloud Shell already has Python 3; this takes about a minute.</p>
+<pre><code>pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests
+python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code></pre>
+<img class="shot" src="images/shots/lab0-pip.png" alt="pip install of the Foundry SDK and tools completing" loading="lazy" title="Click to zoom"></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p>The same four objects, built with clicks. Do this path at least once: the exam asks about the portal.</p>
+<ol class="steps">
+  <li><p>Open <a href="https://ai.azure.com">ai.azure.com</a> and sign in. In the top toolbar make sure <strong>New Foundry</strong> is switched on (the older experience looks different and does not have the agent features we use later).</p></li>
+  <li><p>Select <strong>Create new</strong> (or you are prompted to create a project). Name the project <code>proj-ai901-<span class="v" data-v="student">s07</span></code>. Expand <strong>Advanced options</strong> and set: <strong>Foundry resource</strong> <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code>; <strong>Subscription</strong> the shared one; <strong>Resource group</strong> create <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; <strong>Region</strong> <strong>East US 2</strong>. If the wizard offers to "set up recommended resources", clear it. Select <strong>Create</strong> and wait a minute or two.</p></li>
+  <li><p>On the project <strong>Home</strong> page, find the <strong>Project endpoint</strong> (ends in <code>/api/projects/proj-ai901-<span class="v" data-v="student">s07</span></code>) and the key. Note the endpoint; the Python labs use it.</p></li>
+  <li><p>Go to <strong>Discover</strong> → <strong>Models</strong>. Search <code>gpt-4.1-mini</code>, open it, select <strong>Deploy</strong>. Keep the name <code>gpt-4-1-mini</code>, deployment type <strong>Standard</strong>, and set the tokens-per-minute slider to <strong>10K</strong>. Select <strong>Deploy</strong>. The playground opens when it is ready.</p></li>
+  <li><p>In the playground's <strong>Chat</strong> pane type <code>Who are you, and what can you do for a car dealership?</code> and read the answer. Congratulations: that is your first model call. Lap 2 lives here.</p></li>
+</ol>
+<div class="callout note"><div class="ico">📝</div><div><span class="box-lbl">If the portal has moved a button</span><p>Microsoft redraws Foundry often. The nouns do not change: a project inside a resource, a deployment of a model, a playground to try it. If you cannot find something, switch to the Cloud Shell tab; those commands are exact and were run to make the screenshots on this page.</p></div></div>
+  </div>
+</div>
+
+<h2>Part 4 · Your first AI call</h2>
+<p>Prove the garage works with one HTTP request to Azure AI Vision, asking it to caption a photo from this site. No SDK, no Python, just <code>curl</code>: this is the shape of every Foundry Tool call you will see today (an endpoint, an API version, your key in a header, JSON back).</p>
+<pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&features=caption" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" \
+  -d '{"url":"https://varoonsahgal.github.io/az901/images/photos/classic-rambler.jpg"}' | jq .captionResult</code></pre>
+<div class="shots2"><img class="shot" src="images/shots/lab0-first-call.png" alt="curl output: caption 'an orange and white car parked in a parking lot' with confidence 0.86" loading="lazy" title="Click to zoom"><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You should now have: a resource group <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; inside it a Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> with one project and one deployment; variables <code>KEY</code>, <code>ENDPOINT</code>, <code>AI_ENDPOINT</code>, <code>AOAI_ENDPOINT</code>, <code>PROJECT_ENDPOINT</code> set in your shell; and a caption for a 1958 Rambler. Open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → yours, and look at the two resources. Then <a href="https://ai.azure.com">ai.azure.com</a> should show your project. If both are true, you are out of the pit lane.</p></div></div>
+
+<h2>Troubleshooting</h2>
+<details class="reveal hint"><summary>"The name is already taken" or "AccountAlreadyExists"</summary><div class="body"><p>Someone in the world already owns that DNS name. Change the last word: <code>export NAME=ai901-$STUDENT-garage</code> (or <code>turbo</code>, your surname…) and re-run from the resource step. Keep the prefix.</p></div></details>
+<details class="reveal hint"><summary>"InsufficientQuota" when deploying the model</summary><div class="body"><p>The regional pool for that model is used up. Check with <code>az cognitiveservices usage list --location $LOC -o table | grep -i gpt4.1-mini</code>. Ask race control; the fix is to lower a capacity somewhere or deploy <code>gpt-4o-mini</code> instead (same commands, model name <code>gpt-4o-mini</code>, version <code>2024-07-18</code>).</p></div></details>
+<details class="reveal hint"><summary>"AuthorizationFailed" or the portal says you cannot create a project</summary><div class="body"><p>Your account needs <em>Contributor</em> on the subscription (to create resources) and <em>Azure AI User</em> or <em>Azure AI Developer</em> on the resource (to use the project and agents). Race control grants both; see the instructor page. The error message names the role it wanted.</p></div></details>
+<details class="reveal hint"><summary>Cloud Shell forgot my variables</summary><div class="body"><p>Every new Cloud Shell session starts clean. Paste the Part 2 block again, then the three <code>export</code> lines from the keys step. Thirty seconds. This is normal.</p></div></details>
+<details class="reveal hint"><summary>I created everything in East US instead of East US 2</summary><div class="body"><p>It will mostly work, but two models we use later (<code>gpt-audio-mini</code> and FLUX) only have quota in East US 2 on this subscription. Delete and recreate: <code>az group delete -n $RG --yes</code>, then set <code>LOC=eastus2</code> and start Part 3 again. Five minutes.</p></div></details>
+
+<h2>Quick quiz</h2>
+<details class="reveal quiz"><summary>A dealership needs a model deployment whose data never leaves the United States, with more capacity than one region offers. Which deployment type?</summary><div class="body"><p><strong>Data Zone Standard.</strong> Standard stays in one region; Global Standard can route anywhere in the world; Data Zone stays within a geography (US or EU). Provisioned is about reserved throughput, not residency.</p></div></details>
+<details class="reveal quiz"><summary>What is the difference between <code>gpt-4.1-mini</code> and <code>gpt-4-1-mini</code> in this lab?</summary><div class="body"><p>The first is the <em>model</em> in the catalog. The second is <em>your deployment</em> of it; its name is yours to choose and it is what code and the playground call. Many people name them the same; we used a hyphen so you can see the difference.</p></div></details>
+<details class="reveal quiz"><summary>Why does the course forbid the free F0 tier?</summary><div class="body"><p>Azure allows only one F0 resource per service kind per subscription. In a shared subscription the first student would get it and the other nineteen would fail. S0 is pay-per-use and costs cents for a day of lab traffic.</p></div></details>
+<details class="reveal quiz"><summary>Which authentication does the Foundry SDK use when you call <code>AIProjectClient(endpoint, DefaultAzureCredential())</code>?</summary><div class="body"><p><strong>Microsoft Entra ID</strong>: your signed-in identity plus a role on the resource. No key appears in the code. Keys are still accepted by the classic tool endpoints (Vision, Language, Speech) and we use them there for simplicity.</p></div></details>
+
+<h2>Pit wall debrief · what you learned</h2>
+<ul>
+  <li>Microsoft Foundry is the platform; a <strong>Foundry resource</strong> (kind AIServices) bills and secures it; a <strong>project</strong> is where you work; a <strong>deployment</strong> is your copy of a model with a name and a TPM capacity.</li>
+  <li>Deployment types trade residency against capacity: Standard, Data Zone, Global Standard, Provisioned, Batch.</li>
+  <li>One resource, one key, three host names. Keys authenticate the resource; Entra ID authenticates <em>you</em>.</li>
+  <li>In a shared subscription, your student number is your namespace, S0 beats F0, and small deployments keep everyone under quota.</li>
+</ul>
+<p>Next: before we build anything clever, we agree on the rules of the road. <a href="lab1.html">Lap 1 · Race rules →</a></p>

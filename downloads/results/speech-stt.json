@@ -1,0 +1,19 @@
+{
+ "tts_text": "Welcome back to your Velocity Summit. Cabin temperature is set to seventy degrees. Your next service is due in two thousand one hundred miles. Would you like me to book it at Velocity Motors of Columbus?",
+ "ssml_multilingual": "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesis\" xmlns:mstts=\"https://www.w3.org/2001/mstts\" xml:lang=\"en-US\"><voice name=\"en-US-AndrewMultilingualNeural\"><mstts:express-as style=\"excited\">Ladies and gentlemen, start your engines! The twenty twenty-seven Velocity Volt goes from ten to eighty percent charge in just <emphasis level=\"strong\">eighteen minutes</emphasis>.</mstts:express-as><break time=\"400ms\"/><lang xml:lang=\"de-DE\">Willkommen bei Velocity Motors.</lang><lang xml:lang=\"ja-JP\">\u30d9\u30ed\u30b7\u30c6\u30a3\u30e2\u30fc\u30bf\u30fc\u30ba\u3078\u3088\u3046\u3053\u305d\u3002</lang></voice></speak>",
+ "stt": {
+  "RecognitionStatus": "Success",
+  "Offset": 700000,
+  "Duration": 122400000,
+  "DisplayText": "Welcome back to your Velocity Summit. Cabin temperature is set to 70\u00b0. Your next service is due in 2100 miles. Would you like me to book it at Velocity Motors of Columbus?",
+  "NBest": [
+   {
+    "Confidence": 0.78666884,
+    "Lexical": "welcome back to your velocity summit cabin temperature is set to seventy degrees your next service is due in two thousand one hundred miles would you like me to book it at velocity motors of columbus",
+    "ITN": "welcome back to your velocity summit cabin temperature is set to 70\u00b0 your next service is due in 2100 miles would you like me to book it at velocity motors of columbus",
+    "MaskedITN": "welcome back to your velocity summit cabin temperature is set to 70\u00b0 your next service is due in 2100 miles would you like me to book it at velocity motors of columbus",
+    "Display": "Welcome back to your Velocity Summit. Cabin temperature is set to 70\u00b0. Your next service is due in 2100 miles. Would you like me to book it at Velocity Motors of Columbus?"
+   }
+  ]
+ }
+}

@@ -1,0 +1,478 @@
+{
+ "modelVersion": "2023-10-01",
+ "captionResult": {
+  "text": "a silver car parked in a parking lot",
+  "confidence": 0.8428760766983032
+ },
+ "denseCaptionsResult": {
+  "values": [
+   {
+    "text": "a silver car parked in a parking lot",
+    "confidence": 0.8428760766983032,
+    "boundingBox": {
+     "x": 0,
+     "y": 0,
+     "w": 1400,
+     "h": 1050
+    }
+   },
+   {
+    "text": "a car parked in a lot",
+    "confidence": 0.73509281873703,
+    "boundingBox": {
+     "x": 121,
+     "y": 273,
+     "w": 1057,
+     "h": 429
+    }
+   },
+   {
+    "text": "a close up of a tire",
+    "confidence": 0.7932378649711609,
+    "boundingBox": {
+     "x": 243,
+     "y": 508,
+     "w": 186,
+     "h": 177
+    }
+   },
+   {
+    "text": "a close up of a tire",
+    "confidence": 0.796918511390686,
+    "boundingBox": {
+     "x": 918,
+     "y": 511,
+     "w": 196,
+     "h": 185
+    }
+   },
+   {
+    "text": "a sign with text on it",
+    "confidence": 0.7348138093948364,
+    "boundingBox": {
+     "x": 707,
+     "y": 264,
+     "w": 63,
+     "h": 56
+    }
+   },
+   {
+    "text": "the back of a car",
+    "confidence": 0.80181485414505,
+    "boundingBox": {
+     "x": 0,
+     "y": 340,
+     "w": 87,
+     "h": 108
+    }
+   },
+   {
+    "text": "a side mirror of a car",
+    "confidence": 0.7825303077697754,
+    "boundingBox": {
+     "x": 755,
+     "y": 377,
+     "w": 73,
+     "h": 62
+    }
+   },
+   {
+    "text": "a sign on a building",
+    "confidence": 0.7686029672622681,
+    "boundingBox": {
+     "x": 1,
+     "y": 299,
+     "w": 230,
+     "h": 67
+    }
+   },
+   {
+    "text": "a street light and a car",
+    "confidence": 0.5574331879615784,
+    "boundingBox": {
+     "x": 0,
+     "y": 0,
+     "w": 1388,
+     "h": 318
+    }
+   },
+   {
+    "text": "a car parked in a parking lot",
+    "confidence": 0.8276888728141785,
+    "boundingBox": {
+     "x": 0,
+     "y": 228,
+     "w": 1373,
+     "h": 778
+    }
+   }
+  ]
+ },
+ "metadata": {
+  "width": 1400,
+  "height": 1050
+ },
+ "tagsResult": {
+  "values": [
+   {
+    "name": "wheel",
+    "confidence": 0.9991297721862793
+   },
+   {
+    "name": "land vehicle",
+    "confidence": 0.9989444017410278
+   },
+   {
+    "name": "vehicle",
+    "confidence": 0.9989173412322998
+   },
+   {
+    "name": "tire",
+    "confidence": 0.998309314250946
+   },
+   {
+    "name": "car",
+    "confidence": 0.9973217248916626
+   },
+   {
+    "name": "outdoor",
+    "confidence": 0.991346538066864
+   },
+   {
+    "name": "sky",
+    "confidence": 0.9864075183868408
+   },
+   {
+    "name": "transport",
+    "confidence": 0.9800008535385132
+   },
+   {
+    "name": "bumper",
+    "confidence": 0.9707338809967041
+   },
+   {
+    "name": "alloy wheel",
+    "confidence": 0.9615312814712524
+   },
+   {
+    "name": "auto part",
+    "confidence": 0.9612592458724976
+   },
+   {
+    "name": "sport utility vehicle",
+    "confidence": 0.9572595357894897
+   },
+   {
+    "name": "automotive design",
+    "confidence": 0.949763834476471
+   },
+   {
+    "name": "rim",
+    "confidence": 0.9393050670623779
+   },
+   {
+    "name": "compact sport utility vehicle",
+    "confidence": 0.9360293745994568
+   },
+   {
+    "name": "crossover suv",
+    "confidence": 0.9300803542137146
+   },
+   {
+    "name": "automotive tire",
+    "confidence": 0.917340099811554
+   },
+   {
+    "name": "automotive exterior",
+    "confidence": 0.9157060384750366
+   },
+   {
+    "name": "luxury vehicle",
+    "confidence": 0.9129083156585693
+   },
+   {
+    "name": "fender",
+    "confidence": 0.911615788936615
+   },
+   {
+    "name": "mini suv",
+    "confidence": 0.9026864767074585
+   },
+   {
+    "name": "family car",
+    "confidence": 0.8953734636306763
+   },
+   {
+    "name": "motor vehicle",
+    "confidence": 0.8862390518188477
+   },
+   {
+    "name": "automotive wheel system",
+    "confidence": 0.8848689794540405
+   },
+   {
+    "name": "hood",
+    "confidence": 0.8716195821762085
+   },
+   {
+    "name": "automotive lighting",
+    "confidence": 0.8601408004760742
+   },
+   {
+    "name": "city car",
+    "confidence": 0.8544114828109741
+   },
+   {
+    "name": "nissan",
+    "confidence": 0.8496989011764526
+   },
+   {
+    "name": "road",
+    "confidence": 0.805301308631897
+   },
+   {
+    "name": "ground",
+    "confidence": 0.7702860236167908
+   },
+   {
+    "name": "suv",
+    "confidence": 0.7516574263572693
+   },
+   {
+    "name": "parked",
+    "confidence": 0.5400079488754272
+   }
+  ]
+ },
+ "objectsResult": {
+  "values": [
+   {
+    "boundingBox": {
+     "x": 103,
+     "y": 284,
+     "w": 1070,
+     "h": 423
+    },
+    "tags": [
+     {
+      "name": "station wagon",
+      "confidence": 0.534
+     }
+    ]
+   }
+  ]
+ },
+ "readResult": {
+  "blocks": [
+   {
+    "lines": [
+     {
+      "text": "The Optical Shoppe",
+      "boundingPolygon": [
+       {
+        "x": 0,
+        "y": 339
+       },
+       {
+        "x": 128,
+        "y": 337
+       },
+       {
+        "x": 128,
+        "y": 348
+       },
+       {
+        "x": 0,
+        "y": 351
+       }
+      ],
+      "words": [
+       {
+        "text": "The",
+        "boundingPolygon": [
+         {
+          "x": 22,
+          "y": 340
+         },
+         {
+          "x": 39,
+          "y": 339
+         },
+         {
+          "x": 39,
+          "y": 350
+         },
+         {
+          "x": 22,
+          "y": 351
+         }
+        ],
+        "confidence": 0.486
+       },
+       {
+        "text": "Optical",
+        "boundingPolygon": [
+         {
+          "x": 44,
+          "y": 339
+         },
+         {
+          "x": 85,
+          "y": 338
+         },
+         {
+          "x": 85,
+          "y": 349
+         },
+         {
+          "x": 44,
+          "y": 350
+         }
+        ],
+        "confidence": 0.625
+       },
+       {
+        "text": "Shoppe",
+        "boundingPolygon": [
+         {
+          "x": 88,
+          "y": 338
+         },
+         {
+          "x": 125,
+          "y": 338
+         },
+         {
+          "x": 126,
+          "y": 349
+         },
+         {
+          "x": 88,
+          "y": 349
+         }
+        ],
+        "confidence": 0.809
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "smartCropsResult": {
+  "values": [
+   {
+    "aspectRatio": 1.0,
+    "boundingBox": {
+     "x": 143,
+     "y": 0,
+     "w": 1046,
+     "h": 1046
+    }
+   },
+   {
+    "aspectRatio": 1.78,
+    "boundingBox": {
+     "x": 0,
+     "y": 98,
+     "w": 1348,
+     "h": 756
+    }
+   }
+  ]
+ },
+ "peopleResult": {
+  "values": [
+   {
+    "boundingBox": {
+     "x": 834,
+     "y": 358,
+     "w": 12,
+     "h": 19
+    },
+    "confidence": 0.006593597587198019
+   },
+   {
+    "boundingBox": {
+     "x": 673,
+     "y": 357,
+     "w": 13,
+     "h": 28
+    },
+    "confidence": 0.0063521722331643105
+   },
+   {
+    "boundingBox": {
+     "x": 76,
+     "y": 359,
+     "w": 35,
+     "h": 35
+    },
+    "confidence": 0.0038235322572290897
+   },
+   {
+    "boundingBox": {
+     "x": 922,
+     "y": 342,
+     "w": 11,
+     "h": 25
+    },
+    "confidence": 0.003398692235350609
+   },
+   {
+    "boundingBox": {
+     "x": 820,
+     "y": 351,
+     "w": 15,
+     "h": 20
+    },
+    "confidence": 0.002609250834211707
+   },
+   {
+    "boundingBox": {
+     "x": 1155,
+     "y": 355,
+     "w": 12,
+     "h": 19
+    },
+    "confidence": 0.0020876177586615086
+   },
+   {
+    "boundingBox": {
+     "x": 958,
+     "y": 346,
+     "w": 14,
+     "h": 18
+    },
+    "confidence": 0.0018308025319129229
+   },
+   {
+    "boundingBox": {
+     "x": 951,
+     "y": 349,
+     "w": 18,
+     "h": 18
+    },
+    "confidence": 0.0012757517397403717
+   },
+   {
+    "boundingBox": {
+     "x": 1149,
+     "y": 356,
+     "w": 14,
+     "h": 17
+    },
+    "confidence": 0.0011069647734984756
+   },
+   {
+    "boundingBox": {
+     "x": 817,
+     "y": 347,
+     "w": 12,
+     "h": 17
+    },
+    "confidence": 0.0010448202956467867
+   }
+  ]
+ }
+}

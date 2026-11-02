@@ -1,0 +1,34 @@
+{
+ "id": "daff3012-fb3c-42fc-a18d-e6ad31602d5c",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "prebuilt-document",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T04:17:03Z",
+  "stringEncoding": "codePoint",
+  "warnings": [],
+  "contents": [
+   {
+    "path": "input1",
+    "markdown": "<!-- PageHeader: VELOCITY MOTORS MANUFACTURER'S SUGGES TED RETAIL PRICE LABEL -->\n\n\n# 2026 VELOCITY STRATA SPORT\n\n4-DOOR SEDAN . 2.0L TURBO HYBRID . 8-SPEED AUTOMATIC . FRONT-WHEEL DRIVE\n\nVIN: 1VMSTR8A3RA210077\nEXTERIOR: VELOCITY RED\n\nINTERIOR: CHARCOAL CLOTH\n\n\n## STANDARD EQUIPMENT INCLUDED AT NO EXTRA CHARGE\n\n. 10.3-inch touchscreen with wireless phone projection\n\n. Velocity Sense: automatic emergency braking, lane keeping, adaptive cruise\n\n. Dual-zone climate control . heated front seats\n\n. 18-inch alloy wheels . LED headlamps\n\n. 6 airbags . rear-view camera . tire pressure monitoring\n\n\n## PRICING\n\n\n<table>\n<tr>\n<td>Base price</td>\n<td>$31,900.00</td>\n</tr>\n<tr>\n<td>Sport package (sport suspension, paddle shifters, black trim)</td>\n<td>$2,450.00</td>\n</tr>\n<tr>\n<td>Premium audio with 12 speakers</td>\n<td>$900.00</td>\n</tr>\n<tr>\n<td>Destination and delivery</td>\n<td>$1,195.00</td>\n</tr>\n</table>\n\n\nTOTAL MSRP\n\n$36,445.00\n\n\n### FUEL ECONOMY AND ENVIRONMENT\n\n36\ncombined\nMPG\n\n32 city / 41 highway\nAnnual fuel cost: $1,250\nYou save $2,750 in fuel costs over 5 years\n\nSmog rating 7/10 . Greenhouse gas rating 8/10 . 2.8 gallons per 100 miles\n\nASSEMBLED IN MARYSVILLE, OHIO, USA . ENGINE: USA . TRANSMISSION: JAPAN\nDEALER: VELOCITY MOTORS OF COLUMBUS . 1200 AUTO MALL PKWY, COLUMBUS, OH 43215 . (614) 555-0100\n\n\n![](figures/1.1)\n\n",
+    "kind": "document",
+    "startPageNumber": 1,
+    "endPageNumber": 1,
+    "unit": "pixel",
+    "pages": [
+     {
+      "pageNumber": 1,
+      "angle": 0,
+      "width": 1000,
+      "height": 1400
+     }
+    ],
+    "analyzerId": "prebuilt-document",
+    "mimeType": "image/png"
+   }
+  ]
+ },
+ "usage": {
+  "documentPagesStandard": 1
+ }
+}

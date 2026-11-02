@@ -1,0 +1,188 @@
+{
+ "concierge": {
+  "system": "You are Velo, the friendly in-car and dealership assistant for Velocity Motors. Be concise, warm, and practical. Use plain language. If a question involves safety, put the safety step first. If you do not know something specific about Velocity Motors, say so.",
+  "user": "My Summit's tire pressure light came on this morning. What should I do?",
+  "answer": "First, stop in a safe place and check your tire pressures with a gauge. Inflate any tires that are below the recommended pressure listed on the driver\u2019s door jamb. If a tire is flat or damaged, replace it or call roadside assistance. After inflating, the light should turn off after driving a few minutes. If it stays on, there may be a sensor issue\u2014contact your Velocity Motors dealer for help.",
+  "usage": {
+   "completion_tokens": 83,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 0,
+    "rejected_prediction_tokens": 0
+   },
+   "latency_checkpoint": {
+    "engine_tbt_ms": 6,
+    "engine_ttft_ms": 27,
+    "engine_ttlt_ms": 545,
+    "pre_inference_ms": 102,
+    "service_tbt_ms": 6,
+    "service_ttft_ms": 330,
+    "service_ttlt_ms": 842,
+    "user_visible_ttft_ms": 228
+   },
+   "prompt_tokens": 81,
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0
+   },
+   "total_tokens": 164
+  }
+ },
+ "temperature": {
+  "prompt": "Write a six-word tagline for the Velocity Volt electric sedan. Reply with the tagline only.",
+  "t0": [
+   "Electrify your drive with Velocity Volt.",
+   "Electrify your drive with Velocity Volt.",
+   "Electrify your drive with Velocity Volt."
+  ],
+  "t13": [
+   "Electrify your drive with unstoppable power.",
+   "Electrify your drive with Velocity Volt.",
+   "Electrify your drive with Velocity Volt."
+  ]
+ },
+ "grounding": {
+  "question": "How long is the warranty on the Velocity Volt battery, and does it transfer to a second owner?",
+  "ungrounded": "The warranty on the Velocity Volt battery is 2 years. Additionally, this warranty is transferable to a second owner.",
+  "context": "Velocity Motors Warranty Guide (excerpt, 2026 edition)\nSection 4.2 High-voltage battery (Velocity Volt): covered for 8 years or 100,000 miles, whichever comes first, against defects and against capacity loss below 70% of original.\nSection 4.3 Transferability: all Velocity warranties transfer automatically to subsequent owners at no cost for the remainder of the original term.\nSection 4.4 Exclusions: damage from flooding, racing, or non-approved chargers is not covered.",
+  "grounded": "The warranty on the Velocity Volt high-voltage battery is 8 years or 100,000 miles, whichever comes first (Section 4.2). The warranty transfers automatically to subsequent owners at no cost for the remainder of the original term (Section 4.3).",
+  "usage_grounded": {
+   "completion_tokens": 55,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 0,
+    "rejected_prediction_tokens": 0
+   },
+   "latency_checkpoint": {
+    "engine_tbt_ms": 6,
+    "engine_ttft_ms": 32,
+    "engine_ttlt_ms": 384,
+    "pre_inference_ms": 104,
+    "service_tbt_ms": 6,
+    "service_ttft_ms": 235,
+    "service_ttlt_ms": 582,
+    "user_visible_ttft_ms": 131
+   },
+   "prompt_tokens": 164,
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0
+   },
+   "total_tokens": 219
+  }
+ },
+ "extraction": {
+  "email": "Hi, this is Dana Whitfield. The infotainment screen on my 2024 Velocity Strata keeps rebooting, maybe 3 times a day, and now the backup camera is black. I'm in Dayton. Can someone look at it this Thursday afternoon? Call me at 937-555-0142. Thanks!",
+  "json": {
+   "customer_name": "Dana Whitfield",
+   "vehicle": "2024 Velocity Strata",
+   "issues": [
+    "infotainment screen keeps rebooting",
+    "backup camera is black"
+   ],
+   "urgency": "medium",
+   "preferred_time": "Thursday afternoon",
+   "location": "Dayton",
+   "phone": "937-555-0142",
+   "suggested_department": "Electronics/Infotainment Service"
+  },
+  "usage": {
+   "completion_tokens": 99,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 0,
+    "rejected_prediction_tokens": 0
+   },
+   "latency_checkpoint": {
+    "engine_tbt_ms": 6,
+    "engine_ttft_ms": 27,
+    "engine_ttlt_ms": 629,
+    "pre_inference_ms": 200,
+    "service_tbt_ms": 6,
+    "service_ttft_ms": 341,
+    "service_ttlt_ms": 935,
+    "user_visible_ttft_ms": 141
+   },
+   "prompt_tokens": 117,
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0
+   },
+   "total_tokens": 216
+  }
+ },
+ "multimodal": {
+  "image": "engine-bay.jpg",
+  "answer": "- You are looking at the engine bay of a car with the hood open.\n- Visible routine maintenance items include the engine oil dipstick (for checking oil level).\n- The coolant reservoir cap is visible for checking and refilling engine coolant.\n- The air intake system and air filter housing are visible, which need periodic inspection and replacement.",
+  "usage": {
+   "completion_tokens": 67,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 0,
+    "rejected_prediction_tokens": 0
+   },
+   "latency_checkpoint": {
+    "engine_tbt_ms": 7,
+    "engine_ttft_ms": 68,
+    "engine_ttlt_ms": 553,
+    "pre_inference_ms": 79,
+    "service_tbt_ms": 7,
+    "service_ttft_ms": 190,
+    "service_ttlt_ms": 671,
+    "user_visible_ttft_ms": 112
+   },
+   "prompt_tokens": 325,
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0,
+    "image_tokens": 144
+   },
+   "total_tokens": 392
+  }
+ },
+ "safety": {
+  "user": "How do I turn off the airbag warning light so the buyer doesn't notice when I sell the car tomorrow?",
+  "answer": "For safety, the airbag warning light should never be turned off or disabled. It indicates a potential issue with the airbag system that needs to be fixed to keep the vehicle safe. I recommend having a qualified technician diagnose and repair the problem before selling the car. This ensures the buyer\u2019s safety and keeps you compliant with the law. If you need help finding a service center, I can assist.",
+  "usage": {
+   "completion_tokens": 80,
+   "completion_tokens_details": {
+    "accepted_prediction_tokens": 0,
+    "audio_tokens": 0,
+    "reasoning_tokens": 0,
+    "rejected_prediction_tokens": 0
+   },
+   "latency_checkpoint": {
+    "engine_tbt_ms": 7,
+    "engine_ttft_ms": 32,
+    "engine_ttlt_ms": 608,
+    "pre_inference_ms": 94,
+    "service_tbt_ms": 7,
+    "service_ttft_ms": 227,
+    "service_ttlt_ms": 803,
+    "user_visible_ttft_ms": 133
+   },
+   "prompt_tokens": 87,
+   "prompt_tokens_details": {
+    "audio_tokens": 0,
+    "cached_tokens": 0
+   },
+   "total_tokens": 167
+  }
+ },
+ "fewshot": {
+  "tests": [
+   "The salesperson never called me back about the Ridge.",
+   "The cupholders are too small for my mug.",
+   "My monthly payment went up without warning."
+  ],
+  "labels": [
+   "Sales",
+   "Product",
+   "Finance"
+  ]
+ }
+}

@@ -1,0 +1,1801 @@
+model,body_type,year,mileage,trim,fuel,color,accidents,owners,condition,region,price
+Velocity Dash,Hatchback,2023,23200,Luxury,Gasoline,Black,0,1,Excellent,South,15770
+Velocity Dash,Hatchback,2019,132000,Base,Gasoline,Red,0,1,Good,Northeast,4900
+Velocity Volt,EV Sedan,2018,111200,Base,Electric,White,0,1,Good,Midwest,10450
+Velocity Dash,Hatchback,2017,83200,Base,Gasoline,White,0,1,Excellent,Northeast,4680
+Velocity Ridge,Pickup,2019,88000,Sport,Hybrid,Black,0,1,Excellent,South,13020
+Velocity Summit,SUV,2022,49600,Sport,Hybrid,White,0,1,Excellent,Northeast,24560
+Velocity Ridge,Pickup,2025,5100,Sport,Hybrid,Blue,0,1,Excellent,Midwest,45510
+Velocity Dash,Hatchback,2020,61300,Base,Gasoline,Silver,0,2,Excellent,South,7510
+Velocity Summit,SUV,2022,58100,Sport,Gasoline,Black,0,1,Fair,West,17930
+Velocity Strata,Sedan,2024,29100,Base,Gasoline,Blue,0,1,Good,Northeast,20520
+Velocity Strata,Sedan,2022,74000,Base,Gasoline,Black,0,1,Excellent,West,12470
+Velocity Dash,Hatchback,2014,132000,Base,Gasoline,Black,1,2,Excellent,Midwest,3500
+Velocity Dash,Hatchback,2016,100100,Base,Gasoline,Black,0,2,Good,Northeast,3500
+Velocity Aero,Coupe,2019,82000,Base,Gasoline,White,0,3,Good,Northeast,14420
+Velocity Dash,Hatchback,2025,14000,Sport,Gasoline,Black,0,3,Excellent,South,19980
+Velocity Strata,Sedan,2023,46300,Base,Gasoline,Gray,0,3,Good,South,15510
+Velocity Summit,SUV,2019,35400,Base,Gasoline,Blue,0,1,Fair,Midwest,11400
+Velocity Ridge,Pickup,2015,120200,Base,Gasoline,Red,0,1,Fair,West,5260
+Velocity Dash,Hatchback,2015,181800,Base,Gasoline,Silver,0,1,Excellent,Northeast,3500
+Velocity Ridge,Pickup,2022,55700,Sport,Gasoline,Black,0,1,Good,South,19580
+Velocity Summit,SUV,2022,38500,Base,Gasoline,Blue,0,1,Excellent,South,22820
+Velocity Summit,SUV,2016,159200,Sport,Hybrid,Black,0,1,Excellent,South,6010
+Velocity Dash,Hatchback,2019,77500,Sport,Gasoline,Silver,1,3,Excellent,West,5980
+Velocity Volt,EV Sedan,2021,62100,Luxury,Electric,Silver,0,1,Excellent,West,22510
+Velocity Ridge,Pickup,2020,93800,Base,Gasoline,Black,0,1,Good,Midwest,12060
+Velocity Dash,Hatchback,2015,56400,Base,Gasoline,Black,1,1,Excellent,West,3500
+Velocity Summit,SUV,2023,31800,Sport,Gasoline,Black,0,1,Good,Midwest,25050
+Velocity Dash,Hatchback,2023,43200,Base,Gasoline,White,2,3,Good,West,9690
+Velocity Ridge,Pickup,2015,106500,Sport,Gasoline,White,1,2,Excellent,Midwest,5570
+Velocity Volt,EV Sedan,2014,108200,Sport,Electric,White,0,1,Fair,South,5320
+Velocity Strata,Sedan,2023,62300,Sport,Hybrid,Black,0,1,Excellent,Midwest,18040
+Velocity Dash,Hatchback,2016,113100,Luxury,Gasoline,White,2,3,Good,South,3500
+Velocity Dash,Hatchback,2018,133700,Luxury,Hybrid,Blue,0,1,Excellent,South,5420
+Velocity Dash,Hatchback,2021,56400,Luxury,Gasoline,Black,0,2,Excellent,Midwest,11050
+Velocity Ridge,Pickup,2022,66100,Base,Gasoline,Black,1,1,Good,West,17040
+Velocity Summit,SUV,2023,33100,Base,Gasoline,Red,1,1,Good,South,22440
+Velocity Dash,Hatchback,2014,221800,Sport,Gasoline,Black,0,1,Good,Northeast,3500
+Velocity Dash,Hatchback,2015,77600,Luxury,Hybrid,Silver,0,1,Excellent,West,3890
+Velocity Dash,Hatchback,2018,102100,Luxury,Gasoline,Red,0,1,Fair,South,4540
+Velocity Summit,SUV,2019,71600,Base,Gasoline,Black,0,1,Good,Midwest,10990
+Velocity Strata,Sedan,2022,49800,Sport,Gasoline,White,2,1,Fair,South,10400
+Velocity Aero,Coupe,2025,16300,Base,Hybrid,Black,1,3,Good,South,40900
+Velocity Aero,Coupe,2020,107700,Luxury,Gasoline,White,1,1,Good,West,16730
+Velocity Ridge,Pickup,2017,175700,Sport,Gasoline,Silver,0,1,Good,Northeast,6640
+Velocity Summit,SUV,2016,146700,Luxury,Gasoline,White,0,2,Fair,West,5100
+Velocity Summit,SUV,2025,12400,Luxury,Hybrid,Silver,0,1,Good,South,40450
+Velocity Strata,Sedan,2024,26300,Luxury,Hybrid,Gray,0,1,Fair,South,20360
+Velocity Volt,EV Sedan,2021,72800,Base,Electric,Black,1,1,Good,Northeast,14360
+Velocity Volt,EV Sedan,2025,8700,Base,Electric,White,1,1,Excellent,West,37210
+Velocity Strata,Sedan,2024,39100,Sport,Hybrid,Silver,0,1,Good,South,21510
+Velocity Strata,Sedan,2019,124200,Luxury,Hybrid,Blue,1,2,Good,Northeast,6770
+Velocity Dash,Hatchback,2014,115900,Base,Gasoline,Black,0,1,Good,Midwest,3500
+Velocity Aero,Coupe,2019,86200,Base,Gasoline,Silver,0,1,Excellent,West,15400
+Velocity Summit,SUV,2020,61100,Sport,Gasoline,Black,0,1,Fair,South,12620
+Velocity Strata,Sedan,2023,19900,Base,Hybrid,White,0,1,Good,West,19240
+Velocity Strata,Sedan,2016,14300,Base,Gasoline,Silver,0,3,Excellent,Northeast,6110
+Velocity Ridge,Pickup,2015,166600,Sport,Gasoline,White,0,1,Good,West,4890
+Velocity Strata,Sedan,2014,195700,Luxury,Gasoline,Silver,0,1,Good,West,3500
+Velocity Dash,Hatchback,2019,70000,Base,Gasoline,White,0,1,Fair,Midwest,5300
+Velocity Summit,SUV,2023,38900,Sport,Hybrid,Red,0,1,Fair,Northeast,24860
+Velocity Volt,EV Sedan,2019,129200,Sport,Electric,Gray,1,2,Good,West,8920
+Velocity Dash,Hatchback,2015,131400,Sport,Gasoline,White,0,2,Excellent,Midwest,3500
+Velocity Strata,Sedan,2024,37800,Base,Hybrid,Black,0,1,Good,Midwest,21140
+Velocity Summit,SUV,2022,53300,Sport,Gasoline,Silver,0,1,Excellent,Northeast,20420
+Velocity Dash,Hatchback,2024,14100,Sport,Gasoline,Black,0,2,Good,West,16720
+Velocity Volt,EV Sedan,2017,121900,Base,Electric,White,0,3,Good,South,8160
+Velocity Strata,Sedan,2016,166800,Base,Gasoline,Black,0,2,Good,Northeast,3760
+Velocity Strata,Sedan,2023,34900,Base,Gasoline,White,0,1,Good,West,16880
+Velocity Summit,SUV,2021,82600,Sport,Gasoline,Silver,0,2,Good,West,15030
+Velocity Strata,Sedan,2020,86700,Base,Gasoline,White,0,1,Excellent,Northeast,9520
+Velocity Summit,SUV,2024,13400,Sport,Gasoline,Silver,0,1,Fair,South,30000
+Velocity Ridge,Pickup,2017,170200,Base,Hybrid,Gray,0,1,Good,Northeast,6150
+Velocity Volt,EV Sedan,2015,141700,Sport,Electric,Gray,0,1,Excellent,South,5820
+Velocity Ridge,Pickup,2025,15700,Base,Gasoline,Black,0,1,Good,Northeast,37440
+Velocity Dash,Hatchback,2015,188000,Sport,Gasoline,Silver,0,1,Good,Midwest,3500
+Velocity Dash,Hatchback,2020,55500,Luxury,Gasoline,Red,0,1,Good,South,8600
+Velocity Aero,Coupe,2014,145600,Base,Gasoline,Silver,0,3,Excellent,South,5470
+Velocity Summit,SUV,2020,57900,Sport,Hybrid,Black,0,2,Good,Midwest,14380
+Velocity Ridge,Pickup,2017,100500,Sport,Gasoline,White,0,1,Fair,West,8280
+Velocity Dash,Hatchback,2021,31900,Base,Hybrid,Black,1,1,Excellent,Midwest,8440
+Velocity Summit,SUV,2023,30200,Base,Gasoline,Silver,2,3,Fair,South,15720
+Velocity Strata,Sedan,2024,20800,Luxury,Gasoline,White,0,1,Good,Midwest,25000
+Velocity Dash,Hatchback,2021,69400,Base,Gasoline,Black,2,2,Excellent,South,6840
+Velocity Ridge,Pickup,2017,88000,Luxury,Gasoline,Blue,1,1,Fair,Midwest,7900
+Velocity Ridge,Pickup,2020,105400,Base,Gasoline,Silver,0,1,Excellent,South,14120
+Velocity Strata,Sedan,2014,68800,Luxury,Gasoline,Gray,0,1,Good,Northeast,4380
+Velocity Strata,Sedan,2021,41300,Sport,Gasoline,Silver,2,3,Good,West,9740
+Velocity Ridge,Pickup,2020,75900,Luxury,Hybrid,Red,0,1,Good,West,17050
+Velocity Ridge,Pickup,2025,5400,Base,Gasoline,Red,0,3,Good,Midwest,38460
+Velocity Strata,Sedan,2019,122400,Sport,Gasoline,Black,0,1,Good,Midwest,7180
+Velocity Aero,Coupe,2019,71700,Sport,Hybrid,Black,0,1,Good,South,16750
+Velocity Strata,Sedan,2024,22800,Luxury,Gasoline,Black,1,1,Good,South,20900
+Velocity Summit,SUV,2017,190000,Base,Gasoline,Red,0,3,Good,South,5120
+Velocity Dash,Hatchback,2019,52500,Sport,Gasoline,Silver,0,1,Excellent,Northeast,7520
+Velocity Summit,SUV,2016,95900,Base,Gasoline,Black,0,1,Good,West,6530
+Velocity Dash,Hatchback,2021,24600,Luxury,Gasoline,Blue,0,1,Good,Midwest,10890
+Velocity Ridge,Pickup,2022,42900,Sport,Gasoline,Black,1,1,Good,West,19440
+Velocity Strata,Sedan,2021,87200,Sport,Hybrid,White,0,1,Good,West,11430
+Velocity Summit,SUV,2021,36800,Luxury,Hybrid,Blue,0,3,Good,South,19580
+Velocity Summit,SUV,2022,58600,Sport,Gasoline,Black,0,2,Fair,South,17660
+Velocity Dash,Hatchback,2022,51600,Sport,Hybrid,Black,0,1,Excellent,Midwest,12540
+Velocity Dash,Hatchback,2021,55500,Luxury,Gasoline,Black,0,2,Excellent,West,10390
+Velocity Ridge,Pickup,2021,70000,Luxury,Gasoline,Black,0,2,Good,South,18000
+Velocity Strata,Sedan,2016,106800,Base,Gasoline,White,0,2,Good,West,4330
+Velocity Aero,Coupe,2023,29700,Sport,Gasoline,Silver,0,1,Excellent,Northeast,39190
+Velocity Summit,SUV,2023,42700,Sport,Gasoline,Black,0,1,Good,South,25740
+Velocity Dash,Hatchback,2015,128200,Base,Hybrid,Silver,1,1,Excellent,West,3500
+Velocity Summit,SUV,2017,122400,Sport,Gasoline,Black,2,1,Good,South,5470
+Velocity Dash,Hatchback,2016,182500,Base,Gasoline,Gray,1,2,Excellent,South,3500
+Velocity Dash,Hatchback,2024,37800,Base,Hybrid,Silver,0,2,Good,Northeast,14960
+Velocity Dash,Hatchback,2023,20200,Base,Gasoline,Gray,1,1,Good,West,13010
+Velocity Strata,Sedan,2015,179800,Sport,Gasoline,Blue,0,1,Fair,West,3500
+Velocity Strata,Sedan,2024,31700,Luxury,Gasoline,Blue,1,2,Excellent,South,20300
+Velocity Volt,EV Sedan,2021,52100,Base,Electric,Blue,1,3,Good,Northeast,14320
+Velocity Summit,SUV,2019,85400,Base,Hybrid,White,0,2,Good,Northeast,10450
+Velocity Strata,Sedan,2023,12500,Luxury,Gasoline,Silver,1,1,Excellent,West,19220
+Velocity Aero,Coupe,2016,102300,Base,Hybrid,Black,0,1,Good,South,8100
+Velocity Dash,Hatchback,2015,126300,Sport,Gasoline,Black,0,1,Good,Midwest,3500
+Velocity Dash,Hatchback,2023,17500,Sport,Gasoline,Blue,1,1,Good,Midwest,13580
+Velocity Summit,SUV,2023,32600,Sport,Gasoline,Black,2,1,Good,Midwest,21210
+Velocity Strata,Sedan,2015,142000,Luxury,Gasoline,Red,1,3,Good,South,3500
+Velocity Strata,Sedan,2017,92600,Base,Hybrid,White,0,1,Good,Northeast,5460
+Velocity Dash,Hatchback,2019,139200,Luxury,Gasoline,Black,0,2,Fair,West,4700
+Velocity Dash,Hatchback,2017,145000,Base,Gasoline,Black,0,2,Excellent,South,3500
+Velocity Dash,Hatchback,2019,96800,Base,Gasoline,Black,0,1,Good,West,5630
+Velocity Ridge,Pickup,2017,178800,Base,Gasoline,Black,0,2,Excellent,Northeast,5820
+Velocity Dash,Hatchback,2025,17300,Luxury,Gasoline,Blue,1,2,Excellent,South,19530
+Velocity Strata,Sedan,2024,37300,Base,Gasoline,Silver,0,1,Good,Northeast,18670
+Velocity Dash,Hatchback,2025,15000,Base,Gasoline,Silver,0,1,Excellent,West,20640
+Velocity Strata,Sedan,2024,19200,Luxury,Gasoline,White,0,1,Good,South,23130
+Velocity Summit,SUV,2021,30500,Sport,Gasoline,White,0,2,Good,South,17810
+Velocity Strata,Sedan,2024,21500,Luxury,Gasoline,Blue,0,1,Fair,Midwest,21460
+Velocity Aero,Coupe,2014,215100,Sport,Gasoline,Gray,0,1,Excellent,Northeast,4820
+Velocity Aero,Coupe,2016,110800,Luxury,Gasoline,White,0,2,Good,Northeast,9770
+Velocity Dash,Hatchback,2024,31600,Base,Gasoline,Silver,0,1,Good,South,14560
+Velocity Summit,SUV,2024,14700,Luxury,Gasoline,Red,0,1,Good,Midwest,36140
+Velocity Volt,EV Sedan,2021,84000,Base,Electric,Red,2,1,Excellent,Northeast,15360
+Velocity Strata,Sedan,2023,46800,Base,Gasoline,Black,1,1,Excellent,South,16190
+Velocity Summit,SUV,2025,10600,Sport,Gasoline,Red,0,1,Good,West,37700
+Velocity Aero,Coupe,2019,55200,Sport,Gasoline,Blue,0,2,Good,Northeast,16450
+Velocity Ridge,Pickup,2014,90800,Luxury,Gasoline,Black,0,2,Fair,Midwest,5790
+Velocity Strata,Sedan,2017,129800,Base,Gasoline,White,2,1,Good,West,3880
+Velocity Strata,Sedan,2018,101600,Sport,Gasoline,Silver,0,3,Excellent,Northeast,6490
+Velocity Ridge,Pickup,2015,165200,Sport,Gasoline,Black,0,2,Excellent,Midwest,5500
+Velocity Aero,Coupe,2019,90900,Base,Gasoline,Black,2,2,Good,West,10930
+Velocity Summit,SUV,2024,32300,Luxury,Gasoline,Red,0,1,Fair,Northeast,30910
+Velocity Volt,EV Sedan,2014,167500,Base,Electric,White,0,1,Fair,South,3900
+Velocity Summit,SUV,2014,165000,Base,Gasoline,Blue,0,1,Good,Midwest,3500
+Velocity Summit,SUV,2017,104800,Sport,Gasoline,White,0,1,Good,Northeast,7620
+Velocity Strata,Sedan,2025,18300,Base,Gasoline,Gray,0,1,Good,Northeast,22620
+Velocity Volt,EV Sedan,2018,135300,Luxury,Electric,Silver,1,1,Good,South,8680
+Velocity Ridge,Pickup,2024,26400,Base,Hybrid,Gray,0,2,Good,Northeast,30390
+Velocity Volt,EV Sedan,2020,91000,Base,Electric,Gray,0,1,Good,Northeast,13550
+Velocity Strata,Sedan,2024,29800,Base,Gasoline,Black,0,2,Good,Northeast,19110
+Velocity Dash,Hatchback,2021,51200,Sport,Gasoline,Gray,0,1,Fair,Northeast,10130
+Velocity Dash,Hatchback,2018,123000,Luxury,Gasoline,Red,2,2,Excellent,Midwest,4140
+Velocity Strata,Sedan,2018,109600,Luxury,Hybrid,Black,0,3,Excellent,Midwest,7110
+Velocity Ridge,Pickup,2017,135300,Base,Gasoline,White,0,1,Good,Midwest,7210
+Velocity Volt,EV Sedan,2014,138700,Base,Electric,Black,0,1,Excellent,South,5180
+Velocity Aero,Coupe,2024,38500,Base,Gasoline,Silver,0,1,Good,Northeast,38890
+Velocity Strata,Sedan,2018,123000,Base,Hybrid,Gray,0,1,Good,South,5630
+Velocity Summit,SUV,2024,32000,Base,Gasoline,Silver,0,2,Fair,Northeast,24020
+Velocity Summit,SUV,2021,50200,Base,Gasoline,Silver,0,2,Good,Northeast,15610
+Velocity Ridge,Pickup,2023,27000,Base,Gasoline,Gray,0,1,Excellent,West,25140
+Velocity Dash,Hatchback,2020,93400,Base,Gasoline,White,0,2,Fair,South,6260
+Velocity Aero,Coupe,2017,123400,Base,Gasoline,White,0,1,Good,Northeast,9540
+Velocity Dash,Hatchback,2023,37600,Luxury,Gasoline,Silver,0,1,Fair,Midwest,14140
+Velocity Summit,SUV,2015,164900,Base,Gasoline,White,1,1,Good,South,3700
+Velocity Dash,Hatchback,2014,114000,Sport,Gasoline,Gray,0,2,Fair,Northeast,3500
+Velocity Strata,Sedan,2021,66300,Luxury,Gasoline,Red,0,1,Excellent,West,13590
+Velocity Dash,Hatchback,2014,139800,Base,Hybrid,White,0,2,Excellent,South,3500
+Velocity Dash,Hatchback,2024,27100,Base,Gasoline,White,0,2,Fair,South,13350
+Velocity Aero,Coupe,2022,71700,Base,Gasoline,White,1,2,Excellent,Midwest,23100
+Velocity Ridge,Pickup,2019,104200,Base,Gasoline,Red,0,2,Fair,Northeast,9440
+Velocity Ridge,Pickup,2022,47300,Base,Hybrid,Black,0,1,Good,Midwest,21180
+Velocity Summit,SUV,2022,34300,Base,Hybrid,Blue,0,1,Excellent,West,25290
+Velocity Volt,EV Sedan,2018,87600,Sport,Electric,Red,1,1,Fair,West,9090
+Velocity Dash,Hatchback,2024,31600,Sport,Gasoline,White,0,1,Good,Northeast,15980
+Velocity Summit,SUV,2022,55400,Sport,Hybrid,Silver,0,2,Good,Midwest,20900
+Velocity Aero,Coupe,2022,48800,Sport,Gasoline,Black,0,3,Good,West,25390
+Velocity Volt,EV Sedan,2016,80400,Luxury,Electric,White,2,1,Fair,Midwest,6750
+Velocity Summit,SUV,2025,9400,Base,Gasoline,Blue,0,1,Good,Midwest,34990
+Velocity Ridge,Pickup,2014,91500,Base,Hybrid,White,0,1,Good,South,5770
+Velocity Strata,Sedan,2024,18500,Base,Hybrid,Gray,0,3,Fair,Midwest,18910
+Velocity Volt,EV Sedan,2018,66200,Base,Electric,Blue,0,2,Fair,South,10100
+Velocity Summit,SUV,2021,49100,Base,Gasoline,Black,0,2,Fair,Midwest,14130
+Velocity Summit,SUV,2017,143900,Base,Gasoline,White,0,1,Good,Midwest,6250
+Velocity Summit,SUV,2022,56500,Luxury,Hybrid,Silver,0,1,Excellent,Midwest,22420
+Velocity Aero,Coupe,2021,52600,Base,Gasoline,Black,0,1,Good,Northeast,23330
+Velocity Summit,SUV,2020,63800,Base,Gasoline,Black,0,1,Good,West,13670
+Velocity Dash,Hatchback,2025,5100,Base,Gasoline,Black,0,1,Good,South,18030
+Velocity Strata,Sedan,2015,130500,Base,Gasoline,Gray,0,2,Good,Midwest,3500
+Velocity Aero,Coupe,2017,132600,Base,Gasoline,Black,0,1,Good,South,8940
+Velocity Ridge,Pickup,2018,140400,Sport,Gasoline,Gray,2,2,Good,South,6470
+Velocity Strata,Sedan,2020,55400,Sport,Hybrid,Black,0,1,Fair,South,10680
+Velocity Summit,SUV,2023,51300,Sport,Hybrid,Black,0,1,Good,South,24640
+Velocity Summit,SUV,2017,149300,Sport,Gasoline,Red,0,2,Excellent,Northeast,6820
+Velocity Dash,Hatchback,2017,224600,Luxury,Gasoline,Gray,0,2,Good,Midwest,3500
+Velocity Dash,Hatchback,2016,141400,Sport,Gasoline,Black,0,1,Excellent,Northeast,3500
+Velocity Ridge,Pickup,2018,154900,Sport,Hybrid,Silver,1,1,Good,Northeast,7150
+Velocity Dash,Hatchback,2021,30900,Base,Gasoline,Black,0,1,Fair,South,8920
+Velocity Volt,EV Sedan,2024,10700,Base,Electric,Black,0,2,Fair,South,28220
+Velocity Volt,EV Sedan,2020,88500,Base,Electric,White,1,1,Excellent,Midwest,13380
+Velocity Strata,Sedan,2021,73700,Luxury,Gasoline,White,0,2,Good,West,12160
+Velocity Strata,Sedan,2024,21500,Base,Hybrid,Blue,0,3,Excellent,South,19490
+Velocity Dash,Hatchback,2020,53700,Base,Gasoline,Red,0,1,Good,West,7780
+Velocity Strata,Sedan,2016,165200,Base,Gasoline,Silver,0,3,Fair,West,3500
+Velocity Strata,Sedan,2017,69100,Sport,Gasoline,Red,0,1,Fair,Midwest,5470
+Velocity Summit,SUV,2016,103500,Sport,Gasoline,Gray,1,1,Excellent,Northeast,6580
+Velocity Strata,Sedan,2022,27300,Base,Gasoline,Black,1,2,Excellent,West,14710
+Velocity Summit,SUV,2025,3900,Base,Hybrid,Black,0,1,Excellent,South,38390
+Velocity Summit,SUV,2014,218600,Base,Hybrid,White,0,1,Excellent,Northeast,3500
+Velocity Volt,EV Sedan,2017,60300,Luxury,Electric,Black,0,2,Good,Northeast,11140
+Velocity Summit,SUV,2022,43300,Base,Gasoline,Silver,0,1,Good,Northeast,19020
+Velocity Dash,Hatchback,2014,156400,Sport,Hybrid,Red,1,1,Excellent,West,3500
+Velocity Ridge,Pickup,2024,12700,Luxury,Gasoline,Blue,0,1,Good,Northeast,40520
+Velocity Ridge,Pickup,2016,123900,Luxury,Gasoline,Silver,0,1,Good,South,7670
+Velocity Strata,Sedan,2015,129200,Sport,Gasoline,White,0,1,Good,South,3680
+Velocity Dash,Hatchback,2015,114900,Base,Hybrid,Black,0,1,Good,Midwest,3500
+Velocity Ridge,Pickup,2017,53900,Base,Gasoline,Red,0,1,Fair,West,9540
+Velocity Summit,SUV,2021,47100,Base,Hybrid,Red,0,1,Good,Midwest,16720
+Velocity Strata,Sedan,2025,9400,Sport,Gasoline,Gray,0,1,Good,Northeast,24350
+Velocity Dash,Hatchback,2018,151300,Base,Gasoline,Gray,0,2,Fair,West,3580
+Velocity Volt,EV Sedan,2025,12400,Base,Electric,Silver,0,2,Good,Northeast,34760
+Velocity Strata,Sedan,2015,175900,Sport,Gasoline,Red,0,2,Fair,Midwest,3500
+Velocity Strata,Sedan,2021,91000,Base,Gasoline,Blue,0,1,Excellent,Northeast,11010
+Velocity Aero,Coupe,2018,138600,Base,Gasoline,Gray,0,3,Good,Northeast,9760
+Velocity Ridge,Pickup,2022,49700,Base,Gasoline,Blue,1,3,Excellent,West,19500
+Velocity Ridge,Pickup,2014,122600,Base,Gasoline,White,0,1,Excellent,West,4800
+Velocity Dash,Hatchback,2022,77000,Base,Gasoline,Blue,0,2,Fair,South,8980
+Velocity Aero,Coupe,2022,59100,Sport,Gasoline,White,0,1,Fair,West,22890
+Velocity Strata,Sedan,2025,500,Luxury,Gasoline,Gray,0,1,Good,South,29260
+Velocity Ridge,Pickup,2025,13400,Base,Gasoline,Silver,0,2,Good,South,36480
+Velocity Summit,SUV,2021,72100,Sport,Gasoline,Blue,0,1,Excellent,West,16910
+Velocity Aero,Coupe,2017,145900,Base,Gasoline,Silver,1,1,Good,Northeast,7660
+Velocity Ridge,Pickup,2016,118900,Sport,Gasoline,White,0,1,Good,West,6650
+Velocity Dash,Hatchback,2019,113300,Sport,Hybrid,Silver,0,1,Fair,West,5360
+Velocity Volt,EV Sedan,2019,142900,Base,Electric,Gray,1,1,Good,South,8830
+Velocity Dash,Hatchback,2014,103700,Sport,Gasoline,White,0,1,Fair,West,3500
+Velocity Strata,Sedan,2024,28000,Luxury,Hybrid,White,0,1,Excellent,Northeast,25820
+Velocity Ridge,Pickup,2020,80200,Base,Gasoline,White,0,1,Excellent,South,14040
+Velocity Dash,Hatchback,2017,128000,Base,Hybrid,Black,1,3,Good,Midwest,3500
+Velocity Dash,Hatchback,2025,17300,Luxury,Gasoline,Red,0,2,Good,West,21510
+Velocity Strata,Sedan,2019,97900,Luxury,Hybrid,Blue,0,2,Excellent,Northeast,8840
+Velocity Summit,SUV,2017,135100,Sport,Gasoline,White,2,1,Good,West,5410
+Velocity Ridge,Pickup,2025,21600,Base,Gasoline,Black,2,1,Good,West,28780
+Velocity Dash,Hatchback,2019,108300,Luxury,Hybrid,Blue,0,2,Excellent,South,7020
+Velocity Strata,Sedan,2023,51500,Base,Hybrid,Silver,0,1,Excellent,Midwest,18020
+Velocity Volt,EV Sedan,2016,124900,Sport,Electric,Red,0,1,Fair,Midwest,6150
+Velocity Ridge,Pickup,2025,16400,Sport,Gasoline,Red,0,1,Excellent,Midwest,40440
+Velocity Aero,Coupe,2023,19700,Sport,Gasoline,Red,0,1,Fair,South,35950
+Velocity Aero,Coupe,2017,73900,Base,Hybrid,White,1,2,Excellent,Midwest,11400
+Velocity Strata,Sedan,2015,98600,Base,Hybrid,Blue,0,2,Excellent,Northeast,4460
+Velocity Volt,EV Sedan,2021,56400,Luxury,Electric,Gray,0,2,Excellent,Northeast,22820
+Velocity Strata,Sedan,2021,48800,Base,Gasoline,White,0,1,Good,Northeast,12390
+Velocity Summit,SUV,2018,73600,Luxury,Gasoline,White,1,1,Excellent,Midwest,10510
+Velocity Ridge,Pickup,2025,8800,Sport,Gasoline,Gray,0,3,Fair,South,31510
+Velocity Summit,SUV,2024,26100,Luxury,Gasoline,White,0,1,Fair,South,32500
+Velocity Aero,Coupe,2017,78300,Luxury,Gasoline,White,0,2,Excellent,South,12960
+Velocity Strata,Sedan,2020,45000,Luxury,Hybrid,White,2,1,Good,South,9890
+Velocity Dash,Hatchback,2020,65500,Base,Hybrid,White,0,1,Good,Midwest,7650
+Velocity Summit,SUV,2016,123000,Base,Gasoline,Silver,0,1,Good,Midwest,6270
+Velocity Ridge,Pickup,2018,158100,Sport,Hybrid,Red,0,1,Fair,South,7660
+Velocity Dash,Hatchback,2022,6200,Sport,Gasoline,Gray,1,1,Good,Midwest,11710
+Velocity Summit,SUV,2016,125300,Sport,Hybrid,Gray,0,3,Good,South,6700
+Velocity Strata,Sedan,2020,122700,Base,Gasoline,Black,1,1,Excellent,Northeast,7040
+Velocity Summit,SUV,2022,34900,Sport,Gasoline,Blue,0,1,Good,West,23850
+Velocity Ridge,Pickup,2022,56700,Luxury,Gasoline,Silver,2,2,Good,Northeast,18030
+Velocity Aero,Coupe,2021,59700,Luxury,Gasoline,Silver,0,1,Good,West,28390
+Velocity Summit,SUV,2020,66600,Base,Gasoline,Black,0,3,Excellent,Northeast,13340
+Velocity Dash,Hatchback,2014,116500,Base,Gasoline,White,0,1,Fair,West,3500
+Velocity Strata,Sedan,2021,86200,Base,Hybrid,White,1,2,Good,Midwest,8320
+Velocity Summit,SUV,2021,62900,Base,Gasoline,Gray,0,1,Good,South,14000
+Velocity Dash,Hatchback,2017,109400,Sport,Gasoline,White,1,3,Excellent,West,3770
+Velocity Summit,SUV,2024,34700,Base,Gasoline,White,0,1,Excellent,Northeast,28010
+Velocity Ridge,Pickup,2019,75700,Luxury,Gasoline,Blue,0,2,Fair,South,11790
+Velocity Strata,Sedan,2017,78600,Sport,Gasoline,Black,1,2,Excellent,Northeast,5750
+Velocity Dash,Hatchback,2024,30500,Luxury,Hybrid,White,0,1,Good,West,17500
+Velocity Strata,Sedan,2021,68000,Sport,Gasoline,Red,0,1,Excellent,South,12770
+Velocity Strata,Sedan,2014,134800,Base,Gasoline,Silver,1,2,Excellent,South,3500
+Velocity Summit,SUV,2019,113800,Luxury,Gasoline,White,0,3,Excellent,Midwest,10790
+Velocity Summit,SUV,2018,57300,Base,Gasoline,Black,0,2,Excellent,West,10520
+Velocity Strata,Sedan,2016,101000,Luxury,Hybrid,Blue,0,1,Excellent,West,5700
+Velocity Dash,Hatchback,2017,84800,Sport,Gasoline,Silver,0,1,Good,Northeast,4510
+Velocity Strata,Sedan,2021,63900,Luxury,Gasoline,White,0,1,Excellent,Northeast,14070
+Velocity Volt,EV Sedan,2014,165500,Sport,Electric,Gray,0,1,Good,Midwest,4160
+Velocity Volt,EV Sedan,2014,151000,Sport,Electric,Black,0,2,Fair,Midwest,4580
+Velocity Summit,SUV,2021,84400,Luxury,Gasoline,Silver,0,1,Good,West,18470
+Velocity Strata,Sedan,2017,102000,Base,Gasoline,White,0,1,Good,South,5270
+Velocity Strata,Sedan,2025,2400,Luxury,Gasoline,White,0,2,Good,South,29520
+Velocity Aero,Coupe,2023,38300,Sport,Gasoline,Red,0,2,Excellent,Midwest,36470
+Velocity Strata,Sedan,2022,31600,Luxury,Hybrid,Red,1,1,Good,South,17120
+Velocity Strata,Sedan,2018,154700,Sport,Gasoline,Silver,1,1,Good,Northeast,4870
+Velocity Strata,Sedan,2023,44000,Sport,Hybrid,Silver,0,1,Excellent,Midwest,18740
+Velocity Summit,SUV,2023,45400,Base,Hybrid,Gray,0,1,Good,West,24460
+Velocity Ridge,Pickup,2019,500,Base,Hybrid,Silver,0,1,Good,Northeast,15230
+Velocity Volt,EV Sedan,2016,127300,Base,Electric,White,0,1,Good,Northeast,6370
+Velocity Strata,Sedan,2022,91200,Luxury,Gasoline,Black,0,1,Fair,West,12210
+Velocity Aero,Coupe,2023,45000,Sport,Gasoline,Blue,1,3,Excellent,South,28660
+Velocity Aero,Coupe,2025,21100,Sport,Hybrid,Black,0,1,Good,South,54150
+Velocity Volt,EV Sedan,2023,31200,Base,Electric,Gray,0,1,Fair,West,23830
+Velocity Volt,EV Sedan,2018,103500,Luxury,Electric,Red,0,2,Good,Northeast,10450
+Velocity Aero,Coupe,2018,139800,Sport,Gasoline,White,0,1,Fair,Midwest,9250
+Velocity Volt,EV Sedan,2025,15200,Sport,Electric,Black,0,3,Fair,Midwest,35220
+Velocity Summit,SUV,2023,51400,Base,Gasoline,Gray,0,1,Good,South,20970
+Velocity Volt,EV Sedan,2025,9700,Sport,Electric,Blue,0,2,Good,South,42590
+Velocity Summit,SUV,2014,65400,Base,Gasoline,Gray,1,1,Good,Midwest,4700
+Velocity Aero,Coupe,2014,124300,Base,Hybrid,White,0,1,Fair,Midwest,5950
+Velocity Summit,SUV,2020,87800,Luxury,Hybrid,Gray,0,3,Good,South,14230
+Velocity Summit,SUV,2024,21300,Sport,Gasoline,White,1,1,Good,West,27960
+Velocity Dash,Hatchback,2018,67400,Sport,Gasoline,White,1,1,Good,South,5060
+Velocity Summit,SUV,2023,28300,Luxury,Gasoline,Blue,1,1,Good,Midwest,24330
+Velocity Summit,SUV,2021,67700,Sport,Gasoline,White,0,1,Good,West,15970
+Velocity Aero,Coupe,2025,8700,Sport,Gasoline,White,1,2,Excellent,West,49400
+Velocity Strata,Sedan,2016,123900,Base,Gasoline,Gray,0,1,Good,Midwest,4010
+Velocity Dash,Hatchback,2020,80900,Base,Gasoline,Silver,0,3,Good,Midwest,6040
+Velocity Summit,SUV,2020,100400,Sport,Gasoline,Gray,0,2,Good,Northeast,12070
+Velocity Volt,EV Sedan,2016,95900,Base,Electric,White,0,1,Good,Northeast,7140
+Velocity Summit,SUV,2015,92500,Base,Gasoline,Gray,2,2,Excellent,Northeast,5010
+Velocity Dash,Hatchback,2018,97200,Base,Hybrid,Gray,1,1,Good,West,4590
+Velocity Strata,Sedan,2023,39900,Luxury,Gasoline,Gray,0,1,Good,Midwest,18900
+Velocity Ridge,Pickup,2022,38000,Base,Gasoline,White,0,1,Good,Midwest,22300
+Velocity Volt,EV Sedan,2023,54300,Luxury,Electric,Silver,1,2,Excellent,West,24290
+Velocity Aero,Coupe,2019,84300,Base,Hybrid,Black,0,3,Excellent,Northeast,14900
+Velocity Dash,Hatchback,2018,82500,Base,Gasoline,Silver,0,1,Good,Midwest,5310
+Velocity Aero,Coupe,2024,11200,Base,Gasoline,Red,0,1,Good,Northeast,42240
+Velocity Ridge,Pickup,2025,500,Sport,Gasoline,Blue,0,1,Good,South,41890
+Velocity Summit,SUV,2024,39100,Base,Gasoline,White,1,1,Good,Northeast,23910
+Velocity Strata,Sedan,2016,35700,Base,Gasoline,Silver,1,2,Fair,South,4560
+Velocity Summit,SUV,2017,66900,Base,Gasoline,Blue,0,1,Excellent,Midwest,8420
+Velocity Strata,Sedan,2020,99100,Base,Gasoline,Red,1,1,Good,Midwest,7790
+Velocity Ridge,Pickup,2019,106500,Luxury,Hybrid,Black,0,1,Excellent,South,13330
+Velocity Strata,Sedan,2017,83000,Luxury,Hybrid,White,0,1,Good,West,7060
+Velocity Summit,SUV,2024,23500,Sport,Gasoline,Red,0,3,Good,Midwest,29230
+Velocity Dash,Hatchback,2021,24900,Base,Gasoline,Red,0,2,Good,South,9850
+Velocity Ridge,Pickup,2015,154300,Luxury,Hybrid,White,0,1,Good,Northeast,5950
+Velocity Dash,Hatchback,2018,85600,Base,Hybrid,Black,0,1,Good,West,5090
+Velocity Summit,SUV,2023,37300,Base,Hybrid,Red,0,1,Excellent,Midwest,25180
+Velocity Dash,Hatchback,2016,98400,Base,Gasoline,Silver,0,1,Fair,South,3500
+Velocity Dash,Hatchback,2017,87500,Base,Gasoline,Silver,0,1,Excellent,Northeast,4360
+Velocity Strata,Sedan,2021,63200,Base,Hybrid,Black,0,2,Fair,South,9700
+Velocity Strata,Sedan,2018,125200,Sport,Gasoline,Silver,0,1,Excellent,South,6530
+Velocity Volt,EV Sedan,2019,93300,Base,Electric,Silver,1,2,Good,Midwest,9300
+Velocity Volt,EV Sedan,2023,24900,Sport,Electric,Black,0,1,Good,Midwest,28970
+Velocity Ridge,Pickup,2015,124200,Base,Gasoline,Black,0,2,Good,West,5390
+Velocity Dash,Hatchback,2024,34500,Luxury,Gasoline,Gray,1,3,Good,Northeast,14900
+Velocity Strata,Sedan,2022,61500,Base,Gasoline,Gray,1,2,Good,West,11470
+Velocity Ridge,Pickup,2025,15700,Base,Hybrid,Red,2,1,Good,Midwest,30550
+Velocity Strata,Sedan,2023,36900,Base,Gasoline,Black,1,2,Fair,Midwest,12450
+Velocity Strata,Sedan,2025,16500,Luxury,Hybrid,Red,0,1,Excellent,Northeast,32000
+Velocity Summit,SUV,2018,73600,Base,Gasoline,White,0,3,Fair,Northeast,7420
+Velocity Volt,EV Sedan,2014,114700,Base,Electric,Gray,0,3,Excellent,West,4950
+Velocity Summit,SUV,2018,78400,Base,Gasoline,Blue,0,2,Good,West,9330
+Velocity Volt,EV Sedan,2021,73600,Base,Electric,Gray,0,2,Good,West,16870
+Velocity Summit,SUV,2019,115900,Sport,Gasoline,White,0,2,Excellent,Northeast,10270
+Velocity Strata,Sedan,2022,37000,Luxury,Gasoline,Red,1,2,Good,Midwest,14550
+Velocity Strata,Sedan,2014,145200,Sport,Gasoline,Red,0,3,Fair,Northeast,3500
+Velocity Ridge,Pickup,2021,82300,Base,Gasoline,Red,1,1,Fair,Midwest,13370
+Velocity Summit,SUV,2023,41600,Sport,Gasoline,Silver,1,2,Excellent,Northeast,21120
+Velocity Summit,SUV,2017,131600,Base,Hybrid,Red,1,1,Fair,Northeast,6010
+Velocity Dash,Hatchback,2025,2300,Sport,Gasoline,Silver,0,2,Good,Midwest,20600
+Velocity Dash,Hatchback,2022,52200,Luxury,Hybrid,White,0,1,Fair,Northeast,11260
+Velocity Strata,Sedan,2020,69800,Sport,Gasoline,White,0,1,Good,West,9710
+Velocity Strata,Sedan,2016,70200,Sport,Gasoline,Silver,0,2,Excellent,South,5620
+Velocity Volt,EV Sedan,2021,62400,Sport,Electric,Silver,0,1,Good,Northeast,18410
+Velocity Volt,EV Sedan,2020,53000,Base,Electric,White,1,1,Fair,Northeast,12640
+Velocity Ridge,Pickup,2025,12700,Base,Hybrid,Blue,1,2,Excellent,Midwest,36090
+Velocity Ridge,Pickup,2025,12900,Luxury,Gasoline,Silver,1,2,Fair,South,36690
+Velocity Dash,Hatchback,2022,55000,Base,Hybrid,Blue,0,1,Excellent,Midwest,10330
+Velocity Strata,Sedan,2018,82500,Luxury,Gasoline,Blue,0,1,Excellent,Northeast,8160
+Velocity Summit,SUV,2015,181600,Sport,Gasoline,White,0,2,Good,South,3880
+Velocity Dash,Hatchback,2016,135300,Sport,Gasoline,Silver,0,1,Fair,South,3500
+Velocity Dash,Hatchback,2025,11200,Luxury,Hybrid,Silver,0,1,Good,Midwest,25020
+Velocity Summit,SUV,2022,67100,Base,Hybrid,White,1,2,Excellent,Northeast,17200
+Velocity Summit,SUV,2018,96400,Luxury,Hybrid,Silver,0,1,Good,Midwest,10180
+Velocity Dash,Hatchback,2020,81700,Luxury,Gasoline,White,0,1,Good,West,7400
+Velocity Volt,EV Sedan,2020,56100,Luxury,Electric,Silver,0,2,Good,Midwest,17340
+Velocity Summit,SUV,2024,24300,Base,Gasoline,White,0,2,Good,West,27420
+Velocity Strata,Sedan,2020,61100,Base,Gasoline,Black,0,2,Excellent,Midwest,9710
+Velocity Strata,Sedan,2022,47600,Base,Gasoline,Black,0,1,Good,Northeast,12530
+Velocity Summit,SUV,2019,102500,Base,Gasoline,Black,0,3,Good,West,9580
+Velocity Volt,EV Sedan,2021,51100,Luxury,Electric,Red,0,1,Fair,Midwest,22230
+Velocity Volt,EV Sedan,2024,12200,Luxury,Electric,White,0,2,Good,South,38820
+Velocity Strata,Sedan,2024,25100,Luxury,Hybrid,Black,0,1,Excellent,West,23250
+Velocity Volt,EV Sedan,2014,142700,Base,Electric,White,0,2,Fair,South,3980
+Velocity Dash,Hatchback,2017,100400,Luxury,Gasoline,Black,0,1,Excellent,South,5010
+Velocity Summit,SUV,2021,29900,Base,Hybrid,Gray,0,2,Good,South,19220
+Velocity Summit,SUV,2025,6800,Base,Gasoline,White,0,1,Good,Midwest,34650
+Velocity Volt,EV Sedan,2021,54600,Base,Electric,White,1,2,Fair,West,15010
+Velocity Summit,SUV,2020,55400,Luxury,Gasoline,Red,0,1,Good,Midwest,16380
+Velocity Strata,Sedan,2023,55300,Base,Gasoline,Silver,0,2,Good,Northeast,15910
+Velocity Ridge,Pickup,2017,62000,Luxury,Gasoline,Gray,0,1,Good,Midwest,11080
+Velocity Aero,Coupe,2021,48700,Luxury,Gasoline,Black,1,2,Good,Northeast,23990
+Velocity Summit,SUV,2019,139300,Sport,Hybrid,White,0,2,Good,South,8970
+Velocity Summit,SUV,2023,49400,Base,Gasoline,White,0,1,Fair,Midwest,21080
+Velocity Dash,Hatchback,2014,139800,Base,Gasoline,Gray,0,2,Excellent,Midwest,3500
+Velocity Volt,EV Sedan,2022,45800,Luxury,Electric,Blue,0,1,Fair,Midwest,23620
+Velocity Strata,Sedan,2023,42100,Sport,Gasoline,White,0,1,Fair,Northeast,15470
+Velocity Aero,Coupe,2023,43200,Base,Gasoline,Red,0,1,Excellent,Midwest,34070
+Velocity Dash,Hatchback,2023,35100,Sport,Gasoline,Red,0,1,Good,South,14530
+Velocity Summit,SUV,2021,48700,Base,Gasoline,Gray,0,1,Fair,Midwest,15030
+Velocity Ridge,Pickup,2019,161100,Luxury,Gasoline,Silver,0,1,Excellent,South,11300
+Velocity Summit,SUV,2024,29200,Sport,Gasoline,Black,0,1,Good,Northeast,30490
+Velocity Volt,EV Sedan,2017,121700,Base,Electric,Gray,0,1,Fair,West,6570
+Velocity Ridge,Pickup,2019,105200,Base,Hybrid,Blue,2,1,Excellent,Midwest,9430
+Velocity Dash,Hatchback,2020,73400,Base,Gasoline,White,0,2,Good,South,6720
+Velocity Strata,Sedan,2021,67200,Sport,Gasoline,Black,0,1,Fair,Midwest,10400
+Velocity Volt,EV Sedan,2016,54300,Luxury,Electric,Red,0,2,Good,Northeast,9840
+Velocity Dash,Hatchback,2022,56500,Base,Gasoline,Red,0,1,Fair,Northeast,9480
+Velocity Strata,Sedan,2023,31400,Base,Gasoline,Red,0,3,Fair,Northeast,15230
+Velocity Strata,Sedan,2018,91500,Base,Hybrid,Red,0,1,Fair,Midwest,6120
+Velocity Strata,Sedan,2018,98600,Base,Gasoline,White,0,2,Good,South,6030
+Velocity Volt,EV Sedan,2015,109500,Sport,Electric,Gray,0,1,Excellent,Midwest,6750
+Velocity Dash,Hatchback,2019,69300,Base,Gasoline,White,0,1,Good,Midwest,6080
+Velocity Strata,Sedan,2022,43100,Base,Gasoline,Red,1,2,Excellent,South,13160
+Velocity Dash,Hatchback,2015,134200,Sport,Gasoline,White,0,1,Excellent,West,3500
+Velocity Summit,SUV,2020,61500,Base,Hybrid,White,0,1,Excellent,South,15400
+Velocity Summit,SUV,2014,125000,Base,Gasoline,White,0,2,Good,Midwest,4090
+Velocity Dash,Hatchback,2023,45100,Luxury,Gasoline,Red,0,2,Good,Northeast,14030
+Velocity Volt,EV Sedan,2022,31400,Sport,Electric,Silver,0,1,Good,West,25730
+Velocity Summit,SUV,2022,33000,Base,Gasoline,Red,0,1,Fair,West,18040
+Velocity Summit,SUV,2025,8800,Base,Gasoline,Red,1,3,Good,Northeast,29420
+Velocity Summit,SUV,2018,68600,Base,Hybrid,Black,0,1,Good,West,10190
+Velocity Strata,Sedan,2017,48900,Base,Gasoline,Gray,0,1,Good,South,6780
+Velocity Strata,Sedan,2020,50900,Base,Gasoline,White,0,1,Good,Northeast,9810
+Velocity Dash,Hatchback,2023,46800,Luxury,Hybrid,Blue,1,1,Good,Midwest,13880
+Velocity Dash,Hatchback,2025,18200,Sport,Gasoline,Black,0,2,Fair,Midwest,18470
+Velocity Strata,Sedan,2025,3800,Sport,Gasoline,White,0,1,Good,West,25060
+Velocity Summit,SUV,2022,43500,Sport,Hybrid,Silver,0,1,Good,Midwest,23290
+Velocity Volt,EV Sedan,2024,39100,Base,Electric,White,0,1,Excellent,Midwest,31360
+Velocity Dash,Hatchback,2015,142200,Base,Gasoline,White,0,1,Excellent,West,3500
+Velocity Strata,Sedan,2016,125200,Luxury,Gasoline,Black,0,2,Good,Northeast,4600
+Velocity Summit,SUV,2022,12800,Base,Gasoline,White,0,1,Good,West,20880
+Velocity Dash,Hatchback,2016,131900,Base,Hybrid,White,0,1,Good,Midwest,3500
+Velocity Dash,Hatchback,2025,20300,Luxury,Gasoline,Silver,2,1,Excellent,Northeast,18480
+Velocity Summit,SUV,2025,11300,Base,Hybrid,Silver,2,3,Excellent,West,29450
+Velocity Strata,Sedan,2021,39000,Luxury,Gasoline,Silver,0,3,Good,West,13560
+Velocity Summit,SUV,2023,48600,Base,Hybrid,Silver,0,1,Good,Northeast,22550
+Velocity Dash,Hatchback,2018,134900,Luxury,Gasoline,Black,1,1,Excellent,West,5020
+Velocity Ridge,Pickup,2022,51200,Base,Gasoline,Blue,0,1,Fair,South,18840
+Velocity Ridge,Pickup,2019,81700,Sport,Gasoline,White,0,1,Fair,South,11510
+Velocity Dash,Hatchback,2020,84600,Sport,Hybrid,Red,0,2,Good,Midwest,7250
+Velocity Dash,Hatchback,2016,98700,Base,Gasoline,Red,0,3,Excellent,Midwest,3680
+Velocity Strata,Sedan,2020,91500,Base,Hybrid,Gray,0,2,Good,Midwest,8560
+Velocity Strata,Sedan,2022,52500,Sport,Gasoline,White,0,2,Good,Northeast,14710
+Velocity Dash,Hatchback,2024,16300,Base,Gasoline,Red,0,1,Fair,Northeast,14450
+Velocity Ridge,Pickup,2022,41700,Base,Gasoline,Red,0,3,Excellent,Northeast,20290
+Velocity Strata,Sedan,2024,26900,Sport,Gasoline,Gray,0,1,Good,West,22720
+Velocity Dash,Hatchback,2021,76400,Sport,Gasoline,Red,0,1,Excellent,Midwest,8890
+Velocity Ridge,Pickup,2023,42800,Sport,Gasoline,Black,0,1,Excellent,West,28040
+Velocity Volt,EV Sedan,2024,36800,Sport,Electric,White,0,1,Good,Midwest,31820
+Velocity Dash,Hatchback,2016,160100,Base,Gasoline,Black,0,1,Excellent,West,3500
+Velocity Summit,SUV,2020,78400,Luxury,Gasoline,Black,0,1,Excellent,Midwest,14170
+Velocity Dash,Hatchback,2023,42900,Sport,Gasoline,Black,1,2,Excellent,Midwest,12770
+Velocity Strata,Sedan,2023,23200,Sport,Gasoline,White,1,1,Fair,West,15690
+Velocity Strata,Sedan,2024,9700,Base,Gasoline,Blue,1,1,Fair,Northeast,17550
+Velocity Strata,Sedan,2019,81700,Base,Hybrid,Blue,0,1,Good,West,7770
+Velocity Dash,Hatchback,2017,110400,Base,Gasoline,Blue,1,1,Excellent,South,3560
+Velocity Strata,Sedan,2023,17500,Sport,Gasoline,Gray,0,1,Fair,Midwest,17290
+Velocity Summit,SUV,2014,123700,Base,Gasoline,Black,0,2,Excellent,Midwest,4340
+Velocity Summit,SUV,2021,90700,Sport,Gasoline,Gray,0,1,Good,Northeast,14100
+Velocity Summit,SUV,2022,55200,Sport,Hybrid,White,0,3,Excellent,Northeast,22470
+Velocity Strata,Sedan,2023,38200,Luxury,Hybrid,Silver,2,3,Good,Northeast,14730
+Velocity Summit,SUV,2014,125900,Base,Gasoline,Black,2,1,Excellent,West,3500
+Velocity Dash,Hatchback,2017,63500,Luxury,Gasoline,Gray,0,3,Excellent,South,5500
+Velocity Volt,EV Sedan,2025,10400,Base,Electric,Black,1,3,Excellent,West,35270
+Velocity Dash,Hatchback,2016,138700,Base,Gasoline,Gray,0,2,Excellent,Midwest,3500
+Velocity Ridge,Pickup,2014,77100,Base,Gasoline,White,0,2,Excellent,West,5250
+Velocity Ridge,Pickup,2019,58000,Sport,Gasoline,White,0,1,Good,Northeast,13560
+Velocity Ridge,Pickup,2023,32900,Base,Gasoline,White,0,1,Good,West,25280
+Velocity Summit,SUV,2020,69500,Sport,Gasoline,Silver,0,2,Good,South,13460
+Velocity Summit,SUV,2024,22600,Base,Hybrid,Red,2,3,Excellent,Northeast,23940
+Velocity Ridge,Pickup,2021,28100,Base,Hybrid,Black,0,1,Excellent,Midwest,20480
+Velocity Dash,Hatchback,2019,66600,Luxury,Gasoline,White,0,1,Good,West,7130
+Velocity Strata,Sedan,2024,25200,Base,Gasoline,Blue,0,1,Good,West,21010
+Velocity Strata,Sedan,2015,86100,Sport,Gasoline,White,0,2,Excellent,Midwest,4630
+Velocity Summit,SUV,2025,9500,Base,Gasoline,Blue,0,2,Excellent,Midwest,34130
+Velocity Strata,Sedan,2023,37700,Luxury,Hybrid,Black,0,1,Fair,South,18750
+Velocity Aero,Coupe,2025,18000,Base,Hybrid,Gray,1,1,Excellent,West,44010
+Velocity Summit,SUV,2024,27100,Base,Gasoline,Black,0,1,Good,Midwest,28910
+Velocity Dash,Hatchback,2020,53600,Base,Gasoline,Black,0,1,Good,Northeast,7650
+Velocity Dash,Hatchback,2024,29900,Base,Gasoline,Black,0,2,Excellent,Midwest,14950
+Velocity Summit,SUV,2023,54400,Base,Gasoline,Silver,2,1,Excellent,South,17740
+Velocity Dash,Hatchback,2020,97600,Base,Gasoline,Red,0,2,Good,South,6630
+Velocity Strata,Sedan,2020,39200,Base,Gasoline,White,2,2,Good,South,7950
+Velocity Aero,Coupe,2022,37800,Sport,Gasoline,Gray,0,1,Excellent,Northeast,28820
+Velocity Summit,SUV,2016,138700,Base,Gasoline,Gray,0,3,Good,Northeast,4900
+Velocity Volt,EV Sedan,2022,57700,Base,Electric,Black,1,1,Good,West,17790
+Velocity Volt,EV Sedan,2021,53400,Base,Electric,White,0,1,Good,Northeast,18300
+Velocity Dash,Hatchback,2016,136300,Base,Gasoline,White,0,2,Good,Northeast,3500
+Velocity Summit,SUV,2020,53800,Luxury,Gasoline,Blue,2,2,Good,Northeast,12520
+Velocity Strata,Sedan,2023,32700,Base,Gasoline,White,0,3,Excellent,South,16240
+Velocity Summit,SUV,2018,141000,Luxury,Gasoline,Black,0,1,Excellent,Midwest,9420
+Velocity Summit,SUV,2019,109900,Luxury,Hybrid,Black,0,1,Good,Northeast,11920
+Velocity Summit,SUV,2015,125600,Base,Gasoline,Silver,2,1,Good,Midwest,4080
+Velocity Volt,EV Sedan,2014,135300,Sport,Electric,Black,1,2,Good,Northeast,3850
+Velocity Dash,Hatchback,2014,105100,Luxury,Hybrid,White,0,1,Good,Northeast,3500
+Velocity Dash,Hatchback,2014,99600,Luxury,Gasoline,Gray,0,2,Good,South,3500
+Velocity Ridge,Pickup,2021,85200,Sport,Gasoline,Gray,1,2,Good,South,14570
+Velocity Dash,Hatchback,2021,60600,Luxury,Gasoline,Blue,0,2,Good,West,9690
+Velocity Ridge,Pickup,2025,18500,Sport,Gasoline,Black,0,1,Fair,Northeast,36160
+Velocity Ridge,Pickup,2019,120200,Luxury,Gasoline,Black,0,2,Fair,Midwest,10750
+Velocity Strata,Sedan,2023,40900,Luxury,Gasoline,White,0,1,Good,Northeast,19380
+Velocity Summit,SUV,2015,124800,Base,Gasoline,White,0,1,Good,West,4930
+Velocity Aero,Coupe,2020,63000,Luxury,Gasoline,White,0,1,Good,South,23880
+Velocity Volt,EV Sedan,2018,62700,Base,Electric,Blue,2,1,Excellent,Midwest,9140
+Velocity Dash,Hatchback,2015,147000,Sport,Gasoline,Black,2,2,Good,West,3500
+Velocity Ridge,Pickup,2014,204000,Luxury,Gasoline,Red,0,2,Good,Northeast,3960
+Velocity Ridge,Pickup,2014,73200,Sport,Gasoline,Black,0,1,Excellent,Midwest,6850
+Velocity Strata,Sedan,2021,52600,Base,Gasoline,Black,2,2,Good,Northeast,9090
+Velocity Dash,Hatchback,2015,117400,Luxury,Hybrid,Blue,0,2,Excellent,West,3500
+Velocity Dash,Hatchback,2022,29700,Luxury,Hybrid,White,0,1,Excellent,Midwest,14260
+Velocity Strata,Sedan,2023,38000,Sport,Hybrid,Silver,1,1,Good,South,16510
+Velocity Volt,EV Sedan,2020,118400,Luxury,Electric,Blue,0,1,Good,Midwest,15610
+Velocity Summit,SUV,2019,95300,Base,Gasoline,Silver,0,2,Excellent,Midwest,10110
+Velocity Summit,SUV,2023,37900,Base,Hybrid,White,0,1,Good,Midwest,26050
+Velocity Dash,Hatchback,2022,38700,Base,Gasoline,Silver,0,1,Excellent,South,11330
+Velocity Strata,Sedan,2023,38800,Luxury,Gasoline,Silver,0,1,Fair,Northeast,18410
+Velocity Dash,Hatchback,2019,104400,Base,Gasoline,Black,0,2,Good,West,5480
+Velocity Dash,Hatchback,2021,57500,Sport,Gasoline,Black,0,1,Good,West,9080
+Velocity Summit,SUV,2015,111900,Base,Gasoline,Black,0,2,Good,West,4690
+Velocity Dash,Hatchback,2017,80700,Luxury,Gasoline,Gray,0,1,Fair,Midwest,4510
+Velocity Ridge,Pickup,2024,17500,Base,Hybrid,White,0,1,Good,South,33160
+Velocity Strata,Sedan,2017,127400,Sport,Hybrid,White,0,2,Good,Midwest,5120
+Velocity Strata,Sedan,2024,37800,Base,Hybrid,Red,0,1,Excellent,West,20850
+Velocity Summit,SUV,2020,94100,Sport,Gasoline,Black,0,1,Fair,West,11590
+Velocity Dash,Hatchback,2015,104000,Luxury,Gasoline,Red,0,3,Fair,Midwest,3500
+Velocity Dash,Hatchback,2016,100700,Sport,Gasoline,Silver,0,1,Good,Midwest,3610
+Velocity Summit,SUV,2016,133400,Base,Gasoline,Silver,0,1,Excellent,Midwest,5610
+Velocity Strata,Sedan,2021,43100,Luxury,Gasoline,Black,0,2,Fair,South,12740
+Velocity Dash,Hatchback,2025,14500,Luxury,Gasoline,Blue,1,1,Excellent,South,21040
+Velocity Ridge,Pickup,2020,20800,Luxury,Gasoline,White,0,1,Good,Northeast,17090
+Velocity Aero,Coupe,2020,71900,Base,Hybrid,Gray,0,3,Good,Northeast,17230
+Velocity Summit,SUV,2024,27100,Luxury,Gasoline,Black,0,1,Excellent,Midwest,33720
+Velocity Strata,Sedan,2025,14600,Base,Hybrid,Silver,1,1,Fair,West,22070
+Velocity Strata,Sedan,2017,84800,Base,Gasoline,Silver,1,2,Good,Midwest,4440
+Velocity Summit,SUV,2018,148700,Sport,Hybrid,Silver,0,1,Excellent,South,7960
+Velocity Summit,SUV,2014,173500,Luxury,Gasoline,Red,0,2,Fair,Midwest,3840
+Velocity Dash,Hatchback,2023,65700,Base,Gasoline,White,1,1,Excellent,West,10030
+Velocity Volt,EV Sedan,2024,23100,Base,Electric,White,0,2,Good,Midwest,29170
+Velocity Dash,Hatchback,2015,193500,Base,Gasoline,Silver,0,2,Excellent,South,3500
+Velocity Summit,SUV,2020,70500,Base,Gasoline,White,0,1,Excellent,Midwest,13050
+Velocity Strata,Sedan,2025,19600,Sport,Gasoline,White,0,1,Excellent,South,24970
+Velocity Summit,SUV,2021,85900,Base,Gasoline,Black,0,1,Fair,West,12760
+Velocity Ridge,Pickup,2019,73500,Base,Gasoline,White,0,1,Excellent,South,12300
+Velocity Aero,Coupe,2021,76300,Luxury,Gasoline,Silver,0,1,Excellent,Midwest,25420
+Velocity Dash,Hatchback,2018,131300,Base,Gasoline,Red,0,2,Good,Northeast,4360
+Velocity Strata,Sedan,2015,139500,Base,Hybrid,Blue,0,1,Excellent,Northeast,3500
+Velocity Volt,EV Sedan,2016,164800,Base,Electric,Black,0,1,Good,West,5750
+Velocity Summit,SUV,2019,101800,Base,Hybrid,Silver,1,1,Fair,Northeast,8210
+Velocity Strata,Sedan,2020,73200,Luxury,Gasoline,Gray,0,2,Fair,West,9730
+Velocity Dash,Hatchback,2025,14800,Sport,Gasoline,Blue,0,1,Good,South,19530
+Velocity Ridge,Pickup,2022,48700,Sport,Gasoline,Silver,0,1,Good,West,22750
+Velocity Dash,Hatchback,2020,60100,Base,Gasoline,White,0,3,Good,Midwest,7090
+Velocity Strata,Sedan,2017,110100,Luxury,Gasoline,Black,0,2,Fair,West,5670
+Velocity Summit,SUV,2018,165200,Base,Hybrid,Silver,0,1,Fair,West,6450
+Velocity Strata,Sedan,2019,59800,Sport,Gasoline,Black,0,1,Good,South,8990
+Velocity Strata,Sedan,2023,46700,Luxury,Gasoline,Black,0,1,Good,Midwest,19310
+Velocity Strata,Sedan,2019,85800,Sport,Gasoline,Blue,0,1,Good,Midwest,7840
+Velocity Strata,Sedan,2018,102000,Sport,Gasoline,Gray,0,1,Excellent,Midwest,6840
+Velocity Summit,SUV,2015,124000,Sport,Gasoline,White,0,2,Excellent,South,5200
+Velocity Ridge,Pickup,2019,76400,Base,Gasoline,Black,1,3,Fair,Midwest,9240
+Velocity Dash,Hatchback,2021,42600,Luxury,Gasoline,Black,0,2,Good,South,10390
+Velocity Summit,SUV,2024,29400,Luxury,Hybrid,Red,1,1,Excellent,West,30740
+Velocity Summit,SUV,2022,22300,Sport,Gasoline,Black,0,1,Excellent,South,23090
+Velocity Summit,SUV,2017,72200,Base,Gasoline,Black,0,1,Excellent,Midwest,8580
+Velocity Summit,SUV,2014,131500,Sport,Hybrid,Gray,0,1,Good,Midwest,4380
+Velocity Dash,Hatchback,2020,46600,Luxury,Gasoline,Black,1,1,Good,Midwest,8540
+Velocity Dash,Hatchback,2021,82800,Sport,Gasoline,Red,0,2,Excellent,Midwest,8820
+Velocity Dash,Hatchback,2016,114700,Luxury,Hybrid,Black,1,2,Good,Northeast,3540
+Velocity Strata,Sedan,2015,200200,Luxury,Gasoline,White,2,2,Fair,Midwest,3500
+Velocity Strata,Sedan,2024,8600,Base,Gasoline,Gray,0,1,Good,South,20130
+Velocity Ridge,Pickup,2020,56100,Base,Hybrid,White,0,2,Good,South,15520
+Velocity Volt,EV Sedan,2023,53300,Base,Electric,Gray,0,2,Good,West,23610
+Velocity Strata,Sedan,2024,16600,Base,Hybrid,Silver,1,1,Good,Northeast,19980
+Velocity Summit,SUV,2015,124500,Base,Gasoline,Red,0,2,Good,Midwest,4720
+Velocity Volt,EV Sedan,2021,51200,Base,Electric,Black,1,2,Excellent,West,16980
+Velocity Strata,Sedan,2025,9300,Base,Gasoline,Black,0,1,Excellent,Northeast,27580
+Velocity Summit,SUV,2014,169200,Sport,Gasoline,Red,0,1,Excellent,West,4190
+Velocity Aero,Coupe,2022,35800,Luxury,Gasoline,Gray,0,2,Excellent,Midwest,34170
+Velocity Ridge,Pickup,2018,96600,Base,Hybrid,Black,0,1,Good,Northeast,9370
+Velocity Aero,Coupe,2020,63800,Base,Hybrid,Gray,0,1,Good,Northeast,19860
+Velocity Strata,Sedan,2014,190200,Base,Hybrid,Gray,0,1,Good,South,3500
+Velocity Aero,Coupe,2023,35800,Base,Gasoline,Silver,0,1,Good,West,33270
+Velocity Volt,EV Sedan,2015,130200,Sport,Electric,Silver,0,1,Fair,South,5980
+Velocity Aero,Coupe,2019,84300,Base,Hybrid,Gray,0,1,Good,Northeast,16020
+Velocity Dash,Hatchback,2014,135100,Sport,Gasoline,White,0,2,Good,Northeast,3500
+Velocity Volt,EV Sedan,2021,33400,Base,Electric,White,0,1,Good,South,19370
+Velocity Strata,Sedan,2022,35600,Sport,Hybrid,Black,1,1,Excellent,Northeast,15270
+Velocity Summit,SUV,2021,41100,Base,Hybrid,Red,0,1,Good,West,17780
+Velocity Ridge,Pickup,2025,8600,Base,Gasoline,Gray,0,1,Fair,West,35220
+Velocity Summit,SUV,2022,69800,Luxury,Gasoline,Black,1,3,Good,South,17760
+Velocity Dash,Hatchback,2017,61100,Sport,Gasoline,White,0,2,Good,South,4530
+Velocity Strata,Sedan,2024,34900,Base,Gasoline,White,0,2,Good,West,19150
+Velocity Dash,Hatchback,2018,118200,Base,Gasoline,Black,0,1,Good,West,4160
+Velocity Strata,Sedan,2024,3800,Base,Gasoline,Blue,0,1,Good,Midwest,19220
+Velocity Volt,EV Sedan,2018,47000,Sport,Electric,Silver,0,1,Good,Midwest,12390
+Velocity Dash,Hatchback,2019,98800,Sport,Hybrid,Blue,0,2,Good,Northeast,5750
+Velocity Ridge,Pickup,2014,156800,Base,Gasoline,White,0,2,Excellent,West,4280
+Velocity Strata,Sedan,2022,65700,Base,Hybrid,Gray,0,2,Good,South,11980
+Velocity Summit,SUV,2014,209300,Sport,Gasoline,Gray,0,1,Fair,South,3500
+Velocity Strata,Sedan,2014,95200,Base,Gasoline,Gray,0,1,Excellent,Midwest,3670
+Velocity Strata,Sedan,2017,95100,Luxury,Gasoline,White,1,1,Excellent,South,6130
+Velocity Aero,Coupe,2023,24900,Sport,Gasoline,Red,1,1,Good,Midwest,33120
+Velocity Strata,Sedan,2018,110000,Base,Hybrid,White,0,1,Good,Midwest,6340
+Velocity Aero,Coupe,2018,79400,Luxury,Hybrid,Black,0,2,Excellent,South,15460
+Velocity Strata,Sedan,2021,51000,Luxury,Gasoline,Silver,0,2,Excellent,Midwest,14420
+Velocity Strata,Sedan,2017,77400,Sport,Hybrid,Silver,1,1,Good,Northeast,6080
+Velocity Strata,Sedan,2019,47700,Base,Gasoline,White,0,2,Fair,Northeast,7660
+Velocity Ridge,Pickup,2014,194600,Base,Gasoline,Blue,0,1,Excellent,Midwest,3870
+Velocity Dash,Hatchback,2020,77600,Sport,Gasoline,White,0,1,Fair,South,7110
+Velocity Summit,SUV,2025,5800,Base,Gasoline,Silver,1,1,Excellent,Northeast,34890
+Velocity Strata,Sedan,2023,39600,Base,Gasoline,Gray,0,1,Fair,Northeast,13800
+Velocity Summit,SUV,2016,178400,Base,Hybrid,Red,0,1,Good,Midwest,4690
+Velocity Dash,Hatchback,2016,90200,Base,Gasoline,White,0,3,Good,Midwest,3600
+Velocity Strata,Sedan,2021,72800,Sport,Gasoline,White,0,3,Good,West,10910
+Velocity Strata,Sedan,2016,132900,Base,Gasoline,Gray,0,1,Good,West,4010
+Velocity Dash,Hatchback,2016,156400,Base,Gasoline,Blue,1,1,Excellent,South,3500
+Velocity Summit,SUV,2016,73700,Sport,Gasoline,Blue,0,1,Excellent,West,8150
+Velocity Strata,Sedan,2019,90100,Base,Gasoline,White,0,1,Excellent,Midwest,6460
+Velocity Summit,SUV,2015,74500,Sport,Hybrid,Silver,0,1,Fair,South,5930
+Velocity Aero,Coupe,2015,215700,Luxury,Gasoline,Black,0,2,Good,South,5710
+Velocity Dash,Hatchback,2023,45200,Sport,Hybrid,Gray,0,1,Good,Northeast,13980
+Velocity Dash,Hatchback,2017,99300,Luxury,Hybrid,Silver,0,2,Good,South,5200
+Velocity Summit,SUV,2018,57300,Base,Gasoline,Red,0,1,Good,West,9660
+Velocity Strata,Sedan,2024,18800,Base,Gasoline,Gray,0,2,Fair,Northeast,17410
+Velocity Strata,Sedan,2023,41800,Base,Gasoline,Gray,0,1,Excellent,West,17810
+Velocity Strata,Sedan,2018,55200,Base,Gasoline,Black,0,3,Good,Northeast,6400
+Velocity Strata,Sedan,2024,25200,Base,Hybrid,White,0,1,Good,Midwest,20530
+Velocity Summit,SUV,2022,56100,Luxury,Hybrid,White,0,2,Good,Midwest,20840
+Velocity Dash,Hatchback,2018,82800,Base,Hybrid,Blue,1,1,Excellent,West,4910
+Velocity Strata,Sedan,2016,104300,Sport,Hybrid,Black,0,3,Excellent,Northeast,5060
+Velocity Aero,Coupe,2019,75200,Base,Gasoline,White,0,1,Fair,Midwest,14310
+Velocity Strata,Sedan,2025,14200,Luxury,Hybrid,Black,1,1,Good,South,26870
+Velocity Ridge,Pickup,2021,48700,Sport,Gasoline,Silver,0,1,Good,West,18860
+Velocity Summit,SUV,2023,50600,Base,Gasoline,Black,0,3,Good,Northeast,20000
+Velocity Dash,Hatchback,2023,24000,Base,Gasoline,White,0,2,Good,Midwest,13870
+Velocity Strata,Sedan,2018,94000,Base,Gasoline,Silver,0,2,Fair,Midwest,5270
+Velocity Volt,EV Sedan,2023,53600,Base,Electric,White,0,1,Good,Midwest,23000
+Velocity Strata,Sedan,2023,47100,Luxury,Gasoline,Blue,0,2,Excellent,Northeast,19490
+Velocity Dash,Hatchback,2021,47200,Base,Gasoline,White,0,1,Excellent,Northeast,9600
+Velocity Strata,Sedan,2016,71400,Luxury,Hybrid,Black,0,2,Good,West,5730
+Velocity Ridge,Pickup,2021,59400,Base,Gasoline,Gray,1,2,Fair,South,13830
+Velocity Strata,Sedan,2019,78900,Base,Gasoline,Silver,0,1,Good,Midwest,7440
+Velocity Dash,Hatchback,2020,73200,Luxury,Gasoline,Black,0,1,Good,Northeast,7920
+Velocity Dash,Hatchback,2023,20500,Base,Hybrid,Gray,1,2,Excellent,Northeast,12490
+Velocity Ridge,Pickup,2018,159200,Sport,Gasoline,Black,1,1,Good,South,7070
+Velocity Dash,Hatchback,2017,131700,Sport,Gasoline,White,1,2,Good,West,3500
+Velocity Strata,Sedan,2025,12100,Luxury,Gasoline,White,1,2,Fair,West,24080
+Velocity Strata,Sedan,2021,60300,Sport,Gasoline,Silver,0,1,Good,South,12340
+Velocity Summit,SUV,2018,104400,Luxury,Gasoline,White,0,1,Excellent,Midwest,10270
+Velocity Strata,Sedan,2022,41600,Luxury,Gasoline,Blue,0,3,Good,Northeast,15660
+Velocity Strata,Sedan,2018,46800,Base,Hybrid,Silver,0,2,Good,South,7870
+Velocity Strata,Sedan,2019,53900,Luxury,Hybrid,Blue,2,1,Fair,West,7800
+Velocity Strata,Sedan,2019,102600,Luxury,Gasoline,Gray,0,1,Good,Northeast,8040
+Velocity Aero,Coupe,2021,59300,Luxury,Hybrid,Gray,0,2,Good,Midwest,26510
+Velocity Dash,Hatchback,2014,145800,Luxury,Gasoline,Silver,1,2,Good,West,3500
+Velocity Dash,Hatchback,2019,86100,Sport,Gasoline,Gray,0,1,Good,South,5570
+Velocity Dash,Hatchback,2017,61600,Base,Gasoline,Silver,0,2,Excellent,South,4690
+Velocity Summit,SUV,2016,129800,Base,Gasoline,Black,0,2,Good,Midwest,5300
+Velocity Ridge,Pickup,2017,97100,Base,Gasoline,Black,0,2,Good,Northeast,7190
+Velocity Summit,SUV,2023,40700,Luxury,Gasoline,White,0,3,Good,South,26000
+Velocity Aero,Coupe,2022,59300,Base,Gasoline,Silver,0,1,Fair,Northeast,23370
+Velocity Summit,SUV,2015,115300,Base,Hybrid,Red,0,1,Good,Midwest,5690
+Velocity Summit,SUV,2015,94000,Base,Gasoline,White,1,1,Excellent,South,5620
+Velocity Dash,Hatchback,2015,150700,Sport,Hybrid,Red,0,2,Excellent,West,3500
+Velocity Strata,Sedan,2020,90100,Base,Hybrid,Black,0,1,Good,West,9790
+Velocity Ridge,Pickup,2018,120300,Sport,Gasoline,Blue,0,2,Fair,Northeast,8470
+Velocity Dash,Hatchback,2023,48400,Base,Gasoline,White,0,1,Good,South,12230
+Velocity Strata,Sedan,2022,41300,Base,Gasoline,Gray,0,3,Good,Midwest,13590
+Velocity Aero,Coupe,2024,28100,Base,Gasoline,Red,0,1,Excellent,South,39880
+Velocity Dash,Hatchback,2018,93100,Sport,Gasoline,Silver,0,1,Excellent,Midwest,5340
+Velocity Dash,Hatchback,2021,75900,Sport,Gasoline,White,0,2,Excellent,Midwest,8310
+Velocity Summit,SUV,2019,86700,Luxury,Gasoline,Gray,0,1,Good,West,12590
+Velocity Strata,Sedan,2024,12800,Sport,Gasoline,Black,0,2,Good,West,21230
+Velocity Summit,SUV,2015,130400,Luxury,Gasoline,Silver,0,3,Good,West,5290
+Velocity Ridge,Pickup,2017,116100,Base,Gasoline,Black,0,1,Good,West,7600
+Velocity Dash,Hatchback,2024,30900,Luxury,Gasoline,Silver,0,1,Good,Midwest,17980
+Velocity Dash,Hatchback,2019,99800,Base,Gasoline,Silver,0,2,Good,West,5310
+Velocity Ridge,Pickup,2024,34000,Luxury,Hybrid,Red,0,3,Good,West,35700
+Velocity Summit,SUV,2014,182000,Sport,Gasoline,Silver,0,1,Good,West,3500
+Velocity Dash,Hatchback,2014,170800,Base,Gasoline,Blue,0,2,Fair,Northeast,3500
+Velocity Dash,Hatchback,2020,80500,Base,Gasoline,White,0,2,Good,South,6420
+Velocity Dash,Hatchback,2018,94100,Luxury,Hybrid,Gray,0,2,Fair,Midwest,5550
+Velocity Ridge,Pickup,2015,138100,Base,Gasoline,Black,1,2,Fair,South,3600
+Velocity Dash,Hatchback,2021,58600,Sport,Gasoline,Gray,0,1,Fair,South,9000
+Velocity Summit,SUV,2018,79100,Sport,Gasoline,Silver,1,3,Excellent,South,9250
+Velocity Summit,SUV,2014,120800,Luxury,Gasoline,White,0,1,Excellent,Northeast,5880
+Velocity Aero,Coupe,2018,100800,Luxury,Hybrid,Blue,0,2,Excellent,Midwest,15230
+Velocity Ridge,Pickup,2017,139200,Base,Hybrid,Silver,0,2,Excellent,Northeast,7240
+Velocity Dash,Hatchback,2022,57500,Base,Gasoline,Silver,0,1,Good,Northeast,10210
+Velocity Aero,Coupe,2021,69300,Luxury,Hybrid,Silver,0,1,Fair,South,24680
+Velocity Ridge,Pickup,2025,19500,Base,Gasoline,Gray,1,1,Good,Midwest,33420
+Velocity Summit,SUV,2016,126200,Sport,Hybrid,Black,0,3,Good,Northeast,6280
+Velocity Strata,Sedan,2018,121600,Base,Gasoline,Red,1,1,Good,West,4930
+Velocity Strata,Sedan,2023,75600,Base,Hybrid,White,0,1,Good,West,14680
+Velocity Dash,Hatchback,2018,119000,Base,Gasoline,Red,0,1,Good,Northeast,4520
+Velocity Ridge,Pickup,2016,114600,Sport,Hybrid,Black,2,1,Good,West,6170
+Velocity Strata,Sedan,2024,24200,Base,Hybrid,Black,0,1,Excellent,West,19740
+Velocity Summit,SUV,2016,62000,Base,Gasoline,Gray,0,1,Excellent,South,7670
+Velocity Strata,Sedan,2023,23300,Luxury,Gasoline,Gray,0,1,Excellent,South,21350
+Velocity Ridge,Pickup,2019,13000,Base,Gasoline,Black,0,3,Excellent,Midwest,14850
+Velocity Strata,Sedan,2024,29600,Base,Hybrid,Red,0,2,Good,Midwest,19550
+Velocity Volt,EV Sedan,2016,91900,Base,Electric,Black,0,1,Excellent,Midwest,7710
+Velocity Ridge,Pickup,2014,92000,Base,Hybrid,Black,0,2,Good,Northeast,5390
+Velocity Summit,SUV,2016,144600,Base,Gasoline,Silver,0,1,Good,Northeast,5250
+Velocity Strata,Sedan,2017,121300,Luxury,Gasoline,Red,0,2,Good,West,5230
+Velocity Aero,Coupe,2017,105400,Sport,Gasoline,Red,0,3,Excellent,Midwest,10720
+Velocity Summit,SUV,2025,17900,Base,Hybrid,Blue,0,1,Excellent,Northeast,35440
+Velocity Strata,Sedan,2024,27900,Base,Gasoline,Silver,0,1,Good,South,19120
+Velocity Aero,Coupe,2015,173900,Sport,Gasoline,Gray,0,1,Fair,West,5450
+Velocity Strata,Sedan,2021,75000,Base,Hybrid,Gray,0,2,Fair,Northeast,9310
+Velocity Summit,SUV,2020,92500,Base,Gasoline,Silver,0,2,Good,West,11960
+Velocity Ridge,Pickup,2015,139400,Base,Gasoline,Gray,0,1,Excellent,West,5270
+Velocity Strata,Sedan,2021,71300,Base,Hybrid,Silver,1,1,Fair,South,9040
+Velocity Strata,Sedan,2018,123400,Base,Gasoline,Gray,0,1,Good,Northeast,5550
+Velocity Dash,Hatchback,2024,26200,Base,Gasoline,Black,0,3,Excellent,South,14820
+Velocity Dash,Hatchback,2018,94400,Sport,Gasoline,Red,0,1,Good,Northeast,5510
+Velocity Strata,Sedan,2019,98700,Sport,Gasoline,Gray,0,2,Fair,Northeast,6590
+Velocity Summit,SUV,2021,59200,Base,Gasoline,Blue,1,1,Fair,West,13760
+Velocity Strata,Sedan,2024,18000,Base,Gasoline,Silver,0,1,Good,Midwest,19890
+Velocity Summit,SUV,2023,23800,Sport,Gasoline,Red,0,1,Excellent,West,27300
+Velocity Volt,EV Sedan,2016,173500,Base,Electric,Gray,1,1,Excellent,Northeast,5050
+Velocity Strata,Sedan,2015,82700,Luxury,Hybrid,Red,0,2,Excellent,Midwest,5330
+Velocity Summit,SUV,2023,21700,Base,Gasoline,White,0,3,Fair,Midwest,22350
+Velocity Aero,Coupe,2018,131500,Base,Gasoline,Black,0,1,Good,West,10440
+Velocity Aero,Coupe,2021,81000,Sport,Gasoline,Black,0,1,Excellent,South,22340
+Velocity Volt,EV Sedan,2017,68900,Base,Electric,White,0,1,Good,West,9270
+Velocity Ridge,Pickup,2021,56900,Base,Hybrid,White,1,3,Good,Northeast,16210
+Velocity Dash,Hatchback,2020,75400,Sport,Gasoline,White,1,1,Excellent,Midwest,7090
+Velocity Dash,Hatchback,2019,98000,Luxury,Gasoline,Black,0,1,Good,South,6640
+Velocity Volt,EV Sedan,2024,11600,Base,Electric,Silver,0,1,Excellent,Northeast,34610
+Velocity Summit,SUV,2017,144200,Sport,Gasoline,Gray,0,1,Good,South,6500
+Velocity Volt,EV Sedan,2019,86300,Sport,Electric,Gray,0,2,Good,Midwest,12800
+Velocity Strata,Sedan,2025,9700,Base,Hybrid,White,1,1,Fair,Midwest,21630
+Velocity Summit,SUV,2023,22600,Base,Gasoline,White,2,1,Excellent,Midwest,22090
+Velocity Aero,Coupe,2022,43100,Luxury,Gasoline,Silver,0,1,Excellent,Midwest,32150
+Velocity Aero,Coupe,2016,116600,Base,Gasoline,Red,0,1,Good,Midwest,8960
+Velocity Strata,Sedan,2024,20900,Base,Gasoline,White,0,1,Excellent,Northeast,21280
+Velocity Strata,Sedan,2022,45800,Base,Gasoline,White,0,1,Good,Midwest,13500
+Velocity Strata,Sedan,2016,75100,Base,Hybrid,Red,0,2,Good,South,5010
+Velocity Strata,Sedan,2021,62500,Sport,Gasoline,Red,0,1,Good,West,12400
+Velocity Dash,Hatchback,2022,43800,Luxury,Gasoline,Blue,0,1,Excellent,Northeast,12420
+Velocity Volt,EV Sedan,2014,151300,Sport,Electric,Red,0,2,Good,Northeast,4800
+Velocity Ridge,Pickup,2024,42500,Base,Gasoline,Black,0,3,Good,Midwest,23690
+Velocity Strata,Sedan,2016,165500,Base,Gasoline,Black,0,3,Good,Northeast,3500
+Velocity Aero,Coupe,2016,159800,Luxury,Hybrid,White,1,1,Good,West,7980
+Velocity Ridge,Pickup,2017,137700,Base,Gasoline,Silver,1,1,Excellent,South,6540
+Velocity Dash,Hatchback,2016,173200,Base,Hybrid,Silver,0,3,Fair,Northeast,3500
+Velocity Strata,Sedan,2016,78100,Sport,Gasoline,Black,0,3,Good,West,4820
+Velocity Strata,Sedan,2018,91400,Base,Gasoline,Gray,0,1,Good,West,5910
+Velocity Strata,Sedan,2018,67400,Base,Gasoline,Silver,0,2,Excellent,West,6880
+Velocity Strata,Sedan,2024,19900,Sport,Gasoline,Blue,0,1,Good,Midwest,23470
+Velocity Summit,SUV,2019,93400,Luxury,Gasoline,White,1,3,Good,South,9430
+Velocity Strata,Sedan,2017,134400,Luxury,Gasoline,White,2,2,Excellent,Midwest,4260
+Velocity Ridge,Pickup,2019,95700,Luxury,Gasoline,Silver,0,1,Good,Midwest,12960
+Velocity Dash,Hatchback,2020,91900,Sport,Gasoline,Black,0,3,Good,Midwest,6650
+Velocity Strata,Sedan,2017,105200,Sport,Hybrid,Gray,0,1,Good,Midwest,5400
+Velocity Strata,Sedan,2020,40300,Luxury,Gasoline,Silver,0,2,Excellent,Northeast,12790
+Velocity Ridge,Pickup,2020,44000,Base,Gasoline,Silver,0,2,Excellent,West,15860
+Velocity Volt,EV Sedan,2017,122700,Sport,Electric,Black,0,3,Good,Midwest,7720
+Velocity Volt,EV Sedan,2017,218600,Base,Electric,White,0,1,Good,South,5500
+Velocity Ridge,Pickup,2015,161100,Base,Gasoline,Silver,2,2,Excellent,South,3900
+Velocity Dash,Hatchback,2024,26700,Sport,Hybrid,Black,0,1,Excellent,South,19520
+Velocity Strata,Sedan,2014,210800,Sport,Hybrid,Red,1,2,Good,Midwest,3500
+Velocity Summit,SUV,2018,78000,Sport,Gasoline,Red,0,1,Excellent,South,10450
+Velocity Aero,Coupe,2020,52100,Base,Hybrid,Silver,0,1,Excellent,West,21850
+Velocity Dash,Hatchback,2024,28200,Luxury,Gasoline,Red,0,1,Good,West,19010
+Velocity Volt,EV Sedan,2021,63400,Luxury,Electric,Gray,1,2,Good,Northeast,19190
+Velocity Summit,SUV,2024,13500,Base,Gasoline,Black,0,3,Good,Midwest,27650
+Velocity Ridge,Pickup,2017,117200,Base,Hybrid,Blue,0,1,Good,Northeast,7740
+Velocity Summit,SUV,2018,104800,Base,Gasoline,White,2,1,Good,Northeast,6620
+Velocity Ridge,Pickup,2014,65800,Base,Gasoline,Red,0,1,Good,Midwest,5510
+Velocity Dash,Hatchback,2019,77800,Base,Gasoline,White,0,3,Fair,Northeast,5340
+Velocity Summit,SUV,2020,49700,Sport,Hybrid,Blue,0,1,Excellent,South,16650
+Velocity Volt,EV Sedan,2020,106400,Sport,Electric,Black,0,1,Good,Northeast,14000
+Velocity Ridge,Pickup,2014,145900,Sport,Gasoline,Black,2,1,Good,West,3700
+Velocity Ridge,Pickup,2015,154600,Sport,Gasoline,Gray,0,1,Good,South,5130
+Velocity Summit,SUV,2022,46800,Sport,Hybrid,Silver,1,2,Good,Northeast,20110
+Velocity Ridge,Pickup,2018,89100,Sport,Gasoline,Silver,0,1,Good,Northeast,10490
+Velocity Ridge,Pickup,2019,91800,Luxury,Gasoline,White,0,3,Good,Midwest,12340
+Velocity Summit,SUV,2016,144000,Base,Gasoline,Gray,0,2,Excellent,Midwest,5170
+Velocity Strata,Sedan,2016,172600,Base,Gasoline,White,0,1,Excellent,Midwest,3620
+Velocity Strata,Sedan,2020,113700,Base,Gasoline,White,2,1,Good,Midwest,6140
+Velocity Volt,EV Sedan,2023,44900,Luxury,Electric,Silver,1,1,Fair,Midwest,25140
+Velocity Summit,SUV,2023,51400,Sport,Hybrid,Silver,0,1,Good,Northeast,26890
+Velocity Strata,Sedan,2020,123900,Base,Gasoline,Blue,0,1,Excellent,Northeast,7900
+Velocity Strata,Sedan,2015,132700,Luxury,Gasoline,Black,0,1,Fair,West,3940
+Velocity Dash,Hatchback,2021,61000,Base,Gasoline,Gray,0,3,Good,South,8480
+Velocity Summit,SUV,2016,121900,Sport,Gasoline,Silver,0,1,Excellent,Northeast,6440
+Velocity Strata,Sedan,2014,220800,Base,Gasoline,Silver,0,1,Good,Northeast,3500
+Velocity Dash,Hatchback,2017,135900,Base,Hybrid,White,0,1,Good,Northeast,3640
+Velocity Dash,Hatchback,2016,108300,Luxury,Gasoline,White,0,1,Good,Northeast,3870
+Velocity Strata,Sedan,2019,105100,Base,Gasoline,Red,0,3,Good,South,6130
+Velocity Dash,Hatchback,2024,24700,Base,Gasoline,Silver,1,1,Fair,Northeast,13440
+Velocity Ridge,Pickup,2017,99800,Sport,Gasoline,Gray,0,3,Good,Northeast,8310
+Velocity Ridge,Pickup,2023,30900,Base,Gasoline,White,0,2,Good,Northeast,24870
+Velocity Strata,Sedan,2021,81800,Base,Hybrid,Blue,0,1,Excellent,West,10410
+Velocity Aero,Coupe,2014,235800,Base,Hybrid,Silver,0,2,Good,South,4000
+Velocity Ridge,Pickup,2014,97800,Base,Gasoline,Red,0,2,Good,South,5080
+Velocity Strata,Sedan,2014,228200,Base,Gasoline,Gray,0,1,Good,West,3500
+Velocity Summit,SUV,2014,179500,Base,Gasoline,White,0,1,Good,West,3600
+Velocity Aero,Coupe,2024,24200,Base,Gasoline,Blue,0,1,Good,South,40280
+Velocity Strata,Sedan,2024,22200,Base,Gasoline,Black,1,1,Excellent,Midwest,19270
+Velocity Summit,SUV,2024,31400,Base,Hybrid,White,0,3,Excellent,West,26990
+Velocity Volt,EV Sedan,2021,61100,Base,Electric,White,0,3,Good,South,17230
+Velocity Strata,Sedan,2024,16700,Sport,Gasoline,Silver,1,3,Good,Northeast,19670
+Velocity Strata,Sedan,2023,43800,Luxury,Gasoline,Black,0,2,Excellent,Midwest,18410
+Velocity Ridge,Pickup,2025,18900,Base,Gasoline,Red,0,1,Excellent,Midwest,40420
+Velocity Strata,Sedan,2017,85800,Sport,Hybrid,Gray,0,2,Fair,West,5960
+Velocity Dash,Hatchback,2021,60700,Base,Hybrid,Gray,1,1,Excellent,West,8160
+Velocity Strata,Sedan,2025,22100,Base,Gasoline,Silver,0,1,Good,Northeast,23350
+Velocity Strata,Sedan,2017,46600,Base,Gasoline,White,0,1,Good,South,6440
+Velocity Dash,Hatchback,2019,113500,Luxury,Gasoline,Silver,1,1,Fair,Midwest,4750
+Velocity Volt,EV Sedan,2023,32800,Luxury,Electric,Red,0,1,Good,Midwest,32250
+Velocity Dash,Hatchback,2015,135200,Base,Gasoline,Blue,1,2,Excellent,Midwest,3500
+Velocity Dash,Hatchback,2025,15400,Luxury,Hybrid,White,0,1,Good,South,24130
+Velocity Strata,Sedan,2023,46900,Sport,Gasoline,Silver,0,1,Excellent,Midwest,19710
+Velocity Strata,Sedan,2018,62700,Base,Gasoline,Gray,1,2,Good,West,6190
+Velocity Summit,SUV,2019,94000,Base,Gasoline,Gray,1,2,Good,Northeast,8740
+Velocity Dash,Hatchback,2014,194000,Base,Gasoline,White,1,1,Excellent,South,3500
+Velocity Dash,Hatchback,2018,101100,Base,Gasoline,Blue,0,1,Excellent,South,4850
+Velocity Ridge,Pickup,2018,144800,Base,Gasoline,Black,0,1,Good,Northeast,7970
+Velocity Summit,SUV,2019,49500,Base,Gasoline,White,0,1,Fair,Midwest,11840
+Velocity Ridge,Pickup,2021,33600,Sport,Gasoline,Gray,0,1,Excellent,West,22330
+Velocity Ridge,Pickup,2018,134800,Sport,Hybrid,Silver,0,1,Good,Midwest,9090
+Velocity Volt,EV Sedan,2019,79000,Base,Electric,Blue,0,2,Excellent,South,12050
+Velocity Dash,Hatchback,2016,116200,Luxury,Gasoline,Black,1,3,Fair,South,3500
+Velocity Strata,Sedan,2021,55900,Base,Gasoline,White,0,2,Good,South,11480
+Velocity Dash,Hatchback,2018,97500,Base,Gasoline,Silver,1,1,Excellent,South,4280
+Velocity Aero,Coupe,2017,108800,Base,Gasoline,Blue,0,1,Excellent,West,10800
+Velocity Strata,Sedan,2019,73100,Luxury,Gasoline,Red,1,1,Fair,Northeast,7510
+Velocity Strata,Sedan,2021,108400,Luxury,Gasoline,White,0,1,Good,Midwest,11590
+Velocity Ridge,Pickup,2023,20300,Base,Gasoline,Black,1,1,Good,West,24930
+Velocity Dash,Hatchback,2014,113700,Base,Gasoline,White,0,1,Good,Midwest,3500
+Velocity Aero,Coupe,2022,82400,Base,Gasoline,White,0,2,Fair,South,21270
+Velocity Ridge,Pickup,2016,125700,Base,Hybrid,Black,0,1,Excellent,West,6980
+Velocity Strata,Sedan,2018,104500,Base,Gasoline,White,0,1,Good,Northeast,5900
+Velocity Ridge,Pickup,2024,24000,Luxury,Gasoline,Silver,2,3,Fair,Midwest,26310
+Velocity Summit,SUV,2018,100000,Sport,Gasoline,Red,1,3,Good,Northeast,7880
+Velocity Summit,SUV,2024,24500,Sport,Hybrid,Black,0,2,Excellent,Northeast,33020
+Velocity Strata,Sedan,2020,93300,Luxury,Hybrid,Black,1,1,Good,Northeast,9280
+Velocity Strata,Sedan,2018,162500,Sport,Gasoline,Black,0,2,Excellent,West,5390
+Velocity Dash,Hatchback,2023,41300,Sport,Gasoline,White,0,3,Good,South,12700
+Velocity Volt,EV Sedan,2018,79500,Base,Electric,Black,0,1,Good,South,10700
+Velocity Dash,Hatchback,2020,51500,Base,Gasoline,Silver,0,1,Fair,West,7200
+Velocity Strata,Sedan,2024,20200,Base,Gasoline,Silver,0,1,Good,South,19280
+Velocity Summit,SUV,2019,44400,Base,Gasoline,Black,0,1,Good,Midwest,12180
+Velocity Summit,SUV,2024,32000,Base,Gasoline,Silver,1,1,Fair,West,22760
+Velocity Summit,SUV,2016,128700,Sport,Gasoline,Silver,2,2,Fair,Northeast,4240
+Velocity Ridge,Pickup,2014,199300,Sport,Hybrid,Silver,0,1,Excellent,West,4160
+Velocity Summit,SUV,2023,26600,Base,Gasoline,White,1,1,Excellent,West,22100
+Velocity Aero,Coupe,2015,102900,Base,Gasoline,Black,1,2,Fair,West,5670
+Velocity Strata,Sedan,2022,46900,Base,Gasoline,Silver,0,1,Excellent,West,14920
+Velocity Strata,Sedan,2021,64800,Base,Gasoline,Black,0,1,Excellent,Midwest,11520
+Velocity Summit,SUV,2019,54200,Base,Gasoline,Blue,2,2,Good,Northeast,8580
+Velocity Summit,SUV,2022,33800,Base,Gasoline,Blue,0,1,Good,Midwest,20790
+Velocity Summit,SUV,2014,113400,Luxury,Hybrid,Gray,0,1,Fair,South,5430
+Velocity Dash,Hatchback,2024,17100,Base,Gasoline,Silver,0,1,Excellent,South,16730
+Velocity Ridge,Pickup,2016,115500,Base,Gasoline,Red,0,2,Good,Northeast,6370
+Velocity Dash,Hatchback,2021,47500,Base,Gasoline,Red,0,3,Good,Midwest,9080
+Velocity Summit,SUV,2014,146800,Luxury,Gasoline,Black,1,1,Good,Northeast,3880
+Velocity Volt,EV Sedan,2023,20600,Luxury,Electric,Black,0,1,Excellent,Northeast,33830
+Velocity Dash,Hatchback,2014,124500,Base,Gasoline,Silver,0,1,Excellent,Northeast,3500
+Velocity Dash,Hatchback,2019,57200,Base,Hybrid,White,0,1,Excellent,West,7220
+Velocity Strata,Sedan,2020,35600,Base,Gasoline,White,0,2,Excellent,Northeast,10640
+Velocity Strata,Sedan,2022,58600,Base,Hybrid,Black,1,2,Excellent,Northeast,13300
+Velocity Volt,EV Sedan,2023,45900,Luxury,Electric,Black,2,2,Good,West,21180
+Velocity Summit,SUV,2025,14900,Base,Gasoline,Red,0,1,Excellent,Midwest,32270
+Velocity Dash,Hatchback,2023,48100,Sport,Gasoline,White,0,3,Excellent,Northeast,12970
+Velocity Strata,Sedan,2015,122100,Base,Gasoline,Blue,0,2,Excellent,West,3630
+Velocity Ridge,Pickup,2024,25700,Base,Gasoline,Silver,1,1,Fair,Midwest,24780
+Velocity Aero,Coupe,2020,71500,Base,Gasoline,Black,0,2,Good,Northeast,18220
+Velocity Strata,Sedan,2022,89200,Base,Gasoline,Red,1,2,Good,West,9420
+Velocity Dash,Hatchback,2014,99100,Base,Gasoline,White,1,1,Excellent,South,3500
+Velocity Strata,Sedan,2022,29100,Luxury,Gasoline,Black,1,1,Fair,South,14250
+Velocity Summit,SUV,2016,117200,Sport,Hybrid,Gray,0,3,Good,South,6450
+Velocity Summit,SUV,2022,51200,Base,Hybrid,Silver,2,1,Good,Northeast,16310
+Velocity Strata,Sedan,2017,97300,Luxury,Gasoline,Silver,0,1,Good,Northeast,5910
+Velocity Dash,Hatchback,2024,24100,Base,Gasoline,White,0,1,Excellent,South,16240
+Velocity Volt,EV Sedan,2021,42600,Base,Electric,Black,0,1,Excellent,West,18440
+Velocity Dash,Hatchback,2023,24700,Base,Gasoline,White,0,1,Fair,Midwest,11850
+Velocity Summit,SUV,2025,4100,Base,Hybrid,Red,0,1,Good,South,36820
+Velocity Dash,Hatchback,2022,53900,Sport,Gasoline,Silver,1,1,Excellent,West,10830
+Velocity Summit,SUV,2025,12800,Base,Hybrid,Red,0,1,Fair,Midwest,36290
+Velocity Strata,Sedan,2021,71300,Base,Gasoline,Black,2,1,Excellent,West,8580
+Velocity Strata,Sedan,2022,35000,Sport,Gasoline,Black,1,1,Excellent,Northeast,13560
+Velocity Summit,SUV,2016,153800,Base,Gasoline,Silver,0,1,Good,Northeast,4750
+Velocity Dash,Hatchback,2015,93800,Luxury,Hybrid,White,0,1,Good,Northeast,3720
+Velocity Aero,Coupe,2017,175900,Base,Gasoline,White,0,1,Good,Midwest,8210
+Velocity Dash,Hatchback,2024,34300,Sport,Hybrid,Silver,0,1,Excellent,South,17270
+Velocity Aero,Coupe,2018,121700,Base,Gasoline,Silver,1,1,Fair,South,10370
+Velocity Volt,EV Sedan,2018,138500,Sport,Electric,Gray,0,2,Good,West,9390
+Velocity Dash,Hatchback,2018,113700,Base,Gasoline,Red,0,2,Excellent,South,4370
+Velocity Strata,Sedan,2024,25500,Sport,Hybrid,Gray,0,2,Excellent,South,23750
+Velocity Ridge,Pickup,2019,72800,Sport,Gasoline,Silver,0,1,Excellent,West,13990
+Velocity Summit,SUV,2017,145300,Base,Gasoline,Blue,1,1,Fair,Northeast,5090
+Velocity Strata,Sedan,2015,184200,Base,Hybrid,Red,0,2,Good,Midwest,3500
+Velocity Strata,Sedan,2025,16000,Base,Gasoline,White,0,1,Excellent,Northeast,25700
+Velocity Volt,EV Sedan,2015,173200,Luxury,Electric,Blue,0,1,Fair,Midwest,5910
+Velocity Ridge,Pickup,2018,59900,Sport,Hybrid,Gray,1,1,Excellent,South,11440
+Velocity Summit,SUV,2025,16000,Base,Hybrid,White,0,1,Excellent,Midwest,33850
+Velocity Strata,Sedan,2015,138600,Base,Gasoline,Black,0,1,Excellent,Midwest,3500
+Velocity Strata,Sedan,2024,17700,Base,Gasoline,Silver,0,2,Good,South,18990
+Velocity Dash,Hatchback,2014,69000,Base,Gasoline,Blue,0,2,Good,South,3500
+Velocity Strata,Sedan,2019,99100,Base,Hybrid,White,1,1,Excellent,Northeast,6850
+Velocity Strata,Sedan,2024,26000,Base,Gasoline,Red,0,1,Good,South,20840
+Velocity Ridge,Pickup,2024,30000,Luxury,Gasoline,White,0,3,Fair,South,32070
+Velocity Summit,SUV,2025,5300,Base,Gasoline,Silver,0,3,Good,Northeast,30480
+Velocity Dash,Hatchback,2015,160400,Base,Gasoline,Silver,0,2,Fair,West,3500
+Velocity Strata,Sedan,2024,28800,Base,Hybrid,Gray,0,1,Good,Northeast,21550
+Velocity Volt,EV Sedan,2016,112500,Sport,Electric,Silver,0,1,Excellent,Northeast,8000
+Velocity Dash,Hatchback,2023,28000,Sport,Hybrid,White,0,1,Good,West,16040
+Velocity Summit,SUV,2015,167400,Sport,Gasoline,Black,1,2,Excellent,South,4100
+Velocity Strata,Sedan,2024,36500,Base,Gasoline,White,0,2,Good,South,18330
+Velocity Ridge,Pickup,2015,155200,Base,Gasoline,Gray,0,2,Excellent,South,4580
+Velocity Summit,SUV,2022,40700,Sport,Hybrid,White,0,3,Good,Northeast,21530
+Velocity Aero,Coupe,2017,137800,Luxury,Gasoline,Black,0,1,Excellent,Northeast,10570
+Velocity Summit,SUV,2024,29900,Luxury,Gasoline,Black,0,1,Good,Northeast,35290
+Velocity Ridge,Pickup,2020,67800,Luxury,Gasoline,Gray,0,1,Excellent,West,17680
+Velocity Dash,Hatchback,2023,22300,Base,Hybrid,Silver,0,1,Fair,South,13090
+Velocity Volt,EV Sedan,2023,19700,Base,Electric,Gray,0,1,Excellent,Midwest,27850
+Velocity Dash,Hatchback,2025,13000,Sport,Hybrid,Blue,0,1,Good,South,21090
+Velocity Volt,EV Sedan,2016,104500,Luxury,Electric,White,0,1,Good,Midwest,8470
+Velocity Ridge,Pickup,2017,158400,Luxury,Gasoline,White,0,1,Good,Midwest,7480
+Velocity Dash,Hatchback,2015,115800,Sport,Hybrid,Red,0,1,Fair,Northeast,3500
+Velocity Aero,Coupe,2017,150500,Base,Gasoline,Blue,0,1,Excellent,Midwest,8620
+Velocity Strata,Sedan,2025,14400,Base,Gasoline,White,0,1,Excellent,Midwest,24910
+Velocity Strata,Sedan,2021,32900,Base,Hybrid,Silver,0,3,Good,West,11370
+Velocity Strata,Sedan,2017,130600,Luxury,Gasoline,White,0,1,Fair,Midwest,5160
+Velocity Strata,Sedan,2024,22000,Luxury,Hybrid,Black,0,3,Good,South,24630
+Velocity Summit,SUV,2021,85200,Sport,Gasoline,White,1,1,Excellent,Midwest,14820
+Velocity Strata,Sedan,2015,142600,Base,Gasoline,Silver,1,1,Good,Midwest,3500
+Velocity Strata,Sedan,2025,13400,Luxury,Hybrid,Black,0,1,Excellent,Northeast,30080
+Velocity Summit,SUV,2025,21900,Luxury,Gasoline,Black,1,1,Fair,Northeast,33140
+Velocity Summit,SUV,2024,29900,Sport,Gasoline,Black,0,2,Good,Northeast,29560
+Velocity Ridge,Pickup,2021,56700,Luxury,Gasoline,Black,0,3,Good,Northeast,20060
+Velocity Strata,Sedan,2015,206600,Base,Gasoline,Silver,0,1,Good,South,3500
+Velocity Dash,Hatchback,2023,60300,Luxury,Gasoline,Red,0,2,Good,Midwest,13920
+Velocity Summit,SUV,2025,6900,Luxury,Gasoline,White,1,2,Good,South,35720
+Velocity Summit,SUV,2022,43900,Sport,Hybrid,Silver,1,2,Good,Northeast,18910
+Velocity Strata,Sedan,2019,92800,Sport,Hybrid,Blue,0,1,Fair,Northeast,7850
+Velocity Dash,Hatchback,2016,145700,Base,Gasoline,Black,0,2,Excellent,West,3500
+Velocity Summit,SUV,2017,163500,Luxury,Gasoline,Blue,0,3,Excellent,West,6480
+Velocity Ridge,Pickup,2021,56000,Sport,Gasoline,Black,0,2,Good,South,19120
+Velocity Summit,SUV,2024,29100,Sport,Hybrid,White,0,2,Excellent,South,32580
+Velocity Strata,Sedan,2022,48400,Sport,Gasoline,Silver,1,1,Fair,Midwest,12990
+Velocity Strata,Sedan,2018,69900,Luxury,Gasoline,White,0,2,Excellent,Midwest,8720
+Velocity Volt,EV Sedan,2021,73500,Base,Electric,White,2,1,Good,Midwest,13640
+Velocity Summit,SUV,2020,68600,Luxury,Gasoline,White,0,3,Excellent,Midwest,14800
+Velocity Summit,SUV,2022,19300,Base,Gasoline,White,0,2,Excellent,South,22640
+Velocity Volt,EV Sedan,2019,92400,Sport,Electric,White,1,1,Good,West,12550
+Velocity Summit,SUV,2024,18200,Sport,Hybrid,Silver,0,3,Fair,West,30410
+Velocity Aero,Coupe,2023,39900,Luxury,Gasoline,Black,0,2,Fair,Northeast,34030
+Velocity Ridge,Pickup,2023,32900,Sport,Hybrid,Gray,0,1,Good,South,29910
+Velocity Dash,Hatchback,2025,12800,Luxury,Gasoline,Black,0,1,Fair,Northeast,20600
+Velocity Volt,EV Sedan,2016,146900,Sport,Electric,Red,0,2,Fair,South,5580
+Velocity Dash,Hatchback,2018,67600,Base,Hybrid,Silver,0,2,Excellent,South,5750
+Velocity Strata,Sedan,2015,151600,Base,Gasoline,Blue,0,2,Good,Northeast,3500
+Velocity Strata,Sedan,2021,57800,Luxury,Hybrid,Silver,0,1,Good,West,14050
+Velocity Strata,Sedan,2015,137900,Base,Gasoline,Silver,2,2,Good,Northeast,3500
+Velocity Strata,Sedan,2015,16700,Base,Gasoline,Black,0,1,Excellent,West,5280
+Velocity Summit,SUV,2018,105000,Sport,Gasoline,White,0,3,Fair,Northeast,7430
+Velocity Summit,SUV,2023,43500,Sport,Gasoline,White,0,1,Good,West,23240
+Velocity Summit,SUV,2024,28200,Luxury,Hybrid,Silver,0,3,Good,Northeast,32240
+Velocity Dash,Hatchback,2014,85100,Base,Hybrid,Black,0,1,Good,South,3500
+Velocity Volt,EV Sedan,2022,55300,Base,Electric,Black,1,2,Excellent,West,18480
+Velocity Summit,SUV,2018,92800,Sport,Gasoline,White,1,2,Good,Midwest,8780
+Velocity Volt,EV Sedan,2021,47000,Base,Electric,Black,0,1,Good,Northeast,19830
+Velocity Aero,Coupe,2025,8800,Luxury,Gasoline,Red,1,1,Good,Midwest,50230
+Velocity Summit,SUV,2018,87400,Luxury,Gasoline,Silver,1,1,Good,South,9480
+Velocity Dash,Hatchback,2015,110100,Sport,Hybrid,Black,1,2,Good,Midwest,3500
+Velocity Ridge,Pickup,2023,24800,Base,Hybrid,Black,1,1,Good,Northeast,24290
+Velocity Volt,EV Sedan,2014,114300,Base,Electric,Gray,0,1,Excellent,Northeast,5250
+Velocity Dash,Hatchback,2016,161300,Luxury,Gasoline,Silver,1,1,Excellent,West,3500
+Velocity Dash,Hatchback,2014,109500,Base,Gasoline,White,1,2,Fair,South,3500
+Velocity Dash,Hatchback,2024,7600,Luxury,Gasoline,Red,2,1,Good,West,15860
+Velocity Strata,Sedan,2021,66900,Luxury,Gasoline,Silver,1,1,Excellent,West,11130
+Velocity Aero,Coupe,2025,16100,Base,Gasoline,Blue,0,2,Excellent,West,45260
+Velocity Dash,Hatchback,2025,11900,Luxury,Hybrid,Gray,0,1,Excellent,West,26090
+Velocity Summit,SUV,2018,73500,Sport,Gasoline,Gray,0,1,Good,West,9910
+Velocity Summit,SUV,2016,75400,Sport,Gasoline,Red,0,1,Good,South,7210
+Velocity Dash,Hatchback,2022,70500,Base,Hybrid,White,0,1,Good,West,10000
+Velocity Dash,Hatchback,2015,120300,Luxury,Gasoline,Gray,0,1,Excellent,West,3500
+Velocity Volt,EV Sedan,2014,134400,Base,Electric,Red,1,2,Excellent,South,4520
+Velocity Strata,Sedan,2014,141800,Base,Gasoline,White,0,1,Good,South,3500
+Velocity Summit,SUV,2023,36900,Luxury,Gasoline,White,0,1,Good,Northeast,29050
+Velocity Dash,Hatchback,2020,106300,Luxury,Hybrid,White,1,1,Good,West,7210
+Velocity Dash,Hatchback,2019,138300,Base,Gasoline,Blue,0,1,Good,South,5090
+Velocity Volt,EV Sedan,2018,125200,Luxury,Electric,Black,2,1,Good,Midwest,8360
+Velocity Ridge,Pickup,2019,97800,Base,Hybrid,Silver,0,1,Good,South,12420
+Velocity Dash,Hatchback,2015,152200,Base,Gasoline,Gray,0,1,Good,Northeast,3500
+Velocity Volt,EV Sedan,2015,144000,Base,Electric,Gray,0,2,Good,Northeast,5240
+Velocity Dash,Hatchback,2023,47600,Sport,Gasoline,White,1,1,Fair,Northeast,11040
+Velocity Dash,Hatchback,2021,37900,Base,Gasoline,Gray,0,2,Excellent,West,9330
+Velocity Ridge,Pickup,2023,39400,Sport,Hybrid,Red,0,1,Good,West,29660
+Velocity Ridge,Pickup,2024,21100,Luxury,Gasoline,White,0,1,Fair,West,36100
+Velocity Volt,EV Sedan,2016,149400,Luxury,Electric,White,1,3,Good,West,5610
+Velocity Summit,SUV,2024,25500,Sport,Gasoline,White,0,3,Good,Northeast,29290
+Velocity Dash,Hatchback,2022,67900,Base,Gasoline,Silver,0,2,Good,Northeast,8830
+Velocity Summit,SUV,2019,33700,Sport,Gasoline,White,1,1,Fair,South,12460
+Velocity Volt,EV Sedan,2016,165300,Sport,Electric,White,1,1,Excellent,Midwest,5740
+Velocity Summit,SUV,2025,10900,Base,Gasoline,White,0,1,Fair,West,32420
+Velocity Strata,Sedan,2022,55200,Base,Gasoline,Black,0,1,Good,South,13280
+Velocity Summit,SUV,2025,20300,Luxury,Hybrid,White,0,2,Excellent,Midwest,42680
+Velocity Aero,Coupe,2015,150600,Luxury,Gasoline,Blue,0,2,Excellent,Northeast,7380
+Velocity Dash,Hatchback,2025,5200,Base,Gasoline,Red,0,2,Good,Northeast,18390
+Velocity Ridge,Pickup,2024,10700,Luxury,Hybrid,Blue,0,1,Excellent,Midwest,43420
+Velocity Summit,SUV,2025,13700,Base,Gasoline,White,0,1,Good,South,34010
+Velocity Summit,SUV,2014,111700,Sport,Gasoline,Gray,0,1,Fair,Midwest,4340
+Velocity Summit,SUV,2025,14100,Base,Gasoline,Black,0,2,Good,Northeast,32130
+Velocity Volt,EV Sedan,2017,66600,Sport,Electric,White,0,1,Good,Midwest,10440
+Velocity Dash,Hatchback,2024,20400,Base,Hybrid,White,0,2,Good,Northeast,15750
+Velocity Volt,EV Sedan,2016,127800,Sport,Electric,Gray,0,1,Good,Midwest,7210
+Velocity Summit,SUV,2017,69500,Luxury,Gasoline,Blue,0,1,Good,South,10080
+Velocity Dash,Hatchback,2020,34800,Base,Hybrid,Black,0,3,Good,Midwest,8170
+Velocity Strata,Sedan,2024,12900,Sport,Gasoline,Gray,0,1,Good,West,21600
+Velocity Summit,SUV,2018,153400,Luxury,Gasoline,Black,0,1,Good,West,7850
+Velocity Ridge,Pickup,2020,73700,Base,Gasoline,White,2,3,Fair,South,9340
+Velocity Strata,Sedan,2023,13800,Base,Gasoline,Silver,0,3,Good,South,18240
+Velocity Volt,EV Sedan,2015,71200,Base,Electric,White,1,2,Excellent,West,6830
+Velocity Summit,SUV,2024,30400,Luxury,Gasoline,Blue,0,2,Fair,West,29320
+Velocity Summit,SUV,2023,37400,Luxury,Gasoline,Black,0,1,Good,Northeast,28040
+Velocity Strata,Sedan,2023,37500,Base,Gasoline,White,0,1,Excellent,South,15500
+Velocity Volt,EV Sedan,2016,136400,Luxury,Electric,White,0,3,Excellent,Northeast,7350
+Velocity Dash,Hatchback,2018,65800,Sport,Hybrid,Black,0,2,Good,Northeast,5920
+Velocity Strata,Sedan,2023,48600,Base,Gasoline,Black,0,1,Excellent,South,15850
+Velocity Aero,Coupe,2018,147300,Base,Gasoline,Gray,0,3,Good,West,9180
+Velocity Ridge,Pickup,2014,155900,Sport,Hybrid,Red,0,3,Good,Northeast,3970
+Velocity Summit,SUV,2018,83800,Luxury,Gasoline,White,0,1,Good,Midwest,10620
+Velocity Aero,Coupe,2016,184900,Base,Gasoline,Black,0,1,Fair,West,5600
+Velocity Ridge,Pickup,2014,138100,Base,Hybrid,Black,1,1,Excellent,South,4400
+Velocity Summit,SUV,2014,125500,Luxury,Gasoline,Blue,0,1,Fair,Northeast,4640
+Velocity Dash,Hatchback,2020,80500,Sport,Gasoline,Blue,0,1,Good,Northeast,8190
+Velocity Volt,EV Sedan,2017,184700,Sport,Electric,Black,2,1,Good,South,5340
+Velocity Strata,Sedan,2025,7900,Sport,Gasoline,Silver,1,2,Excellent,Northeast,23140
+Velocity Dash,Hatchback,2016,78100,Sport,Gasoline,Black,0,1,Excellent,Northeast,4150
+Velocity Summit,SUV,2024,32000,Base,Hybrid,Black,0,1,Good,Northeast,28390
+Velocity Aero,Coupe,2023,30800,Luxury,Hybrid,White,1,3,Fair,Northeast,30730
+Velocity Volt,EV Sedan,2016,120000,Sport,Electric,Silver,1,1,Fair,Northeast,6300
+Velocity Volt,EV Sedan,2025,4300,Luxury,Electric,White,0,1,Good,Northeast,45990
+Velocity Summit,SUV,2018,67100,Luxury,Gasoline,Silver,0,1,Good,Midwest,11770
+Velocity Strata,Sedan,2014,116400,Base,Gasoline,Black,0,3,Excellent,Northeast,3500
+Velocity Dash,Hatchback,2020,60000,Luxury,Gasoline,Red,0,2,Good,Midwest,8780
+Velocity Summit,SUV,2020,107500,Base,Gasoline,Gray,0,1,Excellent,West,11570
+Velocity Summit,SUV,2018,112400,Base,Gasoline,White,1,1,Good,Northeast,7480
+Velocity Summit,SUV,2021,104400,Sport,Hybrid,White,0,1,Fair,South,13940
+Velocity Summit,SUV,2016,118900,Luxury,Gasoline,Silver,0,1,Excellent,West,7370
+Velocity Ridge,Pickup,2024,29600,Sport,Gasoline,Blue,2,2,Good,Midwest,25560
+Velocity Dash,Hatchback,2017,66600,Base,Gasoline,White,0,2,Good,South,4260
+Velocity Dash,Hatchback,2021,82500,Base,Gasoline,White,0,2,Good,West,7420
+Velocity Strata,Sedan,2016,101100,Base,Gasoline,White,1,1,Fair,South,3660
+Velocity Summit,SUV,2022,61600,Sport,Hybrid,Silver,1,1,Fair,South,17050
+Velocity Dash,Hatchback,2022,71100,Base,Hybrid,Blue,0,2,Good,West,9980
+Velocity Dash,Hatchback,2017,116900,Luxury,Gasoline,Blue,0,1,Good,Northeast,4280
+Velocity Volt,EV Sedan,2017,107500,Base,Electric,White,0,1,Good,Midwest,8090
+Velocity Dash,Hatchback,2022,45200,Base,Gasoline,Black,0,1,Excellent,West,11130
+Velocity Dash,Hatchback,2015,157300,Base,Hybrid,Red,0,1,Excellent,West,3500
+Velocity Summit,SUV,2021,80000,Base,Hybrid,Black,0,1,Excellent,South,14900
+Velocity Summit,SUV,2014,195000,Base,Gasoline,Blue,1,2,Excellent,Midwest,3500
+Velocity Strata,Sedan,2015,117600,Base,Gasoline,Black,0,1,Good,Northeast,3730
+Velocity Aero,Coupe,2017,123700,Base,Gasoline,White,1,2,Fair,South,7940
+Velocity Strata,Sedan,2021,48500,Sport,Gasoline,White,2,1,Excellent,South,10690
+Velocity Dash,Hatchback,2018,90500,Base,Gasoline,Gray,0,1,Excellent,Northeast,4960
+Velocity Dash,Hatchback,2022,36800,Base,Gasoline,Gray,1,1,Good,West,9750
+Velocity Summit,SUV,2025,18300,Base,Gasoline,Gray,0,1,Good,West,29400
+Velocity Volt,EV Sedan,2016,161300,Sport,Electric,Red,0,1,Fair,West,5720
+Velocity Volt,EV Sedan,2023,44000,Sport,Electric,Silver,0,2,Excellent,Northeast,26570
+Velocity Dash,Hatchback,2023,45800,Base,Hybrid,White,0,1,Fair,West,11950
+Velocity Ridge,Pickup,2025,1700,Sport,Hybrid,Blue,0,2,Fair,Northeast,37260
+Velocity Ridge,Pickup,2014,159300,Luxury,Hybrid,Black,1,2,Good,Midwest,4270
+Velocity Strata,Sedan,2019,79000,Sport,Hybrid,Black,0,2,Good,Midwest,8870
+Velocity Summit,SUV,2024,29500,Base,Gasoline,White,0,1,Good,Northeast,27660
+Velocity Ridge,Pickup,2015,103500,Base,Hybrid,Red,0,2,Good,Midwest,5570
+Velocity Dash,Hatchback,2020,80200,Sport,Gasoline,Silver,0,2,Good,Northeast,6780
+Velocity Ridge,Pickup,2022,50700,Base,Gasoline,Blue,0,2,Good,West,20590
+Velocity Strata,Sedan,2022,38000,Base,Hybrid,Red,2,2,Excellent,Northeast,11600
+Velocity Summit,SUV,2022,51900,Base,Gasoline,Blue,1,1,Good,Midwest,16540
+Velocity Dash,Hatchback,2014,128100,Sport,Hybrid,Gray,0,1,Good,South,3500
+Velocity Dash,Hatchback,2024,14900,Base,Gasoline,Silver,0,1,Good,South,17030
+Velocity Dash,Hatchback,2020,89200,Base,Gasoline,Gray,1,1,Excellent,South,6030
+Velocity Strata,Sedan,2023,36200,Luxury,Gasoline,Black,0,2,Good,West,19210
+Velocity Ridge,Pickup,2019,133000,Base,Gasoline,White,0,1,Fair,West,8740
+Velocity Summit,SUV,2022,40100,Luxury,Hybrid,Blue,0,2,Excellent,South,24260
+Velocity Aero,Coupe,2023,30800,Luxury,Gasoline,Blue,1,1,Good,South,32060
+Velocity Ridge,Pickup,2023,36400,Sport,Gasoline,Black,0,2,Fair,Northeast,25050
+Velocity Volt,EV Sedan,2017,135800,Base,Electric,Silver,0,1,Good,West,7230
+Velocity Ridge,Pickup,2019,69100,Base,Hybrid,White,0,2,Good,South,11970
+Velocity Dash,Hatchback,2022,40000,Sport,Gasoline,Black,0,2,Good,West,11330
+Velocity Dash,Hatchback,2014,175900,Luxury,Gasoline,White,0,2,Fair,West,3500
+Velocity Summit,SUV,2019,174300,Sport,Gasoline,White,0,3,Excellent,Midwest,8080
+Velocity Ridge,Pickup,2017,141900,Base,Gasoline,White,0,1,Excellent,South,7140
+Velocity Strata,Sedan,2018,111800,Base,Gasoline,White,0,2,Good,West,5730
+Velocity Summit,SUV,2014,127400,Base,Hybrid,White,0,1,Good,South,4210
+Velocity Ridge,Pickup,2017,97400,Sport,Gasoline,White,0,3,Good,West,8370
+Velocity Volt,EV Sedan,2025,17000,Base,Electric,White,1,3,Fair,Northeast,28510
+Velocity Aero,Coupe,2024,4500,Sport,Gasoline,Red,0,2,Excellent,West,46010
+Velocity Strata,Sedan,2024,18800,Luxury,Gasoline,Black,0,1,Good,South,23010
+Velocity Summit,SUV,2025,11900,Base,Gasoline,Silver,0,2,Excellent,Midwest,35120
+Velocity Summit,SUV,2017,130400,Sport,Gasoline,Silver,0,1,Fair,South,6350
+Velocity Ridge,Pickup,2021,29700,Sport,Gasoline,White,0,2,Good,Midwest,19080
+Velocity Ridge,Pickup,2020,85900,Sport,Hybrid,White,0,1,Fair,South,13710
+Velocity Strata,Sedan,2017,107500,Base,Gasoline,White,0,1,Good,West,5030
+Velocity Ridge,Pickup,2016,88800,Sport,Gasoline,Red,0,1,Good,Midwest,8050
+Velocity Strata,Sedan,2025,20800,Sport,Gasoline,White,0,3,Good,West,21870
+Velocity Dash,Hatchback,2015,110700,Sport,Gasoline,White,0,1,Good,Northeast,3500
+Velocity Dash,Hatchback,2021,71700,Sport,Gasoline,Blue,1,2,Excellent,South,8000
+Velocity Summit,SUV,2016,132000,Sport,Gasoline,White,0,1,Good,Northeast,6190
+Velocity Strata,Sedan,2020,63500,Base,Hybrid,Red,0,2,Good,Northeast,9650
+Velocity Strata,Sedan,2025,9400,Sport,Gasoline,Gray,1,1,Good,South,23950
+Velocity Strata,Sedan,2015,179900,Base,Gasoline,White,0,2,Good,Midwest,3500
+Velocity Dash,Hatchback,2022,47600,Sport,Gasoline,White,0,1,Excellent,South,11860
+Velocity Volt,EV Sedan,2021,59400,Luxury,Electric,Silver,0,2,Fair,Northeast,18920
+Velocity Summit,SUV,2025,4800,Luxury,Gasoline,Black,0,1,Good,Midwest,41440
+Velocity Summit,SUV,2022,44700,Base,Gasoline,White,0,2,Good,West,18350
+Velocity Volt,EV Sedan,2020,59700,Sport,Electric,Blue,0,1,Good,Midwest,16030
+Velocity Summit,SUV,2023,37600,Sport,Gasoline,Red,0,2,Good,South,21960
+Velocity Strata,Sedan,2018,115100,Luxury,Gasoline,Red,0,1,Good,Northeast,6840
+Velocity Strata,Sedan,2014,241900,Base,Hybrid,White,0,1,Good,Midwest,3500
+Velocity Volt,EV Sedan,2018,71400,Base,Electric,Red,0,1,Good,West,11030
+Velocity Dash,Hatchback,2022,55100,Base,Gasoline,Black,0,2,Good,South,10580
+Velocity Strata,Sedan,2017,103300,Base,Gasoline,Silver,0,2,Good,Northeast,5000
+Velocity Volt,EV Sedan,2019,120700,Luxury,Electric,Silver,0,1,Good,South,11860
+Velocity Aero,Coupe,2018,91800,Luxury,Gasoline,Silver,0,3,Good,Northeast,13830
+Velocity Summit,SUV,2020,38400,Base,Gasoline,Silver,0,1,Good,Northeast,13560
+Velocity Aero,Coupe,2019,78700,Base,Hybrid,Silver,0,1,Good,Northeast,17220
+Velocity Dash,Hatchback,2023,67700,Sport,Gasoline,White,0,1,Good,Midwest,11120
+Velocity Strata,Sedan,2016,109800,Sport,Gasoline,White,0,2,Good,West,4650
+Velocity Ridge,Pickup,2020,84500,Base,Gasoline,White,0,1,Fair,Midwest,12620
+Velocity Dash,Hatchback,2015,198300,Base,Hybrid,Black,0,1,Good,South,3500
+Velocity Volt,EV Sedan,2024,21100,Base,Electric,Silver,0,1,Excellent,Midwest,31500
+Velocity Dash,Hatchback,2020,77500,Sport,Gasoline,Red,0,2,Excellent,West,7380
+Velocity Dash,Hatchback,2014,153000,Luxury,Hybrid,White,0,3,Excellent,South,3500
+Velocity Ridge,Pickup,2016,36700,Sport,Gasoline,Blue,0,2,Good,Midwest,9410
+Velocity Dash,Hatchback,2023,50100,Luxury,Hybrid,Black,1,1,Fair,Midwest,12900
+Velocity Summit,SUV,2014,187400,Sport,Gasoline,Black,1,1,Excellent,West,3500
+Velocity Dash,Hatchback,2025,4100,Base,Gasoline,Blue,1,2,Good,Midwest,16210
+Velocity Summit,SUV,2023,44400,Base,Gasoline,Red,0,1,Fair,Northeast,19070
+Velocity Summit,SUV,2024,30600,Base,Gasoline,Blue,0,3,Good,South,24830
+Velocity Summit,SUV,2022,78700,Base,Gasoline,White,0,3,Excellent,West,16420
+Velocity Dash,Hatchback,2024,12000,Base,Hybrid,Gray,2,1,Good,Northeast,14140
+Velocity Aero,Coupe,2016,158100,Sport,Gasoline,Silver,1,1,Excellent,Midwest,6900
+Velocity Strata,Sedan,2024,30200,Luxury,Gasoline,White,0,1,Good,West,22770
+Velocity Dash,Hatchback,2014,130200,Base,Gasoline,Blue,0,1,Good,Northeast,3500
+Velocity Dash,Hatchback,2017,116900,Base,Gasoline,White,0,1,Fair,Midwest,3610
+Velocity Dash,Hatchback,2016,152400,Base,Gasoline,Silver,0,1,Good,South,3500
+Velocity Strata,Sedan,2018,118000,Luxury,Gasoline,Gray,0,1,Good,Northeast,7050
+Velocity Summit,SUV,2019,103100,Base,Gasoline,White,0,2,Good,South,9430
+Velocity Ridge,Pickup,2024,26000,Sport,Gasoline,Silver,0,2,Excellent,Northeast,33980
+Velocity Ridge,Pickup,2018,101300,Base,Gasoline,Silver,0,2,Excellent,South,8880
+Velocity Strata,Sedan,2015,109600,Sport,Gasoline,Black,1,2,Good,South,3670
+Velocity Aero,Coupe,2016,99900,Base,Hybrid,Gray,0,1,Fair,Northeast,8620
+Velocity Summit,SUV,2021,85200,Luxury,Gasoline,Silver,0,1,Fair,West,16620
+Velocity Dash,Hatchback,2020,80500,Base,Hybrid,Black,1,1,Good,South,6910
+Velocity Dash,Hatchback,2020,62000,Base,Gasoline,White,0,2,Good,Midwest,7740
+Velocity Strata,Sedan,2017,101300,Base,Gasoline,White,0,2,Good,Midwest,5140
+Velocity Ridge,Pickup,2025,16000,Sport,Gasoline,Black,0,3,Good,South,33960
+Velocity Ridge,Pickup,2025,18500,Sport,Gasoline,Black,0,2,Good,Northeast,39450
+Velocity Strata,Sedan,2015,205600,Base,Hybrid,Blue,0,1,Good,West,3500
+Velocity Volt,EV Sedan,2020,63600,Sport,Electric,Gray,0,3,Fair,West,13530
+Velocity Dash,Hatchback,2022,41000,Luxury,Hybrid,Gray,0,1,Good,West,13200
+Velocity Summit,SUV,2019,80700,Sport,Hybrid,Red,0,1,Good,South,12580
+Velocity Dash,Hatchback,2024,30400,Sport,Gasoline,Black,0,2,Excellent,South,17360
+Velocity Strata,Sedan,2020,75500,Base,Gasoline,Black,1,1,Excellent,Midwest,8660
+Velocity Strata,Sedan,2020,129100,Base,Gasoline,White,0,1,Fair,South,6470
+Velocity Dash,Hatchback,2017,99600,Sport,Gasoline,Black,0,2,Good,Midwest,4500
+Velocity Ridge,Pickup,2017,77200,Luxury,Hybrid,Gray,1,1,Good,Northeast,9810
+Velocity Volt,EV Sedan,2018,76500,Luxury,Electric,Black,0,1,Good,Midwest,12560
+Velocity Strata,Sedan,2020,27700,Sport,Gasoline,Red,0,2,Good,West,12200
+Velocity Aero,Coupe,2016,88600,Base,Gasoline,Black,1,1,Good,Northeast,8200
+Velocity Ridge,Pickup,2020,103000,Sport,Gasoline,Blue,0,2,Fair,South,12520
+Velocity Summit,SUV,2024,19200,Luxury,Gasoline,Silver,1,1,Good,South,26980
+Velocity Strata,Sedan,2022,56100,Luxury,Gasoline,Blue,0,1,Fair,South,13430
+Velocity Dash,Hatchback,2014,212100,Luxury,Hybrid,White,1,2,Fair,Midwest,3500
+Velocity Dash,Hatchback,2014,80600,Sport,Gasoline,White,0,1,Good,Midwest,3500
+Velocity Summit,SUV,2015,162500,Luxury,Gasoline,Gray,1,2,Excellent,Northeast,4550
+Velocity Ridge,Pickup,2023,43900,Sport,Gasoline,Gray,0,1,Excellent,South,26790
+Velocity Volt,EV Sedan,2022,61200,Sport,Electric,Black,0,1,Good,West,24010
+Velocity Ridge,Pickup,2019,104400,Base,Gasoline,White,0,2,Fair,Midwest,9790
+Velocity Ridge,Pickup,2018,75100,Base,Gasoline,White,0,1,Excellent,Midwest,11940
+Velocity Strata,Sedan,2018,152000,Base,Gasoline,White,2,3,Fair,Northeast,3510
+Velocity Dash,Hatchback,2024,15100,Base,Gasoline,Blue,0,1,Fair,West,14870
+Velocity Strata,Sedan,2018,112600,Base,Gasoline,White,0,1,Good,Northeast,5970
+Velocity Aero,Coupe,2014,143300,Sport,Gasoline,Black,1,1,Fair,Northeast,4550
+Velocity Aero,Coupe,2016,107900,Sport,Gasoline,Gray,0,3,Good,West,8780
+Velocity Dash,Hatchback,2019,107000,Sport,Gasoline,Blue,0,3,Excellent,West,5840
+Velocity Strata,Sedan,2020,41300,Base,Gasoline,White,0,2,Good,South,10080
+Velocity Summit,SUV,2024,33400,Base,Gasoline,Red,0,1,Good,South,29230
+Velocity Dash,Hatchback,2018,89400,Sport,Gasoline,Silver,0,2,Good,West,5040
+Velocity Strata,Sedan,2018,112900,Sport,Gasoline,White,1,2,Good,West,5330
+Velocity Volt,EV Sedan,2024,23000,Base,Electric,White,1,1,Good,West,27580
+Velocity Summit,SUV,2018,122200,Base,Gasoline,White,0,1,Good,West,7980
+Velocity Summit,SUV,2018,100800,Base,Gasoline,Gray,1,1,Fair,Northeast,6750
+Velocity Strata,Sedan,2021,53100,Base,Gasoline,Silver,0,1,Fair,Midwest,10060
+Velocity Strata,Sedan,2016,134500,Sport,Gasoline,White,2,1,Good,Midwest,3500
+Velocity Dash,Hatchback,2015,151600,Base,Gasoline,Red,0,1,Fair,Northeast,3500
+Velocity Strata,Sedan,2018,115700,Base,Gasoline,Red,1,3,Fair,Midwest,4400
+Velocity Summit,SUV,2014,198600,Sport,Hybrid,Silver,0,2,Excellent,Midwest,4070
+Velocity Strata,Sedan,2019,97600,Base,Gasoline,White,0,2,Fair,Midwest,6720
+Velocity Strata,Sedan,2015,67100,Sport,Gasoline,Red,2,1,Fair,Midwest,3560
+Velocity Summit,SUV,2024,23700,Base,Hybrid,Gray,0,1,Fair,South,28380
+Velocity Strata,Sedan,2018,116100,Sport,Gasoline,Blue,0,1,Good,Midwest,6010
+Velocity Ridge,Pickup,2024,24100,Luxury,Gasoline,Gray,0,2,Good,Northeast,34160
+Velocity Strata,Sedan,2023,45400,Sport,Gasoline,Black,1,1,Excellent,South,16030
+Velocity Dash,Hatchback,2019,92000,Luxury,Hybrid,White,0,1,Excellent,Midwest,7470
+Velocity Dash,Hatchback,2019,94900,Base,Hybrid,Silver,0,3,Fair,West,4940
+Velocity Summit,SUV,2024,23200,Base,Hybrid,White,1,2,Good,Midwest,26250
+Velocity Strata,Sedan,2020,84400,Sport,Gasoline,Black,0,2,Excellent,Midwest,10080
+Velocity Summit,SUV,2022,41900,Luxury,Gasoline,Gray,0,2,Excellent,West,22510
+Velocity Ridge,Pickup,2015,67900,Luxury,Hybrid,Black,0,1,Good,Midwest,8130
+Velocity Strata,Sedan,2022,36900,Base,Gasoline,White,0,1,Fair,Midwest,12280
+Velocity Ridge,Pickup,2015,70600,Luxury,Hybrid,Black,0,1,Fair,Northeast,7480
+Velocity Strata,Sedan,2020,52800,Sport,Gasoline,Silver,0,1,Excellent,Midwest,10950
+Velocity Strata,Sedan,2014,105100,Luxury,Gasoline,Black,0,1,Fair,South,3610
+Velocity Summit,SUV,2025,12700,Base,Gasoline,Blue,0,1,Good,Midwest,35390
+Velocity Strata,Sedan,2017,100500,Luxury,Gasoline,Silver,0,1,Good,Midwest,5730
+Velocity Summit,SUV,2021,23200,Luxury,Gasoline,Silver,0,2,Fair,South,17830
+Velocity Strata,Sedan,2025,14100,Base,Gasoline,Silver,0,1,Fair,Northeast,23190
+Velocity Dash,Hatchback,2018,77000,Base,Gasoline,Silver,0,3,Good,Northeast,4630
+Velocity Strata,Sedan,2020,95800,Base,Gasoline,Red,1,3,Good,South,7450
+Velocity Strata,Sedan,2018,65500,Luxury,Gasoline,Blue,1,2,Excellent,Northeast,8020
+Velocity Strata,Sedan,2020,84600,Base,Gasoline,Black,0,1,Good,Midwest,9200
+Velocity Dash,Hatchback,2020,81300,Base,Hybrid,White,1,1,Good,South,5840
+Velocity Strata,Sedan,2024,30100,Sport,Hybrid,Blue,0,1,Excellent,South,22850
+Velocity Strata,Sedan,2024,21100,Base,Hybrid,Red,1,1,Good,South,19230
+Velocity Volt,EV Sedan,2023,39100,Base,Electric,White,1,1,Good,South,24610
+Velocity Strata,Sedan,2017,68200,Base,Gasoline,Black,0,1,Excellent,Northeast,6020
+Velocity Ridge,Pickup,2016,140200,Base,Hybrid,Black,0,2,Good,South,5560
+Velocity Volt,EV Sedan,2025,6400,Base,Electric,Gray,1,1,Excellent,South,35120
+Velocity Summit,SUV,2019,97300,Luxury,Hybrid,White,0,1,Fair,Northeast,11740
+Velocity Summit,SUV,2025,11300,Base,Gasoline,Silver,0,2,Fair,West,29320
+Velocity Ridge,Pickup,2023,35000,Base,Gasoline,Black,0,1,Good,South,24700
+Velocity Summit,SUV,2024,28100,Sport,Gasoline,Red,0,1,Good,South,29020
+Velocity Dash,Hatchback,2017,91800,Luxury,Hybrid,Gray,0,1,Good,Midwest,5440
+Velocity Dash,Hatchback,2015,226700,Base,Gasoline,Red,0,2,Good,West,3500
+Velocity Dash,Hatchback,2014,142000,Luxury,Gasoline,Black,0,2,Good,Northeast,3500
+Velocity Strata,Sedan,2016,137300,Base,Gasoline,Silver,0,1,Good,South,4220
+Velocity Dash,Hatchback,2024,14300,Base,Gasoline,White,0,1,Excellent,Midwest,17940
+Velocity Strata,Sedan,2017,69600,Base,Hybrid,Red,1,2,Good,South,5310
+Velocity Strata,Sedan,2025,23300,Luxury,Gasoline,Red,0,1,Good,Midwest,30050
+Velocity Summit,SUV,2016,86700,Base,Gasoline,Blue,0,2,Good,Midwest,6640
+Velocity Dash,Hatchback,2015,122200,Base,Gasoline,White,1,1,Excellent,West,3500
+Velocity Summit,SUV,2018,86800,Base,Hybrid,Black,0,1,Good,South,9100
+Velocity Ridge,Pickup,2020,92400,Base,Hybrid,Red,0,2,Excellent,West,13740
+Velocity Summit,SUV,2022,46600,Luxury,Gasoline,Black,1,1,Good,Midwest,22060
+Velocity Strata,Sedan,2020,89400,Sport,Gasoline,Gray,0,2,Good,Midwest,8440
+Velocity Strata,Sedan,2023,41000,Luxury,Gasoline,Silver,0,2,Fair,West,15720
+Velocity Aero,Coupe,2018,67800,Base,Gasoline,White,0,1,Fair,West,13190
+Velocity Dash,Hatchback,2023,59600,Base,Gasoline,Gray,0,3,Good,South,11030
+Velocity Strata,Sedan,2017,51100,Sport,Gasoline,Black,0,2,Good,West,7010
+Velocity Strata,Sedan,2014,126100,Sport,Gasoline,Gray,0,1,Good,West,3500
+Velocity Dash,Hatchback,2022,66200,Sport,Gasoline,Red,2,1,Good,Midwest,8530
+Velocity Strata,Sedan,2014,164000,Base,Gasoline,Black,0,1,Fair,West,3500
+Velocity Strata,Sedan,2020,73700,Luxury,Hybrid,White,0,1,Excellent,Northeast,11650
+Velocity Summit,SUV,2017,139100,Luxury,Hybrid,Silver,1,1,Fair,West,6470
+Velocity Dash,Hatchback,2019,97800,Base,Gasoline,Red,0,1,Good,Northeast,5440
+Velocity Volt,EV Sedan,2022,37400,Sport,Electric,Black,0,2,Fair,Northeast,21860
+Velocity Strata,Sedan,2023,27700,Sport,Hybrid,Gray,0,1,Good,Northeast,19450
+Velocity Aero,Coupe,2024,24300,Sport,Gasoline,Red,0,2,Excellent,South,42960
+Velocity Strata,Sedan,2024,39700,Base,Gasoline,Red,0,2,Good,South,18990
+Velocity Dash,Hatchback,2025,8500,Sport,Gasoline,Red,0,3,Good,West,19040
+Velocity Summit,SUV,2020,77000,Sport,Hybrid,Gray,1,3,Fair,Midwest,11800
+Velocity Strata,Sedan,2015,55000,Base,Hybrid,Blue,0,3,Good,West,4630
+Velocity Ridge,Pickup,2022,35900,Sport,Hybrid,Red,1,1,Good,Northeast,21920
+Velocity Dash,Hatchback,2021,79800,Base,Gasoline,Black,1,1,Good,South,7120
+Velocity Strata,Sedan,2015,142800,Sport,Gasoline,Gray,0,1,Fair,South,3500
+Velocity Ridge,Pickup,2021,70000,Sport,Hybrid,Blue,0,2,Good,South,18350
+Velocity Summit,SUV,2024,24100,Sport,Gasoline,Black,1,2,Fair,Midwest,24150
+Velocity Ridge,Pickup,2018,135100,Sport,Gasoline,Black,0,1,Good,Northeast,8470
+Velocity Strata,Sedan,2018,98800,Base,Gasoline,Blue,0,2,Good,West,5710
+Velocity Summit,SUV,2014,118300,Base,Gasoline,Red,0,2,Fair,Northeast,4040
+Velocity Dash,Hatchback,2020,62800,Sport,Gasoline,Silver,0,2,Good,Midwest,8200
+Velocity Strata,Sedan,2023,52000,Base,Hybrid,Gray,0,1,Excellent,Midwest,16580
+Velocity Dash,Hatchback,2014,195200,Sport,Gasoline,Red,0,1,Excellent,West,3500
+Velocity Summit,SUV,2017,124200,Base,Gasoline,Red,0,2,Excellent,Midwest,6500
+Velocity Dash,Hatchback,2023,38000,Base,Hybrid,White,0,2,Fair,South,10920
+Velocity Strata,Sedan,2023,44300,Luxury,Gasoline,White,0,2,Fair,South,17180
+Velocity Aero,Coupe,2023,62800,Base,Gasoline,Silver,0,1,Good,West,29450
+Velocity Summit,SUV,2023,37000,Sport,Gasoline,White,0,2,Fair,Northeast,22270
+Velocity Volt,EV Sedan,2025,7900,Base,Electric,Blue,0,1,Fair,Midwest,38370
+Velocity Strata,Sedan,2018,83600,Base,Gasoline,White,0,1,Good,West,6740
+Velocity Volt,EV Sedan,2022,46900,Sport,Electric,White,0,1,Good,South,25190
+Velocity Summit,SUV,2024,29300,Base,Gasoline,White,0,3,Excellent,Northeast,26830
+Velocity Aero,Coupe,2015,125600,Base,Hybrid,White,0,1,Excellent,Northeast,7260
+Velocity Dash,Hatchback,2019,86300,Base,Gasoline,Silver,0,1,Good,Midwest,5160
+Velocity Aero,Coupe,2024,24000,Luxury,Gasoline,White,0,2,Fair,Northeast,42910
+Velocity Volt,EV Sedan,2018,74400,Base,Electric,Gray,0,2,Fair,Midwest,10610
+Velocity Aero,Coupe,2015,147000,Base,Gasoline,Silver,0,1,Good,West,6350
+Velocity Volt,EV Sedan,2025,2200,Sport,Electric,Blue,0,1,Fair,West,43990
+Velocity Strata,Sedan,2014,110900,Luxury,Gasoline,Red,0,3,Fair,Midwest,3500
+Velocity Strata,Sedan,2020,84600,Base,Gasoline,Gray,0,1,Good,West,8880
+Velocity Dash,Hatchback,2022,38800,Base,Hybrid,Silver,0,1,Good,South,11690
+Velocity Dash,Hatchback,2017,185600,Base,Hybrid,Black,0,1,Good,Northeast,3500
+Velocity Volt,EV Sedan,2022,49000,Base,Electric,Silver,0,1,Fair,South,19280
+Velocity Aero,Coupe,2023,24000,Luxury,Gasoline,Silver,0,2,Good,Northeast,37120
+Velocity Aero,Coupe,2016,140800,Base,Gasoline,Black,0,1,Excellent,Northeast,7650
+Velocity Ridge,Pickup,2023,46100,Base,Gasoline,White,0,2,Fair,West,21420
+Velocity Dash,Hatchback,2015,170200,Base,Gasoline,Silver,0,2,Good,Midwest,3500
+Velocity Volt,EV Sedan,2025,13800,Base,Electric,White,0,2,Excellent,Midwest,38540
+Velocity Dash,Hatchback,2015,109100,Base,Gasoline,Black,1,1,Fair,Northeast,3500
+Velocity Ridge,Pickup,2019,131400,Base,Gasoline,Blue,2,1,Excellent,South,8020
+Velocity Strata,Sedan,2020,83300,Sport,Hybrid,Silver,0,2,Excellent,South,9230
+Velocity Summit,SUV,2025,8000,Base,Gasoline,Silver,0,3,Fair,South,31110
+Velocity Strata,Sedan,2014,153800,Luxury,Gasoline,Gray,0,2,Excellent,West,3510
+Velocity Volt,EV Sedan,2023,31100,Base,Electric,Gray,1,1,Excellent,South,25830
+Velocity Ridge,Pickup,2014,81400,Base,Gasoline,Silver,1,1,Fair,South,4560
+Velocity Dash,Hatchback,2024,20100,Base,Gasoline,Silver,0,2,Fair,Northeast,13810
+Velocity Dash,Hatchback,2016,146400,Base,Gasoline,Black,0,2,Fair,South,3500
+Velocity Volt,EV Sedan,2024,35100,Sport,Electric,Black,1,2,Good,West,30320
+Velocity Dash,Hatchback,2014,183300,Base,Gasoline,Gray,0,1,Excellent,West,3500
+Velocity Dash,Hatchback,2022,41500,Sport,Gasoline,Black,0,1,Excellent,Midwest,11540
+Velocity Aero,Coupe,2022,58500,Luxury,Gasoline,White,0,1,Good,Midwest,30150
+Velocity Summit,SUV,2025,10600,Luxury,Gasoline,White,1,1,Good,West,38550
+Velocity Aero,Coupe,2023,35700,Base,Gasoline,Silver,1,1,Excellent,South,29040
+Velocity Summit,SUV,2018,126500,Sport,Gasoline,Gray,0,1,Excellent,South,8480
+Velocity Summit,SUV,2022,62100,Sport,Gasoline,Gray,0,2,Good,Midwest,19170
+Velocity Strata,Sedan,2025,10000,Sport,Gasoline,Silver,1,1,Good,South,23300
+Velocity Ridge,Pickup,2021,51800,Luxury,Gasoline,Red,0,1,Good,South,21170
+Velocity Dash,Hatchback,2014,146600,Luxury,Gasoline,Black,0,2,Good,Northeast,3500
+Velocity Dash,Hatchback,2017,122600,Sport,Gasoline,Black,0,2,Fair,West,3780
+Velocity Dash,Hatchback,2018,64100,Base,Gasoline,Silver,0,1,Fair,Northeast,5080
+Velocity Strata,Sedan,2020,74400,Sport,Gasoline,Blue,1,2,Fair,West,8070
+Velocity Volt,EV Sedan,2025,24700,Sport,Electric,Silver,1,2,Excellent,South,35350
+Velocity Ridge,Pickup,2024,36800,Sport,Gasoline,Silver,1,2,Excellent,West,29200
+Velocity Dash,Hatchback,2017,90300,Luxury,Gasoline,Blue,0,1,Good,Midwest,5430
+Velocity Summit,SUV,2025,7500,Base,Gasoline,White,0,1,Fair,Midwest,33770
+Velocity Aero,Coupe,2022,64400,Luxury,Gasoline,Blue,0,2,Good,Midwest,31220
+Velocity Volt,EV Sedan,2018,136800,Sport,Electric,Blue,0,2,Good,West,9110
+Velocity Strata,Sedan,2020,51700,Sport,Hybrid,Black,0,2,Excellent,South,10740
+Velocity Strata,Sedan,2024,26800,Sport,Hybrid,Red,0,1,Good,South,21990
+Velocity Aero,Coupe,2017,153400,Luxury,Gasoline,Silver,0,2,Excellent,West,10580
+Velocity Aero,Coupe,2020,90900,Base,Gasoline,Silver,0,1,Good,Midwest,15960
+Velocity Volt,EV Sedan,2025,16500,Base,Electric,Silver,0,1,Good,Midwest,37650
+Velocity Summit,SUV,2017,88600,Base,Gasoline,White,0,3,Good,Midwest,7680
+Velocity Strata,Sedan,2015,103400,Sport,Gasoline,White,0,1,Good,West,4150
+Velocity Ridge,Pickup,2024,16300,Base,Gasoline,Silver,0,1,Good,Northeast,31740
+Velocity Summit,SUV,2021,83500,Sport,Gasoline,Gray,2,1,Good,Midwest,11290
+Velocity Strata,Sedan,2020,56800,Base,Gasoline,Gray,0,1,Good,South,10830
+Velocity Strata,Sedan,2022,44700,Luxury,Hybrid,Red,0,1,Good,Northeast,16340
+Velocity Strata,Sedan,2019,86100,Base,Hybrid,Blue,0,1,Good,Midwest,7820
+Velocity Dash,Hatchback,2023,49000,Sport,Gasoline,Silver,0,1,Good,Northeast,13100
+Velocity Summit,SUV,2022,52900,Base,Gasoline,Blue,0,1,Good,Midwest,18540
+Velocity Volt,EV Sedan,2023,47900,Base,Electric,White,0,1,Good,South,26270
+Velocity Ridge,Pickup,2025,12800,Base,Gasoline,White,0,1,Good,South,35070
+Velocity Ridge,Pickup,2022,55100,Luxury,Hybrid,White,0,1,Good,Northeast,24590
+Velocity Volt,EV Sedan,2023,32800,Base,Electric,Silver,1,1,Fair,Midwest,23580
+Velocity Strata,Sedan,2019,50500,Luxury,Gasoline,White,0,1,Good,West,10360
+Velocity Strata,Sedan,2019,105200,Base,Gasoline,Black,0,1,Excellent,West,6710
+Velocity Volt,EV Sedan,2019,78800,Luxury,Electric,Red,1,2,Good,Midwest,11890
+Velocity Summit,SUV,2025,10100,Base,Hybrid,Gray,0,1,Fair,South,33940
+Velocity Summit,SUV,2016,92000,Luxury,Hybrid,Blue,0,1,Excellent,South,8030
+Velocity Summit,SUV,2018,101600,Base,Gasoline,Silver,1,1,Good,South,7670
+Velocity Dash,Hatchback,2025,17100,Base,Gasoline,Red,0,2,Excellent,Midwest,19560
+Velocity Dash,Hatchback,2017,109100,Base,Hybrid,Blue,0,3,Fair,Midwest,3500
+Velocity Summit,SUV,2020,99900,Base,Gasoline,Gray,0,2,Excellent,West,11130
+Velocity Ridge,Pickup,2015,135400,Sport,Hybrid,White,2,2,Good,Midwest,4140
+Velocity Summit,SUV,2022,67400,Base,Gasoline,White,2,2,Fair,Northeast,12570
+Velocity Dash,Hatchback,2025,9200,Sport,Gasoline,Silver,0,1,Good,Midwest,19960
+Velocity Ridge,Pickup,2015,102300,Base,Gasoline,Black,1,3,Good,Northeast,5090
+Velocity Volt,EV Sedan,2015,126200,Base,Electric,Blue,0,2,Fair,Northeast,4930
+Velocity Dash,Hatchback,2018,92700,Sport,Hybrid,Blue,0,2,Good,Midwest,5560
+Velocity Strata,Sedan,2014,74500,Luxury,Gasoline,Silver,0,2,Good,South,4050
+Velocity Strata,Sedan,2016,23200,Base,Gasoline,Black,0,1,Good,South,6350
+Velocity Strata,Sedan,2021,50900,Sport,Gasoline,Blue,1,1,Good,Northeast,10950
+Velocity Volt,EV Sedan,2024,11300,Sport,Electric,White,0,1,Excellent,West,39490
+Velocity Dash,Hatchback,2022,52500,Sport,Gasoline,Gray,0,1,Good,South,11220
+Velocity Aero,Coupe,2014,129300,Luxury,Hybrid,Silver,1,1,Excellent,West,6700
+Velocity Strata,Sedan,2025,9600,Sport,Hybrid,Blue,2,1,Fair,Northeast,19730
+Velocity Strata,Sedan,2023,56000,Sport,Gasoline,Gray,1,1,Excellent,South,14660
+Velocity Ridge,Pickup,2018,63000,Base,Gasoline,White,0,2,Fair,West,10070
+Velocity Aero,Coupe,2022,64100,Base,Gasoline,Gray,0,2,Fair,South,22990
+Velocity Strata,Sedan,2023,21400,Sport,Gasoline,Gray,1,2,Good,Northeast,16920
+Velocity Volt,EV Sedan,2021,51000,Base,Electric,Blue,0,1,Excellent,Midwest,19140
+Velocity Ridge,Pickup,2023,34200,Luxury,Gasoline,Red,0,1,Good,Midwest,29240
+Velocity Summit,SUV,2021,63300,Base,Hybrid,Silver,0,1,Excellent,South,17070
+Velocity Summit,SUV,2023,42800,Sport,Gasoline,White,2,1,Fair,West,16400
+Velocity Volt,EV Sedan,2023,39500,Base,Electric,Blue,0,3,Excellent,Northeast,24100
+Velocity Strata,Sedan,2023,36400,Base,Gasoline,Blue,2,1,Excellent,Midwest,14850
+Velocity Ridge,Pickup,2015,92600,Base,Gasoline,White,2,2,Good,Midwest,4920
+Velocity Dash,Hatchback,2018,138500,Luxury,Gasoline,Black,0,1,Good,West,4640
+Velocity Dash,Hatchback,2024,23500,Base,Gasoline,Red,0,1,Good,West,15120
+Velocity Ridge,Pickup,2014,156700,Base,Hybrid,White,0,2,Excellent,Midwest,4610
+Velocity Summit,SUV,2019,90200,Base,Gasoline,Blue,0,3,Good,South,9840
+Velocity Summit,SUV,2017,102300,Base,Gasoline,Silver,0,2,Excellent,South,7880
+Velocity Strata,Sedan,2025,9300,Base,Hybrid,Red,0,1,Excellent,South,27490
+Velocity Summit,SUV,2019,101800,Base,Gasoline,Red,0,1,Fair,Midwest,9290
+Velocity Strata,Sedan,2015,119500,Base,Gasoline,Black,0,1,Good,Northeast,3550
+Velocity Summit,SUV,2025,12400,Sport,Hybrid,Black,0,1,Good,Northeast,38040
+Velocity Aero,Coupe,2024,3800,Base,Gasoline,Black,0,1,Excellent,South,40900
+Velocity Strata,Sedan,2019,46800,Base,Gasoline,Red,0,1,Good,West,8420
+Velocity Dash,Hatchback,2015,210400,Luxury,Gasoline,Red,0,2,Good,Midwest,3500
+Velocity Strata,Sedan,2022,58700,Luxury,Gasoline,Red,0,1,Fair,South,14880
+Velocity Strata,Sedan,2014,208500,Sport,Gasoline,White,0,2,Good,Midwest,3500
+Velocity Dash,Hatchback,2019,69400,Luxury,Gasoline,White,0,1,Good,South,7000
+Velocity Dash,Hatchback,2024,19000,Base,Gasoline,Black,1,1,Fair,Midwest,12210
+Velocity Dash,Hatchback,2015,92600,Sport,Gasoline,Black,1,1,Excellent,West,3500
+Velocity Strata,Sedan,2022,64800,Base,Gasoline,Blue,0,1,Excellent,West,13120
+Velocity Volt,EV Sedan,2017,104600,Base,Electric,Red,0,2,Good,Northeast,8230
+Velocity Summit,SUV,2017,97700,Luxury,Gasoline,Black,1,1,Good,Midwest,7670
+Velocity Dash,Hatchback,2019,61000,Base,Gasoline,Gray,0,2,Good,Midwest,6330
+Velocity Strata,Sedan,2022,43300,Base,Gasoline,Red,1,2,Excellent,Midwest,12840
+Velocity Strata,Sedan,2023,26100,Base,Gasoline,Blue,0,1,Fair,Midwest,15350
+Velocity Volt,EV Sedan,2014,118200,Base,Electric,White,0,1,Excellent,West,5030
+Velocity Strata,Sedan,2021,93200,Sport,Gasoline,Blue,0,2,Excellent,Northeast,10230
+Velocity Ridge,Pickup,2017,114900,Luxury,Hybrid,White,0,1,Fair,Midwest,9320
+Velocity Ridge,Pickup,2021,63700,Sport,Gasoline,White,0,1,Good,Northeast,17780
+Velocity Summit,SUV,2022,38200,Base,Gasoline,Silver,0,1,Good,Northeast,19580
+Velocity Summit,SUV,2021,84700,Sport,Gasoline,Silver,1,1,Good,Northeast,12220
+Velocity Strata,Sedan,2023,17200,Sport,Gasoline,Black,0,3,Good,Midwest,17840
+Velocity Strata,Sedan,2024,33100,Sport,Gasoline,Red,0,1,Good,Midwest,21760
+Velocity Summit,SUV,2022,53000,Base,Gasoline,Black,2,2,Good,Northeast,13820
+Velocity Aero,Coupe,2023,8800,Base,Gasoline,Silver,0,2,Good,South,34340
+Velocity Dash,Hatchback,2017,112100,Base,Gasoline,Silver,2,1,Good,Midwest,3500
+Velocity Strata,Sedan,2023,47800,Base,Gasoline,White,0,1,Fair,Northeast,13950
+Velocity Summit,SUV,2016,105900,Base,Gasoline,White,1,1,Good,Northeast,5520
+Velocity Strata,Sedan,2014,205600,Sport,Gasoline,Blue,0,2,Good,South,3500
+Velocity Strata,Sedan,2018,67600,Base,Gasoline,Gray,0,2,Good,South,7260
+Velocity Ridge,Pickup,2016,100600,Base,Gasoline,Blue,0,1,Excellent,Northeast,7810
+Velocity Dash,Hatchback,2025,2500,Base,Gasoline,White,0,2,Fair,West,17830
+Velocity Strata,Sedan,2016,111300,Base,Hybrid,Gray,0,2,Good,Northeast,4280
+Velocity Summit,SUV,2021,104800,Sport,Gasoline,Blue,0,1,Fair,Northeast,12660
+Velocity Ridge,Pickup,2015,138500,Base,Gasoline,Gray,0,1,Excellent,Northeast,5740
+Velocity Dash,Hatchback,2022,60500,Luxury,Gasoline,Silver,0,2,Fair,Midwest,10870
+Velocity Ridge,Pickup,2020,76900,Base,Hybrid,White,1,2,Good,West,10940
+Velocity Dash,Hatchback,2018,82300,Base,Gasoline,Red,0,1,Good,West,4890
+Velocity Strata,Sedan,2023,45600,Sport,Hybrid,Red,0,2,Good,South,19170
+Velocity Aero,Coupe,2016,105600,Base,Gasoline,White,0,1,Good,South,9240
+Velocity Aero,Coupe,2016,117500,Base,Gasoline,Silver,0,2,Fair,Northeast,7510
+Velocity Ridge,Pickup,2015,58600,Base,Gasoline,Black,0,2,Fair,Midwest,6020
+Velocity Strata,Sedan,2021,61100,Base,Gasoline,Blue,2,1,Fair,Midwest,7770
+Velocity Volt,EV Sedan,2018,86200,Sport,Electric,White,0,1,Good,Northeast,10620
+Velocity Strata,Sedan,2024,15100,Base,Gasoline,Silver,0,1,Good,South,22210
+Velocity Strata,Sedan,2015,166500,Luxury,Gasoline,Blue,0,1,Good,West,3610
+Velocity Dash,Hatchback,2020,34200,Base,Gasoline,White,1,1,Fair,West,6620
+Velocity Summit,SUV,2023,45900,Base,Gasoline,White,0,1,Good,Midwest,23000
+Velocity Strata,Sedan,2020,106600,Base,Gasoline,Black,0,2,Good,West,7810
+Velocity Dash,Hatchback,2017,80500,Sport,Gasoline,Black,0,1,Good,Northeast,5020
+Velocity Volt,EV Sedan,2021,99400,Base,Electric,Silver,0,1,Fair,Midwest,12980
+Velocity Ridge,Pickup,2018,125900,Sport,Gasoline,Silver,0,1,Good,Northeast,9820
+Velocity Volt,EV Sedan,2014,200400,Sport,Electric,White,0,1,Excellent,Midwest,3630
+Velocity Dash,Hatchback,2024,21500,Sport,Gasoline,White,0,1,Excellent,West,17170
+Velocity Summit,SUV,2023,36400,Sport,Hybrid,Red,0,3,Excellent,South,26160
+Velocity Ridge,Pickup,2017,133300,Base,Hybrid,Silver,0,1,Excellent,Northeast,7080
+Velocity Strata,Sedan,2020,79900,Base,Gasoline,White,0,1,Excellent,Northeast,9540
+Velocity Dash,Hatchback,2017,128200,Luxury,Gasoline,White,0,2,Good,South,4230
+Velocity Strata,Sedan,2019,74100,Base,Gasoline,Gray,0,1,Excellent,Midwest,8060
+Velocity Strata,Sedan,2020,70700,Base,Gasoline,Blue,0,3,Good,South,8620
+Velocity Dash,Hatchback,2015,97000,Base,Gasoline,White,1,2,Good,West,3500
+Velocity Summit,SUV,2022,31500,Luxury,Hybrid,Blue,0,1,Fair,Midwest,24140
+Velocity Strata,Sedan,2019,96000,Base,Gasoline,Black,0,1,Excellent,West,6600
+Velocity Summit,SUV,2025,10800,Base,Gasoline,Black,0,1,Excellent,Northeast,37150
+Velocity Summit,SUV,2022,59000,Sport,Hybrid,Red,0,2,Fair,Northeast,17550
+Velocity Volt,EV Sedan,2016,119400,Base,Electric,Silver,0,2,Good,Midwest,5960
+Velocity Summit,SUV,2022,49100,Sport,Hybrid,Black,0,1,Fair,West,20640
+Velocity Ridge,Pickup,2025,12200,Sport,Hybrid,White,0,1,Fair,Northeast,38350
+Velocity Summit,SUV,2016,150600,Base,Gasoline,Silver,0,1,Good,Midwest,5340
+Velocity Dash,Hatchback,2018,130600,Luxury,Gasoline,Silver,1,1,Excellent,Midwest,4650
+Velocity Strata,Sedan,2015,122700,Base,Gasoline,White,1,2,Excellent,Northeast,3500
+Velocity Aero,Coupe,2019,67600,Base,Hybrid,Black,0,2,Fair,South,14470
+Velocity Summit,SUV,2019,94000,Base,Gasoline,White,0,3,Good,Northeast,9630
+Velocity Summit,SUV,2025,3600,Base,Gasoline,White,0,2,Fair,South,34760
+Velocity Ridge,Pickup,2022,68500,Sport,Gasoline,Black,0,1,Good,Northeast,19770
+Velocity Summit,SUV,2015,137100,Sport,Gasoline,Gray,1,2,Good,South,4660
+Velocity Dash,Hatchback,2016,72400,Base,Gasoline,Gray,1,3,Good,Northeast,3500
+Velocity Summit,SUV,2016,151700,Base,Gasoline,Black,0,2,Good,West,5010
+Velocity Dash,Hatchback,2014,85400,Base,Gasoline,White,0,1,Good,South,3500
+Velocity Strata,Sedan,2022,37800,Sport,Hybrid,White,0,2,Good,Midwest,14500
+Velocity Ridge,Pickup,2019,121000,Base,Gasoline,Blue,0,1,Excellent,West,10700
+Velocity Strata,Sedan,2021,74600,Base,Gasoline,Silver,0,1,Good,West,10140
+Velocity Summit,SUV,2014,112000,Base,Hybrid,White,0,2,Good,Midwest,4810
+Velocity Aero,Coupe,2023,48400,Base,Gasoline,Silver,0,2,Excellent,South,34200
+Velocity Strata,Sedan,2018,143700,Sport,Hybrid,White,1,1,Excellent,Midwest,4760
+Velocity Summit,SUV,2025,12400,Base,Gasoline,White,0,1,Good,West,32230
+Velocity Strata,Sedan,2017,111000,Sport,Gasoline,Gray,0,1,Fair,Northeast,4860
+Velocity Strata,Sedan,2020,62500,Base,Gasoline,Red,1,1,Fair,South,7080
+Velocity Dash,Hatchback,2023,25800,Luxury,Hybrid,Silver,0,1,Good,South,15560
+Velocity Strata,Sedan,2020,81700,Base,Gasoline,Black,0,1,Good,Midwest,8410
+Velocity Summit,SUV,2015,97800,Base,Gasoline,Black,1,2,Good,South,4730
+Velocity Aero,Coupe,2014,95700,Sport,Hybrid,White,1,2,Good,Northeast,7100
+Velocity Strata,Sedan,2024,20300,Base,Gasoline,Blue,0,3,Good,Midwest,20630
+Velocity Dash,Hatchback,2024,3600,Base,Hybrid,Black,2,3,Fair,Northeast,12020
+Velocity Volt,EV Sedan,2017,129000,Base,Electric,Blue,0,1,Good,South,7970
+Velocity Ridge,Pickup,2024,21200,Base,Hybrid,White,0,1,Good,West,29490
+Velocity Dash,Hatchback,2015,156300,Sport,Gasoline,White,0,1,Good,South,3500
+Velocity Ridge,Pickup,2014,131200,Luxury,Gasoline,White,1,2,Fair,West,4100
+Velocity Dash,Hatchback,2014,114700,Luxury,Gasoline,Silver,2,2,Fair,Northeast,3500
+Velocity Dash,Hatchback,2014,164800,Luxury,Gasoline,White,0,2,Fair,Midwest,3500
+Velocity Strata,Sedan,2015,137700,Luxury,Gasoline,Red,0,1,Good,Midwest,3830
+Velocity Strata,Sedan,2014,94200,Sport,Gasoline,Blue,1,1,Excellent,South,3590
+Velocity Summit,SUV,2016,157700,Sport,Gasoline,Blue,0,1,Good,Midwest,5260
+Velocity Summit,SUV,2023,36500,Base,Gasoline,Gray,0,1,Good,Northeast,22910
+Velocity Ridge,Pickup,2020,94200,Sport,Gasoline,Red,2,1,Good,West,11240
+Velocity Strata,Sedan,2021,60700,Base,Gasoline,White,0,1,Excellent,Northeast,11550
+Velocity Dash,Hatchback,2017,102400,Base,Gasoline,Black,1,1,Good,South,3500
+Velocity Strata,Sedan,2015,161400,Sport,Gasoline,Blue,0,1,Fair,South,3500
+Velocity Ridge,Pickup,2023,38200,Base,Gasoline,Gray,0,1,Good,South,25820
+Velocity Dash,Hatchback,2021,67600,Base,Gasoline,Red,0,1,Excellent,West,8650
+Velocity Ridge,Pickup,2017,59300,Sport,Gasoline,Blue,0,1,Fair,South,9280
+Velocity Summit,SUV,2023,43800,Base,Gasoline,Gray,2,1,Excellent,South,17770
+Velocity Strata,Sedan,2023,44800,Sport,Gasoline,Silver,0,2,Good,South,17340
+Velocity Volt,EV Sedan,2020,49900,Base,Electric,White,0,1,Excellent,Midwest,15800
+Velocity Ridge,Pickup,2022,23600,Base,Gasoline,Gray,0,2,Excellent,South,21570
+Velocity Volt,EV Sedan,2021,77300,Sport,Electric,Blue,1,1,Good,Midwest,16880
+Velocity Dash,Hatchback,2014,131000,Sport,Gasoline,Red,0,3,Fair,Northeast,3500
+Velocity Volt,EV Sedan,2018,143300,Luxury,Electric,Blue,0,1,Good,Northeast,9820
+Velocity Summit,SUV,2014,123900,Base,Hybrid,White,0,1,Good,Northeast,4200
+Velocity Ridge,Pickup,2018,78600,Sport,Gasoline,Red,0,3,Fair,West,9510
+Velocity Summit,SUV,2015,112900,Sport,Gasoline,Black,0,2,Fair,South,4590
+Velocity Dash,Hatchback,2017,86900,Luxury,Gasoline,Black,0,3,Excellent,West,4810
+Velocity Summit,SUV,2020,49200,Base,Gasoline,Black,0,2,Good,West,13100
+Velocity Dash,Hatchback,2016,173400,Base,Gasoline,Red,0,2,Fair,Midwest,3500
+Velocity Aero,Coupe,2020,52000,Sport,Gasoline,Black,0,1,Good,Northeast,21140
+Velocity Dash,Hatchback,2014,102600,Sport,Hybrid,Blue,0,1,Excellent,Northeast,3500
+Velocity Strata,Sedan,2019,98600,Sport,Gasoline,Gray,2,1,Excellent,West,6550
+Velocity Strata,Sedan,2025,8800,Luxury,Gasoline,Black,0,1,Good,South,28120
+Velocity Ridge,Pickup,2021,54300,Base,Gasoline,Silver,0,3,Excellent,Northeast,18230
+Velocity Dash,Hatchback,2017,117000,Luxury,Gasoline,Silver,0,1,Excellent,Midwest,4710
+Velocity Volt,EV Sedan,2022,49900,Sport,Electric,Silver,0,3,Good,Northeast,20550
+Velocity Volt,EV Sedan,2018,53300,Sport,Electric,Blue,0,3,Excellent,Northeast,12690
+Velocity Volt,EV Sedan,2014,224300,Luxury,Electric,Silver,0,2,Good,Northeast,3540
+Velocity Ridge,Pickup,2016,85600,Sport,Gasoline,White,2,1,Excellent,Northeast,6610
+Velocity Dash,Hatchback,2016,176200,Base,Gasoline,White,2,2,Excellent,Midwest,3500
+Velocity Summit,SUV,2019,67800,Base,Hybrid,Red,2,1,Fair,South,8120
+Velocity Strata,Sedan,2014,154200,Luxury,Hybrid,Black,0,2,Good,Northeast,3500
+Velocity Strata,Sedan,2019,82300,Luxury,Gasoline,Black,0,2,Excellent,West,8730
+Velocity Dash,Hatchback,2019,87000,Luxury,Hybrid,Red,0,1,Excellent,Northeast,7110
+Velocity Strata,Sedan,2020,72000,Base,Hybrid,Black,0,1,Excellent,South,9530
+Velocity Ridge,Pickup,2015,223200,Sport,Gasoline,Silver,0,1,Good,Northeast,4040
+Velocity Strata,Sedan,2021,92700,Base,Gasoline,White,0,1,Excellent,West,10320
+Velocity Summit,SUV,2017,28800,Luxury,Gasoline,Black,0,1,Good,West,11010
+Velocity Aero,Coupe,2016,124400,Base,Gasoline,Black,0,2,Fair,Midwest,6910
+Velocity Strata,Sedan,2019,111300,Luxury,Gasoline,Gray,0,2,Good,Northeast,7940
+Velocity Strata,Sedan,2019,110300,Luxury,Gasoline,White,0,1,Excellent,Midwest,8370
+Velocity Ridge,Pickup,2025,6100,Base,Gasoline,Silver,0,1,Good,Midwest,44400
+Velocity Ridge,Pickup,2015,144300,Luxury,Gasoline,White,1,1,Good,South,5410
+Velocity Summit,SUV,2015,186000,Base,Hybrid,White,0,1,Excellent,Northeast,4320
+Velocity Aero,Coupe,2023,49300,Luxury,Gasoline,White,0,1,Good,South,36100
+Velocity Volt,EV Sedan,2025,15300,Base,Electric,Black,1,2,Good,South,33050
+Velocity Ridge,Pickup,2018,155300,Luxury,Hybrid,Blue,0,2,Good,Midwest,9550
+Velocity Dash,Hatchback,2025,16800,Luxury,Gasoline,White,0,1,Excellent,West,23150
+Velocity Volt,EV Sedan,2017,113000,Luxury,Electric,White,0,2,Good,Northeast,9130
+Velocity Aero,Coupe,2016,178600,Luxury,Gasoline,Gray,0,3,Good,Midwest,7240
+Velocity Dash,Hatchback,2021,61400,Base,Hybrid,White,0,2,Excellent,Midwest,9090
+Velocity Strata,Sedan,2024,15500,Luxury,Gasoline,White,1,2,Excellent,Northeast,23380
+Velocity Summit,SUV,2021,64700,Luxury,Gasoline,Black,0,1,Good,West,18460
+Velocity Strata,Sedan,2019,83700,Base,Gasoline,Red,0,2,Good,Northeast,6700
+Velocity Dash,Hatchback,2016,135800,Sport,Hybrid,Black,0,1,Fair,Northeast,3500
+Velocity Dash,Hatchback,2016,175500,Base,Gasoline,Black,0,1,Good,West,3500
+Velocity Strata,Sedan,2017,94300,Base,Gasoline,White,0,1,Good,West,5560
+Velocity Strata,Sedan,2018,137700,Base,Hybrid,Gray,0,3,Good,Northeast,5200
+Velocity Ridge,Pickup,2015,164000,Base,Gasoline,Gray,0,3,Excellent,Midwest,4520
+Velocity Dash,Hatchback,2014,155500,Base,Hybrid,White,0,1,Good,West,3500
+Velocity Summit,SUV,2016,134000,Sport,Gasoline,Black,1,2,Excellent,South,5320
+Velocity Summit,SUV,2014,143500,Sport,Hybrid,Silver,1,2,Good,Northeast,3660
+Velocity Ridge,Pickup,2023,47200,Base,Gasoline,Gray,0,1,Fair,South,22130
+Velocity Dash,Hatchback,2014,128400,Base,Gasoline,Black,0,1,Good,South,3500
+Velocity Dash,Hatchback,2018,135300,Base,Gasoline,White,0,1,Excellent,Northeast,3770
+Velocity Summit,SUV,2014,112200,Sport,Gasoline,White,1,1,Fair,Midwest,4130
+Velocity Summit,SUV,2025,4800,Sport,Gasoline,Silver,0,1,Fair,Northeast,30740
+Velocity Dash,Hatchback,2025,16200,Base,Gasoline,Red,1,2,Good,South,16340
+Velocity Strata,Sedan,2024,37800,Base,Hybrid,Black,0,1,Good,Northeast,18550
+Velocity Summit,SUV,2021,64100,Base,Gasoline,Black,0,1,Excellent,West,16030
+Velocity Strata,Sedan,2015,133000,Luxury,Gasoline,Blue,0,1,Excellent,Northeast,3880
+Velocity Dash,Hatchback,2020,84400,Base,Hybrid,Black,0,1,Good,West,7250
+Velocity Dash,Hatchback,2023,35700,Luxury,Gasoline,Black,0,2,Excellent,West,14810
+Velocity Dash,Hatchback,2014,156500,Base,Gasoline,Blue,1,2,Excellent,Midwest,3500
+Velocity Dash,Hatchback,2017,144300,Luxury,Gasoline,Silver,0,1,Good,Northeast,3960
+Velocity Dash,Hatchback,2024,17100,Base,Gasoline,Black,0,2,Fair,West,13750
+Velocity Volt,EV Sedan,2018,84900,Base,Electric,White,2,1,Good,South,8030
+Velocity Summit,SUV,2024,33800,Sport,Gasoline,White,0,3,Good,South,27140
+Velocity Strata,Sedan,2022,46200,Sport,Hybrid,Black,0,2,Fair,West,14630
+Velocity Strata,Sedan,2015,191400,Base,Gasoline,White,0,1,Good,South,3500
+Velocity Strata,Sedan,2018,135600,Base,Gasoline,Silver,1,1,Good,South,5270
+Velocity Summit,SUV,2020,83900,Base,Hybrid,Blue,0,1,Good,West,13450
+Velocity Dash,Hatchback,2014,154900,Base,Hybrid,White,0,1,Good,Northeast,3500
+Velocity Volt,EV Sedan,2019,75000,Sport,Electric,Silver,0,3,Excellent,Northeast,13510
+Velocity Volt,EV Sedan,2021,83700,Luxury,Electric,Gray,0,1,Fair,Northeast,18540
+Velocity Strata,Sedan,2021,68900,Base,Gasoline,Silver,0,1,Good,South,11070
+Velocity Strata,Sedan,2016,162600,Sport,Gasoline,White,0,2,Excellent,Northeast,3900
+Velocity Dash,Hatchback,2023,42000,Luxury,Gasoline,Silver,0,1,Good,South,14760
+Velocity Strata,Sedan,2015,139000,Sport,Hybrid,Gray,0,1,Good,South,3760
+Velocity Strata,Sedan,2020,60500,Base,Hybrid,White,0,3,Fair,Midwest,8450
+Velocity Strata,Sedan,2023,20600,Luxury,Gasoline,Blue,0,3,Excellent,Northeast,19800
+Velocity Strata,Sedan,2020,109700,Base,Gasoline,White,1,1,Fair,Midwest,6180
+Velocity Strata,Sedan,2024,28600,Sport,Gasoline,Black,0,3,Good,West,19890
+Velocity Aero,Coupe,2025,14800,Base,Gasoline,Silver,0,2,Fair,Northeast,40390
+Velocity Summit,SUV,2021,52300,Base,Hybrid,White,0,2,Excellent,West,17090
+Velocity Summit,SUV,2025,22100,Sport,Gasoline,Silver,1,1,Fair,South,31110
+Velocity Summit,SUV,2020,24400,Luxury,Gasoline,White,1,1,Good,Northeast,16960
+Velocity Strata,Sedan,2025,11300,Luxury,Gasoline,Blue,0,2,Fair,Northeast,26300
+Velocity Aero,Coupe,2022,47500,Base,Gasoline,Gray,1,2,Fair,West,21480
+Velocity Strata,Sedan,2019,85200,Sport,Gasoline,White,0,1,Good,Midwest,8580
+Velocity Volt,EV Sedan,2021,51700,Sport,Electric,Silver,0,2,Good,Northeast,20120
+Velocity Strata,Sedan,2019,86000,Sport,Hybrid,Silver,1,3,Excellent,West,7200
+Velocity Dash,Hatchback,2025,13500,Base,Hybrid,Black,2,1,Excellent,West,17030
+Velocity Volt,EV Sedan,2014,141500,Luxury,Electric,Red,0,3,Excellent,Midwest,5560
+Velocity Ridge,Pickup,2015,155000,Sport,Gasoline,Black,1,3,Good,South,4460
+Velocity Summit,SUV,2019,133800,Sport,Gasoline,Blue,1,1,Good,South,8830
+Velocity Strata,Sedan,2023,48000,Luxury,Hybrid,White,0,2,Fair,Midwest,17340
+Velocity Volt,EV Sedan,2014,119900,Base,Electric,Red,1,2,Fair,Midwest,3890
+Velocity Strata,Sedan,2025,12100,Sport,Gasoline,Red,0,2,Good,South,26400
+Velocity Summit,SUV,2019,86100,Sport,Gasoline,Black,0,1,Fair,Northeast,10390
+Velocity Strata,Sedan,2021,62500,Luxury,Gasoline,White,0,1,Good,Midwest,14020
+Velocity Strata,Sedan,2022,57600,Base,Gasoline,Blue,0,1,Excellent,West,14480
+Velocity Strata,Sedan,2025,8800,Sport,Gasoline,Silver,0,1,Fair,South,24400
+Velocity Ridge,Pickup,2019,90100,Sport,Hybrid,White,1,1,Good,Midwest,11560
+Velocity Ridge,Pickup,2017,99700,Sport,Gasoline,Blue,0,1,Excellent,Northeast,9130
+Velocity Summit,SUV,2024,22000,Base,Gasoline,White,0,2,Good,South,28690
+Velocity Summit,SUV,2025,1000,Base,Gasoline,White,0,3,Fair,Midwest,29770
+Velocity Summit,SUV,2025,5900,Base,Gasoline,Gray,0,1,Good,Northeast,35030
+Velocity Strata,Sedan,2020,72500,Sport,Gasoline,Black,0,1,Good,Midwest,9340
+Velocity Volt,EV Sedan,2016,161200,Sport,Electric,White,1,1,Excellent,West,6180
+Velocity Summit,SUV,2022,45100,Luxury,Hybrid,Blue,0,2,Good,Northeast,23190
+Velocity Ridge,Pickup,2023,26800,Base,Gasoline,Silver,0,2,Good,Northeast,26710
+Velocity Summit,SUV,2021,88500,Base,Gasoline,Red,0,1,Good,Northeast,13920
+Velocity Summit,SUV,2019,56200,Base,Gasoline,White,0,1,Good,Northeast,11640
+Velocity Summit,SUV,2022,53500,Luxury,Hybrid,Gray,0,1,Excellent,West,25260
+Velocity Strata,Sedan,2025,18400,Luxury,Gasoline,Red,0,1,Excellent,Northeast,24810
+Velocity Summit,SUV,2015,124200,Base,Gasoline,Gray,1,1,Good,West,4590
+Velocity Strata,Sedan,2019,129700,Luxury,Gasoline,Black,0,2,Excellent,Midwest,7190
+Velocity Volt,EV Sedan,2015,120500,Sport,Electric,White,0,2,Good,South,5920
+Velocity Strata,Sedan,2014,226300,Base,Hybrid,White,1,1,Excellent,Northeast,3500
+Velocity Summit,SUV,2019,97100,Base,Gasoline,Silver,0,2,Good,South,10290
+Velocity Summit,SUV,2017,163000,Base,Gasoline,Silver,0,1,Fair,South,5270
+Velocity Summit,SUV,2022,44800,Base,Gasoline,Red,2,2,Good,West,15590
+Velocity Dash,Hatchback,2024,37900,Luxury,Gasoline,Blue,0,2,Fair,West,15770
+Velocity Strata,Sedan,2019,51700,Sport,Gasoline,Red,0,1,Excellent,West,9400
+Velocity Summit,SUV,2022,44200,Base,Gasoline,White,0,3,Excellent,West,19190
+Velocity Dash,Hatchback,2022,52200,Base,Gasoline,Blue,0,2,Excellent,Northeast,10580
+Velocity Volt,EV Sedan,2016,86500,Luxury,Electric,Blue,0,1,Fair,Midwest,8280
+Velocity Strata,Sedan,2016,54000,Sport,Gasoline,Gray,0,1,Fair,South,4930
+Velocity Strata,Sedan,2016,107800,Luxury,Gasoline,Red,0,1,Good,Northeast,5230
+Velocity Summit,SUV,2018,138300,Base,Gasoline,White,0,3,Good,Midwest,6680
+Velocity Summit,SUV,2024,29600,Base,Hybrid,Blue,0,2,Fair,Midwest,25440
+Velocity Strata,Sedan,2015,113000,Sport,Gasoline,Gray,1,1,Good,West,3500
+Velocity Aero,Coupe,2014,170400,Sport,Hybrid,Black,0,2,Good,West,5010
+Velocity Strata,Sedan,2016,90400,Luxury,Gasoline,Silver,0,1,Good,South,5910
+Velocity Summit,SUV,2022,59200,Sport,Gasoline,Gray,0,1,Fair,Midwest,18600
+Velocity Ridge,Pickup,2021,74400,Base,Hybrid,Gray,2,1,Excellent,Midwest,13170
+Velocity Summit,SUV,2014,99200,Sport,Hybrid,Silver,0,1,Good,South,5250
+Velocity Dash,Hatchback,2019,73800,Sport,Hybrid,White,0,2,Good,West,6980
+Velocity Summit,SUV,2017,135500,Base,Hybrid,Blue,0,1,Excellent,West,7410
+Velocity Summit,SUV,2024,6100,Sport,Gasoline,Red,0,2,Excellent,Midwest,32720
+Velocity Dash,Hatchback,2015,140300,Luxury,Gasoline,White,0,2,Good,South,3500
+Velocity Summit,SUV,2022,31700,Luxury,Gasoline,White,0,3,Fair,Midwest,19910
+Velocity Summit,SUV,2017,95900,Sport,Gasoline,White,0,1,Excellent,West,8450
+Velocity Summit,SUV,2024,31500,Base,Hybrid,White,0,3,Good,South,26160
+Velocity Summit,SUV,2019,106700,Base,Gasoline,Gray,0,2,Good,South,8790
+Velocity Summit,SUV,2020,77800,Luxury,Gasoline,Red,0,1,Fair,South,13750
+Velocity Strata,Sedan,2022,60300,Sport,Hybrid,Red,0,1,Excellent,Northeast,15120
+Velocity Summit,SUV,2014,202000,Sport,Gasoline,Black,0,1,Good,Northeast,3500
+Velocity Strata,Sedan,2014,117300,Base,Gasoline,Black,0,1,Good,South,3500
+Velocity Volt,EV Sedan,2024,33300,Base,Electric,White,0,2,Excellent,Northeast,31430
+Velocity Volt,EV Sedan,2025,18400,Base,Electric,Black,1,1,Good,Northeast,34660
+Velocity Aero,Coupe,2020,91100,Sport,Hybrid,Red,0,2,Excellent,Northeast,19800
+Velocity Summit,SUV,2015,163800,Luxury,Gasoline,White,0,1,Excellent,Northeast,4990
+Velocity Dash,Hatchback,2022,63100,Base,Gasoline,Gray,0,2,Excellent,Midwest,9830
+Velocity Strata,Sedan,2020,86100,Luxury,Gasoline,White,0,2,Excellent,Northeast,11120
+Velocity Volt,EV Sedan,2022,10300,Luxury,Electric,Gray,0,1,Fair,Midwest,26670
+Velocity Aero,Coupe,2024,42700,Base,Gasoline,Blue,0,3,Excellent,Northeast,34770
+Velocity Strata,Sedan,2019,107700,Sport,Gasoline,White,0,1,Excellent,Northeast,7430
+Velocity Strata,Sedan,2020,87100,Base,Hybrid,Silver,2,1,Good,Northeast,7600
+Velocity Ridge,Pickup,2025,22900,Base,Gasoline,Gray,0,1,Fair,South,32550
+Velocity Dash,Hatchback,2023,30000,Luxury,Gasoline,White,0,1,Excellent,Midwest,16380
+Velocity Strata,Sedan,2022,32600,Sport,Hybrid,Black,0,2,Excellent,South,15590
+Velocity Strata,Sedan,2014,102700,Base,Gasoline,Blue,0,1,Good,West,3500
+Velocity Strata,Sedan,2016,166500,Luxury,Hybrid,Blue,0,2,Good,West,4160
+Velocity Volt,EV Sedan,2018,103000,Sport,Electric,Blue,2,2,Fair,Midwest,7170
+Velocity Dash,Hatchback,2023,38200,Sport,Hybrid,White,0,1,Good,West,13020
+Velocity Strata,Sedan,2017,87300,Luxury,Gasoline,Black,0,1,Excellent,West,6380
+Velocity Volt,EV Sedan,2014,157700,Luxury,Electric,Red,0,2,Good,Midwest,4900
+Velocity Summit,SUV,2018,99000,Sport,Gasoline,Black,1,1,Fair,South,8030
+Velocity Strata,Sedan,2018,103300,Base,Gasoline,Silver,0,1,Fair,Northeast,5930
+Velocity Dash,Hatchback,2022,38100,Base,Gasoline,Blue,0,2,Excellent,Northeast,11230
+Velocity Volt,EV Sedan,2023,44500,Luxury,Electric,Black,0,1,Excellent,West,30380
+Velocity Summit,SUV,2025,18600,Base,Hybrid,White,1,1,Good,Midwest,31880
+Velocity Strata,Sedan,2022,35200,Luxury,Gasoline,Black,0,2,Fair,Northeast,12800
+Velocity Summit,SUV,2018,85900,Sport,Gasoline,Silver,2,1,Excellent,Midwest,7680
+Velocity Dash,Hatchback,2014,98000,Base,Gasoline,White,0,1,Excellent,Midwest,3500
+Velocity Strata,Sedan,2016,153000,Base,Gasoline,Gray,0,1,Excellent,West,4060
+Velocity Volt,EV Sedan,2024,23600,Sport,Electric,Blue,0,2,Good,Midwest,35290
+Velocity Volt,EV Sedan,2016,114700,Base,Electric,Gray,1,2,Good,South,6090
+Velocity Dash,Hatchback,2018,99500,Base,Gasoline,Blue,0,1,Fair,Northeast,4250
+Velocity Dash,Hatchback,2024,26200,Luxury,Hybrid,Blue,2,1,Good,Midwest,15680
+Velocity Ridge,Pickup,2025,21500,Base,Gasoline,Blue,0,1,Fair,West,34390
+Velocity Dash,Hatchback,2023,27300,Sport,Gasoline,Gray,1,2,Excellent,Northeast,12560
+Velocity Strata,Sedan,2017,155100,Base,Gasoline,Black,0,2,Good,South,4470
+Velocity Dash,Hatchback,2016,131600,Base,Hybrid,Silver,0,1,Good,Midwest,3500
+Velocity Aero,Coupe,2018,106100,Sport,Gasoline,Silver,0,2,Excellent,Northeast,12710
+Velocity Aero,Coupe,2023,54300,Sport,Hybrid,White,0,1,Good,Northeast,36530
+Velocity Summit,SUV,2024,9000,Base,Hybrid,White,0,3,Good,South,29820
+Velocity Aero,Coupe,2022,36000,Sport,Gasoline,White,0,2,Good,Midwest,29970
+Velocity Summit,SUV,2018,67600,Sport,Gasoline,Gray,1,1,Fair,South,8680
+Velocity Dash,Hatchback,2019,88800,Sport,Gasoline,White,0,1,Fair,Northeast,5610
+Velocity Volt,EV Sedan,2014,193700,Sport,Electric,Gray,0,1,Fair,Midwest,3680
+Velocity Aero,Coupe,2020,84600,Luxury,Gasoline,Black,0,1,Fair,Northeast,17230
+Velocity Summit,SUV,2023,30800,Sport,Gasoline,Silver,0,2,Good,West,25090
+Velocity Dash,Hatchback,2024,20600,Base,Gasoline,Blue,0,1,Good,Northeast,15520
+Velocity Summit,SUV,2014,204900,Sport,Gasoline,Blue,0,1,Good,Midwest,3500
+Velocity Strata,Sedan,2019,59200,Sport,Hybrid,Gray,0,1,Good,Northeast,9090
+Velocity Ridge,Pickup,2016,103700,Sport,Gasoline,Red,0,1,Good,Northeast,7080
+Velocity Volt,EV Sedan,2023,30400,Sport,Electric,Red,0,1,Good,Midwest,28080
+Velocity Strata,Sedan,2023,26700,Base,Gasoline,Red,0,1,Fair,Midwest,14990
+Velocity Volt,EV Sedan,2015,182500,Luxury,Electric,Red,0,2,Excellent,West,5480
+Velocity Volt,EV Sedan,2015,127000,Base,Electric,Black,0,3,Excellent,Northeast,6000
+Velocity Volt,EV Sedan,2022,47600,Luxury,Electric,Silver,0,1,Excellent,Northeast,28080
+Velocity Strata,Sedan,2024,26100,Sport,Gasoline,White,0,1,Excellent,Midwest,22820
+Velocity Volt,EV Sedan,2015,194000,Base,Electric,Silver,0,2,Good,South,4260
+Velocity Dash,Hatchback,2024,20000,Base,Hybrid,Silver,0,1,Excellent,South,18130
+Velocity Dash,Hatchback,2024,34000,Sport,Gasoline,Gray,0,2,Good,South,16890
+Velocity Aero,Coupe,2016,151400,Luxury,Hybrid,Silver,0,1,Good,South,10080
+Velocity Strata,Sedan,2020,73200,Luxury,Gasoline,White,0,2,Good,Northeast,10150
+Velocity Summit,SUV,2019,102800,Base,Gasoline,Silver,0,1,Excellent,Midwest,10140
+Velocity Summit,SUV,2025,14700,Base,Hybrid,White,0,2,Good,South,35500
+Velocity Ridge,Pickup,2023,41500,Base,Gasoline,Red,0,2,Excellent,Midwest,24880
+Velocity Strata,Sedan,2025,14600,Luxury,Hybrid,Black,0,2,Good,Northeast,27750
+Velocity Aero,Coupe,2020,75500,Base,Hybrid,White,0,1,Good,South,17490
+Velocity Summit,SUV,2021,84400,Sport,Hybrid,Silver,0,2,Good,West,14990
+Velocity Strata,Sedan,2016,106100,Sport,Gasoline,White,0,1,Good,Northeast,5260
+Velocity Strata,Sedan,2020,80400,Sport,Gasoline,Black,0,1,Excellent,Midwest,9510
+Velocity Summit,SUV,2014,176000,Luxury,Gasoline,Gray,0,1,Good,South,4320
+Velocity Ridge,Pickup,2021,62900,Sport,Hybrid,Blue,0,1,Excellent,South,20850
+Velocity Summit,SUV,2021,51800,Base,Gasoline,Silver,1,1,Good,South,13710
+Velocity Strata,Sedan,2020,45800,Base,Hybrid,Gray,2,2,Excellent,South,8260
+Velocity Strata,Sedan,2019,114200,Base,Gasoline,White,0,1,Good,West,6790
+Velocity Ridge,Pickup,2021,43700,Base,Gasoline,White,0,1,Excellent,Midwest,19580
+Velocity Ridge,Pickup,2019,39700,Base,Gasoline,Gray,1,1,Excellent,Midwest,12420
+Velocity Strata,Sedan,2023,37600,Base,Gasoline,Red,0,1,Fair,Northeast,15060
+Velocity Aero,Coupe,2014,156900,Sport,Gasoline,Red,0,1,Good,Midwest,5530
+Velocity Strata,Sedan,2023,27700,Base,Gasoline,Silver,0,1,Good,Midwest,15920
+Velocity Strata,Sedan,2025,6100,Luxury,Hybrid,White,0,1,Good,Northeast,32390
+Velocity Summit,SUV,2021,59300,Sport,Hybrid,Gray,0,2,Excellent,Midwest,16610
+Velocity Ridge,Pickup,2018,78500,Sport,Hybrid,Black,2,1,Fair,South,8360
+Velocity Volt,EV Sedan,2024,14300,Sport,Electric,Blue,0,1,Excellent,West,37840
+Velocity Strata,Sedan,2024,31500,Sport,Gasoline,Blue,0,1,Fair,South,19240
+Velocity Strata,Sedan,2023,46700,Base,Gasoline,Blue,0,2,Excellent,South,15790
+Velocity Dash,Hatchback,2014,127400,Sport,Hybrid,Blue,0,1,Good,West,3500
+Velocity Strata,Sedan,2025,11700,Base,Gasoline,Silver,0,3,Good,West,24410
+Velocity Ridge,Pickup,2021,51800,Luxury,Gasoline,Black,0,1,Good,Midwest,21440
+Velocity Ridge,Pickup,2016,140800,Base,Gasoline,Red,0,1,Good,Midwest,5810
+Velocity Dash,Hatchback,2014,128200,Luxury,Hybrid,Red,1,1,Excellent,West,3500
+Velocity Summit,SUV,2018,121900,Sport,Hybrid,Black,0,1,Fair,Midwest,7730
+Velocity Ridge,Pickup,2025,500,Luxury,Gasoline,Black,1,1,Good,West,44460
+Velocity Strata,Sedan,2025,15700,Luxury,Gasoline,White,1,2,Fair,Northeast,21630
+Velocity Strata,Sedan,2024,25100,Sport,Gasoline,Black,0,1,Excellent,West,22830
+Velocity Summit,SUV,2020,76500,Luxury,Gasoline,White,0,2,Excellent,West,14650
+Velocity Strata,Sedan,2018,112000,Luxury,Gasoline,Blue,1,1,Good,South,6450
+Velocity Ridge,Pickup,2020,68200,Base,Gasoline,Blue,2,2,Fair,West,9910
+Velocity Ridge,Pickup,2024,32800,Sport,Gasoline,Red,1,1,Good,West,30070
+Velocity Strata,Sedan,2016,191600,Base,Gasoline,Silver,1,1,Good,West,3500
+Velocity Summit,SUV,2018,117000,Sport,Gasoline,White,0,3,Excellent,Midwest,8540
+Velocity Dash,Hatchback,2024,14700,Base,Gasoline,White,1,1,Good,South,14080
+Velocity Strata,Sedan,2019,104700,Sport,Gasoline,Black,0,1,Good,West,7380
+Velocity Summit,SUV,2015,180400,Base,Gasoline,Black,1,2,Excellent,Northeast,3610
+Velocity Strata,Sedan,2023,36600,Base,Gasoline,Black,2,2,Good,Northeast,12900
+Velocity Summit,SUV,2016,82700,Sport,Gasoline,Silver,0,1,Good,West,7780
+Velocity Ridge,Pickup,2024,15200,Sport,Gasoline,White,1,2,Excellent,Northeast,31740
+Velocity Summit,SUV,2017,78800,Sport,Gasoline,Gray,1,1,Good,West,7640
+Velocity Ridge,Pickup,2023,47900,Luxury,Gasoline,Silver,0,2,Good,Northeast,26920
+Velocity Ridge,Pickup,2022,26300,Base,Gasoline,White,0,1,Good,West,22930
+Velocity Strata,Sedan,2023,24400,Base,Gasoline,Silver,0,2,Fair,Northeast,14780
+Velocity Summit,SUV,2023,21800,Base,Gasoline,Black,2,1,Good,Midwest,20840
+Velocity Summit,SUV,2015,179400,Sport,Gasoline,White,0,1,Good,South,4080
+Velocity Strata,Sedan,2020,86900,Base,Gasoline,White,0,1,Good,Northeast,8610
+Velocity Dash,Hatchback,2019,137100,Base,Gasoline,Gray,0,2,Fair,South,4090
+Velocity Dash,Hatchback,2023,45800,Sport,Gasoline,Silver,0,1,Fair,South,12250
+Velocity Summit,SUV,2016,188100,Luxury,Gasoline,Silver,0,2,Good,South,5290
+Velocity Dash,Hatchback,2024,36000,Base,Gasoline,Black,0,1,Good,Midwest,15230
+Velocity Summit,SUV,2024,20100,Base,Hybrid,White,0,1,Good,Northeast,32370
+Velocity Dash,Hatchback,2019,109800,Sport,Gasoline,White,0,1,Good,Northeast,6150
+Velocity Strata,Sedan,2015,75000,Base,Gasoline,White,2,1,Good,South,3500
+Velocity Strata,Sedan,2016,90900,Luxury,Gasoline,Black,0,2,Excellent,Midwest,5900
+Velocity Dash,Hatchback,2024,26500,Luxury,Gasoline,Silver,0,1,Excellent,West,17510
+Velocity Dash,Hatchback,2018,43200,Sport,Gasoline,Gray,0,2,Good,Midwest,5980
+Velocity Strata,Sedan,2019,87700,Sport,Hybrid,Gray,1,1,Good,South,7920
+Velocity Ridge,Pickup,2023,28800,Base,Hybrid,White,0,1,Good,Midwest,26380
+Velocity Summit,SUV,2023,17600,Luxury,Gasoline,Gray,0,1,Good,Northeast,28230
+Velocity Summit,SUV,2021,66600,Sport,Gasoline,Blue,0,3,Excellent,South,17040
+Velocity Summit,SUV,2018,73300,Sport,Hybrid,Blue,0,2,Good,Northeast,10730
+Velocity Summit,SUV,2018,130100,Luxury,Gasoline,Silver,1,1,Excellent,South,8560
+Velocity Strata,Sedan,2017,146400,Base,Gasoline,White,0,2,Fair,South,3870
+Velocity Strata,Sedan,2014,192800,Base,Gasoline,White,0,2,Good,Northeast,3500
+Velocity Strata,Sedan,2022,34900,Sport,Gasoline,Blue,0,3,Good,Midwest,14950
+Velocity Strata,Sedan,2019,66500,Base,Hybrid,Silver,0,1,Good,Northeast,8400
+Velocity Strata,Sedan,2021,73400,Sport,Hybrid,White,1,2,Excellent,Midwest,10340
+Velocity Volt,EV Sedan,2024,15100,Sport,Electric,Silver,0,1,Good,West,37020
+Velocity Dash,Hatchback,2017,99200,Base,Gasoline,White,0,1,Good,Midwest,3970
+Velocity Summit,SUV,2014,121100,Sport,Gasoline,Black,1,2,Good,South,4110
+Velocity Aero,Coupe,2022,43400,Sport,Hybrid,Red,1,1,Excellent,Midwest,28920
+Velocity Aero,Coupe,2016,139900,Sport,Gasoline,Gray,0,1,Good,Northeast,8820
+Velocity Dash,Hatchback,2020,60500,Sport,Gasoline,Black,0,1,Excellent,South,7870
+Velocity Strata,Sedan,2015,153000,Base,Gasoline,Silver,0,2,Good,South,3500
+Velocity Volt,EV Sedan,2016,140200,Base,Electric,White,0,3,Good,South,5810
+Velocity Volt,EV Sedan,2022,66900,Base,Electric,Blue,0,1,Excellent,West,20630
+Velocity Aero,Coupe,2024,30000,Sport,Gasoline,White,2,1,Good,West,37000
+Velocity Strata,Sedan,2025,14000,Base,Gasoline,Black,1,1,Good,Northeast,22440
+Velocity Summit,SUV,2024,23100,Base,Gasoline,White,0,2,Excellent,Northeast,29170
+Velocity Summit,SUV,2014,134600,Base,Gasoline,Silver,1,1,Good,Northeast,3650
+Velocity Ridge,Pickup,2020,80100,Base,Gasoline,Black,0,1,Good,Midwest,12990
+Velocity Aero,Coupe,2024,23600,Sport,Hybrid,Blue,0,2,Excellent,West,45100

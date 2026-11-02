@@ -1,0 +1,2844 @@
+{
+ "id": "c24c6f07-2814-467f-bcc7-631eea122ca1",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "velocityWindowSticker",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T05:01:10Z",
+  "stringEncoding": "codePoint",
+  "warnings": [],
+  "contents": [
+   {
+    "path": "input1",
+    "markdown": "<!-- PageHeader: VELOCITY MOTORS MANUFACTURER'S SUGGES TED RETAIL PRICE LABEL -->\n\n\n# 2026 VELOCITY STRATA SPORT\n\n4-DOOR SEDAN . 2.0L TURBO HYBRID . 8-SPEED AUTOMATIC . FRONT-WHEEL DRIVE\n\nVIN: 1VMSTR8A3RA210077\nEXTERIOR: VELOCITY RED\n\nINTERIOR: CHARCOAL CLOTH\n\n\n## STANDARD EQUIPMENT INCLUDED AT NO EXTRA CHARGE\n\n. 10.3-inch touchscreen with wireless phone projection\n\n. Velocity Sense: automatic emergency braking, lane keeping, adaptive cruise\n\n. Dual-zone climate control . heated front seats\n\n. 18-inch alloy wheels . LED headlamps\n\n. 6 airbags . rear-view camera . tire pressure monitoring\n\n\n## PRICING\n\n\n<table>\n<tr>\n<td>Base price</td>\n<td>$31,900.00</td>\n</tr>\n<tr>\n<td>Sport package (sport suspension, paddle shifters, black trim)</td>\n<td>$2,450.00</td>\n</tr>\n<tr>\n<td>Premium audio with 12 speakers</td>\n<td>$900.00</td>\n</tr>\n<tr>\n<td>Destination and delivery</td>\n<td>$1,195.00</td>\n</tr>\n</table>\n\n\nTOTAL MSRP\n\n$36,445.00\n\n\n### FUEL ECONOMY AND ENVIRONMENT\n\n36\ncombined\nMPG\n\n32 city / 41 highway\nAnnual fuel cost: $1,250\nYou save $2,750 in fuel costs over 5 years\n\nSmog rating 7/10 . Greenhouse gas rating 8/10 . 2.8 gallons per 100 miles\n\nASSEMBLED IN MARYSVILLE, OHIO, USA . ENGINE: USA . TRANSMISSION: JAPAN\nDEALER: VELOCITY MOTORS OF COLUMBUS . 1200 AUTO MALL PKWY, COLUMBUS, OH 43215 . (614) 555-0100\n\n\n![](figures/1.1)\n\n",
+    "fields": {
+     "ModelName": {
+      "type": "string",
+      "valueString": "2026 VELOCITY STRATA SPORT",
+      "spans": [
+       {
+        "offset": 86,
+        "length": 26
+       }
+      ],
+      "confidence": 0.856,
+      "source": "D(1,39.0000,154.0000,615.0000,154.0000,615.0000,188.0000,39.0000,188.0000)"
+     },
+     "VIN": {
+      "type": "string",
+      "valueString": "1VMSTR8A3RA210077",
+      "spans": [
+       {
+        "offset": 193,
+        "length": 17
+       }
+      ],
+      "confidence": 0.973,
+      "source": "D(1,90.0000,242.0000,264.0000,241.0000,264.0000,260.0000,91.0000,261.0000)"
+     },
+     "TotalMSRP": {
+      "type": "number",
+      "valueNumber": 36445,
+      "spans": [
+       {
+        "offset": 925,
+        "length": 10
+       }
+      ],
+      "confidence": 0.685,
+      "source": "D(1,759.1132,692.3785,939.9990,698.0312,938.7932,736.6185,757.9073,730.9659)"
+     },
+     "CombinedMPG": {
+      "type": "integer",
+      "valueInteger": 36,
+      "spans": [
+       {
+        "offset": 972,
+        "length": 2
+       }
+      ],
+      "confidence": 0.808,
+      "source": "D(1,59.0000,847.0000,184.0000,847.0000,185.0000,927.0000,60.0000,927.0000)"
+     },
+     "ExteriorColor": {
+      "type": "string",
+      "valueString": "VELOCITY RED",
+      "spans": [
+       {
+        "offset": 221,
+        "length": 12
+       }
+      ],
+      "confidence": 0.732,
+      "source": "D(1,417.0000,241.0000,541.0000,241.0000,541.0000,260.0000,417.0000,260.0000)"
+     },
+     "AssemblyLocation": {
+      "type": "string",
+      "valueString": "MARYSVILLE, OHIO, USA",
+      "spans": [
+       {
+        "offset": 1167,
+        "length": 21
+       }
+      ],
+      "confidence": 0.665,
+      "source": "D(1,153.0000,1098.0000,334.0000,1098.0000,334.0000,1117.0000,153.0000,1117.0000)"
+     },
+     "OptionalEquipment": {
+      "type": "array",
+      "valueArray": [
+       {
+        "type": "object",
+        "valueObject": {
+         "Name": {
+          "type": "string",
+          "valueString": "Sport package (sport suspension, paddle shifters, black trim)",
+          "spans": [
+           {
+            "offset": 678,
+            "length": 61
+           }
+          ],
+          "confidence": 0.607,
+          "source": "D(1,58.0000,580.0000,580.0000,580.0000,580.0000,604.0000,58.0000,604.0000)"
+         },
+         "Price": {
+          "type": "number",
+          "valueNumber": 2450,
+          "spans": [
+           {
+            "offset": 749,
+            "length": 9
+           }
+          ],
+          "confidence": 0.792,
+          "source": "D(1,841.0000,581.0000,939.0000,581.0000,939.0000,603.0000,841.0000,603.0000)"
+         }
+        }
+       },
+       {
+        "type": "object",
+        "valueObject": {
+         "Name": {
+          "type": "string",
+          "valueString": "Premium audio with 12 speakers",
+          "spans": [
+           {
+            "offset": 779,
+            "length": 30
+           }
+          ],
+          "confidence": 0.725,
+          "source": "D(1,59.0000,613.0000,334.0000,613.0000,334.0000,634.0000,59.0000,634.0000)"
+         },
+         "Price": {
+          "type": "number",
+          "valueNumber": 900,
+          "spans": [
+           {
+            "offset": 819,
+            "length": 7
+           }
+          ],
+          "confidence": 0.782,
+          "source": "D(1,862.0000,613.0000,939.0000,613.0000,939.0000,634.0000,862.0000,634.0000)"
+         }
+        }
+       },
+       {
+        "type": "object",
+        "valueObject": {
+         "Name": {
+          "type": "string",
+          "valueString": "Destination and delivery",
+          "spans": [
+           {
+            "offset": 847,
+            "length": 24
+           }
+          ],
+          "confidence": 0.595,
+          "source": "D(1,59.0000,646.0000,266.0000,646.0000,266.0000,667.0000,59.0000,667.0000)"
+         },
+         "Price": {
+          "type": "number",
+          "valueNumber": 1195,
+          "spans": [
+           {
+            "offset": 881,
+            "length": 9
+           }
+          ],
+          "confidence": 0.79,
+          "source": "D(1,841.0000,645.0000,939.0000,645.0000,939.0000,667.0000,841.0000,667.0000)"
+         }
+        }
+       }
+      ]
+     }
+    },
+    "kind": "document",
+    "startPageNumber": 1,
+    "endPageNumber": 1,
+    "unit": "pixel",
+    "pages": [
+     {
+      "pageNumber": 1,
+      "angle": 0,
+      "width": 1000,
+      "height": 1400,
+      "spans": [
+       {
+        "offset": 0,
+        "length": 1340
+       }
+      ],
+      "words": [
+       {
+        "content": "VELOCITY",
+        "span": {
+         "offset": 17,
+         "length": 8
+        },
+        "confidence": 0.997,
+        "source": "D(1,39,37,266,36,266,77,39,77)"
+       },
+       {
+        "content": "MOTORS",
+        "span": {
+         "offset": 26,
+         "length": 6
+        },
+        "confidence": 0.998,
+        "source": "D(1,276,36,481,36,481,76,276,77)"
+       },
+       {
+        "content": "MANUFACTURER'S",
+        "span": {
+         "offset": 33,
+         "length": 14
+        },
+        "confidence": 0.744,
+        "source": "D(1,38,85,188,85,188,102,38,102)"
+       },
+       {
+        "content": "SUGGES",
+        "span": {
+         "offset": 48,
+         "length": 6
+        },
+        "confidence": 0.738,
+        "source": "D(1,193,85,257,85,257,102,193,102)"
+       },
+       {
+        "content": "TED",
+        "span": {
+         "offset": 55,
+         "length": 3
+        },
+        "confidence": 0.641,
+        "source": "D(1,260,85,290,85,290,102,260,102)"
+       },
+       {
+        "content": "RETAIL",
+        "span": {
+         "offset": 59,
+         "length": 6
+        },
+        "confidence": 0.716,
+        "source": "D(1,296,85,349,85,349,102,296,102)"
+       },
+       {
+        "content": "PRICE",
+        "span": {
+         "offset": 66,
+         "length": 5
+        },
+        "confidence": 0.986,
+        "source": "D(1,353,85,399,85,399,102,354,102)"
+       },
+       {
+        "content": "LABEL",
+        "span": {
+         "offset": 72,
+         "length": 5
+        },
+        "confidence": 0.989,
+        "source": "D(1,404,85,455,85,455,102,404,102)"
+       },
+       {
+        "content": "2026",
+        "span": {
+         "offset": 86,
+         "length": 4
+        },
+        "confidence": 0.994,
+        "source": "D(1,39,154,133,154,133,188,39,188)"
+       },
+       {
+        "content": "VELOCITY",
+        "span": {
+         "offset": 91,
+         "length": 8
+        },
+        "confidence": 0.997,
+        "source": "D(1,144,154,327,154,327,188,144,188)"
+       },
+       {
+        "content": "STRATA",
+        "span": {
+         "offset": 100,
+         "length": 6
+        },
+        "confidence": 0.997,
+        "source": "D(1,336,154,481,154,481,188,336,188)"
+       },
+       {
+        "content": "SPORT",
+        "span": {
+         "offset": 107,
+         "length": 5
+        },
+        "confidence": 0.997,
+        "source": "D(1,488,154,615,154,615,188,488,188)"
+       },
+       {
+        "content": "4",
+        "span": {
+         "offset": 114,
+         "length": 1
+        },
+        "confidence": 0.993,
+        "source": "D(1,39,201,50,201,50,220,39,220)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 115,
+         "length": 1
+        },
+        "confidence": 0.994,
+        "source": "D(1,50,201,57,201,57,220,51,220)"
+       },
+       {
+        "content": "DOOR",
+        "span": {
+         "offset": 116,
+         "length": 4
+        },
+        "confidence": 0.988,
+        "source": "D(1,58,201,107,200,107,220,58,220)"
+       },
+       {
+        "content": "SEDAN",
+        "span": {
+         "offset": 121,
+         "length": 5
+        },
+        "confidence": 0.972,
+        "source": "D(1,112,200,169,200,169,220,112,220)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 127,
+         "length": 1
+        },
+        "confidence": 0.954,
+        "source": "D(1,174,200,178,200,178,220,174,220)"
+       },
+       {
+        "content": "2.0L",
+        "span": {
+         "offset": 129,
+         "length": 4
+        },
+        "confidence": 0.879,
+        "source": "D(1,183,200,220,200,220,220,184,220)"
+       },
+       {
+        "content": "TURBO",
+        "span": {
+         "offset": 134,
+         "length": 5
+        },
+        "confidence": 0.97,
+        "source": "D(1,224,200,283,200,283,220,224,220)"
+       },
+       {
+        "content": "HYBRID",
+        "span": {
+         "offset": 140,
+         "length": 6
+        },
+        "confidence": 0.947,
+        "source": "D(1,289,200,351,200,351,220,289,220)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 147,
+         "length": 1
+        },
+        "confidence": 0.971,
+        "source": "D(1,355,200,360,200,360,220,355,220)"
+       },
+       {
+        "content": "8",
+        "span": {
+         "offset": 149,
+         "length": 1
+        },
+        "confidence": 0.958,
+        "source": "D(1,365,200,374,200,375,220,365,220)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 150,
+         "length": 1
+        },
+        "confidence": 0.979,
+        "source": "D(1,376,200,383,200,383,220,376,220)"
+       },
+       {
+        "content": "SPEED",
+        "span": {
+         "offset": 151,
+         "length": 5
+        },
+        "confidence": 0.969,
+        "source": "D(1,384,200,438,200,438,219,384,220)"
+       },
+       {
+        "content": "AUTOMATIC",
+        "span": {
+         "offset": 157,
+         "length": 9
+        },
+        "confidence": 0.877,
+        "source": "D(1,443,200,545,200,545,219,443,219)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 167,
+         "length": 1
+        },
+        "confidence": 0.929,
+        "source": "D(1,549,200,554,200,554,219,549,219)"
+       },
+       {
+        "content": "FRONT",
+        "span": {
+         "offset": 169,
+         "length": 5
+        },
+        "confidence": 0.815,
+        "source": "D(1,560,200,618,200,618,219,560,219)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 174,
+         "length": 1
+        },
+        "confidence": 0.991,
+        "source": "D(1,617,200,623,200,623,219,617,219)"
+       },
+       {
+        "content": "WHEEL",
+        "span": {
+         "offset": 175,
+         "length": 5
+        },
+        "confidence": 0.902,
+        "source": "D(1,623,200,684,200,684,219,623,219)"
+       },
+       {
+        "content": "DRIVE",
+        "span": {
+         "offset": 181,
+         "length": 5
+        },
+        "confidence": 0.842,
+        "source": "D(1,688,200,740,200,740,219,688,219)"
+       },
+       {
+        "content": "VIN",
+        "span": {
+         "offset": 188,
+         "length": 3
+        },
+        "confidence": 0.99,
+        "source": "D(1,38,242,69,242,69,261,38,261)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 191,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,73,242,77,242,77,261,73,261)"
+       },
+       {
+        "content": "1VMSTR8A3RA210077",
+        "span": {
+         "offset": 193,
+         "length": 17
+        },
+        "confidence": 0.943,
+        "source": "D(1,90,242,264,241,264,260,91,261)"
+       },
+       {
+        "content": "EXTERIOR",
+        "span": {
+         "offset": 211,
+         "length": 8
+        },
+        "confidence": 0.994,
+        "source": "D(1,314,241,397,241,397,260,314,260)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 219,
+         "length": 1
+        },
+        "confidence": 0.999,
+        "source": "D(1,399,241,404,241,404,260,399,260)"
+       },
+       {
+        "content": "VELOCITY",
+        "span": {
+         "offset": 221,
+         "length": 8
+        },
+        "confidence": 0.98,
+        "source": "D(1,417,241,498,241,498,260,417,260)"
+       },
+       {
+        "content": "RED",
+        "span": {
+         "offset": 230,
+         "length": 3
+        },
+        "confidence": 0.994,
+        "source": "D(1,509,241,541,241,541,260,509,260)"
+       },
+       {
+        "content": "INTERIOR",
+        "span": {
+         "offset": 235,
+         "length": 8
+        },
+        "confidence": 0.986,
+        "source": "D(1,590,241,672,241,672,261,590,260)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 243,
+         "length": 1
+        },
+        "confidence": 0.999,
+        "source": "D(1,675,241,680,241,680,261,675,261)"
+       },
+       {
+        "content": "CHARCOAL",
+        "span": {
+         "offset": 245,
+         "length": 8
+        },
+        "confidence": 0.992,
+        "source": "D(1,692,241,773,241,773,261,692,261)"
+       },
+       {
+        "content": "CLOTH",
+        "span": {
+         "offset": 254,
+         "length": 5
+        },
+        "confidence": 0.987,
+        "source": "D(1,784,241,837,241,837,261,784,261)"
+       },
+       {
+        "content": "STANDARD",
+        "span": {
+         "offset": 265,
+         "length": 8
+        },
+        "confidence": 0.969,
+        "source": "D(1,38,300,126,300,126,319,38,318)"
+       },
+       {
+        "content": "EQUIPMENT",
+        "span": {
+         "offset": 274,
+         "length": 9
+        },
+        "confidence": 0.988,
+        "source": "D(1,131,300,227,300,227,319,131,319)"
+       },
+       {
+        "content": "INCLUDED",
+        "span": {
+         "offset": 284,
+         "length": 8
+        },
+        "confidence": 0.977,
+        "source": "D(1,231,300,313,300,313,319,231,319)"
+       },
+       {
+        "content": "AT",
+        "span": {
+         "offset": 293,
+         "length": 2
+        },
+        "confidence": 0.979,
+        "source": "D(1,317,300,338,300,338,319,317,319)"
+       },
+       {
+        "content": "NO",
+        "span": {
+         "offset": 296,
+         "length": 2
+        },
+        "confidence": 0.946,
+        "source": "D(1,342,300,366,300,366,319,342,319)"
+       },
+       {
+        "content": "EXTRA",
+        "span": {
+         "offset": 299,
+         "length": 5
+        },
+        "confidence": 0.877,
+        "source": "D(1,370,300,423,300,423,319,371,319)"
+       },
+       {
+        "content": "CHARGE",
+        "span": {
+         "offset": 305,
+         "length": 6
+        },
+        "confidence": 0.965,
+        "source": "D(1,427,300,496,300,496,319,427,319)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 313,
+         "length": 1
+        },
+        "confidence": 0.85,
+        "source": "D(1,60,335,67,335,67,354,60,354)"
+       },
+       {
+        "content": "10.3",
+        "span": {
+         "offset": 315,
+         "length": 4
+        },
+        "confidence": 0.927,
+        "source": "D(1,73,335,106,335,106,355,73,354)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 319,
+         "length": 1
+        },
+        "confidence": 0.977,
+        "source": "D(1,106,335,112,335,112,355,106,355)"
+       },
+       {
+        "content": "inch",
+        "span": {
+         "offset": 320,
+         "length": 4
+        },
+        "confidence": 0.966,
+        "source": "D(1,113,335,146,335,146,355,113,355)"
+       },
+       {
+        "content": "touchscreen",
+        "span": {
+         "offset": 325,
+         "length": 11
+        },
+        "confidence": 0.992,
+        "source": "D(1,152,335,251,335,252,355,152,355)"
+       },
+       {
+        "content": "with",
+        "span": {
+         "offset": 337,
+         "length": 4
+        },
+        "confidence": 0.997,
+        "source": "D(1,257,335,290,335,290,356,257,355)"
+       },
+       {
+        "content": "wireless",
+        "span": {
+         "offset": 342,
+         "length": 8
+        },
+        "confidence": 0.989,
+        "source": "D(1,295,335,361,335,361,356,295,356)"
+       },
+       {
+        "content": "phone",
+        "span": {
+         "offset": 351,
+         "length": 5
+        },
+        "confidence": 0.936,
+        "source": "D(1,366,335,416,335,416,356,366,356)"
+       },
+       {
+        "content": "projection",
+        "span": {
+         "offset": 357,
+         "length": 10
+        },
+        "confidence": 0.881,
+        "source": "D(1,421,335,503,335,503,356,421,356)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 369,
+         "length": 1
+        },
+        "confidence": 0.916,
+        "source": "D(1,60,364,67,364,67,385,60,385)"
+       },
+       {
+        "content": "Velocity",
+        "span": {
+         "offset": 371,
+         "length": 8
+        },
+        "confidence": 0.842,
+        "source": "D(1,73,364,138,364,138,385,73,385)"
+       },
+       {
+        "content": "Sense",
+        "span": {
+         "offset": 380,
+         "length": 5
+        },
+        "confidence": 0.989,
+        "source": "D(1,143,364,192,363,192,385,143,385)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 385,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,192,363,196,363,196,385,192,385)"
+       },
+       {
+        "content": "automatic",
+        "span": {
+         "offset": 387,
+         "length": 9
+        },
+        "confidence": 0.951,
+        "source": "D(1,202,363,281,363,281,384,202,385)"
+       },
+       {
+        "content": "emergency",
+        "span": {
+         "offset": 397,
+         "length": 9
+        },
+        "confidence": 0.97,
+        "source": "D(1,286,363,376,363,376,384,286,384)"
+       },
+       {
+        "content": "braking",
+        "span": {
+         "offset": 407,
+         "length": 7
+        },
+        "confidence": 0.961,
+        "source": "D(1,381,363,441,362,441,384,381,384)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 414,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,441,362,445,362,445,384,441,384)"
+       },
+       {
+        "content": "lane",
+        "span": {
+         "offset": 416,
+         "length": 4
+        },
+        "confidence": 0.877,
+        "source": "D(1,451,362,483,362,483,384,451,384)"
+       },
+       {
+        "content": "keeping",
+        "span": {
+         "offset": 421,
+         "length": 7
+        },
+        "confidence": 0.716,
+        "source": "D(1,490,362,552,363,552,384,490,384)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 428,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,552,363,556,363,556,384,552,384)"
+       },
+       {
+        "content": "adaptive",
+        "span": {
+         "offset": 430,
+         "length": 8
+        },
+        "confidence": 0.884,
+        "source": "D(1,562,363,631,363,631,384,562,384)"
+       },
+       {
+        "content": "cruise",
+        "span": {
+         "offset": 439,
+         "length": 6
+        },
+        "confidence": 0.986,
+        "source": "D(1,636,363,687,363,687,385,636,384)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 447,
+         "length": 1
+        },
+        "confidence": 0.865,
+        "source": "D(1,60,391,67,391,67,410,60,410)"
+       },
+       {
+        "content": "Dual",
+        "span": {
+         "offset": 449,
+         "length": 4
+        },
+        "confidence": 0.99,
+        "source": "D(1,73,391,108,391,108,410,73,410)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 453,
+         "length": 1
+        },
+        "confidence": 0.996,
+        "source": "D(1,110,391,116,391,116,410,110,410)"
+       },
+       {
+        "content": "zone",
+        "span": {
+         "offset": 454,
+         "length": 4
+        },
+        "confidence": 0.993,
+        "source": "D(1,117,391,157,391,157,410,117,410)"
+       },
+       {
+        "content": "climate",
+        "span": {
+         "offset": 459,
+         "length": 7
+        },
+        "confidence": 0.991,
+        "source": "D(1,162,391,219,391,219,411,162,411)"
+       },
+       {
+        "content": "control",
+        "span": {
+         "offset": 467,
+         "length": 7
+        },
+        "confidence": 0.938,
+        "source": "D(1,225,391,280,391,280,411,225,411)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 475,
+         "length": 1
+        },
+        "confidence": 0.78,
+        "source": "D(1,284,391,288,391,288,411,284,411)"
+       },
+       {
+        "content": "heated",
+        "span": {
+         "offset": 477,
+         "length": 6
+        },
+        "confidence": 0.871,
+        "source": "D(1,295,391,349,391,349,411,295,411)"
+       },
+       {
+        "content": "front",
+        "span": {
+         "offset": 484,
+         "length": 5
+        },
+        "confidence": 0.893,
+        "source": "D(1,354,391,394,391,394,410,354,411)"
+       },
+       {
+        "content": "seats",
+        "span": {
+         "offset": 490,
+         "length": 5
+        },
+        "confidence": 0.935,
+        "source": "D(1,397,391,441,391,441,410,397,410)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 497,
+         "length": 1
+        },
+        "confidence": 0.949,
+        "source": "D(1,60,419,67,419,67,440,61,440)"
+       },
+       {
+        "content": "18",
+        "span": {
+         "offset": 499,
+         "length": 2
+        },
+        "confidence": 0.983,
+        "source": "D(1,73,419,90,419,90,440,73,440)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 501,
+         "length": 1
+        },
+        "confidence": 0.995,
+        "source": "D(1,91,419,97,419,97,440,91,440)"
+       },
+       {
+        "content": "inch",
+        "span": {
+         "offset": 502,
+         "length": 4
+        },
+        "confidence": 0.983,
+        "source": "D(1,99,419,131,419,131,440,99,440)"
+       },
+       {
+        "content": "alloy",
+        "span": {
+         "offset": 507,
+         "length": 5
+        },
+        "confidence": 0.982,
+        "source": "D(1,137,419,175,419,175,440,137,440)"
+       },
+       {
+        "content": "wheels",
+        "span": {
+         "offset": 513,
+         "length": 6
+        },
+        "confidence": 0.895,
+        "source": "D(1,179,419,236,419,236,440,179,440)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 520,
+         "length": 1
+        },
+        "confidence": 0.908,
+        "source": "D(1,240,419,245,419,245,440,240,440)"
+       },
+       {
+        "content": "LED",
+        "span": {
+         "offset": 522,
+         "length": 3
+        },
+        "confidence": 0.597,
+        "source": "D(1,251,419,281,419,281,440,251,440)"
+       },
+       {
+        "content": "headlamps",
+        "span": {
+         "offset": 526,
+         "length": 9
+        },
+        "confidence": 0.937,
+        "source": "D(1,288,419,377,419,377,440,288,440)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 537,
+         "length": 1
+        },
+        "confidence": 0.944,
+        "source": "D(1,61,447,67,447,67,468,61,468)"
+       },
+       {
+        "content": "6",
+        "span": {
+         "offset": 539,
+         "length": 1
+        },
+        "confidence": 0.967,
+        "source": "D(1,73,447,83,447,83,468,73,468)"
+       },
+       {
+        "content": "airbags",
+        "span": {
+         "offset": 541,
+         "length": 7
+        },
+        "confidence": 0.878,
+        "source": "D(1,90,447,148,448,148,468,90,468)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 549,
+         "length": 1
+        },
+        "confidence": 0.878,
+        "source": "D(1,152,448,157,448,157,468,152,468)"
+       },
+       {
+        "content": "rear",
+        "span": {
+         "offset": 551,
+         "length": 4
+        },
+        "confidence": 0.939,
+        "source": "D(1,163,448,196,448,196,468,163,468)"
+       },
+       {
+        "content": "-",
+        "span": {
+         "offset": 555,
+         "length": 1
+        },
+        "confidence": 0.994,
+        "source": "D(1,196,448,202,448,202,468,196,468)"
+       },
+       {
+        "content": "view",
+        "span": {
+         "offset": 556,
+         "length": 4
+        },
+        "confidence": 0.988,
+        "source": "D(1,203,448,240,448,240,468,203,468)"
+       },
+       {
+        "content": "camera",
+        "span": {
+         "offset": 561,
+         "length": 6
+        },
+        "confidence": 0.936,
+        "source": "D(1,244,448,305,448,305,468,244,468)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 568,
+         "length": 1
+        },
+        "confidence": 0.662,
+        "source": "D(1,308,448,313,448,313,468,308,468)"
+       },
+       {
+        "content": "tire",
+        "span": {
+         "offset": 570,
+         "length": 4
+        },
+        "confidence": 0.674,
+        "source": "D(1,319,448,345,448,345,468,319,468)"
+       },
+       {
+        "content": "pressure",
+        "span": {
+         "offset": 575,
+         "length": 8
+        },
+        "confidence": 0.932,
+        "source": "D(1,350,448,420,448,420,468,350,468)"
+       },
+       {
+        "content": "monitoring",
+        "span": {
+         "offset": 584,
+         "length": 10
+        },
+        "confidence": 0.982,
+        "source": "D(1,425,448,512,448,512,468,425,468)"
+       },
+       {
+        "content": "PRICING",
+        "span": {
+         "offset": 600,
+         "length": 7
+        },
+        "confidence": 0.985,
+        "source": "D(1,38,515,106,514,106,532,38,532)"
+       },
+       {
+        "content": "Base",
+        "span": {
+         "offset": 627,
+         "length": 4
+        },
+        "confidence": 0.998,
+        "source": "D(1,59,551,100,550,100,571,59,571)"
+       },
+       {
+        "content": "price",
+        "span": {
+         "offset": 632,
+         "length": 5
+        },
+        "confidence": 0.998,
+        "source": "D(1,105,550,151,550,151,571,106,571)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 647,
+         "length": 1
+        },
+        "confidence": 0.997,
+        "source": "D(1,830,549,840,549,840,571,830,571)"
+       },
+       {
+        "content": "31,900.00",
+        "span": {
+         "offset": 648,
+         "length": 9
+        },
+        "confidence": 0.911,
+        "source": "D(1,842,549,939,550,939,571,842,571)"
+       },
+       {
+        "content": "Sport",
+        "span": {
+         "offset": 678,
+         "length": 5
+        },
+        "confidence": 0.711,
+        "source": "D(1,58,582,105,581,105,604,58,604)"
+       },
+       {
+        "content": "package",
+        "span": {
+         "offset": 684,
+         "length": 7
+        },
+        "confidence": 0.889,
+        "source": "D(1,110,581,183,581,183,604,110,604)"
+       },
+       {
+        "content": "(",
+        "span": {
+         "offset": 692,
+         "length": 1
+        },
+        "confidence": 0.999,
+        "source": "D(1,189,581,195,581,195,604,189,604)"
+       },
+       {
+        "content": "sport",
+        "span": {
+         "offset": 693,
+         "length": 5
+        },
+        "confidence": 0.986,
+        "source": "D(1,195,581,239,581,239,604,195,604)"
+       },
+       {
+        "content": "suspension",
+        "span": {
+         "offset": 699,
+         "length": 10
+        },
+        "confidence": 0.969,
+        "source": "D(1,244,581,341,580,341,604,244,604)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 709,
+         "length": 1
+        },
+        "confidence": 0.999,
+        "source": "D(1,342,580,347,580,347,604,342,604)"
+       },
+       {
+        "content": "paddle",
+        "span": {
+         "offset": 711,
+         "length": 6
+        },
+        "confidence": 0.989,
+        "source": "D(1,352,580,410,580,410,603,352,604)"
+       },
+       {
+        "content": "shifters",
+        "span": {
+         "offset": 718,
+         "length": 8
+        },
+        "confidence": 0.988,
+        "source": "D(1,416,580,478,580,478,603,416,603)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 726,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,478,580,482,580,482,603,478,603)"
+       },
+       {
+        "content": "black",
+        "span": {
+         "offset": 728,
+         "length": 5
+        },
+        "confidence": 0.947,
+        "source": "D(1,488,580,534,580,534,603,488,603)"
+       },
+       {
+        "content": "trim",
+        "span": {
+         "offset": 734,
+         "length": 4
+        },
+        "confidence": 0.878,
+        "source": "D(1,539,580,570,581,570,603,539,603)"
+       },
+       {
+        "content": ")",
+        "span": {
+         "offset": 738,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,571,581,580,581,580,603,571,603)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 749,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,841,581,851,581,851,603,841,603)"
+       },
+       {
+        "content": "2,450.00",
+        "span": {
+         "offset": 750,
+         "length": 8
+        },
+        "confidence": 0.844,
+        "source": "D(1,853,581,939,581,939,603,853,603)"
+       },
+       {
+        "content": "Premium",
+        "span": {
+         "offset": 779,
+         "length": 7
+        },
+        "confidence": 0.991,
+        "source": "D(1,59,613,131,613,131,634,59,634)"
+       },
+       {
+        "content": "audio",
+        "span": {
+         "offset": 787,
+         "length": 5
+        },
+        "confidence": 0.995,
+        "source": "D(1,139,613,186,613,186,634,139,634)"
+       },
+       {
+        "content": "with",
+        "span": {
+         "offset": 793,
+         "length": 4
+        },
+        "confidence": 0.991,
+        "source": "D(1,191,613,226,613,226,634,191,634)"
+       },
+       {
+        "content": "12",
+        "span": {
+         "offset": 798,
+         "length": 2
+        },
+        "confidence": 0.944,
+        "source": "D(1,233,613,249,613,249,634,233,634)"
+       },
+       {
+        "content": "speakers",
+        "span": {
+         "offset": 801,
+         "length": 8
+        },
+        "confidence": 0.981,
+        "source": "D(1,256,613,334,613,334,634,256,634)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 819,
+         "length": 1
+        },
+        "confidence": 0.997,
+        "source": "D(1,862,613,872,613,872,634,862,634)"
+       },
+       {
+        "content": "900.00",
+        "span": {
+         "offset": 820,
+         "length": 6
+        },
+        "confidence": 0.935,
+        "source": "D(1,874,613,939,613,939,634,874,634)"
+       },
+       {
+        "content": "Destination",
+        "span": {
+         "offset": 847,
+         "length": 11
+        },
+        "confidence": 0.988,
+        "source": "D(1,59,646,154,646,154,667,59,666)"
+       },
+       {
+        "content": "and",
+        "span": {
+         "offset": 859,
+         "length": 3
+        },
+        "confidence": 0.997,
+        "source": "D(1,160,646,190,646,190,667,160,667)"
+       },
+       {
+        "content": "delivery",
+        "span": {
+         "offset": 863,
+         "length": 8
+        },
+        "confidence": 0.99,
+        "source": "D(1,197,646,266,646,266,667,197,667)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 881,
+         "length": 1
+        },
+        "confidence": 0.997,
+        "source": "D(1,841,645,851,645,851,667,841,667)"
+       },
+       {
+        "content": "1,195.00",
+        "span": {
+         "offset": 882,
+         "length": 8
+        },
+        "confidence": 0.806,
+        "source": "D(1,854,645,939,645,939,667,854,667)"
+       },
+       {
+        "content": "TOTAL",
+        "span": {
+         "offset": 913,
+         "length": 5
+        },
+        "confidence": 0.997,
+        "source": "D(1,58,701,145,701,145,727,58,727)"
+       },
+       {
+        "content": "MSRP",
+        "span": {
+         "offset": 919,
+         "length": 4
+        },
+        "confidence": 0.995,
+        "source": "D(1,151,701,232,701,232,728,151,727)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 925,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,759,696,775,697,775,731,759,731)"
+       },
+       {
+        "content": "36,445.00",
+        "span": {
+         "offset": 926,
+         "length": 9
+        },
+        "confidence": 0.716,
+        "source": "D(1,777,697,939,698,939,730,777,731)"
+       },
+       {
+        "content": "FUEL",
+        "span": {
+         "offset": 942,
+         "length": 4
+        },
+        "confidence": 0.984,
+        "source": "D(1,58,784,99,784,99,803,58,803)"
+       },
+       {
+        "content": "ECONOMY",
+        "span": {
+         "offset": 947,
+         "length": 7
+        },
+        "confidence": 0.897,
+        "source": "D(1,104,784,188,784,188,803,104,803)"
+       },
+       {
+        "content": "AND",
+        "span": {
+         "offset": 955,
+         "length": 3
+        },
+        "confidence": 0.921,
+        "source": "D(1,191,784,226,784,226,803,191,803)"
+       },
+       {
+        "content": "ENVIRONMENT",
+        "span": {
+         "offset": 959,
+         "length": 11
+        },
+        "confidence": 0.902,
+        "source": "D(1,231,784,352,784,352,803,232,803)"
+       },
+       {
+        "content": "36",
+        "span": {
+         "offset": 972,
+         "length": 2
+        },
+        "confidence": 0.996,
+        "source": "D(1,59,847,184,847,185,927,60,927)"
+       },
+       {
+        "content": "combined",
+        "span": {
+         "offset": 975,
+         "length": 8
+        },
+        "confidence": 0.997,
+        "source": "D(1,208,863,315,863,315,884,209,885)"
+       },
+       {
+        "content": "MPG",
+        "span": {
+         "offset": 984,
+         "length": 3
+        },
+        "confidence": 0.997,
+        "source": "D(1,209,889,260,888,260,910,209,910)"
+       },
+       {
+        "content": "32",
+        "span": {
+         "offset": 989,
+         "length": 2
+        },
+        "confidence": 0.963,
+        "source": "D(1,418,840,450,841,450,868,417,868)"
+       },
+       {
+        "content": "city",
+        "span": {
+         "offset": 992,
+         "length": 4
+        },
+        "confidence": 0.937,
+        "source": "D(1,455,841,500,841,500,868,455,868)"
+       },
+       {
+        "content": "/",
+        "span": {
+         "offset": 997,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,509,841,522,841,522,869,509,868)"
+       },
+       {
+        "content": "41",
+        "span": {
+         "offset": 999,
+         "length": 2
+        },
+        "confidence": 0.955,
+        "source": "D(1,532,841,556,841,556,869,531,869)"
+       },
+       {
+        "content": "highway",
+        "span": {
+         "offset": 1002,
+         "length": 7
+        },
+        "confidence": 0.918,
+        "source": "D(1,564,841,664,842,664,869,564,869)"
+       },
+       {
+        "content": "Annual",
+        "span": {
+         "offset": 1010,
+         "length": 6
+        },
+        "confidence": 0.976,
+        "source": "D(1,417,883,491,882,491,907,417,907)"
+       },
+       {
+        "content": "fuel",
+        "span": {
+         "offset": 1017,
+         "length": 4
+        },
+        "confidence": 0.979,
+        "source": "D(1,497,882,537,882,537,907,497,907)"
+       },
+       {
+        "content": "cost",
+        "span": {
+         "offset": 1022,
+         "length": 4
+        },
+        "confidence": 0.996,
+        "source": "D(1,544,882,588,882,588,907,544,907)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 1026,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,588,882,593,881,593,907,588,907)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 1028,
+         "length": 1
+        },
+        "confidence": 0.999,
+        "source": "D(1,601,881,612,881,612,907,601,907)"
+       },
+       {
+        "content": "1,250",
+        "span": {
+         "offset": 1029,
+         "length": 5
+        },
+        "confidence": 0.969,
+        "source": "D(1,614,881,670,881,670,907,614,907)"
+       },
+       {
+        "content": "You",
+        "span": {
+         "offset": 1035,
+         "length": 3
+        },
+        "confidence": 0.994,
+        "source": "D(1,418,919,451,919,451,941,418,941)"
+       },
+       {
+        "content": "save",
+        "span": {
+         "offset": 1039,
+         "length": 4
+        },
+        "confidence": 0.994,
+        "source": "D(1,456,919,496,919,496,941,456,941)"
+       },
+       {
+        "content": "$",
+        "span": {
+         "offset": 1044,
+         "length": 1
+        },
+        "confidence": 0.999,
+        "source": "D(1,501,919,510,919,510,941,501,941)"
+       },
+       {
+        "content": "2,750",
+        "span": {
+         "offset": 1045,
+         "length": 5
+        },
+        "confidence": 0.9,
+        "source": "D(1,512,919,560,919,560,941,512,941)"
+       },
+       {
+        "content": "in",
+        "span": {
+         "offset": 1051,
+         "length": 2
+        },
+        "confidence": 0.976,
+        "source": "D(1,566,919,580,919,580,941,566,941)"
+       },
+       {
+        "content": "fuel",
+        "span": {
+         "offset": 1054,
+         "length": 4
+        },
+        "confidence": 0.982,
+        "source": "D(1,586,919,617,919,617,941,586,941)"
+       },
+       {
+        "content": "costs",
+        "span": {
+         "offset": 1059,
+         "length": 5
+        },
+        "confidence": 0.989,
+        "source": "D(1,624,919,668,919,668,941,624,941)"
+       },
+       {
+        "content": "over",
+        "span": {
+         "offset": 1065,
+         "length": 4
+        },
+        "confidence": 0.929,
+        "source": "D(1,674,919,712,919,712,941,674,941)"
+       },
+       {
+        "content": "5",
+        "span": {
+         "offset": 1070,
+         "length": 1
+        },
+        "confidence": 0.894,
+        "source": "D(1,716,919,727,919,727,941,716,941)"
+       },
+       {
+        "content": "years",
+        "span": {
+         "offset": 1072,
+         "length": 5
+        },
+        "confidence": 0.774,
+        "source": "D(1,732,919,780,920,780,941,732,941)"
+       },
+       {
+        "content": "Smog",
+        "span": {
+         "offset": 1079,
+         "length": 4
+        },
+        "confidence": 0.98,
+        "source": "D(1,58,983,104,983,104,1005,58,1005)"
+       },
+       {
+        "content": "rating",
+        "span": {
+         "offset": 1084,
+         "length": 6
+        },
+        "confidence": 0.932,
+        "source": "D(1,110,983,155,983,155,1006,110,1005)"
+       },
+       {
+        "content": "7/10",
+        "span": {
+         "offset": 1091,
+         "length": 4
+        },
+        "confidence": 0.876,
+        "source": "D(1,160,983,194,982,194,1006,160,1006)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 1096,
+         "length": 1
+        },
+        "confidence": 0.933,
+        "source": "D(1,203,982,209,982,209,1006,203,1006)"
+       },
+       {
+        "content": "Greenhouse",
+        "span": {
+         "offset": 1098,
+         "length": 10
+        },
+        "confidence": 0.981,
+        "source": "D(1,217,982,316,983,316,1006,217,1006)"
+       },
+       {
+        "content": "gas",
+        "span": {
+         "offset": 1109,
+         "length": 3
+        },
+        "confidence": 0.997,
+        "source": "D(1,321,983,349,983,349,1006,321,1006)"
+       },
+       {
+        "content": "rating",
+        "span": {
+         "offset": 1113,
+         "length": 6
+        },
+        "confidence": 0.983,
+        "source": "D(1,355,983,401,983,401,1006,355,1006)"
+       },
+       {
+        "content": "8/10",
+        "span": {
+         "offset": 1120,
+         "length": 4
+        },
+        "confidence": 0.902,
+        "source": "D(1,406,983,439,983,439,1006,406,1006)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 1125,
+         "length": 1
+        },
+        "confidence": 0.9,
+        "source": "D(1,449,983,455,983,455,1006,449,1006)"
+       },
+       {
+        "content": "2.8",
+        "span": {
+         "offset": 1127,
+         "length": 3
+        },
+        "confidence": 0.884,
+        "source": "D(1,463,983,489,983,489,1006,463,1006)"
+       },
+       {
+        "content": "gallons",
+        "span": {
+         "offset": 1131,
+         "length": 7
+        },
+        "confidence": 0.919,
+        "source": "D(1,494,983,551,983,551,1005,494,1006)"
+       },
+       {
+        "content": "per",
+        "span": {
+         "offset": 1139,
+         "length": 3
+        },
+        "confidence": 0.948,
+        "source": "D(1,556,983,584,983,584,1005,556,1005)"
+       },
+       {
+        "content": "100",
+        "span": {
+         "offset": 1143,
+         "length": 3
+        },
+        "confidence": 0.854,
+        "source": "D(1,588,983,616,983,616,1005,588,1005)"
+       },
+       {
+        "content": "miles",
+        "span": {
+         "offset": 1147,
+         "length": 5
+        },
+        "confidence": 0.842,
+        "source": "D(1,620,983,665,983,665,1005,620,1005)"
+       },
+       {
+        "content": "ASSEMBLED",
+        "span": {
+         "offset": 1154,
+         "length": 9
+        },
+        "confidence": 0.988,
+        "source": "D(1,38,1098,129,1098,129,1117,38,1117)"
+       },
+       {
+        "content": "IN",
+        "span": {
+         "offset": 1164,
+         "length": 2
+        },
+        "confidence": 0.991,
+        "source": "D(1,134,1098,148,1098,148,1117,134,1117)"
+       },
+       {
+        "content": "MARYSVILLE",
+        "span": {
+         "offset": 1167,
+         "length": 10
+        },
+        "confidence": 0.988,
+        "source": "D(1,153,1098,248,1098,248,1117,153,1117)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 1177,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,248,1098,252,1098,252,1117,248,1117)"
+       },
+       {
+        "content": "OHIO",
+        "span": {
+         "offset": 1179,
+         "length": 4
+        },
+        "confidence": 0.991,
+        "source": "D(1,256,1098,294,1098,294,1117,256,1117)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 1183,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,294,1098,298,1098,298,1117,294,1117)"
+       },
+       {
+        "content": "USA",
+        "span": {
+         "offset": 1185,
+         "length": 3
+        },
+        "confidence": 0.967,
+        "source": "D(1,302,1098,334,1098,334,1117,302,1117)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 1189,
+         "length": 1
+        },
+        "confidence": 0.962,
+        "source": "D(1,337,1098,341,1098,341,1117,337,1117)"
+       },
+       {
+        "content": "ENGINE",
+        "span": {
+         "offset": 1191,
+         "length": 6
+        },
+        "confidence": 0.913,
+        "source": "D(1,346,1098,401,1098,401,1117,346,1117)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 1197,
+         "length": 1
+        },
+        "confidence": 0.993,
+        "source": "D(1,402,1098,406,1098,406,1117,402,1117)"
+       },
+       {
+        "content": "USA",
+        "span": {
+         "offset": 1199,
+         "length": 3
+        },
+        "confidence": 0.955,
+        "source": "D(1,412,1098,442,1098,442,1117,412,1117)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 1203,
+         "length": 1
+        },
+        "confidence": 0.962,
+        "source": "D(1,445,1098,450,1098,450,1117,445,1117)"
+       },
+       {
+        "content": "TRANSMISSION",
+        "span": {
+         "offset": 1205,
+         "length": 12
+        },
+        "confidence": 0.915,
+        "source": "D(1,455,1098,570,1097,570,1116,455,1117)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 1217,
+         "length": 1
+        },
+        "confidence": 0.997,
+        "source": "D(1,570,1097,574,1097,574,1116,570,1116)"
+       },
+       {
+        "content": "JAPAN",
+        "span": {
+         "offset": 1219,
+         "length": 5
+        },
+        "confidence": 0.946,
+        "source": "D(1,579,1097,629,1097,629,1116,579,1116)"
+       },
+       {
+        "content": "DEALER",
+        "span": {
+         "offset": 1225,
+         "length": 6
+        },
+        "confidence": 0.996,
+        "source": "D(1,38,1123,97,1123,97,1142,38,1142)"
+       },
+       {
+        "content": ":",
+        "span": {
+         "offset": 1231,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,97,1123,101,1123,101,1142,97,1142)"
+       },
+       {
+        "content": "VELOCITY",
+        "span": {
+         "offset": 1233,
+         "length": 8
+        },
+        "confidence": 0.993,
+        "source": "D(1,105,1123,181,1123,181,1142,105,1142)"
+       },
+       {
+        "content": "MOTORS",
+        "span": {
+         "offset": 1242,
+         "length": 6
+        },
+        "confidence": 0.995,
+        "source": "D(1,185,1123,248,1123,248,1142,185,1142)"
+       },
+       {
+        "content": "OF",
+        "span": {
+         "offset": 1249,
+         "length": 2
+        },
+        "confidence": 0.996,
+        "source": "D(1,253,1123,273,1123,273,1142,253,1142)"
+       },
+       {
+        "content": "COLUMBUS",
+        "span": {
+         "offset": 1252,
+         "length": 8
+        },
+        "confidence": 0.953,
+        "source": "D(1,277,1123,364,1123,364,1142,277,1142)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 1261,
+         "length": 1
+        },
+        "confidence": 0.929,
+        "source": "D(1,368,1123,372,1123,372,1142,368,1142)"
+       },
+       {
+        "content": "1200",
+        "span": {
+         "offset": 1263,
+         "length": 4
+        },
+        "confidence": 0.847,
+        "source": "D(1,376,1123,412,1123,412,1143,376,1143)"
+       },
+       {
+        "content": "AUTO",
+        "span": {
+         "offset": 1268,
+         "length": 4
+        },
+        "confidence": 0.936,
+        "source": "D(1,414,1123,457,1123,457,1143,414,1143)"
+       },
+       {
+        "content": "MALL",
+        "span": {
+         "offset": 1273,
+         "length": 4
+        },
+        "confidence": 0.984,
+        "source": "D(1,460,1123,502,1124,503,1143,460,1143)"
+       },
+       {
+        "content": "PKWY",
+        "span": {
+         "offset": 1278,
+         "length": 4
+        },
+        "confidence": 0.986,
+        "source": "D(1,507,1124,552,1124,552,1143,507,1143)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 1282,
+         "length": 1
+        },
+        "confidence": 0.996,
+        "source": "D(1,552,1124,556,1124,556,1143,552,1143)"
+       },
+       {
+        "content": "COLUMBUS",
+        "span": {
+         "offset": 1284,
+         "length": 8
+        },
+        "confidence": 0.979,
+        "source": "D(1,560,1124,647,1124,647,1143,560,1143)"
+       },
+       {
+        "content": ",",
+        "span": {
+         "offset": 1292,
+         "length": 1
+        },
+        "confidence": 0.994,
+        "source": "D(1,647,1124,651,1124,651,1143,647,1143)"
+       },
+       {
+        "content": "OH",
+        "span": {
+         "offset": 1294,
+         "length": 2
+        },
+        "confidence": 0.988,
+        "source": "D(1,654,1124,675,1124,676,1143,654,1143)"
+       },
+       {
+        "content": "43215",
+        "span": {
+         "offset": 1297,
+         "length": 5
+        },
+        "confidence": 0.901,
+        "source": "D(1,681,1124,726,1124,726,1143,681,1143)"
+       },
+       {
+        "content": ".",
+        "span": {
+         "offset": 1303,
+         "length": 1
+        },
+        "confidence": 0.94,
+        "source": "D(1,729,1124,733,1124,733,1143,729,1143)"
+       },
+       {
+        "content": "(",
+        "span": {
+         "offset": 1305,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,739,1124,744,1124,744,1143,739,1143)"
+       },
+       {
+        "content": "614",
+        "span": {
+         "offset": 1306,
+         "length": 3
+        },
+        "confidence": 0.969,
+        "source": "D(1,743,1124,770,1124,770,1143,743,1143)"
+       },
+       {
+        "content": ")",
+        "span": {
+         "offset": 1309,
+         "length": 1
+        },
+        "confidence": 0.998,
+        "source": "D(1,769,1124,775,1124,775,1143,769,1143)"
+       },
+       {
+        "content": "555-0100",
+        "span": {
+         "offset": 1311,
+         "length": 8
+        },
+        "confidence": 0.876,
+        "source": "D(1,779,1124,849,1124,849,1143,779,1143)"
+       }
+      ],
+      "lines": [
+       {
+        "content": "VELOCITY MOTORS",
+        "source": "D(1,39,37,481,36,481,77,39,77)",
+        "span": {
+         "offset": 17,
+         "length": 15
+        }
+       },
+       {
+        "content": "MANUFACTURER'S SUGGES TED RETAIL PRICE LABEL",
+        "source": "D(1,38,85,455,85,455,102,38,102)",
+        "span": {
+         "offset": 33,
+         "length": 44
+        }
+       },
+       {
+        "content": "2026 VELOCITY STRATA SPORT",
+        "source": "D(1,39,154,615,154,615,188,39,188)",
+        "span": {
+         "offset": 86,
+         "length": 26
+        }
+       },
+       {
+        "content": "4-DOOR SEDAN . 2.0L TURBO HYBRID . 8-SPEED AUTOMATIC . FRONT-WHEEL DRIVE",
+        "source": "D(1,39,200,740,200,740,219,39,220)",
+        "span": {
+         "offset": 114,
+         "length": 72
+        }
+       },
+       {
+        "content": "VIN: 1VMSTR8A3RA210077",
+        "source": "D(1,38,242,264,241,264,260,38,261)",
+        "span": {
+         "offset": 188,
+         "length": 22
+        }
+       },
+       {
+        "content": "EXTERIOR: VELOCITY RED",
+        "source": "D(1,314,241,541,241,541,260,314,260)",
+        "span": {
+         "offset": 211,
+         "length": 22
+        }
+       },
+       {
+        "content": "INTERIOR: CHARCOAL CLOTH",
+        "source": "D(1,590,241,837,241,837,261,590,261)",
+        "span": {
+         "offset": 235,
+         "length": 24
+        }
+       },
+       {
+        "content": "STANDARD EQUIPMENT INCLUDED AT NO EXTRA CHARGE",
+        "source": "D(1,38,300,496,300,496,319,38,319)",
+        "span": {
+         "offset": 265,
+         "length": 46
+        }
+       },
+       {
+        "content": ". 10.3-inch touchscreen with wireless phone projection",
+        "source": "D(1,60,335,503,335,503,356,60,355)",
+        "span": {
+         "offset": 313,
+         "length": 54
+        }
+       },
+       {
+        "content": ". Velocity Sense: automatic emergency braking, lane keeping, adaptive cruise",
+        "source": "D(1,60,363,687,362,687,385,60,385)",
+        "span": {
+         "offset": 369,
+         "length": 76
+        }
+       },
+       {
+        "content": ". Dual-zone climate control . heated front seats",
+        "source": "D(1,60,391,441,391,441,411,60,411)",
+        "span": {
+         "offset": 447,
+         "length": 48
+        }
+       },
+       {
+        "content": ". 18-inch alloy wheels . LED headlamps",
+        "source": "D(1,60,419,377,419,377,440,61,440)",
+        "span": {
+         "offset": 497,
+         "length": 38
+        }
+       },
+       {
+        "content": ". 6 airbags . rear-view camera . tire pressure monitoring",
+        "source": "D(1,61,447,512,448,512,469,61,468)",
+        "span": {
+         "offset": 537,
+         "length": 57
+        }
+       },
+       {
+        "content": "PRICING",
+        "source": "D(1,38,515,106,514,106,532,38,533)",
+        "span": {
+         "offset": 600,
+         "length": 7
+        }
+       },
+       {
+        "content": "Base price",
+        "source": "D(1,59,550,151,550,151,571,59,571)",
+        "span": {
+         "offset": 627,
+         "length": 10
+        }
+       },
+       {
+        "content": "$31,900.00",
+        "source": "D(1,830,549,939,549,939,571,830,571)",
+        "span": {
+         "offset": 647,
+         "length": 10
+        }
+       },
+       {
+        "content": "Sport package (sport suspension, paddle shifters, black trim)",
+        "source": "D(1,58,581,580,580,580,603,58,604)",
+        "span": {
+         "offset": 678,
+         "length": 61
+        }
+       },
+       {
+        "content": "$2,450.00",
+        "source": "D(1,841,581,939,581,939,603,841,603)",
+        "span": {
+         "offset": 749,
+         "length": 9
+        }
+       },
+       {
+        "content": "Premium audio with 12 speakers",
+        "source": "D(1,59,613,334,613,334,634,59,634)",
+        "span": {
+         "offset": 779,
+         "length": 30
+        }
+       },
+       {
+        "content": "$900.00",
+        "source": "D(1,862,613,939,613,939,634,862,634)",
+        "span": {
+         "offset": 819,
+         "length": 7
+        }
+       },
+       {
+        "content": "Destination and delivery",
+        "source": "D(1,59,645,266,646,266,667,59,667)",
+        "span": {
+         "offset": 847,
+         "length": 24
+        }
+       },
+       {
+        "content": "$1,195.00",
+        "source": "D(1,841,645,939,645,939,667,841,667)",
+        "span": {
+         "offset": 881,
+         "length": 9
+        }
+       },
+       {
+        "content": "TOTAL MSRP",
+        "source": "D(1,58,701,232,701,232,728,58,727)",
+        "span": {
+         "offset": 913,
+         "length": 10
+        }
+       },
+       {
+        "content": "$36,445.00",
+        "source": "D(1,759,696,940,698,939,732,759,731)",
+        "span": {
+         "offset": 925,
+         "length": 10
+        }
+       },
+       {
+        "content": "FUEL ECONOMY AND ENVIRONMENT",
+        "source": "D(1,58,784,352,784,352,803,58,803)",
+        "span": {
+         "offset": 942,
+         "length": 28
+        }
+       },
+       {
+        "content": "36",
+        "source": "D(1,59,847,184,846,185,927,60,927)",
+        "span": {
+         "offset": 972,
+         "length": 2
+        }
+       },
+       {
+        "content": "combined",
+        "source": "D(1,208,863,315,863,315,884,209,885)",
+        "span": {
+         "offset": 975,
+         "length": 8
+        }
+       },
+       {
+        "content": "MPG",
+        "source": "D(1,209,889,260,888,260,910,209,911)",
+        "span": {
+         "offset": 984,
+         "length": 3
+        }
+       },
+       {
+        "content": "32 city / 41 highway",
+        "source": "D(1,418,840,664,842,664,869,417,868)",
+        "span": {
+         "offset": 989,
+         "length": 20
+        }
+       },
+       {
+        "content": "Annual fuel cost: $1,250",
+        "source": "D(1,417,881,670,881,670,907,417,907)",
+        "span": {
+         "offset": 1010,
+         "length": 24
+        }
+       },
+       {
+        "content": "You save $2,750 in fuel costs over 5 years",
+        "source": "D(1,418,919,780,919,780,941,418,941)",
+        "span": {
+         "offset": 1035,
+         "length": 42
+        }
+       },
+       {
+        "content": "Smog rating 7/10 . Greenhouse gas rating 8/10 . 2.8 gallons per 100 miles",
+        "source": "D(1,58,982,665,982,665,1006,58,1006)",
+        "span": {
+         "offset": 1079,
+         "length": 73
+        }
+       },
+       {
+        "content": "ASSEMBLED IN MARYSVILLE, OHIO, USA . ENGINE: USA . TRANSMISSION: JAPAN",
+        "source": "D(1,38,1098,629,1097,629,1116,38,1117)",
+        "span": {
+         "offset": 1154,
+         "length": 70
+        }
+       },
+       {
+        "content": "DEALER: VELOCITY MOTORS OF COLUMBUS . 1200 AUTO MALL PKWY, COLUMBUS, OH 43215 . (614) 555-0100",
+        "source": "D(1,38,1123,849,1124,849,1143,38,1142)",
+        "span": {
+         "offset": 1225,
+         "length": 94
+        }
+       }
+      ]
+     }
+    ],
+    "paragraphs": [
+     {
+      "role": "pageHeader",
+      "content": "VELOCITY MOTORS MANUFACTURER'S SUGGES TED RETAIL PRICE LABEL",
+      "source": "D(1,38,37,481,36,481,102,38,103)",
+      "span": {
+       "offset": 0,
+       "length": 81
+      }
+     },
+     {
+      "role": "sectionHeading",
+      "content": "2026 VELOCITY STRATA SPORT",
+      "source": "D(1,39,154,615,154,615,188,39,188)",
+      "span": {
+       "offset": 84,
+       "length": 28
+      }
+     },
+     {
+      "content": "4-DOOR SEDAN . 2.0L TURBO HYBRID . 8-SPEED AUTOMATIC . FRONT-WHEEL DRIVE",
+      "source": "D(1,39,200,740,200,740,219,39,220)",
+      "span": {
+       "offset": 114,
+       "length": 72
+      }
+     },
+     {
+      "content": "VIN: 1VMSTR8A3RA210077 EXTERIOR: VELOCITY RED",
+      "source": "D(1,38,241,541,241,541,260,38,261)",
+      "span": {
+       "offset": 188,
+       "length": 45
+      }
+     },
+     {
+      "content": "INTERIOR: CHARCOAL CLOTH",
+      "source": "D(1,590,241,837,241,837,261,590,261)",
+      "span": {
+       "offset": 235,
+       "length": 24
+      }
+     },
+     {
+      "role": "sectionHeading",
+      "content": "STANDARD EQUIPMENT INCLUDED AT NO EXTRA CHARGE",
+      "source": "D(1,38,300,496,300,496,319,38,319)",
+      "span": {
+       "offset": 262,
+       "length": 49
+      }
+     },
+     {
+      "content": ". 10.3-inch touchscreen with wireless phone projection",
+      "source": "D(1,60,335,503,335,503,356,60,355)",
+      "span": {
+       "offset": 313,
+       "length": 54
+      }
+     },
+     {
+      "content": ". Velocity Sense: automatic emergency braking, lane keeping, adaptive cruise",
+      "source": "D(1,60,363,687,362,687,385,60,385)",
+      "span": {
+       "offset": 369,
+       "length": 76
+      }
+     },
+     {
+      "content": ". Dual-zone climate control . heated front seats",
+      "source": "D(1,60,391,441,391,441,411,60,411)",
+      "span": {
+       "offset": 447,
+       "length": 48
+      }
+     },
+     {
+      "content": ". 18-inch alloy wheels . LED headlamps",
+      "source": "D(1,60,419,377,419,377,440,61,440)",
+      "span": {
+       "offset": 497,
+       "length": 38
+      }
+     },
+     {
+      "content": ". 6 airbags . rear-view camera . tire pressure monitoring",
+      "source": "D(1,61,447,512,448,512,469,61,468)",
+      "span": {
+       "offset": 537,
+       "length": 57
+      }
+     },
+     {
+      "role": "sectionHeading",
+      "content": "PRICING",
+      "source": "D(1,38,515,106,514,106,532,38,533)",
+      "span": {
+       "offset": 597,
+       "length": 10
+      }
+     },
+     {
+      "content": "Base price",
+      "source": "D(1,59,550,151,550,151,571,59,571)",
+      "span": {
+       "offset": 627,
+       "length": 10
+      }
+     },
+     {
+      "content": "$31,900.00",
+      "source": "D(1,830,549,939,550,939,572,830,571)",
+      "span": {
+       "offset": 647,
+       "length": 10
+      }
+     },
+     {
+      "content": "Sport package (sport suspension, paddle shifters, black trim)",
+      "source": "D(1,58,581,580,580,580,603,58,604)",
+      "span": {
+       "offset": 678,
+       "length": 61
+      }
+     },
+     {
+      "content": "$2,450.00",
+      "source": "D(1,841,581,939,581,939,603,841,603)",
+      "span": {
+       "offset": 749,
+       "length": 9
+      }
+     },
+     {
+      "content": "Premium audio with 12 speakers",
+      "source": "D(1,59,613,334,613,334,634,59,634)",
+      "span": {
+       "offset": 779,
+       "length": 30
+      }
+     },
+     {
+      "content": "$900.00",
+      "source": "D(1,862,613,939,613,939,634,862,634)",
+      "span": {
+       "offset": 819,
+       "length": 7
+      }
+     },
+     {
+      "content": "Destination and delivery",
+      "source": "D(1,59,645,266,646,266,667,59,667)",
+      "span": {
+       "offset": 847,
+       "length": 24
+      }
+     },
+     {
+      "content": "$1,195.00",
+      "source": "D(1,841,645,939,645,939,667,841,667)",
+      "span": {
+       "offset": 881,
+       "length": 9
+      }
+     },
+     {
+      "content": "TOTAL MSRP",
+      "source": "D(1,58,701,232,701,232,728,58,727)",
+      "span": {
+       "offset": 913,
+       "length": 10
+      }
+     },
+     {
+      "content": "$36,445.00",
+      "source": "D(1,759,696,940,698,939,732,759,731)",
+      "span": {
+       "offset": 925,
+       "length": 10
+      }
+     },
+     {
+      "role": "sectionHeading",
+      "content": "FUEL ECONOMY AND ENVIRONMENT",
+      "source": "D(1,58,784,352,784,352,803,58,803)",
+      "span": {
+       "offset": 938,
+       "length": 32
+      }
+     },
+     {
+      "content": "36 combined MPG",
+      "source": "D(1,59,847,315,846,316,926,60,927)",
+      "span": {
+       "offset": 972,
+       "length": 15
+      }
+     },
+     {
+      "content": "32 city / 41 highway Annual fuel cost: $1,250 You save $2,750 in fuel costs over 5 years",
+      "source": "D(1,418,840,780,841,780,941,417,941)",
+      "span": {
+       "offset": 989,
+       "length": 88
+      }
+     },
+     {
+      "content": "Smog rating 7/10 . Greenhouse gas rating 8/10 . 2.8 gallons per 100 miles",
+      "source": "D(1,58,982,665,982,665,1006,58,1006)",
+      "span": {
+       "offset": 1079,
+       "length": 73
+      }
+     },
+     {
+      "content": "ASSEMBLED IN MARYSVILLE, OHIO, USA . ENGINE: USA . TRANSMISSION: JAPAN DEALER: VELOCITY MOTORS OF COLUMBUS . 1200 AUTO MALL PKWY, COLUMBUS, OH 43215 . (614) 555-0100",
+      "source": "D(1,38,1097,849,1098,849,1143,38,1142)",
+      "span": {
+       "offset": 1154,
+       "length": 165
+      }
+     }
+    ],
+    "sections": [
+     {
+      "span": {
+       "offset": 84,
+       "length": 1254
+      },
+      "elements": [
+       "/paragraphs/1",
+       "/paragraphs/2",
+       "/paragraphs/3",
+       "/paragraphs/4",
+       "/sections/1",
+       "/sections/2"
+      ]
+     },
+     {
+      "span": {
+       "offset": 262,
+       "length": 332
+      },
+      "elements": [
+       "/paragraphs/5",
+       "/paragraphs/6",
+       "/paragraphs/7",
+       "/paragraphs/8",
+       "/paragraphs/9",
+       "/paragraphs/10"
+      ]
+     },
+     {
+      "span": {
+       "offset": 597,
+       "length": 741
+      },
+      "elements": [
+       "/paragraphs/11",
+       "/tables/0",
+       "/paragraphs/20",
+       "/paragraphs/21",
+       "/sections/3"
+      ]
+     },
+     {
+      "span": {
+       "offset": 938,
+       "length": 400
+      },
+      "elements": [
+       "/paragraphs/22",
+       "/paragraphs/23",
+       "/paragraphs/24",
+       "/paragraphs/25",
+       "/paragraphs/26",
+       "/figures/0"
+      ]
+     }
+    ],
+    "tables": [
+     {
+      "rowCount": 4,
+      "columnCount": 2,
+      "cells": [
+       {
+        "kind": "rowHeader",
+        "rowIndex": 0,
+        "columnIndex": 0,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "Base price",
+        "source": "D(1,41,542,811,542,811,576,41,576)",
+        "span": {
+         "offset": 627,
+         "length": 10
+        },
+        "elements": [
+         "/paragraphs/12"
+        ]
+       },
+       {
+        "kind": "content",
+        "rowIndex": 0,
+        "columnIndex": 1,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "$31,900.00",
+        "source": "D(1,811,542,959,542,959,576,811,576)",
+        "span": {
+         "offset": 647,
+         "length": 10
+        },
+        "elements": [
+         "/paragraphs/13"
+        ]
+       },
+       {
+        "kind": "rowHeader",
+        "rowIndex": 1,
+        "columnIndex": 0,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "Sport package (sport suspension, paddle shifters, black trim)",
+        "source": "D(1,41,576,811,576,811,607,41,607)",
+        "span": {
+         "offset": 678,
+         "length": 61
+        },
+        "elements": [
+         "/paragraphs/14"
+        ]
+       },
+       {
+        "kind": "content",
+        "rowIndex": 1,
+        "columnIndex": 1,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "$2,450.00",
+        "source": "D(1,811,576,959,576,959,607,811,607)",
+        "span": {
+         "offset": 749,
+         "length": 9
+        },
+        "elements": [
+         "/paragraphs/15"
+        ]
+       },
+       {
+        "kind": "rowHeader",
+        "rowIndex": 2,
+        "columnIndex": 0,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "Premium audio with 12 speakers",
+        "source": "D(1,41,607,811,607,811,639,42,640)",
+        "span": {
+         "offset": 779,
+         "length": 30
+        },
+        "elements": [
+         "/paragraphs/16"
+        ]
+       },
+       {
+        "kind": "content",
+        "rowIndex": 2,
+        "columnIndex": 1,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "$900.00",
+        "source": "D(1,811,607,959,607,959,640,811,639)",
+        "span": {
+         "offset": 819,
+         "length": 7
+        },
+        "elements": [
+         "/paragraphs/17"
+        ]
+       },
+       {
+        "kind": "rowHeader",
+        "rowIndex": 3,
+        "columnIndex": 0,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "Destination and delivery",
+        "source": "D(1,42,640,811,639,811,678,42,679)",
+        "span": {
+         "offset": 847,
+         "length": 24
+        },
+        "elements": [
+         "/paragraphs/18"
+        ]
+       },
+       {
+        "kind": "content",
+        "rowIndex": 3,
+        "columnIndex": 1,
+        "rowSpan": 1,
+        "columnSpan": 1,
+        "content": "$1,195.00",
+        "source": "D(1,811,639,959,640,959,679,811,678)",
+        "span": {
+         "offset": 881,
+         "length": 9
+        },
+        "elements": [
+         "/paragraphs/19"
+        ]
+       }
+      ],
+      "source": "D(1,41,541,957,541,957,684,41,684)",
+      "span": {
+       "offset": 610,
+       "length": 300
+      }
+     }
+    ],
+    "figures": [
+     {
+      "source": "D(1,795,1222,922,1195,936,1323,825,1334)",
+      "span": {
+       "offset": 1322,
+       "length": 16
+      },
+      "id": "1.1"
+     }
+    ],
+    "analyzerId": "velocityWindowSticker",
+    "mimeType": "image/png"
+   }
+  ]
+ },
+ "usage": {
+  "documentPagesStandard": 1,
+  "contextualizationTokens": 1000,
+  "tokens": {
+   "gpt-4.1-mini-input": 4172,
+   "gpt-4.1-mini-output": 278
+  }
+ }
+}

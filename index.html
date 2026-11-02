@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en" data-page="index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Start here · AI-901 Grand Prix</title>
+<meta name="description" content="A one-day, car-themed, hands-on course for Microsoft exam AI-901 (Azure AI Fundamentals): Microsoft Foundry, prompts, agents, speech, vision, image generation and Content Understanding. Twenty students, one subscription, zero collisions.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Start here · AI-901 Grand Prix"><meta property="og:description" content="A one-day, car-themed, hands-on course for Microsoft exam AI-901 (Azure AI Fundamentals): Microsoft Foundry, prompts, agents, speech, vision, image generation and Content Understanding. Twenty students, one subscription, zero collisions."><meta property="og:type" content="website"><meta property="og:image" content="https://varoonsahgal.github.io/az901/images/og.png">
+<script>try{var t=localStorage.getItem('ai901-gp:theme');if(t)document.documentElement.setAttribute('data-theme',JSON.parse(t))}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1220'/%3E%3Cpath d='M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z' fill='%23E10600'/%3E%3Ccircle cx='12' cy='22' r='2.4' fill='%23FACC15'/%3E%3Ccircle cx='22' cy='22' r='2.4' fill='%23FACC15'/%3E%3C/svg%3E">
+</head>
+<body data-page="index" class="hue-instructor">
+<a class="skip" href="#main">Skip to content</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
+  <nav class="nav" aria-label="Laps">
+      <a href="index.html" aria-current="page">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
+      <a href="instructor.html">🏁 Race control</a>
+  </nav>
+  <div class="tools">
+    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in"><div><p class="eyebrow" style="color:#FACC15">One day · eight laps · Microsoft Foundry · exam AI-901</p><h1>Learn Azure AI the way a pit crew learns a car: <em style="font-style:normal;color:#FACC15">hands on, under time, together.</em></h1><p class="lede">You work for <b>Velocity Motors</b>. Today you will give the company an AI assistant that talks, an agent that reads the warranty guide, eyes that read window stickers and a pipeline that turns invoices into data — all in <b>Microsoft Foundry</b>, all in one shared Azure subscription, and all mapped to the <b>AI-901</b> exam.</p><div class="mast-meta"><span class="chip"><b>8</b> laps · ~7 hours</span><span class="chip"><b>20</b> drivers · 1 subscription · 0 collisions</span><span class="chip"><b>$</b> about $2–4 per student for the whole day</span><span class="chip"><b>Exam</b> AI-901 · skills measured as of 15 April 2026</span></div><div class="btns"><a class="btn" href="lab0.html" style="background:#FACC15">Start Lap 0 · Pit lane →</a><a class="btn ghost" href="instructor.html">Instructor? Race control</a></div></div><div class="mast-art"><div class="lapcard"><div class="ttl">Today's race · lap counter</div><ol><li data-lab="lab0" style="--d:#94A3B8"><i></i>Pit lane · set up your garage<small>09:00</small></li><li data-lab="lab1" style="--d:#EF4444"><i></i>Race rules · concepts &amp; responsible AI<small>09:30</small></li><li data-lab="lab2" style="--d:#22C55E"><i></i>Pole position · prompts &amp; chat app<small>10:45</small></li><li data-lab="lab3" style="--d:#F59E0B"><i></i>Pit crew · build an agent<small>11:45</small></li><li data-lab="lab4" style="--d:#38BDF8"><i></i>Radio check · text &amp; speech<small>13:30</small></li><li data-lab="lab5" style="--d:#A78BFA"><i></i>Eyes on track · vision &amp; images<small>14:30</small></li><li data-lab="lab6" style="--d:#14B8A6"><i></i>Paperwork · Content Understanding<small>15:30</small></li><li data-lab="lab7" style="--d:#FACC15"><i></i>Checkered flag · practice exam<small>16:20</small></li></ol></div></div></div></section><main id="main" class="labwrap">
+
+<div class="callout exam"><div class="ico">🏁</div><div><span class="box-lbl">Read this first</span><p><strong>AI-900 is gone. AI-901 is the exam.</strong> Microsoft retired AI-900 on 30 June 2026 and replaced it with <strong>AI-901: Microsoft Azure AI Fundamentals</strong>. The new exam is still "fundamentals", but it is far more hands-on: <strong>55–60%</strong> of it is about <em>implementing</em> solutions in Microsoft Foundry (prompts, agents, small Python clients, speech, vision, image generation and information extraction) and <strong>40–45%</strong> is concepts (responsible AI, how models work, which model to pick, what the AI workloads are). Classic machine learning (AutoML, regression vs. clustering) is no longer on the exam. This course follows the <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">official skills outline</a> item by item.</p></div></div>
+
+<h2 id="what-ai-901-measures-and-where-you-will-meet-it-today">What AI-901 measures, and where you will meet it today</h2>
+<div class="domain">
+  <div><div><b>Identify AI concepts and capabilities</b><small>Responsible AI principles · how generative models work · choosing a model, deployment type and parameters · recognising workloads: generative &amp; agentic AI, text, speech, vision, information extraction</small><div class="barw"><i style="width:43%;background:#EF4444"></i></div></div><div class="pct">40–45%</div></div>
+  <div><div><b>Implement AI solutions by using Microsoft Foundry</b><small>Prompts · deploy a model and use the playground · a chat client with the Foundry SDK · build and test an agent, then call it from code · text analysis · spoken prompts with a multimodal model · Azure Speech · vision with a multimodal model · image generation · Content Understanding for documents, images, audio and video</small><div class="barw"><i style="width:58%;background:#22C55E"></i></div></div><div class="pct">55–60%</div></div>
+</div>
+<p>Passing score is <strong>700 of 1000</strong>. The exam expects you to recognise Python, REST calls and CLI commands when you see them, not to write them from memory. That is why every lab here has a <em>Portal</em> path, a <em>Cloud Shell</em> path and a short <em>Python</em> path. Do the portal path first, then at least look at the code.</p>
+
+<h2 id="the-track">The track</h2>
+<p>Eight laps, one day. Breaks are on the schedule because <em>you</em> are on the schedule. Times assume a 09:00 start.</p>
+<div class="track">
+  <div class="t">09:00</div><div class="w"><b><a href="lab0.html">Lap 0 · Pit lane</a></b> <span>— Cloud Shell, your student number, one Foundry resource, one project, one model deployment, your first API call. 30 min.</span></div>
+  <div class="t">09:30</div><div class="w"><b><a href="lab1.html">Lap 1 · Race rules</a></b> <span>— The six responsible-AI principles with Velocity Motors dilemmas, how a generative model actually works (tokens, transformers, temperature), how to pick a model and a deployment type, and a hands-on run of Azure AI Content Safety. 60 min.</span></div>
+  <div class="t">10:30</div><div class="w"><span>☕ Pit stop · 15 min</span></div>
+  <div class="t">10:45</div><div class="w"><b><a href="lab2.html">Lap 2 · Pole position</a></b> <span>— The Foundry playground: system prompts, few-shot examples, temperature, grounding with your own data, JSON output. Then the same thing from Python with the Foundry SDK. 60 min.</span></div>
+  <div class="t">11:45</div><div class="w"><b><a href="lab3.html">Lap 3 · Pit crew</a></b> <span>— Build <em>velo-warranty-expert</em>, an agent with instructions and a knowledge file, test it in the agent playground, publish a preview web app, and call it from a 20-line Python client. 60 min.</span></div>
+  <div class="t">12:45</div><div class="w"><span>🍔 Lunch · 45 min</span></div>
+  <div class="t">13:30</div><div class="w"><b><a href="lab4.html">Lap 4 · Radio check</a></b> <span>— Azure AI Language on customer reviews (sentiment, key phrases, entities, PII, summaries), Azure Speech (text-to-speech, speech-to-text, Voice mode on an agent) and a spoken question answered by a multimodal audio model. 60 min.</span></div>
+  <div class="t">14:30</div><div class="w"><b><a href="lab5.html">Lap 5 · Eyes on the track</a></b> <span>— Photos of the lot through Azure AI Vision and through a multimodal GPT model; OCR on a window sticker; then generate concept-car images with FLUX. 50 min.</span></div>
+  <div class="t">15:20</div><div class="w"><span>☕ Pit stop · 10 min</span></div>
+  <div class="t">15:30</div><div class="w"><b><a href="lab6.html">Lap 6 · Paperwork</a></b> <span>— Azure Content Understanding: a service invoice, a window sticker with your own field schema, lot photos classified into structured data, a launch video and its audio transcript. 50 min.</span></div>
+  <div class="t">16:20</div><div class="w"><b><a href="lab7.html">Lap 7 · Checkered flag</a></b> <span>— A 40-question practice exam with explanations, then the cool-down lap: delete everything you created. 40 min.</span></div>
+</div>
+
+<h2 id="the-laps">The laps</h2>
+<div class="labs">
+  <a class="lab" href="lab0.html" style="--hue:#94A3B8;--hue-ink:#475569"><div class="num">LAP 0 · 30 MIN</div><h3>Pit lane</h3><p>Set up your garage: Cloud Shell, resource group, Foundry resource and project, a gpt-4.1-mini deployment, your first call.</p><div class="meta"><span>Azure CLI</span><span>Foundry portal</span><span>Keys &amp; endpoints</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab1.html" style="--hue:#EF4444;--hue-ink:#B91C1C"><div class="num">LAP 1 · 60 MIN</div><h3>Race rules</h3><p>Responsible AI at a car company, how generative models work, picking models and deployments, Content Safety hands-on.</p><div class="meta"><span>Concepts 40–45%</span><span>Content Safety</span><span>Prompt Shields</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab2.html" style="--hue:#22C55E;--hue-ink:#15803D"><div class="num">LAP 2 · 60 MIN</div><h3>Pole position</h3><p>Prompts in the playground, parameters that matter, grounding, JSON output, and a chat client built with the Foundry SDK.</p><div class="meta"><span>Playground</span><span>System prompts</span><span>Foundry SDK</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab3.html" style="--hue:#F59E0B;--hue-ink:#B45309"><div class="num">LAP 3 · 60 MIN</div><h3>Pit crew</h3><p>Build an agent with instructions, a knowledge file and a tool. Test it, publish a preview app, call it from Python.</p><div class="meta"><span>Foundry Agent Service</span><span>File search</span><span>agent_reference</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab4.html" style="--hue:#38BDF8;--hue-ink:#0369A1"><div class="num">LAP 4 · 60 MIN</div><h3>Radio check</h3><p>Text analysis on reviews and tickets, neural voices, speech-to-text, Voice mode on your agent, and a spoken prompt answered by gpt-audio-mini.</p><div class="meta"><span>Azure AI Language</span><span>Azure Speech</span><span>Multimodal audio</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab5.html" style="--hue:#A78BFA;--hue-ink:#6D28D9"><div class="num">LAP 5 · 50 MIN</div><h3>Eyes on the track</h3><p>Captions, objects and OCR with Azure AI Vision; reasoning about photos with a multimodal model; concept cars with FLUX.</p><div class="meta"><span>Azure AI Vision</span><span>gpt-4.1-mini vision</span><span>FLUX.2-pro</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab6.html" style="--hue:#14B8A6;--hue-ink:#0F766E"><div class="num">LAP 6 · 50 MIN</div><h3>Paperwork</h3><p>Content Understanding on an invoice, a window sticker with your own schema, lot photos, a launch video and its audio.</p><div class="meta"><span>Content Understanding</span><span>Custom analyzers</span><span>Documents · images · audio · video</span></div><span class="go">Start →</span></a>
+  <a class="lab" href="lab7.html" style="--hue:#FACC15;--hue-ink:#A16207"><div class="num">LAP 7 · 40 MIN</div><h3>Checkered flag</h3><p>Forty exam-style questions with explanations and a score board, then delete everything you built today.</p><div class="meta"><span>Practice exam</span><span>Cleanup</span></div><span class="go">Start →</span></a>
+</div>
+
+<h2 id="how-the-shared-garage-works">How the shared garage works</h2>
+<p>Twenty people build in <strong>one Azure subscription</strong> at the same time. Three rules keep you from stepping on each other:</p>
+<div class="vocab">
+  <div><b>1 · Your number is your namespace</b>Every resource you create carries your student number: <code>rg-ai901-<span class="v" data-v="student">s07</span></code>, <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code>, <code>proj-ai901-<span class="v" data-v="student">s07</span></code>. Type your number into the <strong>Pit board</strong> box in the top bar and every snippet on this site updates.</div>
+  <div><b>2 · One Foundry resource each, in East US 2</b>You create a single <em>Azure AI Foundry</em> resource (kind <code>AIServices</code>, tier <code>S0</code>). It serves OpenAI models, Language, Speech, Vision and Content Understanding from one endpoint and one key. Free <code>F0</code> tiers are <em>not</em> used: only one F0 per service type is allowed per subscription, so the second student would fail.</div>
+  <div><b>3 · Small deployments</b>Model quota is shared per region. Deploy <code>gpt-4.1-mini</code> at <strong>10K tokens per minute</strong>, <code>gpt-audio-mini</code> at 1K and <code>FLUX.2-pro</code> at capacity 1. Twenty of each fits under the subscription limits with room to spare.</div>
+</div>
+<div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Why these names</span><p>The Foundry resource name becomes a public DNS name (<code>https://ai901-<span class="v" data-v="student">s07</span>-pitcrew.cognitiveservices.azure.com</code>), so it must be unique <em>in the world</em>, not just in our subscription. If creation fails with "already taken", change the last word (<code>pitcrew</code> → <code>garage</code>, <code>turbo</code>, your surname) and keep going.</p></div></div>
+
+<h2 id="what-you-need">What you need</h2>
+<ul>
+  <li>A browser and your Azure sign-in for the shared subscription. The instructor will give you a <strong>student number</strong> (s01–s20) on the whiteboard.</li>
+  <li>Nothing installed. Every command runs in <a href="https://shell.azure.com">Azure Cloud Shell</a>, which already has the Azure CLI, Python and <code>pip</code>. If you prefer your laptop, you need <code>az</code> and Python 3.10+.</li>
+  <li>About 20 lines of Python reading ability. You will not write code from scratch; you will run and edit the <a href="downloads.html">pit-crew scripts</a> provided.</li>
+  <li>Headphones for Lap 4 (we make the cars talk).</li>
+</ul>
+
+<h2 id="objective-map">Objective map</h2>
+<p>Every lap page starts with 🎯 tags naming the exact skills-measured bullets it covers. Here is the whole map, so you can see nothing is left out.</p>
+<table>
+<thead><tr><th>Skills measured (AI-901, April 2026)</th><th>Where</th></tr></thead>
+<tbody>
+<tr><td>Describe principles of responsible AI (fairness, reliability &amp; safety, privacy &amp; security, inclusiveness, transparency, accountability)</td><td>Lap 1</td></tr>
+<tr><td>Describe how generative AI models work · identify an appropriate model based on capabilities · identify deployment options and configuration parameters</td><td>Lap 1, Lap 2</td></tr>
+<tr><td>Identify scenarios for common AI workloads (generative &amp; agentic AI, text analysis, speech, computer vision, information extraction) and the techniques behind them</td><td>Lap 1, then every lap</td></tr>
+<tr><td>Create effective system and user prompts · deploy a model and interact with it in the Foundry portal · create a lightweight chat client with the Foundry SDK</td><td>Lap 0, Lap 2</td></tr>
+<tr><td>Create and test a single-agent solution in the Foundry portal · create a lightweight client application for an agent</td><td>Lap 3</td></tr>
+<tr><td>Build a lightweight application that includes text analysis · respond to spoken prompts using a deployed multimodal model · build an application using Azure Speech in Foundry Tools</td><td>Lap 4</td></tr>
+<tr><td>Interpret visual input in prompts with a multimodal model · create new visual outputs with generative models · build a lightweight application with vision capabilities</td><td>Lap 5</td></tr>
+<tr><td>Extract information from documents and forms, images, audio and video with Azure Content Understanding · build a lightweight application with information extraction</td><td>Lap 6</td></tr>
+<tr><td>Everything above, under exam conditions</td><td>Lap 7</td></tr>
+</tbody></table>
+
+<h2 id="house-rules">House rules</h2>
+<ul>
+  <li><strong>Keys are secrets.</strong> They go in environment variables, never in chat, screenshots or Git. Lap 0 shows you how.</li>
+  <li><strong>Watch the meter.</strong> Everything today is pay-per-use. A full day costs about $2–4 per student if you follow the labs; a runaway loop generating images could cost more. Race control shows the live cost report.</li>
+  <li><strong>Delete your resource group at the end.</strong> Lap 7 ends with one command that removes everything you built. Resources left running cost money while you sleep.</li>
+  <li><strong>The portal moves.</strong> Microsoft renames and redraws Foundry often (it was "Azure AI Foundry" until November 2025). Where a button has moved, the Cloud Shell path on the same page is exact and always works.</li>
+</ul>
+
+<h2 id="sources">Sources</h2>
+<ul class="small">
+  <li><a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Study guide for Exam AI-901</a> — the skills measured this course follows, and the retirement notice for AI-900.</li>
+  <li><a href="https://microsoftlearning.github.io/mslearn-ai-fundamentals/">Microsoft Learning · AI fundamentals exercises</a> — the official hands-on labs for the AI-901 course; our portal steps mirror their UI labels.</li>
+  <li>Everything on this site was executed against a real subscription on 1 November 2026; the screenshots are the real responses, lightly renamed to a sample student (<code>s07</code>).</li>
+</ul>
+
+</main>
+<footer>
+  <div>AI-901 Grand Prix · a one-day, car-themed path through Microsoft exam AI-901 · built for Velocity Motors (a fictional company). Not affiliated with Microsoft.</div>
+  <div><a href="https://github.com/varoonsahgal/az901">Source on GitHub</a> · <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Official AI-901 study guide</a> · <a href="instructor.html">Race control</a> · <a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>

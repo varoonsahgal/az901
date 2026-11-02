@@ -1,0 +1,85 @@
+{
+ "id": "2ca77bf0-d430-4f5d-9f1b-706366248482",
+ "status": "Succeeded",
+ "result": {
+  "analyzerId": "prebuilt-callCenter",
+  "apiVersion": "2025-11-01",
+  "createdAt": "2026-11-02T04:45:05Z",
+  "stringEncoding": "utf8",
+  "warnings": [],
+  "contents": [
+   {
+    "markdown": "# Audio: 00:00.000 => 00:12.450\n\nTranscript\n```\nWEBVTT\n\n00:00.110 --> 00:02.190\n<v Agent 1>Welcome back to your Velocity Summit.\n\n00:02.510 --> 00:05.230\n<v Agent 1>Cabin temperature is set to 70 degrees.\n\n00:05.550 --> 00:08.750\n<v Agent 1>Your next service is due in 2100 miles.\n\n00:09.070 --> 00:12.190\n<v Agent 1>Would you like me to book it at Velocity Motors of Columbus?\n```",
+    "fields": {
+     "Summary": {
+      "type": "string",
+      "valueString": "The conversation is a brief interaction where an agent welcomes the user back to the Velocity Summit, informs them that the cabin temperature is set to 70 degrees, notifies them that their next service is due in 2100 miles, and offers to book the service appointment at Velocity Motors of Columbus."
+     },
+     "Topics": {
+      "type": "array",
+      "valueArray": [
+       {
+        "type": "string",
+        "valueString": "Vehicle cabin temperature"
+       },
+       {
+        "type": "string",
+        "valueString": "Vehicle service schedule"
+       },
+       {
+        "type": "string",
+        "valueString": "Service booking"
+       },
+       {
+        "type": "string",
+        "valueString": "Velocity Summit"
+       },
+       {
+        "type": "string",
+        "valueString": "Velocity Motors of Columbus"
+       }
+      ]
+     },
+     "Companies": {
+      "type": "array",
+      "valueArray": [
+       {
+        "type": "string",
+        "valueString": "Velocity Motors"
+       }
+      ]
+     },
+     "Sentiment": {
+      "type": "string",
+      "valueString": "Neutral"
+     },
+     "Categories": {
+      "type": "array",
+      "valueArray": [
+       {
+        "type": "string",
+        "valueString": "Transportation"
+       },
+       {
+        "type": "string",
+        "valueString": "Business"
+       }
+      ]
+     }
+    },
+    "kind": "audioVisual",
+    "startTimeMs": 0,
+    "endTimeMs": 12450,
+    "mimeType": "audio/wav"
+   }
+  ]
+ },
+ "usage": {
+  "audioHours": 0.004,
+  "contextualizationTokens": 361,
+  "tokens": {
+   "gpt-4.1-mini-input": 1819,
+   "gpt-4.1-mini-output": 161
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "prompt_agent": {
+  "name": "velo-pit-crew",
+  "version": "1",
+  "instructions": "You are Velo, the Velocity Motors pit-crew agent for dealership staff. Answer briefly and practically. If you don't know a Velocity-specific fact, say so and suggest checking the warranty guide.",
+  "conversation": "conv_08185ca9fe849ef100eUWOVhbnjPb5TSgBvDONXPixuFvMqCh5",
+  "turns": [
+   {
+    "q": "A customer's Summit has 41,000 miles and a worn brake pad. Is that a warranty repair?",
+    "a": "Brake pad wear is generally considered a normal maintenance item and not covered under warranty, especially at 41,000 miles. Check the Velocity warranty guide for specifics, but likely this repair would not be warranty-covered."
+   },
+   {
+    "q": "And what about the rotors?",
+    "a": "Rotor wear is typically also considered wear-and-tear and not covered under standard warranty unless there's a defect. Check the warranty guide for any rotor-specific coverage or claims."
+   }
+  ],
+  "usage": {
+   "input_tokens": 71,
+   "input_tokens_details": {
+    "cache_write_tokens": 0,
+    "cached_tokens": 0
+   },
+   "output_tokens": 43,
+   "output_tokens_details": {
+    "reasoning_tokens": 0
+   },
+   "total_tokens": 114
+  }
+ },
+ "knowledge_agent": {
+  "name": "velo-warranty-expert",
+  "version": "1",
+  "vector_store": "vs_BR5MVd2BOFgg0k6r6oVBoQFF",
+  "turns": [
+   {
+    "q": "Does the Volt battery warranty transfer to a second owner, and what capacity loss is covered?",
+    "a": "Yes, the Volt battery warranty does transfer to a second owner. All Velocity warranties, including the battery warranty, transfer automatically to subsequent owners at no cost for the remainder of the original term.\n\nRegarding capacity loss coverage, the high-voltage battery is covered for 8 years or 100,000 miles, whichever comes first. This coverage protects against defects and also against capacity loss below 70% of the original rated capacity.\n\nThese details are in section 4 of the warranty guide, specifically 4.2 for battery coverage and 4.3 for transferability."
+   },
+   {
+    "q": "Is there a deductible for warranty repairs, and do I get a loaner car?",
+    "a": "There is no deductible for warranty repairs on Velocity vehicles. Additionally, loaner vehicles are provided for repairs that are expected to take more than 4 hours.\n\nThis information is found in section 7 of the warranty guide."
+   },
+   {
+    "q": "Does the warranty cover a cracked windshield from a rock on the highway?",
+    "a": "The warranty does not cover a cracked windshield caused by a rock on the highway. The basic warranty covers defects in materials or workmanship, but damage from road hazards such as rocks is not included.\n\nThis is found in section 1, which covers basic bumper-to-bumper warranty exclusions and wear items, but does not list windshield damage from road debris as covered.\n\nHence, windshield cracks from rocks are not covered under the Velocity warranty."
+   }
+  ],
+  "output_types": [
+   "file_search_call",
+   "message"
+  ]
+ },
+ "code_agent": {
+  "name": "velo-data-analyst",
+  "version": "1",
+  "q": "Service invoice lines: pads 189.00, rotors 2 x 120.00, labor 2.5 h x 145.00, rotation 29.95, supplies 18.50. Sales tax 7.5%. What is the total?",
+  "a": "Let's calculate the total for the service invoice lines step-by-step.\n\nGiven data:\n- Pads: $189.00\n- Rotors: 2 \u00d7 $120.00\n- Labor: 2.5 hours \u00d7 $145.00/hour\n- Rotation: $29.95\n- Supplies: $18.50\n- Sales tax: 7.5%\n\nFirst, we calculate the subtotal by adding all the items before tax. Then, we compute the sales tax on the subtotal and add it to get the total amount.\n\nLet's calculate it.The subtotal for the service invoice lines is $839.95. The sales tax at 7.5% is $63.00. Therefore, the total amount due is approximately $902.95.",
+  "code": [
+   "# Given data\npads = 189.00\nrotors = 2 * 120.00\nlabor = 2.5 * 145.00\nrotation = 29.95\nsupplies = 18.50\nsales_tax_rate = 7.5 / 100\n\n# Calculate subtotal\nsubtotal = pads + rotors + labor + rotation + supplies\n\n# Calculate sales tax\nsales_tax = subtotal * sales_tax_rate\n\n# Calculate total\ntotal = subtotal + sales_tax\n\nsubtotal, sales_tax, total"
+  ],
+  "output_types": [
+   "message",
+   "code_interpreter_call",
+   "message"
+  ]
+ }
+}

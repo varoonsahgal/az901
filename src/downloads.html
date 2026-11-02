@@ -1,0 +1,36 @@
+<!--META {"title":"Downloads","desc":"Scripts, sample documents, photos, audio, video and raw API results used in the AI-901 Grand Prix labs.","toc":false,
+"eyebrow":"Pit crew kit","h1":"Downloads","lede":"Everything the labs ask you to fetch, in one place. Each script is 20–40 lines and reads its settings from the environment variables set in your pit-board block.","chips":[["Scripts","8 Python files + 1 bash helper"],["Samples","documents · photos · audio · video"],["Results","raw JSON from every API call"]],"objectives":[]}
+-->
+<h2>Pit-crew scripts</h2>
+<p>Download them all as <a href="downloads/pit-crew-scripts.zip">pit-crew-scripts.zip</a>, or fetch one at a time in Cloud Shell with <code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/&lt;name&gt;</code>.</p>
+<table>
+<thead><tr><th>Script</th><th>Lap</th><th>What it does</th><th>Needs</th></tr></thead>
+<tbody>
+<tr><td><a href="pit-crew/chat_client.py">chat_client.py</a></td><td>2</td><td>Chat with your gpt-4.1-mini deployment through the Foundry SDK, keeping history.</td><td>PROJECT_ENDPOINT, CHAT_MODEL</td></tr>
+<tr><td><a href="pit-crew/agent_client.py">agent_client.py</a></td><td>3</td><td>Talk to a Foundry agent by name and version with <code>agent_reference</code>.</td><td>PROJECT_ENDPOINT, AGENT_NAME</td></tr>
+<tr><td><a href="pit-crew/text_analysis.py">text_analysis.py</a></td><td>4</td><td>Language detection, sentiment with opinions, key phrases, entities, PII redaction.</td><td>FOUNDRY_ENDPOINT, AI_KEY</td></tr>
+<tr><td><a href="pit-crew/speech_pipeline.py">speech_pipeline.py</a></td><td>4</td><td>WAV → speech-to-text → gpt-4.1-mini → text-to-speech → WAV.</td><td>AI_KEY, SPEECH_REGION, PROJECT_ENDPOINT</td></tr>
+<tr><td><a href="pit-crew/talk_to_velo.py">talk_to_velo.py</a></td><td>4</td><td>A spoken question answered by gpt-audio-mini with spoken audio.</td><td>AOAI_ENDPOINT, AI_KEY, AUDIO_MODEL</td></tr>
+<tr><td><a href="pit-crew/vision_app.py">vision_app.py</a></td><td>5</td><td>Azure AI Vision caption/objects/OCR, then a multimodal model writes a listing.</td><td>FOUNDRY_ENDPOINT, AI_KEY, PROJECT_ENDPOINT</td></tr>
+<tr><td><a href="pit-crew/make_image.py">make_image.py</a></td><td>5</td><td>Generate an image with a FLUX (or gpt-image) deployment.</td><td>FOUNDRY_ENDPOINT_AI, AI_KEY, IMAGE_MODEL</td></tr>
+<tr><td><a href="pit-crew/extract_info.py">extract_info.py</a></td><td>6</td><td>Send any file to a Content Understanding analyzer, poll, print the fields.</td><td>FOUNDRY_ENDPOINT_AI, AI_KEY</td></tr>
+<tr><td><a href="pit-crew/race_control.sh">race_control.sh</a></td><td>instructor</td><td>Providers, quotas, roles, status, cost and cleanup for the whole class.</td><td>Owner on the subscription</td></tr>
+</tbody></table>
+
+<h2>Sample content</h2>
+<table>
+<thead><tr><th>File</th><th>Used in</th><th>What it is</th></tr></thead>
+<tbody>
+<tr><td><a href="downloads/lot-photos.zip">lot-photos.zip</a></td><td>Laps 5, 6</td><td>16 public-domain vehicle photos with a credits file.</td></tr>
+<tr><td><a href="downloads/window-sticker.png">window-sticker.png</a></td><td>Laps 5, 6</td><td>A Velocity Strata Monroney label (synthetic).</td></tr>
+<tr><td><a href="downloads/vin-plate.png">vin-plate.png</a> · <a href="downloads/service-note.png">service-note.png</a></td><td>Lap 5</td><td>A door-jamb VIN plate and a handwritten service note for OCR.</td></tr>
+<tr><td><a href="downloads/service-invoice.pdf">service-invoice.pdf</a> (<a href="downloads/service-invoice.png">png</a>)</td><td>Lap 6</td><td>A service invoice for prebuilt-invoice.</td></tr>
+<tr><td><a href="downloads/velocity-warranty-guide.md">velocity-warranty-guide.md</a></td><td>Laps 2, 3</td><td>The knowledge file for the warranty agent.</td></tr>
+<tr><td><a href="downloads/question.wav">question.wav</a></td><td>Lap 4</td><td>"Hey Velo, my brake warning light just came on…" (16 kHz mono PCM).</td></tr>
+<tr><td><a href="media/velo-andrew-multilingual.mp3">velo-andrew-multilingual.mp3</a> · <a href="media/velo-ava.mp3">velo-ava.mp3</a></td><td>Laps 4, 6</td><td>Neural-voice narration (SSML with style and language switches) and the welcome message.</td></tr>
+<tr><td><a href="downloads/velocity-teaser.mp4">velocity-teaser.mp4</a></td><td>Lap 6</td><td>An 18-second launch teaser for the video analyzers.</td></tr>
+<tr><td><a href="downloads/velocity_used_cars.csv">velocity_used_cars.csv</a> · <a href="downloads/velocity_leads.csv">velocity_leads.csv</a> · <a href="downloads/velocity_owners.csv">velocity_owners.csv</a></td><td>bonus</td><td>Synthetic datasets (1,800 used-car sales, 1,200 leads, 600 owners) for anyone who wants to try the Code interpreter agent on real-looking data.</td></tr>
+</tbody></table>
+
+<h2>Raw results</h2>
+<p>Every response behind a screenshot: <a href="downloads/results/">downloads/results/</a> (Vision, Language, Translator, Content Safety, OpenAI, agents, Content Understanding, Speech). Useful when you want to see a full JSON shape the labs only summarise.</p>

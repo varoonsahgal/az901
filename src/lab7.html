@@ -1,0 +1,69 @@
+<!--META {"title":"Lap 7 · Checkered flag","desc":"A 40-question AI-901 practice exam with explanations and a scoreboard, then the cool-down lap: delete everything you built today.",
+"h1":"Checkered flag · practice exam and cool-down lap",
+"lede":"Forty questions in the style of the real exam, every one explained and linked back to the lap that teaches it. Then the most important command of the day: the one that deletes your resource group.",
+"chips":[["Time","40 min · 25 exam, 15 debrief and cleanup"],["Difficulty","Everything you did today"],["Covers","Both AI-901 domains · 8 topic areas"],["Pass mark","700 of 1000 on the real exam"]],
+"objectives":["Identify AI concepts and capabilities (40–45%)","Implement AI solutions by using Microsoft Foundry (55–60%)"],
+"head":"<script defer src=\"assets/questions.js\"></script><script defer src=\"assets/quiz.js\"></script>"}
+-->
+<div class="callout note"><div class="ico">🏁</div><div><span class="box-lbl">The story so far</span><p>Velo chats, remembers, cites the warranty guide, hears, speaks, sees, paints and reads paperwork. Legal has its answer about responsibility. The last thing a pit crew does is check the stopwatch and clean the garage.</p></div></div>
+
+<h2>How the real exam works</h2>
+<ul>
+  <li><strong>AI-901: Microsoft Azure AI Fundamentals</strong> leads to the <em>Microsoft Certified: Azure AI Fundamentals</em> certification. It replaced AI-900, which retired on 30 June 2026. Skills measured are dated 15 April 2026; this course follows them.</li>
+  <li>Two domains: <strong>Identify AI concepts and capabilities (40–45%)</strong> and <strong>Implement AI solutions by using Microsoft Foundry (55–60%)</strong>. Passing score is <strong>700 of 1000</strong>; scoring is scaled, not a percentage.</li>
+  <li>Fundamentals exams typically run about 45 minutes with roughly 40–60 items: multiple choice, multiple response, drag-and-drop matching, hot-area and short scenario sets. You are expected to <em>recognise</em> Python, REST and CLI, not write them from memory.</li>
+  <li>Official preparation: the <a href="https://learn.microsoft.com/credentials/certifications/exams/ai-901/">exam page</a>, the <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">study guide</a>, the free <strong>practice assessment</strong> on AI Skills Navigator (sign in required) and the <a href="https://microsoftlearning.github.io/mslearn-ai-fundamentals/">Microsoft Learning exercises</a> we mirrored today.</li>
+</ul>
+<div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Exam-room tactics</span><ul><li>Read the last sentence of the scenario first; it holds the actual question.</li><li>Name the <em>input</em> and the <em>output</em>: that picks the workload, and usually the service.</li><li>Eliminate answers from the wrong layer (a deployment type is never the answer to a responsible-AI question).</li><li>Flag and move on; the clock is the only real opponent.</li></ul></div></div>
+
+<h2>Practice exam · 40 questions</h2>
+<p>Answer each question; the explanation appears as soon as you commit. Your answers are saved in this browser, so you can leave and come back. Multiple-response questions say so and have a <strong>Check answer</strong> button.</p>
+<div class="scoreboard" role="region" aria-label="Score board"><div><small>Answered</small><br><b id="sb-n">0 / 40</b></div><div class="bar"><i id="sb-bar-i"></i></div><div><small>Score</small><br><b id="sb-pct" style="font-size:16px">no answers yet</b></div><button type="button" id="sb-reveal">Show all explanations</button><button type="button" id="sb-reset">Reset</button><span id="sb-live" class="skip" aria-live="polite"></span></div>
+<div id="quiz"></div>
+<div id="result" class="result" aria-live="polite"></div>
+
+<h2>Cool-down lap · delete everything</h2>
+<p>Everything you built today lives in one resource group. Deleting it removes the Foundry resource, its project, every deployment, agent, vector store and analyzer. Nothing you need survives; the scripts and documents are on this site.</p>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Cloud Shell path</button><button role="tab">Portal path</button></div>
+  <div role="tabpanel">
+<pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT
+az resource list --resource-group $RG --query "[].{name:name,type:type}" -o table     <span class="cm"># look before you delete</span>
+az group delete --name $RG --yes --no-wait
+az group list --query "[?starts_with(name,'rg-ai901')].{name:name,state:properties.provisioningState}" -o table</code></pre>
+<img class="shot" src="images/shots/lab7-cleanup.png" alt="Terminal: resource list, then az group delete and the group shown as Deleting" loading="lazy" title="Click to zoom">
+<p>Foundry resources are <em>soft-deleted</em> for 48 hours, which reserves the name. If you want the name back today (or race control wants a clean subscription), purge it:</p>
+<pre><code>az cognitiveservices account list-deleted -o table
+az cognitiveservices account purge --name ai901-$STUDENT-pitcrew --resource-group $RG --location eastus2</code></pre>
+  </div>
+  <div role="tabpanel" hidden>
+<ol class="steps">
+  <li><p>Open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → <code>rg-ai901-<span class="v" data-v="student">s07</span></code>.</p></li>
+  <li><p>Select <strong>Delete resource group</strong> on the toolbar, type the resource group name to confirm, and select <strong>Delete</strong>. Deletion takes a few minutes; the group disappears from the list when done.</p></li>
+  <li><p>Optional: in the Foundry resource's blade you deleted, the <strong>Manage deleted resources</strong> option (under Azure AI services) lets you purge the soft-deleted name immediately.</p></li>
+</ol>
+  </div>
+</div>
+<div class="callout caution"><div class="ico">💸</div><div><span class="box-lbl">Why this matters</span><p>Pay-per-use services cost nothing when idle, but a forgotten Provisioned deployment, a running compute instance or an agent in a loop can cost real money overnight. The habit is: <em>one resource group per experiment, delete it when the experiment ends.</em></p></div></div>
+
+<h2>What's next</h2>
+<ul>
+  <li><strong>Book AI-901</strong> within two weeks while it is fresh. Take the official practice assessment first.</li>
+  <li><strong>Keep the pit-crew scripts</strong> (<a href="downloads/pit-crew-scripts.zip">zip</a>). Each is a 20–40 line starting point for a real Velocity Motors tool.</li>
+  <li><strong>Next exam:</strong> AI-102 (Azure AI Engineer Associate) goes deep on the same services with full application code. Everything you did today is its foundation.</li>
+  <li><strong>Read the study guide once more</strong> and check every bullet against a lap on this site. If one feels thin, that lap's quiz is the fastest fix.</li>
+</ul>
+
+<h2>Pit wall debrief · what you learned</h2>
+<p>In one day, in one shared subscription, you:</p>
+<ul>
+  <li>Set up a Foundry resource, project and model deployment, and learned what deployment types and TPM quotas mean (Lap 0).</li>
+  <li>Named the six responsible-AI principles with real dilemmas, explained tokens, attention, temperature and grounding, chose models by capability, and ran Content Safety (Lap 1).</li>
+  <li>Shaped a model with a system prompt, saw temperature and grounding change its answers, got JSON back, and ran a Foundry SDK chat client (Lap 2).</li>
+  <li>Built, tested and published an agent with file search and a code interpreter, and called it with <code>agent_reference</code> (Lap 3).</li>
+  <li>Analysed reviews and tickets with Azure AI Language, made the car speak with SSML, transcribed speech, switched on Voice mode, and answered a spoken question with gpt-audio-mini (Lap 4).</li>
+  <li>Read photos with Azure AI Vision and a multimodal model, and generated concept-car images with FLUX (Lap 5).</li>
+  <li>Turned an invoice, a window sticker, lot photos, a narration and a video into typed fields with Content Understanding (Lap 6).</li>
+  <li>Scored a practice exam and deleted your garage (Lap 7).</li>
+</ul>
+<p>Thank you for driving. <a href="index.html">Back to the start →</a></p>

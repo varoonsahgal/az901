@@ -1,0 +1,368 @@
+{
+ "suv-volvo-xc90": {
+  "id": "624719d2-b110-44b8-8a13-802b6e8a7e44",
+  "status": "Succeeded",
+  "result": {
+   "analyzerId": "velocityLotPhoto",
+   "apiVersion": "2025-11-01",
+   "createdAt": "2026-11-02T04:29:53Z",
+   "warnings": [],
+   "contents": [
+    {
+     "path": "input1",
+     "markdown": "![image](pages/1)\n",
+     "fields": {
+      "VehicleType": {
+       "type": "string",
+       "valueString": "suv"
+      },
+      "PrimaryColor": {
+       "type": "string",
+       "valueString": "silver"
+      },
+      "VehicleCount": {
+       "type": "integer",
+       "valueInteger": 1
+      },
+      "PeopleVisible": {
+       "type": "boolean",
+       "valueBoolean": false
+      },
+      "Setting": {
+       "type": "string",
+       "valueString": "dealer lot"
+      },
+      "Summary": {
+       "type": "string",
+       "valueString": "Silver SUV parked in a dealer lot on a cloudy day."
+      }
+     },
+     "kind": "document",
+     "startPageNumber": 1,
+     "endPageNumber": 1,
+     "unit": "pixel",
+     "pages": [
+      {
+       "pageNumber": 1,
+       "spans": []
+      }
+     ],
+     "analyzerId": "velocityLotPhoto",
+     "mimeType": "image/jpeg"
+    }
+   ]
+  },
+  "usage": {
+   "contextualizationTokens": 1000,
+   "tokens": {
+    "gpt-4.1-mini-input": 536,
+    "gpt-4.1-mini-output": 42
+   }
+  }
+ },
+ "pickup-ford-f150": {
+  "id": "5f597dd6-3a29-42b5-9bdc-ae325c13ae6b",
+  "status": "Succeeded",
+  "result": {
+   "analyzerId": "velocityLotPhoto",
+   "apiVersion": "2025-11-01",
+   "createdAt": "2026-11-02T04:29:58Z",
+   "warnings": [],
+   "contents": [
+    {
+     "path": "input1",
+     "markdown": "![image](pages/1)\n",
+     "fields": {
+      "VehicleType": {
+       "type": "string",
+       "valueString": "pickup"
+      },
+      "PrimaryColor": {
+       "type": "string",
+       "valueString": "white"
+      },
+      "VehicleCount": {
+       "type": "integer",
+       "valueInteger": 1
+      },
+      "PeopleVisible": {
+       "type": "boolean",
+       "valueBoolean": false
+      },
+      "Setting": {
+       "type": "string",
+       "valueString": "dealer lot"
+      },
+      "Summary": {
+       "type": "string",
+       "valueString": "White Ford pickup truck parked in a dealer lot."
+      }
+     },
+     "kind": "document",
+     "startPageNumber": 1,
+     "endPageNumber": 1,
+     "unit": "pixel",
+     "pages": [
+      {
+       "pageNumber": 1,
+       "spans": []
+      }
+     ],
+     "analyzerId": "velocityLotPhoto",
+     "mimeType": "image/jpeg"
+    }
+   ]
+  },
+  "usage": {
+   "contextualizationTokens": 1000,
+   "tokens": {
+    "gpt-4.1-mini-input": 484,
+    "gpt-4.1-mini-output": 39
+   }
+  }
+ },
+ "traffic-auckland": {
+  "id": "562e04ae-9904-4c6c-acc8-3e6d35401d6e",
+  "status": "Succeeded",
+  "result": {
+   "analyzerId": "velocityLotPhoto",
+   "apiVersion": "2025-11-01",
+   "createdAt": "2026-11-02T04:30:04Z",
+   "warnings": [],
+   "contents": [
+    {
+     "path": "input1",
+     "markdown": "![image](pages/1)\n",
+     "fields": {
+      "VehicleType": {
+       "type": "string",
+       "valueString": "sedan"
+      },
+      "PrimaryColor": {
+       "type": "string",
+       "valueString": "white"
+      },
+      "VehicleCount": {
+       "type": "integer",
+       "valueInteger": 38
+      },
+      "PeopleVisible": {
+       "type": "boolean",
+       "valueBoolean": false
+      },
+      "Setting": {
+       "type": "string",
+       "valueString": "highway"
+      },
+      "Summary": {
+       "type": "string",
+       "valueString": "A busy highway scene with multiple white sedans and other vehicles in moderate traffic."
+      }
+     },
+     "kind": "document",
+     "startPageNumber": 1,
+     "endPageNumber": 1,
+     "unit": "pixel",
+     "pages": [
+      {
+       "pageNumber": 1,
+       "spans": []
+      }
+     ],
+     "analyzerId": "velocityLotPhoto",
+     "mimeType": "image/jpeg"
+    }
+   ]
+  },
+  "usage": {
+   "contextualizationTokens": 1000,
+   "tokens": {
+    "gpt-4.1-mini-input": 510,
+    "gpt-4.1-mini-output": 46
+   }
+  }
+ },
+ "bicycles-wall": {
+  "id": "580fdeb2-5c09-457e-bf2d-0411e4da933c",
+  "status": "Succeeded",
+  "result": {
+   "analyzerId": "velocityLotPhoto",
+   "apiVersion": "2025-11-01",
+   "createdAt": "2026-11-02T04:30:10Z",
+   "warnings": [],
+   "contents": [
+    {
+     "path": "input1",
+     "markdown": "![image](pages/1)\n",
+     "fields": {
+      "VehicleType": {
+       "type": "string",
+       "valueString": "bicycle"
+      },
+      "PrimaryColor": {
+       "type": "string",
+       "valueString": "light blue"
+      },
+      "VehicleCount": {
+       "type": "integer",
+       "valueInteger": 3
+      },
+      "PeopleVisible": {
+       "type": "boolean",
+       "valueBoolean": false
+      },
+      "Setting": {
+       "type": "string",
+       "valueString": "street"
+      },
+      "Summary": {
+       "type": "string",
+       "valueString": "Two light blue bicycles parked against a brick wall on a city street with three cars in the background."
+      }
+     },
+     "kind": "document",
+     "startPageNumber": 1,
+     "endPageNumber": 1,
+     "unit": "pixel",
+     "pages": [
+      {
+       "pageNumber": 1,
+       "spans": []
+      }
+     ],
+     "analyzerId": "velocityLotPhoto",
+     "mimeType": "image/jpeg"
+    }
+   ]
+  },
+  "usage": {
+   "contextualizationTokens": 1000,
+   "tokens": {
+    "gpt-4.1-mini-input": 510,
+    "gpt-4.1-mini-output": 50
+   }
+  }
+ },
+ "roadtrip-iceland": {
+  "id": "553fa851-3c87-4602-9f3c-d59b0a1c4230",
+  "status": "Succeeded",
+  "result": {
+   "analyzerId": "velocityLotPhoto",
+   "apiVersion": "2025-11-01",
+   "createdAt": "2026-11-02T04:30:15Z",
+   "warnings": [],
+   "contents": [
+    {
+     "path": "input1",
+     "markdown": "![image](pages/1)\n",
+     "fields": {
+      "VehicleType": {
+       "type": "string",
+       "valueString": "suv"
+      },
+      "PrimaryColor": {
+       "type": "string",
+       "valueString": "black"
+      },
+      "VehicleCount": {
+       "type": "integer",
+       "valueInteger": 1
+      },
+      "PeopleVisible": {
+       "type": "boolean",
+       "valueBoolean": true
+      },
+      "Setting": {
+       "type": "string",
+       "valueString": "other"
+      },
+      "Summary": {
+       "type": "string",
+       "valueString": "Black SUV with roof cargo box parked outdoors with a person standing by the open door."
+      }
+     },
+     "kind": "document",
+     "startPageNumber": 1,
+     "endPageNumber": 1,
+     "unit": "pixel",
+     "pages": [
+      {
+       "pageNumber": 1,
+       "spans": []
+      }
+     ],
+     "analyzerId": "velocityLotPhoto",
+     "mimeType": "image/jpeg"
+    }
+   ]
+  },
+  "usage": {
+   "contextualizationTokens": 1000,
+   "tokens": {
+    "gpt-4.1-mini-input": 510,
+    "gpt-4.1-mini-output": 46
+   }
+  }
+ },
+ "convertible-dog": {
+  "id": "d1b6fd31-98cd-4519-8696-04da16444248",
+  "status": "Succeeded",
+  "result": {
+   "analyzerId": "velocityLotPhoto",
+   "apiVersion": "2025-11-01",
+   "createdAt": "2026-11-02T04:30:21Z",
+   "warnings": [],
+   "contents": [
+    {
+     "path": "input1",
+     "markdown": "![image](pages/1)\n",
+     "fields": {
+      "VehicleType": {
+       "type": "string",
+       "valueString": "coupe"
+      },
+      "PrimaryColor": {
+       "type": "string",
+       "valueString": "white"
+      },
+      "VehicleCount": {
+       "type": "integer",
+       "valueInteger": 1
+      },
+      "PeopleVisible": {
+       "type": "boolean",
+       "valueBoolean": true
+      },
+      "Setting": {
+       "type": "string",
+       "valueString": "other"
+      },
+      "Summary": {
+       "type": "string",
+       "valueString": "White convertible coupe parked in an outdoor lot with a scenic background."
+      }
+     },
+     "kind": "document",
+     "startPageNumber": 1,
+     "endPageNumber": 1,
+     "unit": "pixel",
+     "pages": [
+      {
+       "pageNumber": 1,
+       "spans": []
+      }
+     ],
+     "analyzerId": "velocityLotPhoto",
+     "mimeType": "image/jpeg"
+    }
+   ]
+  },
+  "usage": {
+   "contextualizationTokens": 1000,
+   "tokens": {
+    "gpt-4.1-mini-input": 510,
+    "gpt-4.1-mini-output": 42
+   }
+  }
+ }
+}

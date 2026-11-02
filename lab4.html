@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en" data-page="lab4">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lap 4 · Radio check · AI-901 Grand Prix</title>
+<meta name="description" content="Text analysis with Azure AI Language on Velocity customer reviews, Azure Speech text-to-speech and speech-to-text, Voice mode on a Foundry agent, and a spoken question answered by the gpt-audio-mini multimodal model.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0B1220">
+<meta property="og:title" content="Lap 4 · Radio check · AI-901 Grand Prix"><meta property="og:description" content="Text analysis with Azure AI Language on Velocity customer reviews, Azure Speech text-to-speech and speech-to-text, Voice mode on a Foundry agent, and a spoken question answered by the gpt-audio-mini multimodal model."><meta property="og:type" content="website"><meta property="og:image" content="https://varoonsahgal.github.io/az901/images/og.png">
+<script>try{var t=localStorage.getItem('ai901-gp:theme');if(t)document.documentElement.setAttribute('data-theme',JSON.parse(t))}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1220'/%3E%3Cpath d='M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z' fill='%23E10600'/%3E%3Ccircle cx='12' cy='22' r='2.4' fill='%23FACC15'/%3E%3Ccircle cx='22' cy='22' r='2.4' fill='%23FACC15'/%3E%3C/svg%3E">
+</head>
+<body data-page="lab4" class="hue-lab4">
+<a class="skip" href="#main">Skip to content</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar"><div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
+  <nav class="nav" aria-label="Laps">
+      <a href="index.html">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" aria-current=page><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
+      <a href="instructor.html">🏁 Race control</a>
+  </nav>
+  <div class="tools">
+    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</div></header>
+<section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
+  <div>
+    <p class="eyebrow">Lap 4 of 7 · Radio check</p>
+    <h1>Radio check · text analysis and speech</h1>
+    <p class="lede">Race radio only works if both ends understand each other. In this lap Velo learns to read forty thousand reviews without getting tired, to strip names and card numbers from tickets, to speak in a calm neural voice, and to answer a driver who simply talks to the car.</p>
+    <div class="mast-meta"><span class="chip"><b>Time</b> 60 min</span><span class="chip"><b>Difficulty</b> Beginner · curl and three short Python scripts</span><span class="chip"><b>Services</b> Azure AI Language · Azure AI Translator · Azure Speech · gpt-audio-mini</span><span class="chip"><b>Exam weight</b> Part of both domains · text, speech and multimodal</span></div>
+    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Describe common text analysis techniques, including keyword extraction, entity detection, sentiment analysis, and summarization</span><span class="obj">🎯 Identify features and capabilities of speech recognition and speech synthesis</span><span class="obj">🎯 Build a lightweight application that includes text analysis</span><span class="obj">🎯 Respond to spoken prompts by using a deployed multimodal model</span><span class="obj">🎯 Build a lightweight application by using Azure Speech in Foundry Tools</span></div>
+  </div>
+  <div class="mast-art"></div>
+</div></section>
+<main id="main" class="labwrap">
+<details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-reload-your-pit-board">Part 1 · Reload your pit board</a></li><li><a href="#part-2-text-analysis-on-customer-reviews">Part 2 · Text analysis on customer reviews</a></li><li><a href="#part-3-make-the-car-talk-azure-speech">Part 3 · Make the car talk · Azure Speech</a></li><li><a href="#part-4-one-model-that-listens-and-speaks-gpt-audio-mini">Part 4 · One model that listens and speaks · gpt-audio-mini</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
+
+<div class="callout note"><div class="ico">📻</div><div><span class="box-lbl">The story so far</span><p>Customer Experience has a folder of reviews in five languages, a stack of service tickets full of personal data, and a press release nobody has time to read. Engineering wants the in-car assistant to <em>talk</em>. Every one of these is a Foundry Tool call away, and all of them are already in your resource from Lap 0.</p></div></div>
+
+<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<div class="vocab">
+  <div><b>Azure AI Language</b>One endpoint, many <em>kinds</em> of analysis: language detection, sentiment (with opinion mining), key phrases, named entities, PII, summarization, plus conversational language understanding and question answering. Prebuilt; no training needed.</div>
+  <div><b>Azure AI Translator</b>Text translation between 100+ languages, several targets in one call, transliteration (script conversion) and dictionary lookups. Document translation too.</div>
+  <div><b>Speech recognition</b>Speech-to-text: real time or batch, 100+ languages, timestamps, confidence, punctuation and <em>display</em> vs <em>lexical</em> text, diarization, custom speech for jargon.</div>
+  <div><b>Speech synthesis</b>Text-to-speech with neural voices; <strong>SSML</strong> controls voice, language, style, rate, pitch and pauses; custom neural voice for a brand voice.</div>
+  <div><b>Voice mode (Voice Live)</b>Azure Speech built into a Foundry agent: switch it on and the agent listens and speaks in the playground and in apps, with no audio code of your own.</div>
+  <div><b>Multimodal audio model</b>A model such as <code>gpt-audio-mini</code> that takes audio in and returns audio and text in one call. No separate recognition or synthesis step; less control over the voice, more natural turn-taking.</div>
+</div>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Match the technique to the output: key phrases → a list of topics; entities → typed things (person, date, product, PII); sentiment → positive/negative/neutral/mixed with scores; summarization → extractive (sentences copied) or abstractive (new text). Speech: recognition is audio→text, synthesis is text→audio, SSML tunes synthesis. Two ways to answer a spoken question: the Speech pipeline (STT → model → TTS) or one multimodal audio model. Know the trade-off: pipeline = control and cheaper models; multimodal = simpler and more natural.</p></div></div>
+
+<h2 id="part-1-reload-your-pit-board">Part 1 · Reload your pit board</h2>
+<pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
+export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
+export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
+export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
+export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-4-1-mini AUDIO_MODEL=gpt-audio-mini</code></pre>
+
+<h2 id="part-2-text-analysis-on-customer-reviews">Part 2 · Text analysis on customer reviews</h2>
+<p>Azure AI Language has one synchronous endpoint; you change the <code>kind</code>. Start with sentiment on a grumpy review, then look at the full set of six reviews we analysed.</p>
+<ol class="steps">
+  <li><p><strong>Sentiment with opinion mining.</strong> The document score says "negative"; opinion mining says <em>what</em> was negative (the cupholders).</p>
+<pre><code>curl -s -X POST "$ENDPOINT/language/:analyze-text?api-version=2024-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" -d '{
+  "kind": "SentimentAnalysis", "parameters": {"opinionMining": true},
+  "analysisInput": {"documents": [{"id": "1", "language": "en", "text": "Meh. It is a car. It goes. The cupholders are too small for my travel mug."}]}
+}' | jq '.results.documents[0] | {sentiment, confidenceScores}'</code></pre>
+<img class="shot" src="images/shots/lab5-sentiment-curl.png" alt="curl sentiment call returning negative with confidence scores" loading="lazy" title="Click to zoom">
+<img class="shot" src="images/shots/lab5-sentiment-card.png" alt="Six reviews with sentiment labels, confidence bars and opinion targets such as hybrid engine (positive) and infotainment system (negative)" loading="lazy" title="Click to zoom">
+<p>Look at review 1: <em>mixed</em>, because the engine is praised and the infotainment system is not. Opinion mining attaches the sentiment to each target, which is what a product team actually needs.</p></li>
+  <li><p><strong>Key phrases and entities.</strong> Change <code>"kind"</code> to <code>KeyPhraseExtraction</code> and then <code>EntityRecognition</code> (no parameters needed). Key phrases give you the talking points; entities give you typed things: Organization, Product, Location, DateTime, Quantity, Person.</p>
+<div class="shots2"><img class="shot" src="images/shots/lab5-keyphrases-card.png" alt="Key phrases per review" loading="lazy" title="Click to zoom"><img class="shot" src="images/shots/lab5-ner-card.png" alt="Press release with 50-plus highlighted entities by category" loading="lazy" title="Click to zoom"></div></li>
+  <li><p><strong>PII detection.</strong> Kind <code>PiiEntityRecognition</code>. The service returns every personal identifier it found <em>and</em> a redacted copy of the text, ready to store. This is the privacy-and-security principle as an API call.</p>
+<img class="shot" src="images/shots/lab5-pii-card.png" alt="Service ticket with person, phone, email, address and date highlighted, and the redacted text below" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Language detection</strong> (kind <code>LanguageDetection</code>, no <code>language</code> field in the documents) on reviews from Germany, Spain, Japan, France and the US: every one detected at confidence 1.00. Route each to the right market team, or translate first.</p>
+<img class="shot" src="images/shots/lab5-langdetect-card.png" alt="Language detection results for five reviews" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Summarization</strong> is asynchronous: you POST a job to <code>$ENDPOINT/language/analyze-text/jobs?api-version=2024-11-01</code> with tasks <code>ExtractiveSummarization</code> and <code>AbstractiveSummarization</code>, then GET the <code>operation-location</code> URL until <code>status</code> is <code>succeeded</code>. On the Volt press release, extractive picked three real sentences; abstractive wrote a new two-sentence summary.</p>
+<img class="shot" src="images/shots/lab5-summarization-card.png" alt="Extractive summary of three sentences with rank scores, and an abstractive summary" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Translator</strong> is a separate host with the same key; add your region header. One call, six languages:</p>
+<pre><code>curl -s -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&amp;from=en&amp;to=de&amp;to=ja&amp;to=es&amp;to=fr&amp;to=hi&amp;to=zh-Hans" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Ocp-Apim-Subscription-Region: $LOC" -H "Content-Type: application/json" \
+  -d '[{"text":"Welcome to Velocity Motors. The 2027 Velocity Volt charges from 10 to 80 percent in 18 minutes."}]' | jq</code></pre>
+<img class="shot" src="images/shots/lab5-translator-card.png" alt="Brochure line translated into six languages, transliterated Japanese, and dictionary lookup for torque" loading="lazy" title="Click to zoom"></li>
+</ol>
+<h3>The lightweight app</h3>
+<p><code>text_analysis.py</code> does the same work with the <code>azure-ai-textanalytics</code> SDK: one client, five method calls.</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/text_analysis.py &amp;&amp; python text_analysis.py</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 4 · Text analysis with Azure AI Language (a Foundry Tool).
+
+Run:  python text_analysis.py
+Needs: pip install azure-ai-textanalytics
+Env:   FOUNDRY_ENDPOINT  (https://&lt;resource&gt;.cognitiveservices.azure.com)   AI_KEY
+&quot;&quot;&quot;
+import os
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.textanalytics import TextAnalyticsClient
+
+client = TextAnalyticsClient(endpoint=os.environ[&quot;FOUNDRY_ENDPOINT&quot;], credential=AzureKeyCredential(os.environ[&quot;AI_KEY&quot;]))
+
+reviews = [
+    &quot;Absolutely love my new Velocity Summit. The hybrid engine is whisper quiet, but the infotainment system crashed twice in the first week.&quot;,
+    &quot;Terrible experience at the Dayton dealership. I waited three hours for an oil change. Nobody apologized.&quot;,
+    &quot;Picked up a certified pre-owned Velocity Strata for $21,400 last month. Great value. Priya, the service advisor, was fantastic.&quot;,
+]
+
+print(&quot;── Language detection ──&quot;)
+for d in client.detect_language(reviews):
+    print(f&quot;  {d.primary_language.name} ({d.primary_language.confidence_score:.2f})&quot;)
+
+print(&quot;\n── Sentiment + opinion mining ──&quot;)
+for r in client.analyze_sentiment(reviews, show_opinion_mining=True):
+    s = r.confidence_scores
+    print(f&quot;  {r.sentiment:9s} pos={s.positive:.2f} neu={s.neutral:.2f} neg={s.negative:.2f}&quot;)
+    for sent in r.sentences:
+        for op in sent.mined_opinions:
+            print(f&quot;      ↳ target &#x27;{op.target.text}&#x27; is {op.target.sentiment}: &quot; + &quot;, &quot;.join(a.text for a in op.assessments))
+
+print(&quot;\n── Key phrases ──&quot;)
+for r in client.extract_key_phrases(reviews):
+    print(&quot;  &quot; + &quot; · &quot;.join(r.key_phrases))
+
+print(&quot;\n── Entities ──&quot;)
+for r in client.recognize_entities(reviews):
+    print(&quot;  &quot; + &quot;, &quot;.join(f&quot;{e.text} [{e.category}]&quot; for e in r.entities))
+
+print(&quot;\n── PII (what we must redact before storing) ──&quot;)
+ticket = [&quot;Customer Marcus Alvarez (614-555-0188, marcus.alvarez@example.com) reports a grinding noise. VIN 1VMSUM7K2NA048213. Card ending 4421.&quot;]
+for r in client.recognize_pii_entities(ticket):
+    print(&quot;  found:&quot;, &quot;, &quot;.join(f&quot;{e.text} [{e.category}]&quot; for e in r.entities))
+    print(&quot;  redacted:&quot;, r.redacted_text)</code></pre>
+<pre><code><span class="out">── Language detection ──
+  English (1.00)
+  English (1.00)
+  English (1.00)
+
+── Sentiment + opinion mining ──
+  mixed     pos=0.50 neu=0.01 neg=0.49
+      ↳ target &#x27;Velocity Summit&#x27; is positive: love
+      ↳ target &#x27;hybrid engine&#x27; is positive: quiet
+      ↳ target &#x27;infotainment system&#x27; is negative: crashed
+  negative  pos=0.02 neu=0.11 neg=0.87
+      ↳ target &#x27;experience&#x27; is negative: Terrible
+  positive  pos=1.00 neu=0.00 neg=0.00
+      ↳ target &#x27;value&#x27; is positive: Great
+      ↳ target &#x27;Priya&#x27; is positive: fantastic
+
+── Key phrases ──
+  new Velocity Summit · hybrid engine · infotainment system · first week
+  Terrible experience · Dayton dealership · oil change · Nobody
+  owned Velocity Strata · Great value · service advisor · Priya
+
+── Entities ──
+  Velocity Summit [Skill], hybrid engine [Product], first [Quantity], week [DateTime]
+  Dayton [Organization], dealership [Location], three hours [DateTime], oil [Product]
+  Velocity Strata [Product], $21,400 [Quantity], last month [DateTime], Priya [Person], service advisor [PersonType]
+
+── PII (what we must redact before storing) ──
+  found: Customer [PersonType], Marcus Alvarez [Person], (614-555-0188 [PhoneNumber], marcus.alvarez@example.com [Email]
+  redacted: ******** ************** *************, **************************) reports a grinding noise. VIN 1VMSUM7K2NA048213. Card ending 4421.</span></code></pre>
+<p>Notice "Velocity Summit [Skill]" and "Dayton [Organization]": entity categories are guesses with confidence, and a made-up car brand confuses them. Real deployments add a custom entity model or a short allow-list.</p>
+
+<h2 id="part-3-make-the-car-talk-azure-speech">Part 3 · Make the car talk · Azure Speech</h2>
+<ol class="steps">
+  <li><p><strong>Text-to-speech with SSML.</strong> Write the SSML to a file and POST it to the regional TTS endpoint. The header <code>X-Microsoft-OutputFormat</code> chooses the audio format.</p>
+<img class="shot" src="images/shots/lab5-speech-curl.png" alt="SSML with a multilingual voice, excited style, emphasis, a pause and German and Japanese segments; curl to the TTS endpoint saves velo.mp3" loading="lazy" title="Click to zoom">
+<p>Listen to the two voices we made. The first is the plain welcome message; the second uses an <em>express-as</em> style, <em>emphasis</em>, a <em>break</em> and two <em>lang</em> tags in one utterance.</p>
+<audio controls src="media/velo-ava.mp3"></audio>
+<audio controls src="media/velo-andrew-multilingual.mp3"></audio>
+<p>List the voices available to you (1,000+ across 150+ locales) with <code>curl -s https://$LOC.tts.speech.microsoft.com/cognitiveservices/voices/list -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.[] | select(.Locale=="en-US") | .ShortName' | head</code>.</p></li>
+  <li><p><strong>Speech-to-text.</strong> Send a WAV to the regional STT endpoint. We sent the welcome message back in:</p>
+<pre><code>curl -s "https://$LOC.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US&amp;format=detailed" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: audio/wav; codecs=audio/pcm; samplerate=16000" --data-binary @velo-ava.wav | jq</code></pre>
+<img class="shot" src="images/shots/lab5-speech-card.png" alt="Round trip: the text sent to TTS and what STT heard back, with RecognitionStatus Success, confidence 0.79 and the lexical form" loading="lazy" title="Click to zoom">
+<figure class="figure"><img src="images/charts/speech-waveform.png" alt="Waveform of the synthesized welcome message"><figcaption>What the recognizer received: 16 kHz mono PCM, about ten seconds.</figcaption></figure>
+<p>"Seventy degrees" came back as "70°" and "two thousand one hundred" as "2100": the <em>display</em> text applies inverse text normalization; the <em>lexical</em> field keeps the spoken words. Both are in the detailed response.</p></li>
+  <li><p><strong>The pipeline app.</strong> <code>speech_pipeline.py</code> recognises a question from a WAV file with the Speech SDK, asks gpt-4.1-mini, and speaks the answer into another WAV. File in, file out, so it runs in Cloud Shell without a microphone.</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/speech_pipeline.py
+curl -sO https://varoonsahgal.github.io/az901/downloads/question.wav     <span class="cm"># "Hey Velo, my brake warning light just came on…"</span>
+python speech_pipeline.py question.wav answer.wav</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 4 · Speech in → model → speech out, with Azure Speech (a Foundry Tool).
+
+Run:  python speech_pipeline.py question.wav answer.wav
+Needs: pip install azure-cognitiveservices-speech openai azure-identity azure-ai-projects
+Env:   AI_KEY  SPEECH_REGION (e.g. eastus2)  PROJECT_ENDPOINT  CHAT_MODEL
+Works in Cloud Shell because it reads and writes .wav files instead of using a microphone.
+&quot;&quot;&quot;
+import os, sys
+import azure.cognitiveservices.speech as speechsdk
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+
+in_wav, out_wav = (sys.argv + [&quot;question.wav&quot;, &quot;answer.wav&quot;])[1:3]
+speech = speechsdk.SpeechConfig(subscription=os.environ[&quot;AI_KEY&quot;], region=os.environ[&quot;SPEECH_REGION&quot;])
+
+# 1) Speech recognition (speech-to-text)
+rec = speechsdk.SpeechRecognizer(speech_config=speech, audio_config=speechsdk.audio.AudioConfig(filename=in_wav))
+heard = rec.recognize_once()
+print(f&quot;heard   : {heard.text!r}  ({heard.reason.name})&quot;)
+
+# 2) Ask the model
+project = AIProjectClient(endpoint=os.environ[&quot;PROJECT_ENDPOINT&quot;], credential=DefaultAzureCredential())
+r = project.get_openai_client().chat.completions.create(model=os.environ.get(&quot;CHAT_MODEL&quot;, &quot;gpt-4-1-mini&quot;), max_tokens=120, messages=[
+    {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are Velo, the in-car assistant for Velocity Motors. Safety first. Reply in under 40 spoken-friendly words.&quot;},
+    {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: heard.text}])
+answer = r.choices[0].message.content
+print(f&quot;answer  : {answer}&quot;)
+
+# 3) Speech synthesis (text-to-speech) with a neural voice
+speech.speech_synthesis_voice_name = &quot;en-US-AvaMultilingualNeural&quot;
+synth = speechsdk.SpeechSynthesizer(speech_config=speech, audio_config=speechsdk.audio.AudioOutputConfig(filename=out_wav))
+result = synth.speak_text_async(answer).get()
+print(f&quot;spoken  : {out_wav} ({len(result.audio_data)//1024} KB, {result.reason.name})&quot;)</code></pre>
+<pre><code><span class="out">heard   : &#x27;Hey Velo, my break warning light just came on while I was driving.&#x27;  (RecognizedSpeech)
+answer  : Please safely pull over and stop your car. Check your brake fluid level and ensure the parking brake is fully released. If the light stays on, do not drive—contact roadside assistance immediately. Safety first!
+spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
+<audio controls src="media/user-brake-question.wav"></audio>
+<audio controls src="media/pipeline-answer.wav"></audio>
+<p>The recognizer heard "<strong>break</strong> warning light". Homophones are the classic speech failure; the model still answered correctly because context carried it. For a car product you would add a custom speech model trained on automotive vocabulary.</p></li>
+  <li><p><strong>Voice mode on your agent (portal).</strong> Open <code>velo-warranty-expert</code> from Lap 3 in the agent playground. In the left pane, under the model list, enable <strong>Voice mode</strong>. If the <strong>Configuration</strong> pane does not open, select the cog icon above the chat; under <strong>Voice mode</strong> preview the speech input and output settings and pick a voice. Close it and <strong>Save</strong>. In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>; the <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Call agent</strong> shows the client code, which streams audio both ways. This is Voice Live: Azure Speech wired into an agent with no audio code of yours.</p></li>
+</ol>
+
+<h2 id="part-4-one-model-that-listens-and-speaks-gpt-audio-mini">Part 4 · One model that listens and speaks · gpt-audio-mini</h2>
+<ol class="steps">
+  <li><p>Deploy the audio model. It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out.</p>
+<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name gpt-audio-mini --model-name gpt-audio-mini --model-version 2025-10-06 --model-format OpenAI \
+  --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre></li>
+  <li><p>Send the same spoken question straight to it and get spoken audio plus a transcript back:</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/talk_to_velo.py
+python talk_to_velo.py question.wav reply.wav</code></pre>
+<pre><code>&quot;&quot;&quot;Lap 4 · Respond to a SPOKEN prompt with a multimodal audio model (gpt-audio-mini).
+One model hears the question and speaks the answer — no separate speech-to-text step.
+
+Run:  python talk_to_velo.py question.wav reply.wav
+Needs: pip install openai
+Env:   AOAI_ENDPOINT (https://&lt;resource&gt;.openai.azure.com)  AI_KEY  AUDIO_MODEL (default gpt-audio-mini)
+&quot;&quot;&quot;
+import os, sys, base64
+from openai import AzureOpenAI
+
+in_wav, out_wav = (sys.argv + [&quot;question.wav&quot;, &quot;reply.wav&quot;])[1:3]
+client = AzureOpenAI(azure_endpoint=os.environ[&quot;AOAI_ENDPOINT&quot;], api_key=os.environ[&quot;AI_KEY&quot;], api_version=&quot;2025-01-01-preview&quot;)
+
+r = client.chat.completions.create(
+    model=os.environ.get(&quot;AUDIO_MODEL&quot;, &quot;gpt-audio-mini&quot;),
+    modalities=[&quot;text&quot;, &quot;audio&quot;], audio={&quot;voice&quot;: &quot;alloy&quot;, &quot;format&quot;: &quot;wav&quot;},
+    messages=[
+        {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;You are Velo, the in-car assistant for Velocity Motors. Safety first, then one or two short steps. Under 50 words.&quot;},
+        {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: [{&quot;type&quot;: &quot;input_audio&quot;, &quot;input_audio&quot;: {&quot;data&quot;: base64.b64encode(open(in_wav, &quot;rb&quot;).read()).decode(), &quot;format&quot;: &quot;wav&quot;}}]}])
+
+msg = r.choices[0].message
+open(out_wav, &quot;wb&quot;).write(base64.b64decode(msg.audio.data))
+print(&quot;Velo said:&quot;, msg.audio.transcript)
+print(f&quot;saved {out_wav} · tokens: {r.usage.prompt_tokens_details.audio_tokens} audio in, {r.usage.completion_tokens_details.audio_tokens} audio out&quot;)</code></pre>
+<pre><code><span class="out">Velo said: Safety first: Pull over safely and contact roadside assistance or your dealership immediately. Then have the brakes inspected before continuing your drive.
+saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
+<audio controls src="media/velo-audio-reply.wav"></audio>
+<img class="shot" src="images/shots/lab4-audio-model.png" alt="Card: the spoken question, the model's spoken reply transcript, and the audio and text token counts" loading="lazy" title="Click to zoom"></li>
+  <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech. That trade-off is the exam question.</p></li>
+</ol>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You ran at least sentiment, key phrases, entities and PII through Azure AI Language; produced an MP3 with SSML and transcribed a WAV; ran <code>speech_pipeline.py</code> and <code>talk_to_velo.py</code> and have two answer files; and your agent spoke to you in Voice mode.</p></div></div>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+<details class="reveal hint"><summary>Translator returns 401 while Language works</summary><div class="body"><p>Translator's global host needs the extra header <code>Ocp-Apim-Subscription-Region: eastus2</code> so it knows which resource the key belongs to.</p></div></details>
+<details class="reveal hint"><summary>STT returns "InitialSilenceTimeout" or an empty DisplayText</summary><div class="body"><p>The WAV must be 16-bit PCM, 16 kHz, mono. Generate it with the TTS format <code>riff-16khz-16bit-mono-pcm</code> or convert with ffmpeg: <code>ffmpeg -i in.m4a -ar 16000 -ac 1 out.wav</code>.</p></div></details>
+<details class="reveal hint"><summary>speech_pipeline.py: "ImportError: libssl" or the Speech SDK will not load</summary><div class="body"><p>In Cloud Shell run <code>pip install --upgrade azure-cognitiveservices-speech</code>; on some Linux images you also need <code>sudo apt-get install -y libssl-dev libasound2</code>. The REST calls in Part 3 need nothing.</p></div></details>
+<details class="reveal hint"><summary>gpt-audio-mini: "DeploymentNotFound" or 429</summary><div class="body"><p>Check the deployment name is exactly <code>gpt-audio-mini</code> and that <code>AOAI_ENDPOINT</code> points at your own resource. A 429 at capacity 1 means you spoke for a long time; wait a minute or raise capacity to 2.</p></div></details>
+<details class="reveal hint"><summary>Voice mode will not start a session</summary><div class="body"><p>The browser needs microphone permission and HTTPS (the portal is). Try a different browser; make sure the agent has a saved model and that your role on the resource includes Azure AI User.</p></div></details>
+
+<h2 id="quick-quiz">Quick quiz</h2>
+<details class="reveal quiz"><summary>You want a list of the main topics customers mention. Which technique?</summary><div class="body"><p><strong>Key phrase extraction.</strong> Entities give typed things; sentiment gives polarity; summarization gives prose.</p></div></details>
+<details class="reveal quiz"><summary>A review says the engine is great but the screen crashes. What does sentiment analysis return, and what tells you which part was bad?</summary><div class="body"><p>Document sentiment <strong>mixed</strong>; <strong>opinion mining</strong> attaches positive to "engine" and negative to "infotainment system".</p></div></details>
+<details class="reveal quiz"><summary>Which summary type can contain sentences that are not in the original?</summary><div class="body"><p><strong>Abstractive.</strong> Extractive only selects existing sentences.</p></div></details>
+<details class="reveal quiz"><summary>Which SSML element switches the voice's language mid-sentence?</summary><div class="body"><p><code>&lt;lang xml:lang="de-DE"&gt;</code> (with a multilingual voice). <code>&lt;voice&gt;</code> changes the voice; <code>&lt;mstts:express-as&gt;</code> the style; <code>&lt;break&gt;</code> adds a pause.</p></div></details>
+<details class="reveal quiz"><summary>A product must answer spoken questions with the least custom code. Pipeline or multimodal audio model?</summary><div class="body"><p><strong>Multimodal audio model</strong> (or Voice mode on an agent): one call in, audio out. Choose the pipeline when you need a specific brand voice, custom vocabulary, or cheaper text models.</p></div></details>
+<details class="reveal quiz"><summary>Which service feature returns a redacted copy of a ticket?</summary><div class="body"><p>Azure AI Language <strong>PII detection</strong> (<code>PiiEntityRecognition</code>), via <code>redactedText</code>.</p></div></details>
+
+<h2 id="pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</h2>
+<ul>
+  <li>Azure AI Language: language detection, sentiment with opinion mining, key phrases, entities, PII with redaction, extractive and abstractive summarization; Translator for languages.</li>
+  <li>Azure Speech: recognition (display vs lexical text, confidence) and synthesis (neural voices, SSML), both as REST calls or through the Speech SDK; Voice mode puts them inside an agent.</li>
+  <li>Two architectures for a talking assistant: STT → model → TTS, or one multimodal audio model such as gpt-audio-mini.</li>
+  <li>Three lightweight apps: <code>text_analysis.py</code>, <code>speech_pipeline.py</code>, <code>talk_to_velo.py</code>.</li>
+</ul>
+<p>Next: Velo gets eyes. <a href="lab5.html">Lap 5 · Eyes on the track →</a></p>
+<nav class="pager" aria-label="Lap navigation"><a href="lab3.html"><small>◀ Previous</small>Lap 3 · Pit crew</a><a href="lab5.html" style="text-align:right"><small>Next ▶</small>Lap 5 · Eyes on track</a></nav>
+</main>
+<footer>
+  <div>AI-901 Grand Prix · a one-day, car-themed path through Microsoft exam AI-901 · built for Velocity Motors (a fictional company). Not affiliated with Microsoft.</div>
+  <div><a href="https://github.com/varoonsahgal/az901">Source on GitHub</a> · <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Official AI-901 study guide</a> · <a href="instructor.html">Race control</a> · <a href="credits.html">Photo credits</a></div>
+</footer>
+<script src="assets/site.js"></script>
+</body>
+</html>
