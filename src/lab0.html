@@ -1,10 +1,11 @@
 <!--META {"title":"Lap 0 · Pit lane","desc":"Set up your garage for the AI-901 Grand Prix: Azure Cloud Shell, your student number, one Microsoft Foundry resource, one project, one model deployment and your first AI call.",
 "h1":"Pit lane · set up your garage",
-"lede":"Every race starts in the pit lane. In thirty minutes you will have your own corner of Microsoft Foundry: a resource, a project, a deployed model and the keys to use them. Everything you build today lives here, and at the end of the day one command tears it all down.",
+"lede":"Every race starts in the pit lane. In thirty minutes you will own a corner of Microsoft Foundry: a resource, a project, a deployed model and the keys to use them. Everything you build today lives here, and at the end of the day one command tears it all down.",
+"build":["Resource group rg-ai901-sNN","Foundry resource, kind AIServices, tier S0","Project proj-ai901-sNN","gpt-4.1-mini deployment at 10K TPM","Your first API call: a captioned photo"],
 "chips":[["Time","30 min"],["Difficulty","Beginner · nothing installed, everything in the browser"],["You build","1 resource group · 1 Foundry resource · 1 project · 1 gpt-4.1-mini deployment"],["Region","East US 2 for everyone"]],
 "objectives":["Deploy a model and interact with it in the Foundry portal","Identify appropriate model deployment options and configuration parameters"]}
 -->
-<div class="callout note"><div class="ico">🏎️</div><div><span class="box-lbl">The story so far</span><p>Welcome to <strong>Velocity Motors</strong>. Sales wants a chatbot, Service wants invoices read automatically, Marketing wants concept-car art by lunchtime and Legal wants to know what "responsible AI" means before anyone ships anything. You are the new AI pit crew. Today you prove all of it is possible in one day, in one Azure subscription, without stepping on the other nineteen crews doing the same thing beside you.</p></div></div>
+<div class="callout story"><div class="ico">🏎️</div><div><span class="box-lbl">The story so far</span><p>Welcome to <strong>Velocity Motors</strong>. Sales wants a chatbot, Service wants invoices read automatically, Marketing wants concept-car art by lunchtime and Legal wants to know what "responsible AI" means before anyone ships anything. You are the new AI pit crew. Today you prove all of it is possible in one day, in one Azure subscription, without stepping on the other nineteen crews doing the same thing beside you.</p></div></div>
 
 <div class="callout important"><div class="ico">🔢</div><div><span class="box-lbl">Before anything else: your number</span><p>Find your <strong>student number</strong> on the whiteboard (s01 to s20). Type it into the <strong>Pit board</strong> box in the top bar of this site. Every command on every page will rewrite itself with your number, like this: <code>rg-ai901-<span class="v" data-v="student">s07</span></code>. Twenty people share this subscription; your number is what keeps your resources yours.</p></div></div>
 
@@ -18,6 +19,7 @@
   <div><b>Endpoint + key, or Entra ID</b>Two ways to authenticate. A <strong>key</strong> is a password for the whole resource (fine for a lab, rotate it in real life). <strong>Microsoft Entra ID</strong> uses <em>you</em> (your <code>az login</code>) plus a role such as <em>Azure AI User</em>. The Foundry SDK and agents use Entra ID; the classic tools accept either.</div>
 </div>
 
+<p class="insight">Code never calls a model. It calls a deployment: your named, metered copy of one.<small>Keep that distinction and half the exam's Foundry questions answer themselves.</small></p>
 <figure class="figure plain"><svg viewBox="0 0 900 300" width="100%" role="img" aria-label="One Foundry resource contains a project and model deployments and exposes several endpoints" style="font-family:Inter,system-ui,sans-serif">
   <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#5B6779"/></marker></defs>
   <rect x="20" y="20" width="520" height="260" rx="16" fill="#0B1220"/>
@@ -125,12 +127,19 @@ python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code><
 </div>
 
 <h2>Part 4 · Your first AI call</h2>
-<p>Prove the garage works with one HTTP request to Azure AI Vision, asking it to caption a photo from this site. No SDK, no Python, just <code>curl</code>: this is the shape of every Foundry Tool call you will see today (an endpoint, an API version, your key in a header, JSON back).</p>
+<p>Prove the garage works with one HTTP request to Azure AI Vision, asking it to caption a photo from this site. No SDK, no Python, just <code>curl</code>.</p>
+<p class="insight">Every Foundry Tool call has the same four parts: an endpoint, an API version, your key in a header, and JSON back.<small>Learn the shape once here and you can read every call on this site, and every one on the exam.</small></p>
 <pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&features=caption" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" \
   -d '{"url":"https://varoonsahgal.github.io/az901/images/photos/classic-rambler.jpg"}' | jq .captionResult</code></pre>
 <div class="shots2"><img class="shot" src="images/shots/lab0-first-call.png" alt="curl output: caption 'an orange and white car parked in a parking lot' with confidence 0.86" loading="lazy" title="Click to zoom"><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You should now have: a resource group <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; inside it a Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> with one project and one deployment; variables <code>KEY</code>, <code>ENDPOINT</code>, <code>AI_ENDPOINT</code>, <code>AOAI_ENDPOINT</code>, <code>PROJECT_ENDPOINT</code> set in your shell; and a caption for a 1958 Rambler. Open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → yours, and look at the two resources. Then <a href="https://ai.azure.com">ai.azure.com</a> should show your project. If both are true, you are out of the pit lane.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes and uses only what is on this page.</p><ol>
+<li><b>Deploy a second model.</b> Add <code>gpt-4o-mini</code> (version <code>2024-07-18</code>) as a Standard deployment named <code>gpt-4o-mini</code> at 5K TPM, then list both deployments. Then delete it: <code>az cognitiveservices account deployment delete</code>. You just did what the portal's Deploy button does.</li>
+<li><b>Ask Vision for more.</b> Re-run the first call with <code>features=caption,denseCaptions,tags</code>. How many sentences does dense captioning return for one photo, and which part of the picture does each describe?</li>
+<li><b>Find the three hosts in the portal.</b> Open your Foundry resource in <a href="https://portal.azure.com">portal.azure.com</a> and find <strong>Keys and Endpoint</strong>. Match the endpoints shown there to the three variables you exported. Which one does the Foundry portal use?</li>
+</ol></div>
 
 <h2>Troubleshooting</h2>
 <details class="reveal hint"><summary>"The name is already taken" or "AccountAlreadyExists"</summary><div class="body"><p>Someone in the world already owns that DNS name. Change the last word: <code>export NAME=ai901-$STUDENT-garage</code> (or <code>turbo</code>, your surname…) and re-run from the resource step. Keep the prefix.</p></div></details>

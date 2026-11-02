@@ -17,44 +17,52 @@
 <body data-page="lab0" class="hue-lab0">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" aria-current=page><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage" aria-current=page><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 0 of 7 · Pit lane</p>
     <h1>Pit lane · set up your garage</h1>
-    <p class="lede">Every race starts in the pit lane. In thirty minutes you will have your own corner of Microsoft Foundry: a resource, a project, a deployed model and the keys to use them. Everything you build today lives here, and at the end of the day one command tears it all down.</p>
+    <p class="lede">Every race starts in the pit lane. In thirty minutes you will own a corner of Microsoft Foundry: a resource, a project, a deployed model and the keys to use them. Everything you build today lives here, and at the end of the day one command tears it all down.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 30 min</span><span class="chip"><b>Difficulty</b> Beginner · nothing installed, everything in the browser</span><span class="chip"><b>You build</b> 1 resource group · 1 Foundry resource · 1 project · 1 gpt-4.1-mini deployment</span><span class="chip"><b>Region</b> East US 2 for everyone</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Deploy a model and interact with it in the Foundry portal</span><span class="obj">🎯 Identify appropriate model deployment options and configuration parameters</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Deploy a model and interact with it in the Foundry portal</li><li>Identify appropriate model deployment options and configuration parameters</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#94A3B8">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>0</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">🏎️</div></div>
+  <div class="lapart-name">Pit lane</div>
+  <div class="segs" aria-label="Lap 0 of 7"><i style="--d:#94A3B8" class="cur" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>Resource group rg-ai901-sNN</li><li>Foundry resource, kind AIServices, tier S0</li><li>Project proj-ai901-sNN</li><li>gpt-4.1-mini deployment at 10K TPM</li><li>Your first API call: a captioned photo</li></ul>
+  <div class="lapart-foot"><span>⏱ 30 min</span><span>Next · Lap 1 Race rules</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-open-cloud-shell">Part 1 · Open Cloud Shell</a></li><li><a href="#part-2-your-pit-board-variables">Part 2 · Your pit board variables</a></li><li><a href="#part-3-build-the-garage">Part 3 · Build the garage</a></li><li><a href="#part-4-your-first-ai-call">Part 4 · Your first AI call</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">🏎️</div><div><span class="box-lbl">The story so far</span><p>Welcome to <strong>Velocity Motors</strong>. Sales wants a chatbot, Service wants invoices read automatically, Marketing wants concept-car art by lunchtime and Legal wants to know what "responsible AI" means before anyone ships anything. You are the new AI pit crew. Today you prove all of it is possible in one day, in one Azure subscription, without stepping on the other nineteen crews doing the same thing beside you.</p></div></div>
+<div class="callout story"><div class="ico">🏎️</div><div><span class="box-lbl">The story so far</span><p>Welcome to <strong>Velocity Motors</strong>. Sales wants a chatbot, Service wants invoices read automatically, Marketing wants concept-car art by lunchtime and Legal wants to know what "responsible AI" means before anyone ships anything. You are the new AI pit crew. Today you prove all of it is possible in one day, in one Azure subscription, without stepping on the other nineteen crews doing the same thing beside you.</p></div></div>
 
 <div class="callout important"><div class="ico">🔢</div><div><span class="box-lbl">Before anything else: your number</span><p>Find your <strong>student number</strong> on the whiteboard (s01 to s20). Type it into the <strong>Pit board</strong> box in the top bar of this site. Every command on every page will rewrite itself with your number, like this: <code>rg-ai901-<span class="v" data-v="student">s07</span></code>. Twenty people share this subscription; your number is what keeps your resources yours.</p></div></div>
 
-<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<h2 id="part-0-the-idea-in-five-minutes"><span class="pn">Part 0</span>The idea in five minutes</h2>
 <p>Azure AI is sold as dozens of services with dozens of names, and Microsoft renames them regularly. For the exam and for today you need exactly five nouns.</p>
 <div class="vocab">
   <div><b>Microsoft Foundry</b>The platform (and the portal at <a href="https://ai.azure.com">ai.azure.com</a>) where you pick models, deploy them, build agents, and use the prebuilt AI tools. Until November 2025 it was called <em>Azure AI Foundry</em>; older docs and some exam questions still say that.</div>
@@ -64,6 +72,7 @@
   <div><b>Endpoint + key, or Entra ID</b>Two ways to authenticate. A <strong>key</strong> is a password for the whole resource (fine for a lab, rotate it in real life). <strong>Microsoft Entra ID</strong> uses <em>you</em> (your <code>az login</code>) plus a role such as <em>Azure AI User</em>. The Foundry SDK and agents use Entra ID; the classic tools accept either.</div>
 </div>
 
+<p class="insight">Code never calls a model. It calls a deployment: your named, metered copy of one.<small>Keep that distinction and half the exam's Foundry questions answer themselves.</small></p>
 <figure class="figure plain"><svg viewBox="0 0 900 300" width="100%" role="img" aria-label="One Foundry resource contains a project and model deployments and exposes several endpoints" style="font-family:Inter,system-ui,sans-serif">
   <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8z" fill="#5B6779"/></marker></defs>
   <rect x="20" y="20" width="520" height="260" rx="16" fill="#0B1220"/>
@@ -99,7 +108,7 @@
 </tbody></table>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Expect questions like "a dealership must keep customer data in the United States; which deployment type?" (Data Zone or Standard) or "what does TPM limit?" (tokens per minute per deployment, drawn from a per-region quota). Capacity is set <em>per deployment</em>; quota is shared <em>per model per region per subscription</em>, which is exactly why twenty of us deploy small.</p></div></div>
 
-<h2 id="part-1-open-cloud-shell">Part 1 · Open Cloud Shell</h2>
+<h2 id="part-1-open-cloud-shell"><span class="pn">Part 1</span>Open Cloud Shell</h2>
 <ol class="steps">
   <li><p>Open <a href="https://portal.azure.com">portal.azure.com</a> and sign in with the account the instructor gave you. In the top bar click the <strong>Cloud Shell</strong> icon (<code>&gt;_</code>), or go straight to <a href="https://shell.azure.com">shell.azure.com</a>.</p></li>
   <li><p>Choose <strong>Bash</strong>. If asked about storage, pick <strong>No storage account required</strong> (ephemeral). Nothing today needs files to survive between sessions; the pit-board block below rebuilds your variables in two seconds.</p></li>
@@ -108,7 +117,7 @@
 <img class="shot" src="images/shots/lab0-login.png" alt="Cloud Shell showing az login with a device code and az account show output" loading="lazy" title="Click to zoom"></li>
 </ol>
 
-<h2 id="part-2-your-pit-board-variables">Part 2 · Your pit board variables</h2>
+<h2 id="part-2-your-pit-board-variables"><span class="pn">Part 2</span>Your pit board variables</h2>
 <p>Paste this block at the start of <em>every</em> lab (and every new Cloud Shell session). It defines the names everything else uses. The values already contain your number if you set the pit board above.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>                      <span class="cm"># your number from the whiteboard</span>
 export RG=rg-ai901-$STUDENT                 <span class="cm"># your resource group</span>
@@ -118,7 +127,7 @@ export PROJECT=proj-ai901-$STUDENT          <span class="cm"># your Foundry proj
 echo $RG $NAME $LOC $PROJECT</code></pre>
 <div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Why a shared word like "pitcrew"?</span><p>The resource name becomes a DNS name, so it must be unique across all of Azure. <code>ai901-s07-pitcrew</code> will be free unless another Velocity crew used it; if creation says the name is taken, change <code>pitcrew</code> to anything else and re-export <code>NAME</code>. Keep the <code>ai901-s07-</code> prefix so the instructor can find it.</p></div></div>
 
-<h2 id="part-3-build-the-garage">Part 3 · Build the garage</h2>
+<h2 id="part-3-build-the-garage"><span class="pn">Part 3</span>Build the garage</h2>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Cloud Shell path (exact)</button><button role="tab">Portal path (ai.azure.com)</button></div>
   <div role="tabpanel">
@@ -170,13 +179,20 @@ python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code><
   </div>
 </div>
 
-<h2 id="part-4-your-first-ai-call">Part 4 · Your first AI call</h2>
-<p>Prove the garage works with one HTTP request to Azure AI Vision, asking it to caption a photo from this site. No SDK, no Python, just <code>curl</code>: this is the shape of every Foundry Tool call you will see today (an endpoint, an API version, your key in a header, JSON back).</p>
+<h2 id="part-4-your-first-ai-call"><span class="pn">Part 4</span>Your first AI call</h2>
+<p>Prove the garage works with one HTTP request to Azure AI Vision, asking it to caption a photo from this site. No SDK, no Python, just <code>curl</code>.</p>
+<p class="insight">Every Foundry Tool call has the same four parts: an endpoint, an API version, your key in a header, and JSON back.<small>Learn the shape once here and you can read every call on this site, and every one on the exam.</small></p>
 <pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&features=caption" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" \
   -d '{"url":"https://varoonsahgal.github.io/az901/images/photos/classic-rambler.jpg"}' | jq .captionResult</code></pre>
 <div class="shots2"><img class="shot" src="images/shots/lab0-first-call.png" alt="curl output: caption 'an orange and white car parked in a parking lot' with confidence 0.86" loading="lazy" title="Click to zoom"><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You should now have: a resource group <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; inside it a Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> with one project and one deployment; variables <code>KEY</code>, <code>ENDPOINT</code>, <code>AI_ENDPOINT</code>, <code>AOAI_ENDPOINT</code>, <code>PROJECT_ENDPOINT</code> set in your shell; and a caption for a 1958 Rambler. Open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → yours, and look at the two resources. Then <a href="https://ai.azure.com">ai.azure.com</a> should show your project. If both are true, you are out of the pit lane.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes and uses only what is on this page.</p><ol>
+<li><b>Deploy a second model.</b> Add <code>gpt-4o-mini</code> (version <code>2024-07-18</code>) as a Standard deployment named <code>gpt-4o-mini</code> at 5K TPM, then list both deployments. Then delete it: <code>az cognitiveservices account deployment delete</code>. You just did what the portal's Deploy button does.</li>
+<li><b>Ask Vision for more.</b> Re-run the first call with <code>features=caption,denseCaptions,tags</code>. How many sentences does dense captioning return for one photo, and which part of the picture does each describe?</li>
+<li><b>Find the three hosts in the portal.</b> Open your Foundry resource in <a href="https://portal.azure.com">portal.azure.com</a> and find <strong>Keys and Endpoint</strong>. Match the endpoints shown there to the three variables you exported. Which one does the Foundry portal use?</li>
+</ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <details class="reveal hint"><summary>"The name is already taken" or "AccountAlreadyExists"</summary><div class="body"><p>Someone in the world already owns that DNS name. Change the last word: <code>export NAME=ai901-$STUDENT-garage</code> (or <code>turbo</code>, your surname…) and re-run from the resource step. Keep the prefix.</p></div></details>

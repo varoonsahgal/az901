@@ -17,26 +17,28 @@
 <body data-page="credits" class="hue-instructor">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Credits</p>

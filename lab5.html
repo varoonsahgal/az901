@@ -17,42 +17,50 @@
 <body data-page="lab5" class="hue-lab5">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" aria-current=page><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation" aria-current=page><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 5 of 7 · Eyes on track</p>
     <h1>Eyes on the track · vision and image generation</h1>
-    <p class="lede">A dealership runs on pictures: lot photos, window stickers, VIN plates, damage shots, and the concept art that sells next year's model. This lap gives Velo two kinds of eyes (a fast structured one and a thoughtful one) and then lets it paint.</p>
+    <p class="lede">A dealership runs on pictures: lot photos, window stickers, VIN plates, damage shots, and the concept art that sells next year's model. This lap gives Velo two kinds of eyes, a fast structured one and a thoughtful one, and then lets it paint.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 50 min</span><span class="chip"><b>Difficulty</b> Beginner</span><span class="chip"><b>Services</b> Azure AI Vision · gpt-4.1-mini (image input) · FLUX.2-pro</span><span class="chip"><b>Exam weight</b> Part of both domains · vision and image generation</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Identify features and capabilities of computer vision and image-generation models</span><span class="obj">🎯 Interpret visual input in prompts by using a deployed multimodal model</span><span class="obj">🎯 Create new visual outputs by using generative models</span><span class="obj">🎯 Build a lightweight application that includes vision capabilities</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Identify features and capabilities of computer vision and image-generation models</li><li>Interpret visual input in prompts by using a deployed multimodal model</li><li>Create new visual outputs by using generative models</li><li>Build a lightweight application that includes vision capabilities</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#A78BFA">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>5</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">📸</div></div>
+  <div class="lapart-name">Eyes on track</div>
+  <div class="segs" aria-label="Lap 5 of 7"><i style="--d:#94A3B8" class="past" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="past" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="past" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="past" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="past" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="cur" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>JSON with boxes, tags and confidences for lot photos</li><li>A VIN read from a door-jamb plate</li><li>A listing written by a multimodal model from a photo</li><li>flux-2-pro deployed, and a concept render on disk</li></ul>
+  <div class="lapart-foot"><span>⏱ 50 min</span><span>Next · Lap 6 Paperwork</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-reload-your-pit-board-and-get-the-photos">Part 1 · Reload your pit board and get the photos</a></li><li><a href="#part-2-azure-ai-vision-the-fast-structured-eye">Part 2 · Azure AI Vision · the fast, structured eye</a></li><li><a href="#part-3-the-thoughtful-eye-a-multimodal-model">Part 3 · The thoughtful eye · a multimodal model</a></li><li><a href="#part-4-paint-it-image-generation">Part 4 · Paint it · image generation</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">📸</div><div><span class="box-lbl">The story so far</span><p>The used-car team photographs every trade-in and then types the listing by hand. Service wants VINs read from door-jamb plates. Marketing wants a hero shot of the Volt on a wet track before the car exists. You have one Foundry resource and one deployed GPT model; today you add an image model.</p></div></div>
+<div class="callout story"><div class="ico">📸</div><div><span class="box-lbl">The story so far</span><p>The used-car team photographs every trade-in and then types the listing by hand. Service wants VINs read from door-jamb plates. Marketing wants a hero shot of the Volt on a wet track before the car exists. You have one Foundry resource and one deployed GPT model; today you add an image model.</p></div></div>
 
-<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<h2 id="part-0-the-idea-in-five-minutes"><span class="pn">Part 0</span>The idea in five minutes</h2>
 <div class="vocab">
   <div><b>Image classification</b>One label for the whole image ("SUV", "damaged"). Prebuilt tags, or a custom model trained on your photos.</div>
   <div><b>Object detection</b>Labels <em>with bounding boxes</em>: where each car, person or bicycle is. Counting and locating.</div>
@@ -61,10 +69,11 @@
   <div><b>People and faces</b>Azure AI Vision detects <em>people</em> (boxes). The separate Azure AI Face service detects and matches <em>faces</em>; identification is Limited Access and needs an approved use case: a responsible-AI gate, not a technical one.</div>
   <div><b>Image generation</b>Text-to-image models (FLUX.2-pro, FLUX-1.1-pro, gpt-image-1-mini) and image editing. Controls: prompt, size, number, style; outputs carry provenance metadata (C2PA) so generated images can be recognised as such.</div>
 </div>
-<p>Two different tools look at an image today. <strong>Azure AI Vision</strong> (a Foundry Tool) is fast, cheap and structured: it returns JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. A <strong>multimodal model</strong> (gpt-4.1-mini with an image in the prompt) is slower and costs tokens, but it can <em>reason</em>: write a listing, suggest what to inspect, answer questions. Use Vision for counting and reading; use the model for judgement.</p>
+<p>Two different tools look at an image today. <strong>Azure AI Vision</strong> (a Foundry Tool) is fast, cheap and structured: it returns JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. A <strong>multimodal model</strong> (gpt-4.1-mini with an image in the prompt) is slower and costs tokens, but it can <em>reason</em>: write a listing, suggest what to inspect, answer questions.</p>
+<p class="insight">Vision measures. The model judges.<small>Count with Vision, read with Vision, and ask the model only when you need an opinion.</small></p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Interpret visual input in prompts" = send an image to a multimodal chat model as an <code>image_url</code> (or <code>input_image</code>) content item alongside text. "Create new visual outputs" = deploy an image-generation model and call <code>images/generations</code> with a prompt. "Vision capabilities in an app" = either the Azure AI Vision SDK/REST (captions, objects, OCR) or the multimodal model, chosen by whether you need structure or judgement. Face recognition is restricted; people detection is not.</p></div></div>
 
-<h2 id="part-1-reload-your-pit-board-and-get-the-photos">Part 1 · Reload your pit board and get the photos</h2>
+<h2 id="part-1-reload-your-pit-board-and-get-the-photos"><span class="pn">Part 1</span>Reload your pit board and get the photos</h2>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
@@ -73,7 +82,7 @@ export FOUNDRY_ENDPOINT=$ENDPOINT FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY C
 curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot &amp;&amp; ls lot</code></pre>
 <p>Sixteen public-domain photos: sedans, an SUV, a pickup, a minivan, an EV, a classic, a motorcycle, bicycles, a traffic jam, a car wash, an engine bay, a showroom and a road trip. Credits are on the <a href="credits.html">credits page</a>.</p>
 
-<h2 id="part-2-azure-ai-vision-the-fast-structured-eye">Part 2 · Azure AI Vision · the fast, structured eye</h2>
+<h2 id="part-2-azure-ai-vision-the-fast-structured-eye"><span class="pn">Part 2</span>Azure AI Vision · the fast, structured eye</h2>
 <ol class="steps">
   <li><p>One request, every feature. Send the SUV photo as raw bytes and ask for caption, dense captions, tags, objects, people and text:</p>
 <pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=caption,denseCaptions,tags,objects,people,read&amp;gender-neutral-caption=true" \
@@ -84,7 +93,8 @@ curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&am
   <li><p>Try the busy one. The traffic jam returns <strong>11 objects</strong> with boxes; the bicycles photo returns cars <em>and</em> a bicycle; the road-trip photo detects a <em>person</em>. Here is what the JSON looks like drawn back onto the photos:</p>
 <div class="shots2"><img class="shot" src="images/vision/traffic-auckland-objects.jpg" alt="Traffic photo with 11 object bounding boxes and the caption 'a traffic jam on a highway'" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/bicycles-wall-objects.jpg" alt="Bicycles against a wall with car, van and bicycle boxes" loading="lazy" title="Click to zoom"></div>
 <div class="shots2"><img class="shot" src="images/vision/roadtrip-iceland-people.jpg" alt="Person detected beside a car" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-dense.jpg" alt="Dense captions: one sentence per region of the SUV photo" loading="lazy" title="Click to zoom"></div>
-<p>Run it on <code>lot/carwash.jpg</code> too. The caption we got was <em>"a small bushes in a field"</em> at 0.57. Low confidence is the model telling you to look yourself; thresholds belong in your app.</p>
+<p>Run it on <code>lot/carwash.jpg</code> too. The caption we got was <em>"a small bushes in a field"</em> at 0.57.</p>
+<p class="insight">Low confidence is the model asking you to look.<small>Every feature returns a number for a reason. Thresholds belong in your application, not in the service.</small></p>
 <div class="shots2"><img class="shot" src="images/vision/carwash-objects.jpg" alt="Car wash photo with a doubtful caption" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-tags.jpg" alt="Tags strip for the SUV photo" loading="lazy" title="Click to zoom"></div></li>
   <li><p><strong>OCR.</strong> Point the <code>read</code> feature at documents instead of scenes. The window sticker returns 34 lines in reading order with word confidences; the VIN plate reads <code>1VMSTR8A3RA210077</code> correctly; the handwritten note reads seven lines and turns "100 ft-lb" into "100 ft-16".</p>
 <pre><code>for f in window-sticker vin-plate service-note; do curl -sLO https://varoonsahgal.github.io/az901/downloads/$f.png; done
@@ -95,7 +105,7 @@ curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024
 <p>For typed fields out of documents (not just lines of text) you will use Content Understanding in Lap 6. OCR is the raw material.</p></li>
 </ol>
 
-<h2 id="part-3-the-thoughtful-eye-a-multimodal-model">Part 3 · The thoughtful eye · a multimodal model</h2>
+<h2 id="part-3-the-thoughtful-eye-a-multimodal-model"><span class="pn">Part 3</span>The thoughtful eye · a multimodal model</h2>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Python path</button></div>
   <div role="tabpanel">
@@ -166,7 +176,7 @@ Suggested inspection: Check the condition and operation of the truck’s suspens
   </div>
 </div>
 
-<h2 id="part-4-paint-it-image-generation">Part 4 · Paint it · image generation</h2>
+<h2 id="part-4-paint-it-image-generation"><span class="pn">Part 4</span>Paint it · image generation</h2>
 <ol class="steps">
   <li><p><strong>Deploy an image model.</strong> Portal: <strong>Models</strong> → <strong>Deploy a base model</strong> → <strong>Collections</strong>: <em>Direct from Azure</em> → <strong>Inference tasks</strong>: <em>Text to image</em> → <strong>FLUX.2-pro</strong> (or <code>gpt-image-1-mini</code> if your subscription offers it) → <strong>Deploy</strong>, Global Standard, capacity 1. Or in Cloud Shell:</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
@@ -220,6 +230,12 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
   <li><p><strong>Responsible use.</strong> Generated images from Foundry models include <em>content credentials</em> (C2PA provenance metadata). Do not generate real people, competitors' badges or copyrighted characters; the content filters will refuse some prompts and your brand team will refuse others. Label concept art as such in customer-facing material.</p></li>
 </ol>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You have a JSON analysis with boxes for at least two lot photos, the VIN read from the plate, a listing written by the model from a photo (portal or <code>vision_app.py</code>), a deployed <code>flux-2-pro</code> and at least one generated PNG.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>Sixteen photos, one CSV.</b> Loop <code>vision_app.py</code> (or just the Vision half) over every file in <code>lot/</code> and write one line per photo: file, caption, confidence, number of objects. Sort by confidence. Which photos would you send to a human?</li>
+<li><b>OCR versus the model.</b> Send <code>window-sticker.png</code> to gpt-4.1-mini with "List the VIN, total MSRP and combined MPG" at <code>detail: high</code>, then compare with the Read result. Which one got the VIN right, and how many tokens did the model's version cost?</li>
+<li><b>Same prompt, different canvas.</b> Generate the Volt prompt at <code>1024x768</code> and then at <code>768x1024</code> (one minute apart). Does the composition change, or only the crop? Now add "no text, no badges" to the prompt and see what the content filter and the model do with brand marks.</li>
+</ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <details class="reveal hint"><summary>Vision returns 400 "InvalidImageSize" or "InvalidImageFormat"</summary><div class="body"><p>Images must be JPEG/PNG/GIF/BMP/WEBP/TIFF, under 20 MB, at least 50×50 and at most 16,000 px on a side. The <code>read</code> feature needs text at least about 10 px tall.</p></div></details>

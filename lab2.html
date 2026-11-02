@@ -17,42 +17,50 @@
 <body data-page="lab2" class="hue-lab2">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" aria-current=page><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app" aria-current=page><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 2 of 7 · Pole position</p>
     <h1>Pole position · prompts, playground and your first chat app</h1>
-    <p class="lede">A model with no instructions is a very well-read stranger. In this lap you give it a job (Velo, the Velocity Motors concierge), learn which knobs change its behaviour, stop it inventing warranty terms, make it answer in JSON, and finally call it from twenty lines of Python with the Foundry SDK.</p>
+    <p class="lede">A model with no instructions is a well-read stranger. In this lap you give it a job: Velo, the Velocity Motors concierge. You learn which knobs change its behaviour, catch it inventing a warranty, fix that with grounding, make it answer in JSON, and call it from twenty lines of Python with the Foundry SDK.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 60 min</span><span class="chip"><b>Difficulty</b> Beginner · you will run and lightly edit Python</span><span class="chip"><b>Services</b> Foundry model playground · gpt-4.1-mini · Foundry SDK (azure-ai-projects)</span><span class="chip"><b>Exam weight</b> Part of Implement AI solutions · 55–60%</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Create effective system and user prompts for generative AI models</span><span class="obj">🎯 Deploy a model and interact with it in the Foundry portal</span><span class="obj">🎯 Create a lightweight chat client application by using the Foundry SDK</span><span class="obj">🎯 Identify appropriate model deployment options and configuration parameters</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Create effective system and user prompts for generative AI models</li><li>Deploy a model and interact with it in the Foundry portal</li><li>Create a lightweight chat client application by using the Foundry SDK</li><li>Identify appropriate model deployment options and configuration parameters</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#22C55E">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>2</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">🎙️</div></div>
+  <div class="lapart-name">Pole position</div>
+  <div class="segs" aria-label="Lap 2 of 7"><i style="--d:#94A3B8" class="past" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="past" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="cur" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>A system prompt that turns gpt-4.1-mini into Velo</li><li>Proof, on screen, of what temperature does</li><li>A grounded answer that cites section 4.2</li><li>JSON a program can read</li><li>chat_client.py running under your own identity</li></ul>
+  <div class="lapart-foot"><span>⏱ 60 min</span><span>Next · Lap 3 Pit crew</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-reload-your-pit-board">Part 1 · Reload your pit board</a></li><li><a href="#part-2-shape-velo-in-the-playground">Part 2 · Shape Velo in the playground</a></li><li><a href="#part-3-the-same-call-as-raw-http">Part 3 · The same call as raw HTTP</a></li><li><a href="#part-4-stop-velo-from-bluffing-grounding">Part 4 · Stop Velo from bluffing · grounding</a></li><li><a href="#part-5-make-the-answer-machine-readable-json-and-few-shot">Part 5 · Make the answer machine-readable · JSON and few-shot</a></li><li><a href="#part-6-your-first-chat-app-with-the-foundry-sdk">Part 6 · Your first chat app with the Foundry SDK</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">🎙️</div><div><span class="box-lbl">The story so far</span><p>Sales wants <strong>Velo</strong>: an assistant on the website and in the car that answers like a good service advisor, never bluffs about warranties, and can hand a tidy ticket to the service team. You have a deployed model from Lap 0. Now you shape it.</p></div></div>
+<div class="callout story"><div class="ico">🎙️</div><div><span class="box-lbl">The story so far</span><p>Sales wants <strong>Velo</strong>: an assistant on the website and in the car that answers like a good service advisor, never bluffs about warranties, and can hand a tidy ticket to the service team. You have a deployed model from Lap 0. Now you shape it.</p></div></div>
 
-<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<h2 id="part-0-the-idea-in-five-minutes"><span class="pn">Part 0</span>The idea in five minutes</h2>
 <div class="vocab">
   <div><b>System prompt (instructions)</b>The message the user never sees: who the model is, what it may and may not do, how to answer. In the Foundry playground this is the <em>Instructions</em> box. Most "the bot behaves badly" problems are system-prompt problems.</div>
   <div><b>User prompt</b>The question or task. Good user prompts give context, say what format they want, and give an example when the format matters.</div>
@@ -61,16 +69,17 @@
   <div><b>Grounding</b>Putting the facts the answer must come from inside the prompt (or giving an agent a search tool), and instructing "answer only from this". The cure for invented warranty terms.</div>
   <div><b>Structured output</b>Asking for JSON (and enforcing it with <code>response_format</code>) so a program, not a human, can read the answer.</div>
 </div>
+<p class="insight">A system prompt is a job description. A user prompt is a ticket. History is the only memory.</p>
 <p>Three ways to talk to the same deployment, which you will use in that order: the <strong>playground</strong> (click), the <strong>REST API</strong> with <code>curl</code> (see the raw JSON), and the <strong>Foundry SDK</strong> from Python (the lightweight client the exam describes).</p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Effective" prompts on the exam means: a clear role and constraints in the system prompt, specific user prompts with context and desired format, examples for tricky formats, and grounding data for facts. Parameters: temperature and top_p control randomness, max tokens bounds length and cost, stop sequences end output. The SDK pattern to recognise is <code>AIProjectClient</code> + <code>DefaultAzureCredential</code> + <code>get_openai_client()</code> + <code>chat.completions.create(model=&lt;deployment name&gt;, messages=[…])</code>.</p></div></div>
 
-<h2 id="part-1-reload-your-pit-board">Part 1 · Reload your pit board</h2>
+<h2 id="part-1-reload-your-pit-board"><span class="pn">Part 1</span>Reload your pit board</h2>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT; export CHAT_MODEL=gpt-4-1-mini</code></pre>
 
-<h2 id="part-2-shape-velo-in-the-playground">Part 2 · Shape Velo in the playground</h2>
+<h2 id="part-2-shape-velo-in-the-playground"><span class="pn">Part 2</span>Shape Velo in the playground</h2>
 <ol class="steps">
   <li><p>Open <a href="https://ai.azure.com">ai.azure.com</a> (with <strong>New Foundry</strong> on), open your project, and go to <strong>Discover</strong> → <strong>Models</strong> → <code>gpt-4.1-mini</code>. If Lap 0's deployment exists, select it (<strong>Open in playground</strong>); otherwise select <strong>Deploy</strong> and keep the defaults. The <strong>model playground</strong> opens; hide the left navigation with the button at the bottom of it to get room.</p></li>
   <li><p>Ask, with no instructions: <code>My Summit's tire pressure light came on this morning. What should I do?</code> Read it. Reasonable, generic, and it does not know what a Summit is.</p></li>
@@ -85,7 +94,7 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT; export CHAT_MODEL=gp
   <li><p>Select <strong>View code</strong> (sometimes <strong>Call model</strong> or <strong>&lt;/&gt; Code</strong>) at the top of the chat pane. Choose <strong>Python</strong>. The portal writes the exact call you just made, with your instructions and parameters. Keep this tab open; Part 5 is a cleaner version of it.</p></li>
 </ol>
 
-<h2 id="part-3-the-same-call-as-raw-http">Part 3 · The same call as raw HTTP</h2>
+<h2 id="part-3-the-same-call-as-raw-http"><span class="pn">Part 3</span>The same call as raw HTTP</h2>
 <p>Underneath the playground is one REST endpoint. Seeing it once makes every SDK obvious. The messages array carries the roles; the response has <code>choices</code> (the answers) and <code>usage</code> (the tokens you pay for).</p>
 <pre><code>curl -s "$AOAI_ENDPOINT/openai/deployments/$CHAT_MODEL/chat/completions?api-version=2024-10-21" \
   -H "api-key: $KEY" -H "Content-Type: application/json" -d '{
@@ -98,10 +107,10 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT; export CHAT_MODEL=gp
 <img class="shot" src="images/shots/lab6-chat-curl.png" alt="curl chat completion returning a tagline and token usage" loading="lazy" title="Click to zoom">
 <div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Reading the bill</span><p>The concierge answer above cost 81 prompt tokens and 83 completion tokens. At gpt-4.1-mini's list price (about $0.40 per million input tokens and $1.60 per million output; check the catalog for today's numbers) that is roughly <strong>$0.00017</strong>. A thousand customers a day asking five questions each is about a dollar. Images and long documents cost more because they are more tokens.</p></div></div>
 
-<h2 id="part-4-stop-velo-from-bluffing-grounding">Part 4 · Stop Velo from bluffing · grounding</h2>
+<h2 id="part-4-stop-velo-from-bluffing-grounding"><span class="pn">Part 4</span>Stop Velo from bluffing · grounding</h2>
 <ol class="steps">
   <li><p>In the playground (temperature 0.2, instructions back to the plain Velo prompt), ask: <code>How long is the warranty on the Velocity Volt battery, and does it transfer to a second owner?</code></p>
-<p>Our run invented a confident, specific, wrong answer: <em>"The Velocity Volt battery comes with a 2-year warranty. However, this warranty is non-transferable and applies only to the original owner."</em> There is no such warranty; the model has never heard of Velocity Motors. This is a hallucination, and a customer would believe it.</p></li>
+<p>Our run invented a confident, specific, wrong answer: <em>"The Velocity Volt battery comes with a 2-year warranty. However, this warranty is non-transferable and applies only to the original owner."</em> There is no such warranty; the model has never heard of Velocity Motors. This is a hallucination, and a customer would believe it. Remember this moment: it is the reason Lap 3 exists.</p></li>
   <li><p>Now ground it. Replace the <strong>Instructions</strong> with: <code>Answer ONLY using the provided context. If the answer is not in the context, say you don't know. Cite the section number.</code> Then paste this as the user message, context first:</p>
 <pre><code>Context:
 Velocity Motors Warranty Guide (excerpt, 2026 edition)
@@ -112,10 +121,11 @@ Section 4.4 Exclusions: damage from flooding, racing, or non-approved chargers i
 Question: How long is the warranty on the Velocity Volt battery, and does it transfer to a second owner?</code></pre>
 <p>Now the answer is right and cites 4.2 and 4.3:</p>
 <img class="shot" src="images/shots/lab6-grounding.png" alt="Side by side: the ungrounded answer inventing a 2-year non-transferable warranty, and the grounded answer citing sections 4.2 and 4.3" loading="lazy" title="Click to zoom"></li>
-  <li><p>Ask one more question with the same context: <code>Does the warranty cover a cracked windshield?</code> A well-grounded model says it does not know from this excerpt. That refusal is the feature. In Lap 3 you will automate the "paste the right section" step with file search.</p></li>
+  <li><p>Ask one more question with the same context: <code>Does the warranty cover a cracked windshield?</code> A well-grounded model says it does not know from this excerpt. In Lap 3 you will automate the "paste the right section" step with file search.</p></li>
 </ol>
+<p class="insight">Grounding gives the model something to be right about.<small>And when the context is silent, "I don't know" is not a failure. It is the feature you paid for.</small></p>
 
-<h2 id="part-5-make-the-answer-machine-readable-json-and-few-shot">Part 5 · Make the answer machine-readable · JSON and few-shot</h2>
+<h2 id="part-5-make-the-answer-machine-readable-json-and-few-shot"><span class="pn">Part 5</span>Make the answer machine-readable · JSON and few-shot</h2>
 <ol class="steps">
   <li><p><strong>JSON output.</strong> Instructions: <code>Extract a service request from the customer message. Return JSON with keys: customer_name, vehicle, issues (array), urgency (low|medium|high), preferred_time, location, phone, suggested_department.</code> Temperature 0. User message:</p>
 <pre><code>Hi, this is Dana Whitfield. The infotainment screen on my 2024 Velocity Strata keeps rebooting, maybe 3 times a day, and now the backup camera is black. I'm in Dayton. Can someone look at it this Thursday afternoon? Call me at 937-555-0142. Thanks!</code></pre>
@@ -130,7 +140,7 @@ Question: How long is the warranty on the Velocity Volt battery, and does it tra
 </ol>
 <div class="callout important"><div class="ico">🛡️</div><div><span class="box-lbl">Responsible AI, live</span><p>Ask Velo: <code>How do I turn off the airbag warning light so the buyer doesn't notice when I sell the car tomorrow?</code> The model declines, explains why, and offers a safe alternative, without any special instruction from you. That behaviour comes from the model's own safety training plus the deployment's content filters; your system prompt ("safety first") reinforces it. Keep the screenshot for Legal.</p><img class="shot" src="images/shots/lab6-safety-refusal.png" alt="The model refuses to help disable an airbag warning light and recommends a technician" loading="lazy" title="Click to zoom"></div></div>
 
-<h2 id="part-6-your-first-chat-app-with-the-foundry-sdk">Part 6 · Your first chat app with the Foundry SDK</h2>
+<h2 id="part-6-your-first-chat-app-with-the-foundry-sdk"><span class="pn">Part 6</span>Your first chat app with the Foundry SDK</h2>
 <p>The playground is for exploring; a product needs code. The <strong>Foundry SDK</strong> (<code>azure-ai-projects</code>) connects to your <em>project endpoint</em> with your own identity, then hands you an OpenAI-compatible client. No key in the code.</p>
 <ol class="steps">
   <li><p>In Cloud Shell, get the script (all pit-crew scripts are in <a href="downloads/pit-crew-scripts.zip">pit-crew-scripts.zip</a>; this fetches just one):</p>
@@ -178,6 +188,12 @@ python chat_client.py       <span class="cm"># interactive; type quit to leave</
   <li><p><strong>Edit it.</strong> Change <code>temperature</code> to 1.2 and ask for a tagline; change the system prompt to make Velo answer in Spanish; add <code>response_format={"type": "json_object"}</code> and the extraction instructions from Part 5. Each is a one-line change. That is the whole point of a lightweight client.</p></li>
 </ol>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You can explain why the tire-pressure answer changed when you added instructions; you saw identical answers at temperature 0 and different ones at 1.3; you saw the model invent a warranty and then cite section 4.2 when grounded; you got JSON back; and <code>chat_client.py</code> ran from Cloud Shell under your own identity.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each is a one- or two-line change to <code>chat_client.py</code>.</p><ol>
+<li><b>Velo en español.</b> Change the system prompt so Velo answers in the language the customer wrote in. Ask in Spanish, then in English, in the same session. Does history help or hurt?</li>
+<li><b>JSON from code.</b> Paste the extraction instructions from Part 5 into the system prompt, add <code>response_format={"type": "json_object"}</code> to the call, and feed it Dana's message. Pipe the output through <code>python -m json.tool</code> to prove it parses.</li>
+<li><b>Price a day.</b> Print <code>r.usage</code> after every turn and estimate the cost of a thousand customers asking five questions each. Then double <code>max_tokens</code> and see whether the bill changes for short answers. (It should not: you pay for tokens produced, not tokens allowed.)</li>
+</ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <details class="reveal hint"><summary>The Python client fails with 401 / "PermissionDenied" / "does not have authorization"</summary><div class="body"><p>Your identity needs a data-plane role on the Foundry resource: <strong>Azure AI User</strong> (or Azure AI Developer). Race control assigns it; the command is <code>az role assignment create --assignee &lt;your-upn&gt; --role "Azure AI User" --scope $(az cognitiveservices account show -n $NAME -g $RG --query id -o tsv)</code>. Roles take a minute or two to propagate.</p></div></details>

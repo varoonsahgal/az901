@@ -17,42 +17,50 @@
 <body data-page="lab4" class="hue-lab4">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" aria-current=page><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech" aria-current=page><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 4 of 7 · Radio check</p>
     <h1>Radio check · text analysis and speech</h1>
     <p class="lede">Race radio only works if both ends understand each other. In this lap Velo learns to read forty thousand reviews without getting tired, to strip names and card numbers from tickets, to speak in a calm neural voice, and to answer a driver who simply talks to the car.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 60 min</span><span class="chip"><b>Difficulty</b> Beginner · curl and three short Python scripts</span><span class="chip"><b>Services</b> Azure AI Language · Azure AI Translator · Azure Speech · gpt-audio-mini</span><span class="chip"><b>Exam weight</b> Part of both domains · text, speech and multimodal</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Describe common text analysis techniques, including keyword extraction, entity detection, sentiment analysis, and summarization</span><span class="obj">🎯 Identify features and capabilities of speech recognition and speech synthesis</span><span class="obj">🎯 Build a lightweight application that includes text analysis</span><span class="obj">🎯 Respond to spoken prompts by using a deployed multimodal model</span><span class="obj">🎯 Build a lightweight application by using Azure Speech in Foundry Tools</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Describe common text analysis techniques, including keyword extraction, entity detection, sentiment analysis, and summarization</li><li>Identify features and capabilities of speech recognition and speech synthesis</li><li>Build a lightweight application that includes text analysis</li><li>Respond to spoken prompts by using a deployed multimodal model</li><li>Build a lightweight application by using Azure Speech in Foundry Tools</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#38BDF8">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>4</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">📻</div></div>
+  <div class="lapart-name">Radio check</div>
+  <div class="segs" aria-label="Lap 4 of 7"><i style="--d:#94A3B8" class="past" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="past" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="past" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="past" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="cur" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>Six reviews scored for sentiment, targets and key phrases</li><li>A service ticket with the personal data redacted</li><li>An MP3 built from SSML, and a transcript of it</li><li>Two spoken answers: one from a pipeline, one from gpt-audio-mini</li><li>Voice mode switched on for your agent</li></ul>
+  <div class="lapart-foot"><span>⏱ 60 min</span><span>Next · Lap 5 Eyes on track</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-reload-your-pit-board">Part 1 · Reload your pit board</a></li><li><a href="#part-2-text-analysis-on-customer-reviews">Part 2 · Text analysis on customer reviews</a></li><li><a href="#part-3-make-the-car-talk-azure-speech">Part 3 · Make the car talk · Azure Speech</a></li><li><a href="#part-4-one-model-that-listens-and-speaks-gpt-audio-mini">Part 4 · One model that listens and speaks · gpt-audio-mini</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">📻</div><div><span class="box-lbl">The story so far</span><p>Customer Experience has a folder of reviews in five languages, a stack of service tickets full of personal data, and a press release nobody has time to read. Engineering wants the in-car assistant to <em>talk</em>. Every one of these is a Foundry Tool call away, and all of them are already in your resource from Lap 0.</p></div></div>
+<div class="callout story"><div class="ico">📻</div><div><span class="box-lbl">The story so far</span><p>Customer Experience has a folder of reviews in five languages, a stack of service tickets full of personal data, and a press release nobody has time to read. Engineering wants the in-car assistant to <em>talk</em>. Every one of these is a Foundry Tool call away, and all of them are already in your resource from Lap 0.</p></div></div>
 
-<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<h2 id="part-0-the-idea-in-five-minutes"><span class="pn">Part 0</span>The idea in five minutes</h2>
 <div class="vocab">
   <div><b>Azure AI Language</b>One endpoint, many <em>kinds</em> of analysis: language detection, sentiment (with opinion mining), key phrases, named entities, PII, summarization, plus conversational language understanding and question answering. Prebuilt; no training needed.</div>
   <div><b>Azure AI Translator</b>Text translation between 100+ languages, several targets in one call, transliteration (script conversion) and dictionary lookups. Document translation too.</div>
@@ -63,14 +71,14 @@
 </div>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Match the technique to the output: key phrases → a list of topics; entities → typed things (person, date, product, PII); sentiment → positive/negative/neutral/mixed with scores; summarization → extractive (sentences copied) or abstractive (new text). Speech: recognition is audio→text, synthesis is text→audio, SSML tunes synthesis. Two ways to answer a spoken question: the Speech pipeline (STT → model → TTS) or one multimodal audio model. Know the trade-off: pipeline = control and cheaper models; multimodal = simpler and more natural.</p></div></div>
 
-<h2 id="part-1-reload-your-pit-board">Part 1 · Reload your pit board</h2>
+<h2 id="part-1-reload-your-pit-board"><span class="pn">Part 1</span>Reload your pit board</h2>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-4-1-mini AUDIO_MODEL=gpt-audio-mini</code></pre>
 
-<h2 id="part-2-text-analysis-on-customer-reviews">Part 2 · Text analysis on customer reviews</h2>
+<h2 id="part-2-text-analysis-on-customer-reviews"><span class="pn">Part 2</span>Text analysis on customer reviews</h2>
 <p>Azure AI Language has one synchronous endpoint; you change the <code>kind</code>. Start with sentiment on a grumpy review, then look at the full set of six reviews we analysed.</p>
 <ol class="steps">
   <li><p><strong>Sentiment with opinion mining.</strong> The document score says "negative"; opinion mining says <em>what</em> was negative (the cupholders).</p>
@@ -80,7 +88,8 @@ export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-
 }' | jq '.results.documents[0] | {sentiment, confidenceScores}'</code></pre>
 <img class="shot" src="images/shots/lab5-sentiment-curl.png" alt="curl sentiment call returning negative with confidence scores" loading="lazy" title="Click to zoom">
 <img class="shot" src="images/shots/lab5-sentiment-card.png" alt="Six reviews with sentiment labels, confidence bars and opinion targets such as hybrid engine (positive) and infotainment system (negative)" loading="lazy" title="Click to zoom">
-<p>Look at review 1: <em>mixed</em>, because the engine is praised and the infotainment system is not. Opinion mining attaches the sentiment to each target, which is what a product team actually needs.</p></li>
+<p>Look at review 1: <em>mixed</em>, because the engine is praised and the infotainment system is not. Opinion mining attaches the sentiment to each target, which is what a product team actually needs.</p>
+<p class="insight">Sentiment tells you how they feel. Opinion mining tells you about what.<small>A product team cannot act on "mixed". It can act on "the infotainment system crashed".</small></p></li>
   <li><p><strong>Key phrases and entities.</strong> Change <code>"kind"</code> to <code>KeyPhraseExtraction</code> and then <code>EntityRecognition</code> (no parameters needed). Key phrases give you the talking points; entities give you typed things: Organization, Product, Location, DateTime, Quantity, Person.</p>
 <div class="shots2"><img class="shot" src="images/shots/lab5-keyphrases-card.png" alt="Key phrases per review" loading="lazy" title="Click to zoom"><img class="shot" src="images/shots/lab5-ner-card.png" alt="Press release with 50-plus highlighted entities by category" loading="lazy" title="Click to zoom"></div></li>
   <li><p><strong>PII detection.</strong> Kind <code>PiiEntityRecognition</code>. The service returns every personal identifier it found <em>and</em> a redacted copy of the text, ready to store. This is the privacy-and-security principle as an API call.</p>
@@ -172,7 +181,7 @@ for r in client.recognize_pii_entities(ticket):
   redacted: ******** ************** *************, **************************) reports a grinding noise. VIN 1VMSUM7K2NA048213. Card ending 4421.</span></code></pre>
 <p>Notice "Velocity Summit [Skill]" and "Dayton [Organization]": entity categories are guesses with confidence, and a made-up car brand confuses them. Real deployments add a custom entity model or a short allow-list.</p>
 
-<h2 id="part-3-make-the-car-talk-azure-speech">Part 3 · Make the car talk · Azure Speech</h2>
+<h2 id="part-3-make-the-car-talk-azure-speech"><span class="pn">Part 3</span>Make the car talk · Azure Speech</h2>
 <ol class="steps">
   <li><p><strong>Text-to-speech with SSML.</strong> Write the SSML to a file and POST it to the regional TTS endpoint. The header <code>X-Microsoft-OutputFormat</code> chooses the audio format.</p>
 <img class="shot" src="images/shots/lab5-speech-curl.png" alt="SSML with a multilingual voice, excited style, emphasis, a pause and German and Japanese segments; curl to the TTS endpoint saves velo.mp3" loading="lazy" title="Click to zoom">
@@ -232,7 +241,7 @@ spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
   <li><p><strong>Voice mode on your agent (portal).</strong> Open <code>velo-warranty-expert</code> from Lap 3 in the agent playground. In the left pane, under the model list, enable <strong>Voice mode</strong>. If the <strong>Configuration</strong> pane does not open, select the cog icon above the chat; under <strong>Voice mode</strong> preview the speech input and output settings and pick a voice. Close it and <strong>Save</strong>. In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>; the <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Call agent</strong> shows the client code, which streams audio both ways. This is Voice Live: Azure Speech wired into an agent with no audio code of yours.</p></li>
 </ol>
 
-<h2 id="part-4-one-model-that-listens-and-speaks-gpt-audio-mini">Part 4 · One model that listens and speaks · gpt-audio-mini</h2>
+<h2 id="part-4-one-model-that-listens-and-speaks-gpt-audio-mini"><span class="pn">Part 4</span>One model that listens and speaks · gpt-audio-mini</h2>
 <ol class="steps">
   <li><p>Deploy the audio model. It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out.</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
@@ -269,9 +278,16 @@ print(f&quot;saved {out_wav} · tokens: {r.usage.prompt_tokens_details.audio_tok
 saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
 <audio controls src="media/velo-audio-reply.wav"></audio>
 <img class="shot" src="images/shots/lab4-audio-model.png" alt="Card: the spoken question, the model's spoken reply transcript, and the audio and text token counts" loading="lazy" title="Click to zoom"></li>
-  <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech. That trade-off is the exam question.</p></li>
+  <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech.</p></li>
 </ol>
+<p class="insight">Pipeline for control. One model for simplicity.<small>The exam does not ask you to pick a winner. It asks whether you know the trade: a custom brand voice and automotive vocabulary on one side, one call and natural turn-taking on the other.</small></p>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You ran at least sentiment, key phrases, entities and PII through Azure AI Language; produced an MP3 with SSML and transcribed a WAV; ran <code>speech_pipeline.py</code> and <code>talk_to_velo.py</code> and have two answer files; and your agent spoke to you in Voice mode.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>Five languages, one script.</b> Replace the three English reviews in <code>text_analysis.py</code> with the German, Spanish, Japanese and French ones from the language-detection card (write your own: two sentences each). Does sentiment still work without a <code>language</code> hint? Which entity categories survive translation-free?</li>
+<li><b>Summarise, translate, speak.</b> Take the abstractive summary of the press release, translate it to Japanese with Translator, and synthesise it with a <code>ja-JP</code> voice (list voices to find one). Three services, one key, under a minute.</li>
+<li><b>Velo answers in the driver's language.</b> In <code>speech_pipeline.py</code>, run language detection on <code>heard.text</code> and switch the synthesis voice accordingly. Record a short question in another language on your laptop (16 kHz mono WAV) and try it.</li>
+</ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <details class="reveal hint"><summary>Translator returns 401 while Language works</summary><div class="body"><p>Translator's global host needs the extra header <code>Ocp-Apim-Subscription-Region: eastus2</code> so it knows which resource the key belongs to.</p></div></details>

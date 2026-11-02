@@ -5,6 +5,7 @@
 "chips":[["Prep time","45 min the day before"],["Students","up to 20 in one subscription (quota-bound)"],["Region","East US 2"],["Budget","about $2–4 per student"]],
 "objectives":[]}
 -->
+<p class="insight">Twenty people, one subscription, zero collisions: student numbers for names, S0 instead of F0, and deployments small enough that twenty of them fit the regional quota.<small>Everything on this page follows from those three choices.</small></p>
 <h2>The day before</h2>
 <ol class="steps">
   <li><p><strong>One subscription, Owner access for you.</strong> Students need <strong>Contributor</strong> (to create resource groups and resources) and <strong>Azure AI User</strong> (data-plane access to Foundry projects and agents) at subscription scope. Put their sign-in names in <code>students.txt</code>, one per line, and run the helper:</p>
@@ -29,6 +30,13 @@
   <li><p><strong>Cloud Shell</strong> works without a storage account in ephemeral mode. If your tenant blocks it, students can use a laptop with <code>az</code> and Python 3.10+; every command on the site is plain bash.</p></li>
 </ol>
 
+<div class="callout tip"><div class="ico">✅</div><div><span class="box-lbl">Day-of checklist</span><ul>
+<li>Projector on the index page; student numbers on the board; the three rules written next to them.</li>
+<li><code>./race_control.sh prep</code> run this morning and the gpt-4.1-mini Standard quota in East US 2 still shows at least 10K × students free.</li>
+<li>Your own s00 garage is in a <em>different</em> region (East US) and has <code>gpt-4-1</code> plus the Content Understanding defaults, for the Lap 6 invoice demo.</li>
+<li>Headphones for everyone before Lap 4; a quiet corner for Voice mode, or the decision to play the audio files instead.</li>
+<li>Two moments to make sure nobody misses: the invented warranty in Lap 2 Part 4, and the first <strong>Preview web app</strong> in Lap 3.</li>
+</ul></div></div>
 <h2>Run sheet</h2>
 <div class="track">
   <div class="t">08:45</div><div class="w"><b>Doors</b> <span>— site open on the projector at the index page; numbers on the board.</span></div>

@@ -15,6 +15,14 @@ A hands-on, car-themed one-day course for **Microsoft exam AI-901 (Azure AI Fund
 | 6 | Paperwork | Azure Content Understanding on documents, images, audio and video; custom analyzers |
 | 7 | Checkered flag | 40-question practice exam, cleanup |
 
+## What makes it engaging
+
+- **Pit board.** Students type their number once; every command on every page rewrites itself (`rg-ai901-s07`, `ai901-s07-pitcrew`, …).
+- **Lap cards and insights.** Each lap opens with a card (what you build, where you are on the track) and carries one-sentence insights to remember.
+- **Overtake boxes.** Every lap ends with unguided stretch challenges for anyone ahead of the field.
+- **Practice exam and licence.** Forty explained questions with a scoreboard, per-domain results and a printable pit-crew licence.
+- **Progress.** Completed laps light up in the top bar and on the index; `[` and `]` move between laps.
+
 ## Structure
 
 - `src/*.html` — page fragments (a `<!--META {...} -->` header plus body HTML)

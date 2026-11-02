@@ -26,10 +26,10 @@
         ${q.multi ? '<p style="margin:10px 0 0"><button type="button" class="btn" style="padding:8px 14px;font-size:14px" data-check>Check answer</button></p>' : ''}
         <div class="why"><b>Explanation.</b> ${q.why} <a href="${q.lap}.html" style="margin-left:6px">Revisit ${q.lap.replace('lab', 'Lap ')} →</a></div>`;
       root.appendChild(card);
-      const st = state[q.id];
-      if (st) paint(card, q, st.picked);
-      if (q.multi) card.querySelector('[data-check]').addEventListener('click', () => { const picked = [...card.querySelectorAll('input:checked')].map(i => +i.value); if (picked.length) answer(card, q, picked); });
+      if (q.multi) card.querySelector('[data-check]')?.addEventListener('click', () => { const picked = [...card.querySelectorAll('input:checked')].map(i => +i.value); if (picked.length) answer(card, q, picked); });
       else card.querySelectorAll('input').forEach(i => i.addEventListener('change', () => answer(card, q, [+i.value])));
+      const st = state[q.id];
+      if (st) paint(card, q, st.picked);       // after wiring: paint() removes the Check button
     });
     score();
   }
@@ -57,8 +57,23 @@
     const rows = DOMAINS.map(d => { const qs = Q.filter(q => q.domain === d); const r = qs.filter(q => state[q.id]?.correct).length; const p = Math.round(r / qs.length * 100); const lap = qs[0].lap; return `<tr><td>${d}</td><td>${r} / ${qs.length}</td><td><b style="color:${p >= 70 ? 'var(--green-ink)' : 'var(--red-ink)'}">${p}%</b></td><td><a href="${lap}.html">${lap.replace('lab', 'Lap ')}</a></td></tr>`; }).join('');
     res.innerHTML = `<h3 style="margin-top:0">Result · ${right} of ${Q.length} · scaled ≈ ${scaled} / 1000</h3><p style="font-size:18px">${verdict}</p><table><thead><tr><th>Domain</th><th>Right</th><th>Score</th><th>Revisit</th></tr></thead><tbody>${rows}</tbody></table><p class="small muted">The scaled number is a rough guide only: the real exam weights domains and uses several question types. 700 is the pass mark.</p>`;
     res.classList.add('show');
+    licence(right, scaled);
   }
-  $('#sb-reset')?.addEventListener('click', () => { if (confirm('Clear all answers and start again?')) { state = {}; save(state); render(); window.scrollTo({ top: root.offsetTop - 120, behavior: 'smooth' }); } });
+  /* the pit-crew licence: a printable card for the student who finished the day */
+  function licence(right, scaled) {
+    const box = $('#licence'); if (!box) return;
+    const g = k => { try { return JSON.parse(localStorage.getItem('ai901-gp:' + k)); } catch { return null; } };
+    const student = g('student') || 's07', done = g('done') || {};
+    const LAPS = [['lab0', '#94A3B8'], ['lab1', '#EF4444'], ['lab2', '#22C55E'], ['lab3', '#F59E0B'], ['lab4', '#38BDF8'], ['lab5', '#A78BFA'], ['lab6', '#14B8A6'], ['lab7', '#FACC15']];
+    const n = LAPS.filter(([l]) => done[l]).length;
+    const date = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    const grade = scaled >= 850 ? 'Pole position' : scaled >= 700 ? 'Podium' : scaled >= 550 ? 'Midfield' : 'Pit lane';
+    box.innerHTML = `<div class="licence-card"><div class="lc-top"><div><div class="lc-eyebrow">Velocity Motors · AI pit crew licence</div><h3>Driver ${student.toUpperCase()}</h3><div style="color:#94A3B8;font-size:14px">AI-901 Grand Prix · ${date}</div></div><div class="lc-num">${student}</div></div>
+      <div class="lc-grid"><div><small>Practice exam</small><b>${right} / ${Q.length}</b></div><div><small>Scaled score</small><b>≈ ${scaled}</b></div><div><small>Verdict</small><b>${grade}</b></div><div><small>Laps completed</small><b>${n} of 8</b><div class="lc-laps">${LAPS.map(([l, c]) => `<i style="--d:${c}" class="${done[l] ? 'on' : ''}"></i>`).join('')}</div></div></div>
+      <div class="lc-foot"><span>Built a Foundry resource, a prompt, an agent, speech, vision, image generation and Content Understanding in one day. Not a Microsoft credential: book AI-901 for that.</span><button type="button" onclick="window.print()">Print</button></div></div>`;
+    box.classList.add('show');
+  }
+  $('#sb-reset')?.addEventListener('click', () => { if (confirm('Clear all answers and start again?')) { state = {}; save(state); $('#licence')?.classList.remove('show'); render(); window.scrollTo({ top: root.offsetTop - 120, behavior: 'smooth' }); } });
   $('#sb-reveal')?.addEventListener('click', () => { root.querySelectorAll('.q').forEach(c => c.classList.add('answered')); });
   render();
 })();

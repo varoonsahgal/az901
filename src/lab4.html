@@ -1,10 +1,11 @@
 <!--META {"title":"Lap 4 · Radio check","desc":"Text analysis with Azure AI Language on Velocity customer reviews, Azure Speech text-to-speech and speech-to-text, Voice mode on a Foundry agent, and a spoken question answered by the gpt-audio-mini multimodal model.",
 "h1":"Radio check · text analysis and speech",
 "lede":"Race radio only works if both ends understand each other. In this lap Velo learns to read forty thousand reviews without getting tired, to strip names and card numbers from tickets, to speak in a calm neural voice, and to answer a driver who simply talks to the car.",
+"build":["Six reviews scored for sentiment, targets and key phrases","A service ticket with the personal data redacted","An MP3 built from SSML, and a transcript of it","Two spoken answers: one from a pipeline, one from gpt-audio-mini","Voice mode switched on for your agent"],
 "chips":[["Time","60 min"],["Difficulty","Beginner · curl and three short Python scripts"],["Services","Azure AI Language · Azure AI Translator · Azure Speech · gpt-audio-mini"],["Exam weight","Part of both domains · text, speech and multimodal"]],
 "objectives":["Describe common text analysis techniques, including keyword extraction, entity detection, sentiment analysis, and summarization","Identify features and capabilities of speech recognition and speech synthesis","Build a lightweight application that includes text analysis","Respond to spoken prompts by using a deployed multimodal model","Build a lightweight application by using Azure Speech in Foundry Tools"]}
 -->
-<div class="callout note"><div class="ico">📻</div><div><span class="box-lbl">The story so far</span><p>Customer Experience has a folder of reviews in five languages, a stack of service tickets full of personal data, and a press release nobody has time to read. Engineering wants the in-car assistant to <em>talk</em>. Every one of these is a Foundry Tool call away, and all of them are already in your resource from Lap 0.</p></div></div>
+<div class="callout story"><div class="ico">📻</div><div><span class="box-lbl">The story so far</span><p>Customer Experience has a folder of reviews in five languages, a stack of service tickets full of personal data, and a press release nobody has time to read. Engineering wants the in-car assistant to <em>talk</em>. Every one of these is a Foundry Tool call away, and all of them are already in your resource from Lap 0.</p></div></div>
 
 <h2>Part 0 · The idea in five minutes</h2>
 <div class="vocab">
@@ -34,7 +35,8 @@ export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-
 }' | jq '.results.documents[0] | {sentiment, confidenceScores}'</code></pre>
 <img class="shot" src="images/shots/lab5-sentiment-curl.png" alt="curl sentiment call returning negative with confidence scores" loading="lazy" title="Click to zoom">
 <img class="shot" src="images/shots/lab5-sentiment-card.png" alt="Six reviews with sentiment labels, confidence bars and opinion targets such as hybrid engine (positive) and infotainment system (negative)" loading="lazy" title="Click to zoom">
-<p>Look at review 1: <em>mixed</em>, because the engine is praised and the infotainment system is not. Opinion mining attaches the sentiment to each target, which is what a product team actually needs.</p></li>
+<p>Look at review 1: <em>mixed</em>, because the engine is praised and the infotainment system is not. Opinion mining attaches the sentiment to each target, which is what a product team actually needs.</p>
+<p class="insight">Sentiment tells you how they feel. Opinion mining tells you about what.<small>A product team cannot act on "mixed". It can act on "the infotainment system crashed".</small></p></li>
   <li><p><strong>Key phrases and entities.</strong> Change <code>"kind"</code> to <code>KeyPhraseExtraction</code> and then <code>EntityRecognition</code> (no parameters needed). Key phrases give you the talking points; entities give you typed things: Organization, Product, Location, DateTime, Quantity, Person.</p>
 <div class="shots2"><img class="shot" src="images/shots/lab5-keyphrases-card.png" alt="Key phrases per review" loading="lazy" title="Click to zoom"><img class="shot" src="images/shots/lab5-ner-card.png" alt="Press release with 50-plus highlighted entities by category" loading="lazy" title="Click to zoom"></div></li>
   <li><p><strong>PII detection.</strong> Kind <code>PiiEntityRecognition</code>. The service returns every personal identifier it found <em>and</em> a redacted copy of the text, ready to store. This is the privacy-and-security principle as an API call.</p>
@@ -223,9 +225,16 @@ print(f&quot;saved {out_wav} · tokens: {r.usage.prompt_tokens_details.audio_tok
 saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
 <audio controls src="media/velo-audio-reply.wav"></audio>
 <img class="shot" src="images/shots/lab4-audio-model.png" alt="Card: the spoken question, the model's spoken reply transcript, and the audio and text token counts" loading="lazy" title="Click to zoom"></li>
-  <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech. That trade-off is the exam question.</p></li>
+  <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech.</p></li>
 </ol>
+<p class="insight">Pipeline for control. One model for simplicity.<small>The exam does not ask you to pick a winner. It asks whether you know the trade: a custom brand voice and automotive vocabulary on one side, one call and natural turn-taking on the other.</small></p>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You ran at least sentiment, key phrases, entities and PII through Azure AI Language; produced an MP3 with SSML and transcribed a WAV; ran <code>speech_pipeline.py</code> and <code>talk_to_velo.py</code> and have two answer files; and your agent spoke to you in Voice mode.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>Five languages, one script.</b> Replace the three English reviews in <code>text_analysis.py</code> with the German, Spanish, Japanese and French ones from the language-detection card (write your own: two sentences each). Does sentiment still work without a <code>language</code> hint? Which entity categories survive translation-free?</li>
+<li><b>Summarise, translate, speak.</b> Take the abstractive summary of the press release, translate it to Japanese with Translator, and synthesise it with a <code>ja-JP</code> voice (list voices to find one). Three services, one key, under a minute.</li>
+<li><b>Velo answers in the driver's language.</b> In <code>speech_pipeline.py</code>, run language detection on <code>heard.text</code> and switch the synthesis voice accordingly. Record a short question in another language on your laptop (16 kHz mono WAV) and try it.</li>
+</ol></div>
 
 <h2>Troubleshooting</h2>
 <details class="reveal hint"><summary>Translator returns 401 while Language works</summary><div class="body"><p>Translator's global host needs the extra header <code>Ocp-Apim-Subscription-Region: eastus2</code> so it knows which resource the key belongs to.</p></div></details>

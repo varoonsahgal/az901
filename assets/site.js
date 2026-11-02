@@ -12,9 +12,9 @@
   applyTheme(store.get('theme', null) || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : null));
   $('#theme')?.addEventListener('click', () => { const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; applyTheme(next); store.set('theme', next); });
 
-  /* mobile nav */
-  const menu = $('.menu-btn'), nav = $('.nav');
-  menu?.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', open); });
+  /* lap strip: keep the current lap in view on small screens */
+  const cur = $('.nav a[aria-current="page"]');
+  if (cur && cur.scrollIntoView) { try { cur.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch {} }
 
   /* reading progress */
   const bar = $('#readbar');
@@ -22,8 +22,8 @@
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
   /* pit board: student number -> every <span class="v" data-v="student"> and derived names */
-  const pit = $('#student');
-  const applyStudent = s => {
+  const pit = $('#student'), pitbox = $('#pitboard');
+  const applyStudent = (s, persist = true) => {
     s = (s || 's07').toLowerCase().replace(/[^a-z0-9]/g, '');
     if (!/^s\d{2}$/.test(s)) s = 's' + (s.replace(/\D/g, '') || '7').padStart(2, '0').slice(-2);
     $$('.v[data-v="student"]').forEach(e => e.textContent = s);
@@ -31,14 +31,22 @@
     $$('.v[data-v="name"]').forEach(e => e.textContent = 'ai901-' + s + '-' + (store.get('word', 'pitcrew')));
     $$('.v[data-v="proj"]').forEach(e => e.textContent = 'proj-ai901-' + s);
     if (pit && pit.value !== s) pit.value = s;
-    store.set('student', s);
+    if (persist) { store.set('student', s); pitbox?.classList.remove('unset'); }
   };
-  applyStudent(store.get('student', 's07'));
+  const saved = store.get('student', null);
+  if (saved) applyStudent(saved); else { applyStudent('s07', false); pitbox?.classList.add('unset'); }
   pit?.addEventListener('change', () => applyStudent(pit.value));
   pit?.addEventListener('keyup', e => { if (e.key === 'Enter') applyStudent(pit.value); });
+  pit?.addEventListener('focus', () => pit.select());
 
-  /* copy buttons on code blocks */
+  /* copy buttons + a small language label on code blocks */
   $$('pre').forEach(pre => {
+    const t = pre.textContent.trimStart(), out = pre.querySelector('.out');
+    const lang = /^("""|import |from )/.test(t) ? 'python'
+      : /^[\[{]/.test(t) ? 'json'
+      : /^(export|curl|az |python |pip |for |cat |OP=|\.\/|chmod|unzip|echo)/.test(t) ? 'bash'
+      : (out && out.textContent.trim() === t.trim()) ? 'output' : null;
+    if (lang) pre.dataset.lang = lang;
     const b = document.createElement('button'); b.className = 'copy'; b.type = 'button'; b.textContent = 'Copy';
     b.addEventListener('click', async () => {
       const clone = pre.cloneNode(true); clone.querySelector('.copy')?.remove(); clone.querySelectorAll('.out').forEach(o => o.remove());
@@ -47,8 +55,13 @@
     pre.appendChild(b);
   });
 
-  /* screenshots: click to zoom */
+  /* screenshots: caption from the alt text, then click to zoom */
   $$('img.shot').forEach(img => {
+    if (img.alt && !img.closest('figure') && !img.closest('.callout')) {
+      const f = document.createElement('figure'); f.className = 'shotwrap';
+      img.replaceWith(f); f.appendChild(img);
+      const c = document.createElement('figcaption'); c.textContent = img.alt; f.appendChild(c);
+    }
     img.addEventListener('click', () => {
       if (img.classList.contains('zoomed')) { img.classList.remove('zoomed'); $('.dim')?.remove(); return; }
       const dim = document.createElement('div'); dim.className = 'dim'; dim.addEventListener('click', () => { img.classList.remove('zoomed'); dim.remove(); });
@@ -68,7 +81,15 @@
   /* completion tracking */
   const page = document.body.dataset.page;
   const done = store.get('done', {});
-  const paintDone = () => { $$('.nav a[data-lab]').forEach(a => a.classList.toggle('is-done', !!done[a.dataset.lab])); $$('.lapcard li[data-lab]').forEach(li => li.classList.toggle('done', !!done[li.dataset.lab])); };
+  const LAPS = ['lab0', 'lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7'];
+  const paintDone = () => {
+    $$('.nav a[data-lab]').forEach(a => a.classList.toggle('is-done', !!done[a.dataset.lab]));
+    $$('.lapcard li[data-lab]').forEach(li => li.classList.toggle('done', !!done[li.dataset.lab]));
+    $$('a.lab[data-lab]').forEach(a => a.classList.toggle('is-done', !!done[a.dataset.lab]));
+    const n = LAPS.filter(l => done[l]).length, rp = $('#race-progress');
+    if (rp) { rp.innerHTML = n ? `<i style="--p:${n / LAPS.length * 100}%"></i>${n}/8 laps` : ''; }
+    const lc = $('.lapcard .ttl span'); if (lc) lc.textContent = n ? `${n} of 8 done` : '';
+  };
   paintDone();
   if (page && /^lab/.test(page)) {
     const target = $$('h2').find(h => /what you learned|pit wall debrief/i.test(h.textContent));
@@ -76,6 +97,13 @@
       new IntersectionObserver((es, io) => { if (es.some(e => e.isIntersecting)) { done[page] = Date.now(); store.set('done', done); paintDone(); io.disconnect(); } }, { threshold: .2 }).observe(target);
     }
   }
+
+  /* keyboard: [ previous lap · ] next lap */
+  addEventListener('keydown', e => {
+    if (e.target.matches('input, textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
+    const pg = $$('.pager a'); if (!pg.length) return;
+    if (e.key === ']') location.href = pg[pg.length - 1].href; else if (e.key === '[') location.href = pg[0].href;
+  });
 
   /* quiz reveal scoring (details.reveal.quiz) */
   const quiz = $$('details.reveal.quiz');

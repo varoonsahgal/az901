@@ -1,10 +1,11 @@
 <!--META {"title":"Lap 6 · Paperwork","desc":"Information extraction with Azure Content Understanding in Microsoft Foundry: a service invoice, a window sticker with your own field schema, lot photos classified into a table, a launch video and its audio, and a lightweight Python extractor.",
 "h1":"Paperwork · information extraction with Content Understanding",
 "lede":"Every dealership drowns in paper and pixels: invoices, window stickers, photos, recorded calls, launch videos. Azure Content Understanding turns all four kinds of content into the same thing: typed fields you can put in a database. In this lap you run the prebuilt analyzers, write your own schema, and finish with a 40-line extractor.",
+"build":["Content Understanding defaults pointing at your deployments","velocityWindowSticker: a schema you wrote","velocityLotPhoto: photos classified into a table","A transcript, call-centre fields and a video synopsis","extract_info.py: send, poll, print"],
 "chips":[["Time","50 min"],["Difficulty","Beginner · JSON schemas and curl, one Python script"],["Services","Azure Content Understanding (api 2025-11-01) · gpt-4.1-mini · text-embedding-3-large"],["Exam weight","Part of Implement AI solutions · 55–60%"]],
 "objectives":["Extract information from documents and forms by using Azure Content Understanding in Foundry Tools","Extract information from images by using Content Understanding","Extract information from audio and video by using Content Understanding","Build a lightweight application with information extraction capabilities by using Content Understanding","Identify techniques to extract information from text, images, audio, and videos"]}
 -->
-<div class="callout note"><div class="ico">🗂️</div><div><span class="box-lbl">The story so far</span><p>Finance keys 900 service invoices a month by hand. The used-car team retypes window stickers. Marketing cannot find the clip where the Volt's charging time is mentioned. The pit crew's answer is one service with one habit: send a file, get fields.</p></div></div>
+<div class="callout story"><div class="ico">🗂️</div><div><span class="box-lbl">The story so far</span><p>Finance keys 900 service invoices a month by hand. The used-car team retypes window stickers. Marketing cannot find the clip where the Volt's charging time is mentioned. The pit crew's answer is one service with one habit: send a file, get fields.</p></div></div>
 
 <h2>Part 0 · The idea in five minutes</h2>
 <div class="vocab">
@@ -15,6 +16,7 @@
   <div><b>The async pattern</b><code>POST …/analyzers/{id}:analyzeBinary</code> returns <code>202 Accepted</code> and an <code>Operation-Location</code> header; you GET that URL until <code>status</code> is <code>Succeeded</code>. Creating a custom analyzer works the same way.</div>
   <div><b>Result shape</b><code>result.contents[]</code>: one entry per document, image, audio track or video segment, each with <code>markdown</code>, <code>fields</code> (<code>valueString</code>, <code>valueNumber</code>, <code>valueArray</code>…, plus <code>confidence</code> and <code>source</code> for extracted fields), and for media, <code>startTimeMs</code>/<code>endTimeMs</code>, transcripts and key frames.</div>
 </div>
+<p class="insight">Send a file, get fields.<small>Documents, images, audio and video all come back in the same shape: markdown of the content, plus the typed fields you named. One habit, four modalities.</small></p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Documents and forms → prebuilt analyzers or a custom schema on <code>prebuilt-document</code>. Images → a custom schema on <code>prebuilt-image</code> (classify / describe). Audio → transcript, then fields such as summary, topics, sentiment (<code>prebuilt-callCenter</code>). Video → shots, key frames, transcript, synopsis (<code>prebuilt-video</code>, <code>prebuilt-videoSynopsis</code>). The portal playground lives at <strong>Build → Services → Content Understanding</strong>; the API version is <code>2025-11-01</code>; analyzer IDs cannot contain hyphens; it is asynchronous.</p></div></div>
 
 <h2>Part 1 · Reload your pit board and register the models</h2>
@@ -84,7 +86,8 @@ curl -s -i -X PUT "$AI_ENDPOINT/contentunderstanding/analyzers/velocityWindowSti
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: image/png" --data-binary @window-sticker.png | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
 sleep 15; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.result.contents[0].fields | map_values({v: (.valueString // .valueNumber // .valueInteger // .valueArray), confidence}))'</code></pre>
 <img class="shot" src="images/shots/lab6-cu-sticker.png" alt="Window sticker beside the schema and the extracted fields: 2026 VELOCITY STRATA SPORT, VIN 1VMSTR8A3RA210077 at 0.98, MSRP 36445, 36 MPG, Velocity Red, Marysville Ohio, and the optional equipment array" loading="lazy" title="Click to zoom">
-<p>The VIN comes back at 0.98 confidence with its source location on the page; the generated array of options has no confidence because the model composed it. That distinction (extracted vs generated) is worth a sentence in any review process.</p></li>
+<p>The VIN comes back at 0.98 confidence with its source location on the page; the generated array of options has no confidence because the model composed it.</p>
+<p class="insight">Extracted fields carry a source and a confidence. Generated fields carry neither, because the model wrote them.<small>A review process should treat the two differently: verify the first by exception, read the second every time.</small></p></li>
 </ol>
 
 <h2>Part 4 · Images · lot photos into a table</h2>
@@ -188,6 +191,12 @@ for content in result[&quot;result&quot;][&quot;contents&quot;]:
         print(&quot;  markdown:&quot;, content.get(&quot;markdown&quot;, &quot;&quot;)[:600].replace(&quot;\n&quot;, &quot;\n            &quot;))</code></pre>
 <img class="shot" src="images/shots/lab6-extract-info.png" alt="Terminal: extract_info.py printing the window sticker fields with confidences" loading="lazy" title="Click to zoom">
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>Your resource has an embedding deployment and registered defaults; you created <code>velocityWindowSticker</code> and <code>velocityLotPhoto</code>; you have fields for the sticker, a table for four photos, a transcript for the narration and (optionally) a synopsis for the teaser; and <code>extract_info.py</code> runs.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>One more field.</b> Add <code>DestinationCharge</code> (number, extract) and <code>Drivetrain</code> (string, classify, enum FWD / AWD / RWD) to the sticker schema, <code>DELETE</code> the analyzer, <code>PUT</code> it again and re-run. Which method did you pick for each, and why?</li>
+<li><b>The brake call.</b> Send <code>question.wav</code> from Lap 4 to <code>prebuilt-callCenter</code>. What topics, sentiment and summary does it produce from six seconds of audio, and would you trust the sentiment?</li>
+<li><b>Whole lot, one table.</b> Loop <code>extract_info.py velocityLotPhoto</code> over all sixteen photos and collect <code>VehicleType</code> and <code>VehicleCount</code> into a CSV. Compare the counts with Azure AI Vision's object boxes from Lap 5. Where they disagree, who is right?</li>
+</ol></div>
 
 <h2>Troubleshooting</h2>
 <details class="reveal hint"><summary>"The 'analyzerId' cannot contain '-'"</summary><div class="body"><p>Use letters and digits only: <code>velocityWindowSticker</code>, not <code>velocity-window-sticker</code>.</p></div></details>

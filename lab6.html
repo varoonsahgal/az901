@@ -17,42 +17,50 @@
 <body data-page="lab6" class="hue-lab6">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" aria-current=page><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding" aria-current=page><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 6 of 7 · Paperwork</p>
     <h1>Paperwork · information extraction with Content Understanding</h1>
     <p class="lede">Every dealership drowns in paper and pixels: invoices, window stickers, photos, recorded calls, launch videos. Azure Content Understanding turns all four kinds of content into the same thing: typed fields you can put in a database. In this lap you run the prebuilt analyzers, write your own schema, and finish with a 40-line extractor.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 50 min</span><span class="chip"><b>Difficulty</b> Beginner · JSON schemas and curl, one Python script</span><span class="chip"><b>Services</b> Azure Content Understanding (api 2025-11-01) · gpt-4.1-mini · text-embedding-3-large</span><span class="chip"><b>Exam weight</b> Part of Implement AI solutions · 55–60%</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Extract information from documents and forms by using Azure Content Understanding in Foundry Tools</span><span class="obj">🎯 Extract information from images by using Content Understanding</span><span class="obj">🎯 Extract information from audio and video by using Content Understanding</span><span class="obj">🎯 Build a lightweight application with information extraction capabilities by using Content Understanding</span><span class="obj">🎯 Identify techniques to extract information from text, images, audio, and videos</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Extract information from documents and forms by using Azure Content Understanding in Foundry Tools</li><li>Extract information from images by using Content Understanding</li><li>Extract information from audio and video by using Content Understanding</li><li>Build a lightweight application with information extraction capabilities by using Content Understanding</li><li>Identify techniques to extract information from text, images, audio, and videos</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#14B8A6">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>6</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">🗂️</div></div>
+  <div class="lapart-name">Paperwork</div>
+  <div class="segs" aria-label="Lap 6 of 7"><i style="--d:#94A3B8" class="past" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="past" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="past" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="past" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="past" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="past" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="cur" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>Content Understanding defaults pointing at your deployments</li><li>velocityWindowSticker: a schema you wrote</li><li>velocityLotPhoto: photos classified into a table</li><li>A transcript, call-centre fields and a video synopsis</li><li>extract_info.py: send, poll, print</li></ul>
+  <div class="lapart-foot"><span>⏱ 50 min</span><span>Next · Lap 7 Checkered flag</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</a></li><li><a href="#part-1-reload-your-pit-board-and-register-the-models">Part 1 · Reload your pit board and register the models</a></li><li><a href="#part-2-documents">Part 2 · Documents</a></li><li><a href="#part-3-your-own-schema-the-window-sticker">Part 3 · Your own schema · the window sticker</a></li><li><a href="#part-4-images-lot-photos-into-a-table">Part 4 · Images · lot photos into a table</a></li><li><a href="#part-5-audio-and-video">Part 5 · Audio and video</a></li><li><a href="#part-6-the-lightweight-app">Part 6 · The lightweight app</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">🗂️</div><div><span class="box-lbl">The story so far</span><p>Finance keys 900 service invoices a month by hand. The used-car team retypes window stickers. Marketing cannot find the clip where the Volt's charging time is mentioned. The pit crew's answer is one service with one habit: send a file, get fields.</p></div></div>
+<div class="callout story"><div class="ico">🗂️</div><div><span class="box-lbl">The story so far</span><p>Finance keys 900 service invoices a month by hand. The used-car team retypes window stickers. Marketing cannot find the clip where the Volt's charging time is mentioned. The pit crew's answer is one service with one habit: send a file, get fields.</p></div></div>
 
-<h2 id="part-0-the-idea-in-five-minutes">Part 0 · The idea in five minutes</h2>
+<h2 id="part-0-the-idea-in-five-minutes"><span class="pn">Part 0</span>The idea in five minutes</h2>
 <div class="vocab">
   <div><b>Content Understanding</b>A Foundry Tool that takes <strong>documents, images, audio and video</strong> and returns structured results: markdown of the content plus <em>fields</em> you define or that a prebuilt analyzer defines. It is the successor to the separate Document Intelligence, Video Indexer and speech-transcription pipelines for extraction work.</div>
   <div><b>Analyzer</b>The unit of configuration. <em>Prebuilt</em> analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>, <code>prebuilt-idDocument</code>, <code>prebuilt-callCenter</code>, <code>prebuilt-videoSynopsis</code>…) know their fields already. <em>Custom</em> analyzers start from a base (<code>prebuilt-document</code>, <code>prebuilt-image</code>, <code>prebuilt-audio</code>, <code>prebuilt-video</code>) and add your <strong>field schema</strong>.</div>
@@ -61,9 +69,10 @@
   <div><b>The async pattern</b><code>POST …/analyzers/{id}:analyzeBinary</code> returns <code>202 Accepted</code> and an <code>Operation-Location</code> header; you GET that URL until <code>status</code> is <code>Succeeded</code>. Creating a custom analyzer works the same way.</div>
   <div><b>Result shape</b><code>result.contents[]</code>: one entry per document, image, audio track or video segment, each with <code>markdown</code>, <code>fields</code> (<code>valueString</code>, <code>valueNumber</code>, <code>valueArray</code>…, plus <code>confidence</code> and <code>source</code> for extracted fields), and for media, <code>startTimeMs</code>/<code>endTimeMs</code>, transcripts and key frames.</div>
 </div>
+<p class="insight">Send a file, get fields.<small>Documents, images, audio and video all come back in the same shape: markdown of the content, plus the typed fields you named. One habit, four modalities.</small></p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Documents and forms → prebuilt analyzers or a custom schema on <code>prebuilt-document</code>. Images → a custom schema on <code>prebuilt-image</code> (classify / describe). Audio → transcript, then fields such as summary, topics, sentiment (<code>prebuilt-callCenter</code>). Video → shots, key frames, transcript, synopsis (<code>prebuilt-video</code>, <code>prebuilt-videoSynopsis</code>). The portal playground lives at <strong>Build → Services → Content Understanding</strong>; the API version is <code>2025-11-01</code>; analyzer IDs cannot contain hyphens; it is asynchronous.</p></div></div>
 
-<h2 id="part-1-reload-your-pit-board-and-register-the-models">Part 1 · Reload your pit board and register the models</h2>
+<h2 id="part-1-reload-your-pit-board-and-register-the-models"><span class="pn">Part 1</span>Reload your pit board and register the models</h2>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY
@@ -83,7 +92,7 @@ curl -s "$AI_ENDPOINT/contentunderstanding/analyzers?api-version=2025-11-01" -H 
 <p>The second command lists the prebuilt analyzers (about 90, from <code>prebuilt-invoice</code> to <code>prebuilt-tax.us.w2</code> to <code>prebuilt-videoSynopsis</code>).</p></li>
 </ol>
 
-<h2 id="part-2-documents">Part 2 · Documents</h2>
+<h2 id="part-2-documents"><span class="pn">Part 2</span>Documents</h2>
 <ol class="steps">
   <li><p><strong>OCR and layout, no model needed.</strong> <code>prebuilt-document</code> returns markdown with headings, tables and reading order. Send the window sticker, then poll:</p>
 <pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-document:analyzeBinary?api-version=2025-11-01" \
@@ -97,7 +106,7 @@ sleep 8; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .r
 <p><em>Portal path:</em> in your project open <strong>Build</strong> → <strong>Services</strong> → <strong>Content Understanding</strong>. Select <strong>OCR/Read</strong>, confirm <strong>Modality</strong> is <strong>Document</strong>, upload <code>window-sticker.png</code> and <strong>Run analysis</strong>; read the <strong>Markdown</strong>, <strong>Paragraphs</strong> and <strong>Result</strong> tabs. Then select <strong>Layout</strong> and run again to see tables. Finally in the analyzer types list choose <strong>Procurement</strong> → <strong>Invoice</strong>; if prompted to deploy models select <strong>Cancel</strong> and review the pre-prepared <strong>Fields</strong>, <strong>Markdown</strong> and <strong>Code</strong> tabs. The Code tab is the same REST call you are making here, in Python.</p></li>
 </ol>
 
-<h2 id="part-3-your-own-schema-the-window-sticker">Part 3 · Your own schema · the window sticker</h2>
+<h2 id="part-3-your-own-schema-the-window-sticker"><span class="pn">Part 3</span>Your own schema · the window sticker</h2>
 <ol class="steps">
   <li><p>Describe the fields you want. The <code>description</code> is the instruction; <code>method</code> says whether to copy, write or choose.</p>
 <pre><code>cat &gt; sticker-analyzer.json &lt;&lt;'JSON'
@@ -130,10 +139,11 @@ curl -s -i -X PUT "$AI_ENDPOINT/contentunderstanding/analyzers/velocityWindowSti
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: image/png" --data-binary @window-sticker.png | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
 sleep 15; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.result.contents[0].fields | map_values({v: (.valueString // .valueNumber // .valueInteger // .valueArray), confidence}))'</code></pre>
 <img class="shot" src="images/shots/lab6-cu-sticker.png" alt="Window sticker beside the schema and the extracted fields: 2026 VELOCITY STRATA SPORT, VIN 1VMSTR8A3RA210077 at 0.98, MSRP 36445, 36 MPG, Velocity Red, Marysville Ohio, and the optional equipment array" loading="lazy" title="Click to zoom">
-<p>The VIN comes back at 0.98 confidence with its source location on the page; the generated array of options has no confidence because the model composed it. That distinction (extracted vs generated) is worth a sentence in any review process.</p></li>
+<p>The VIN comes back at 0.98 confidence with its source location on the page; the generated array of options has no confidence because the model composed it.</p>
+<p class="insight">Extracted fields carry a source and a confidence. Generated fields carry neither, because the model wrote them.<small>A review process should treat the two differently: verify the first by exception, read the second every time.</small></p></li>
 </ol>
 
-<h2 id="part-4-images-lot-photos-into-a-table">Part 4 · Images · lot photos into a table</h2>
+<h2 id="part-4-images-lot-photos-into-a-table"><span class="pn">Part 4</span>Images · lot photos into a table</h2>
 <p>The same idea on photographs. Base the analyzer on <code>prebuilt-image</code>, use <code>classify</code> with an <code>enum</code> where you want controlled values, and <code>generate</code> for free text.</p>
 <pre><code>cat &gt; lot-analyzer.json &lt;&lt;'JSON'
 {
@@ -162,7 +172,7 @@ done</code></pre>
 <img class="shot" src="images/shots/lab6-cu-lot-photos.png" alt="Six photos with VehicleType, PrimaryColor, VehicleCount, PeopleVisible, Setting and a generated summary each" loading="lazy" title="Click to zoom">
 <p>Six photos, one table. The traffic photo counted 38 vehicles; the convertible became a "coupe" because that was the closest allowed value, which is exactly what an enum is for.</p>
 
-<h2 id="part-5-audio-and-video">Part 5 · Audio and video</h2>
+<h2 id="part-5-audio-and-video"><span class="pn">Part 5</span>Audio and video</h2>
 <ol class="steps">
   <li><p><strong>Audio.</strong> <code>prebuilt-audio</code> transcribes with timestamps and speaker tags (no model needed); <code>prebuilt-callCenter</code> adds a summary, topics, companies and sentiment. Send the narration track:</p>
 <pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-audio:analyzeBinary?api-version=2025-11-01" \
@@ -180,7 +190,7 @@ sleep 45; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .
 <p>Frames cost tokens: a longer clip on a 10K-TPM deployment will hit <code>429</code>. For the class the 18-second teaser is safe; for production you size the deployment to the video.</p></li>
 </ol>
 
-<h2 id="part-6-the-lightweight-app">Part 6 · The lightweight app</h2>
+<h2 id="part-6-the-lightweight-app"><span class="pn">Part 6</span>The lightweight app</h2>
 <p>Everything above is one function: send bytes, poll, print fields. <code>extract_info.py</code> is that function with a command line. Any analyzer, any modality.</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/extract_info.py
 python extract_info.py velocityWindowSticker window-sticker.png
@@ -234,6 +244,12 @@ for content in result[&quot;result&quot;][&quot;contents&quot;]:
         print(&quot;  markdown:&quot;, content.get(&quot;markdown&quot;, &quot;&quot;)[:600].replace(&quot;\n&quot;, &quot;\n            &quot;))</code></pre>
 <img class="shot" src="images/shots/lab6-extract-info.png" alt="Terminal: extract_info.py printing the window sticker fields with confidences" loading="lazy" title="Click to zoom">
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>Your resource has an embedding deployment and registered defaults; you created <code>velocityWindowSticker</code> and <code>velocityLotPhoto</code>; you have fields for the sticker, a table for four photos, a transcript for the narration and (optionally) a synopsis for the teaser; and <code>extract_info.py</code> runs.</p></div></div>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>One more field.</b> Add <code>DestinationCharge</code> (number, extract) and <code>Drivetrain</code> (string, classify, enum FWD / AWD / RWD) to the sticker schema, <code>DELETE</code> the analyzer, <code>PUT</code> it again and re-run. Which method did you pick for each, and why?</li>
+<li><b>The brake call.</b> Send <code>question.wav</code> from Lap 4 to <code>prebuilt-callCenter</code>. What topics, sentiment and summary does it produce from six seconds of audio, and would you trust the sentiment?</li>
+<li><b>Whole lot, one table.</b> Loop <code>extract_info.py velocityLotPhoto</code> over all sixteen photos and collect <code>VehicleType</code> and <code>VehicleCount</code> into a CSV. Compare the counts with Azure AI Vision's object boxes from Lap 5. Where they disagree, who is right?</li>
+</ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <details class="reveal hint"><summary>"The 'analyzerId' cannot contain '-'"</summary><div class="body"><p>Use letters and digits only: <code>velocityWindowSticker</code>, not <code>velocity-window-sticker</code>.</p></div></details>

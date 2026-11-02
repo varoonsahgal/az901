@@ -17,42 +17,50 @@
 <body data-page="lab1" class="hue-lab1">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" aria-current=page><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15"><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI" aria-current=page><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap"><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 1 of 7 · Race rules</p>
     <h1>Race rules · AI concepts, models and responsible AI</h1>
-    <p class="lede">Before a car turns a wheel the crew agrees on the rules: what is safe, what is fair, what the machine can and cannot do. This lap is the 40–45% of the exam that is about understanding. It ends with a real safety system in your hands.</p>
+    <p class="lede">Before a car turns a wheel the crew agrees on the rules: what is safe, what is fair, what the machine can and cannot do. This lap is the 40–45% of the exam that is about understanding, and it ends with a real safety system in your hands.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 60 min · 40 reading and discussion, 20 hands-on</span><span class="chip"><b>Difficulty</b> Beginner</span><span class="chip"><b>Services</b> Azure AI Content Safety · the Foundry model catalog</span><span class="chip"><b>Exam weight</b> Identify AI concepts and capabilities · 40–45%</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Describe considerations for fairness, reliability and safety, privacy and security, inclusiveness, transparency and accountability</span><span class="obj">🎯 Describe how generative AI models work</span><span class="obj">🎯 Identify an appropriate AI model based on capabilities</span><span class="obj">🎯 Identify appropriate model deployment options and configuration parameters</span><span class="obj">🎯 Identify scenarios for common AI workloads</span><span class="obj">🎯 Describe common text analysis techniques</span><span class="obj">🎯 Identify features of speech recognition and synthesis, computer vision and image generation, and information extraction</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Describe considerations for fairness, reliability and safety, privacy and security, inclusiveness, transparency and accountability</li><li>Describe how generative AI models work</li><li>Identify an appropriate AI model based on capabilities</li><li>Identify appropriate model deployment options and configuration parameters</li><li>Identify scenarios for common AI workloads</li><li>Describe common text analysis techniques</li><li>Identify features of speech recognition and synthesis, computer vision and image generation, and information extraction</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#EF4444">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>1</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">⚖️</div></div>
+  <div class="lapart-name">Race rules</div>
+  <div class="segs" aria-label="Lap 1 of 7"><i style="--d:#94A3B8" class="past" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="cur" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>A working vocabulary: seven workloads, six principles</li><li>Four Content Safety verdicts on real text</li><li>A Prompt Shields result that catches two attacks</li><li>A model short-list, with reasons</li></ul>
+  <div class="lapart-foot"><span>⏱ 60 min</span><span>Next · Lap 2 Pole position</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#part-0-what-ai-means-on-this-exam">Part 0 · What "AI" means on this exam</a></li><li><a href="#part-1-the-six-principles-of-responsible-ai">Part 1 · The six principles of responsible AI</a></li><li><a href="#part-2-how-a-generative-model-works">Part 2 · How a generative model works</a></li><li><a href="#part-3-choosing-a-model-and-a-deployment">Part 3 · Choosing a model and a deployment</a></li><li><a href="#part-4-hands-on-azure-ai-content-safety">Part 4 · Hands-on · Azure AI Content Safety</a></li><li><a href="#part-5-sort-the-workloads">Part 5 · Sort the workloads</a></li><li><a href="#troubleshooting">Troubleshooting</a></li><li><a href="#quick-quiz">Quick quiz</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">⚖️</div><div><span class="box-lbl">The story so far</span><p>Legal has one question before anything ships: <em>"Who is responsible when the AI is wrong?"</em> Sales has another: <em>"Which of the forty models in the catalog do we actually want?"</em> This lap answers both, and gives you the vocabulary the exam uses. Keep your garage from Lap 0 open; we use it at the end.</p></div></div>
+<div class="callout story"><div class="ico">⚖️</div><div><span class="box-lbl">The story so far</span><p>Legal has one question before anything ships: <em>"Who is responsible when the AI is wrong?"</em> Sales has another: <em>"Which of the forty models in the catalog do we actually want?"</em> This lap answers both, and gives you the vocabulary the exam uses. Keep your garage from Lap 0 open; we use it at the end.</p></div></div>
 
-<h2 id="part-0-what-ai-means-on-this-exam">Part 0 · What "AI" means on this exam</h2>
+<h2 id="part-0-what-ai-means-on-this-exam"><span class="pn">Part 0</span>What "AI" means on this exam</h2>
 <p><strong>Artificial intelligence</strong> is software that performs tasks that normally need human perception or judgement. <strong>Machine learning</strong> is the way most of it is built: instead of writing rules, you show a model many examples and it learns a function. <strong>Generative AI</strong> is the newest kind of model: trained on enormous amounts of text, images and audio, it <em>produces</em> new content (an answer, a picture, a voice) rather than only labelling what it sees. The exam groups what you can do with all of this into <strong>workloads</strong>. Learn these seven; every scenario question is one of them in disguise.</p>
 <div class="vocab">
   <div><b>Generative AI</b>A model writes, summarises, translates, codes or designs. <em>Velocity:</em> the Velo concierge drafting a reply to a complaint; marketing copy for the Volt launch.</div>
@@ -63,9 +71,10 @@
   <div><b>Image generation</b>Creating pictures from a text prompt. <em>Velocity:</em> concept-car art and ad posters before a single clay model exists.</div>
   <div><b>Information extraction</b>Turning documents, images, audio and video into typed fields. <em>Velocity:</em> every service invoice becomes a row in a database; every showroom call becomes a summary.</div>
 </div>
+<p class="insight">Every scenario question hides a workload. Name the input, name the output, and the service names itself.</p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Scenario questions describe a business need and ask which workload (or which Azure capability) fits. Decide what the <em>input</em> is (text, speech, image, document, video) and what the <em>output</em> is (a label, a number, new content, an action). Input text → output label: text analysis. Input prompt → output picture: image generation. Input a goal → output a sequence of tool calls: agentic AI.</p></div></div>
 
-<h2 id="part-1-the-six-principles-of-responsible-ai">Part 1 · The six principles of responsible AI</h2>
+<h2 id="part-1-the-six-principles-of-responsible-ai"><span class="pn">Part 1</span>The six principles of responsible AI</h2>
 <p>Microsoft's responsible-AI standard names six principles. The exam asks you to recognise which principle a situation is about. Each card below pairs the definition with a Velocity Motors dilemma. Argue about them; that is the point.</p>
 <div class="principles">
   <div><b>⚖️ Fairness</b><p>AI should treat all people fairly: no group should get worse outcomes because of who they are.</p><div class="ex">The finance team trains a model to pre-approve car loans on ten years of history. Historically, one zip code was approved less often. The model learns that pattern perfectly. <em>Fix:</em> test outcomes per group, remove proxy features, keep a human on borderline decisions.</div></div>
@@ -85,7 +94,7 @@
   <li><strong>Tracing and monitoring</strong> for agents, so a human can see which tools were called and why.</li>
 </ul>
 
-<h2 id="part-2-how-a-generative-model-works">Part 2 · How a generative model works</h2>
+<h2 id="part-2-how-a-generative-model-works"><span class="pn">Part 2</span>How a generative model works</h2>
 <p>You do not need the mathematics. You do need six ideas, because the exam phrases questions in these words and because they explain every strange thing a chatbot does.</p>
 <h3>1 · Tokens</h3>
 <p>Models do not read characters or words; they read <strong>tokens</strong>, chunks of text from a fixed vocabulary. We ran this Velocity sentence through the tokenizer that the GPT-4.1 and GPT-5 families use (<code>o200k_base</code>):</p>
@@ -104,7 +113,8 @@
   <path d="M160 70H198M330 70H368M540 70H578M730 70H768" stroke="#5B6779" stroke-width="1.5" marker-end="url(#a2)"/>
   <path d="M830 100V130H85V102" fill="none" stroke="#E10600" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a2)"/><text x="455" y="144" fill="#B91C1C" text-anchor="middle">append the chosen token and go again, until a stop token or max_tokens</text>
 </svg><figcaption>A generative language model does one thing: given the tokens so far, score every possible next token. Everything else is a loop around that.</figcaption></figure>
-<p>The model never "knows" an answer; it produces a probability for every possible next token and one is <strong>sampled</strong>. The parameters you set control the sampling, which is why they change behaviour so much:</p>
+<p class="insight">The model never knows the answer. It knows which token is likely to come next, and it is extraordinarily good at that.<small>Every parameter you can set, and every strange thing a chatbot does, follows from this one sentence.</small></p>
+<p>The parameters you set control how that next token is <strong>sampled</strong>, which is why they change behaviour so much:</p>
 <table>
 <thead><tr><th>Parameter</th><th>What it does</th><th>Set it to…</th></tr></thead>
 <tbody>
@@ -127,7 +137,7 @@
 </div>
 <p><strong>Multimodal</strong> models accept more than text: gpt-4.1-mini can take images in a prompt (Lap 5), gpt-audio-mini takes and produces speech (Lap 4). Same loop, more kinds of token.</p>
 
-<h2 id="part-3-choosing-a-model-and-a-deployment">Part 3 · Choosing a model and a deployment</h2>
+<h2 id="part-3-choosing-a-model-and-a-deployment"><span class="pn">Part 3</span>Choosing a model and a deployment</h2>
 <p>Foundry's model catalog has well over a thousand entries. Choose by <strong>capability</strong>, then by <strong>cost and latency</strong>, then by <strong>deployment type</strong> (Lap 0). The models we use today, and why:</p>
 <table>
 <thead><tr><th>Model</th><th>Capabilities</th><th>Why we picked it</th></tr></thead>
@@ -160,7 +170,7 @@ az cognitiveservices usage list --location $LOC --query "[?limit > \`0\` &amp;&a
   </div>
 </div>
 
-<h2 id="part-4-hands-on-azure-ai-content-safety">Part 4 · Hands-on · Azure AI Content Safety</h2>
+<h2 id="part-4-hands-on-azure-ai-content-safety"><span class="pn">Part 4</span>Hands-on · Azure AI Content Safety</h2>
 <p>Every chatbot a car company ships will meet angry customers, and a few people trying to break it. Content Safety is the Foundry Tool that scores text and images for harm, and detects attacks on your prompts. It is already part of your resource from Lap 0. Reload your pit board, then run the two calls.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
@@ -173,7 +183,8 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
   -d '{"text":"The people who work at that dealership are clueless morons and I hope every one of them gets fired.","categories":["Hate","SelfHarm","Sexual","Violence"],"outputType":"FourSeverityLevels"}' | jq</code></pre>
 <img class="shot" src="images/shots/lab1-safety-curl.png" alt="curl to contentsafety text:analyze returning Hate severity 2 and zeros elsewhere" loading="lazy" title="Click to zoom">
 <img class="shot" src="images/shots/lab1-safety-text.png" alt="Four texts scored: benign all zero, baseball-bat threat all zero, insult Hate 2, hopeless-after-accident SelfHarm 4" loading="lazy" title="Click to zoom">
-<p>Look closely at row two. The baseball-bat threat scored <strong>Violence 0</strong>. The classifier judged it as venting rather than a credible threat; you may disagree. That is the lesson: the service <em>scores</em>, your application <em>decides</em> the threshold per category, and some cases need a human. Row four scored <strong>SelfHarm 4</strong>: a well-designed assistant would respond with care and a helpline, not with a car-service answer.</p></li>
+<p>Look closely at row two. The baseball-bat threat scored <strong>Violence 0</strong>. The classifier judged it as venting rather than a credible threat; you may disagree. Row four scored <strong>SelfHarm 4</strong>: a well-designed assistant would respond with care and a helpline, not with a car-service answer.</p>
+<p class="insight">The service scores. Your application decides.<small>A severity number is evidence, not a verdict: you set the threshold per category, and some cases need a human.</small></p></li>
   <li><p><strong>Detect an attack on your prompt.</strong> Prompt Shields looks at what the <em>user</em> typed (a jailbreak attempt) and at <em>documents</em> your app is about to feed the model (an indirect injection hidden in a review). Both are flagged.</p>
 <pre><code>curl -s -X POST "$ENDPOINT/contentsafety/text:shieldPrompt?api-version=2024-09-01" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" \
@@ -184,7 +195,7 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
 </ol>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You have two JSON results in your shell: a <code>categoriesAnalysis</code> array with four severities, and a Prompt Shields result with <code>attackDetected: true</code> twice. You can name the six principles and say which one the baseball-bat row is about (reliability and safety of the moderation, and accountability for the threshold you choose).</p></div></div>
 
-<h2 id="part-5-sort-the-workloads">Part 5 · Sort the workloads</h2>
+<h2 id="part-5-sort-the-workloads"><span class="pn">Part 5</span>Sort the workloads</h2>
 <p>Twelve requests landed on the pit crew's desk this morning. For each, decide the workload (and, if you can, the Azure capability) before you reveal the answer.</p>
 <details class="reveal quiz"><summary>1 · "Read every incoming service invoice PDF and put the total, the VIN and the line items into our database."</summary><div class="body"><p><strong>Information extraction</strong> → Azure Content Understanding with the prebuilt invoice analyzer (Lap 6). A document in, typed fields out.</p></div></details>
 <details class="reveal quiz"><summary>2 · "Tell me which of these 40,000 reviews mention the infotainment system, and whether they are angry."</summary><div class="body"><p><strong>Text analysis</strong> → Azure AI Language: key phrase extraction or entity recognition plus sentiment analysis with opinion mining (Lap 4).</p></div></details>
@@ -212,6 +223,12 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
 <tr><td>Image-generation models</td><td>Create or edit images from text; controls: prompt, size, style; provenance metadata on output.</td></tr>
 <tr><td>Information extraction</td><td>Text · images · audio · video</td><td>One service (Content Understanding) with prebuilt analyzers and custom field schemas, returning typed fields plus markdown.</td></tr>
 </tbody></table>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>Eight levels instead of four.</b> Re-run the Content Safety call with <code>"outputType":"EightSeverityLevels"</code> on the baseball-bat text. Does a finer scale change your opinion of the verdict?</li>
+<li><b>Write the seventh dilemma.</b> Pick one principle and write a Velocity Motors scenario for it that is <em>not</em> on this page. Swap with a neighbour and guess each other's principle. If you both picked the same one, it is a good scenario.</li>
+<li><b>Read a model card for a model you will not use.</b> In the catalog open <code>gpt-5-mini</code>. Which parameters from the table in Part 2 does it not support, and what does that tell you about reasoning models?</li>
+</ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 <details class="reveal hint"><summary>Content Safety returns 401 or "invalid subscription key"</summary><div class="body"><p>Your <code>KEY</code> variable is empty (new Cloud Shell session) or you used the wrong host. Re-run the pit-board block; the host for Content Safety is <code>$ENDPOINT</code> (cognitiveservices.azure.com).</p></div></details>

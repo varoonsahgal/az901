@@ -1,10 +1,11 @@
 <!--META {"title":"Lap 1 · Race rules","desc":"AI concepts for exam AI-901: the six responsible-AI principles with Velocity Motors dilemmas, how generative models work, choosing a model and deployment, identifying AI workloads, and a hands-on run of Azure AI Content Safety.",
 "h1":"Race rules · AI concepts, models and responsible AI",
-"lede":"Before a car turns a wheel the crew agrees on the rules: what is safe, what is fair, what the machine can and cannot do. This lap is the 40–45% of the exam that is about understanding. It ends with a real safety system in your hands.",
+"lede":"Before a car turns a wheel the crew agrees on the rules: what is safe, what is fair, what the machine can and cannot do. This lap is the 40–45% of the exam that is about understanding, and it ends with a real safety system in your hands.",
+"build":["A working vocabulary: seven workloads, six principles","Four Content Safety verdicts on real text","A Prompt Shields result that catches two attacks","A model short-list, with reasons"],
 "chips":[["Time","60 min · 40 reading and discussion, 20 hands-on"],["Difficulty","Beginner"],["Services","Azure AI Content Safety · the Foundry model catalog"],["Exam weight","Identify AI concepts and capabilities · 40–45%"]],
 "objectives":["Describe considerations for fairness, reliability and safety, privacy and security, inclusiveness, transparency and accountability","Describe how generative AI models work","Identify an appropriate AI model based on capabilities","Identify appropriate model deployment options and configuration parameters","Identify scenarios for common AI workloads","Describe common text analysis techniques","Identify features of speech recognition and synthesis, computer vision and image generation, and information extraction"]}
 -->
-<div class="callout note"><div class="ico">⚖️</div><div><span class="box-lbl">The story so far</span><p>Legal has one question before anything ships: <em>"Who is responsible when the AI is wrong?"</em> Sales has another: <em>"Which of the forty models in the catalog do we actually want?"</em> This lap answers both, and gives you the vocabulary the exam uses. Keep your garage from Lap 0 open; we use it at the end.</p></div></div>
+<div class="callout story"><div class="ico">⚖️</div><div><span class="box-lbl">The story so far</span><p>Legal has one question before anything ships: <em>"Who is responsible when the AI is wrong?"</em> Sales has another: <em>"Which of the forty models in the catalog do we actually want?"</em> This lap answers both, and gives you the vocabulary the exam uses. Keep your garage from Lap 0 open; we use it at the end.</p></div></div>
 
 <h2>Part 0 · What "AI" means on this exam</h2>
 <p><strong>Artificial intelligence</strong> is software that performs tasks that normally need human perception or judgement. <strong>Machine learning</strong> is the way most of it is built: instead of writing rules, you show a model many examples and it learns a function. <strong>Generative AI</strong> is the newest kind of model: trained on enormous amounts of text, images and audio, it <em>produces</em> new content (an answer, a picture, a voice) rather than only labelling what it sees. The exam groups what you can do with all of this into <strong>workloads</strong>. Learn these seven; every scenario question is one of them in disguise.</p>
@@ -17,6 +18,7 @@
   <div><b>Image generation</b>Creating pictures from a text prompt. <em>Velocity:</em> concept-car art and ad posters before a single clay model exists.</div>
   <div><b>Information extraction</b>Turning documents, images, audio and video into typed fields. <em>Velocity:</em> every service invoice becomes a row in a database; every showroom call becomes a summary.</div>
 </div>
+<p class="insight">Every scenario question hides a workload. Name the input, name the output, and the service names itself.</p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Scenario questions describe a business need and ask which workload (or which Azure capability) fits. Decide what the <em>input</em> is (text, speech, image, document, video) and what the <em>output</em> is (a label, a number, new content, an action). Input text → output label: text analysis. Input prompt → output picture: image generation. Input a goal → output a sequence of tool calls: agentic AI.</p></div></div>
 
 <h2>Part 1 · The six principles of responsible AI</h2>
@@ -58,7 +60,8 @@
   <path d="M160 70H198M330 70H368M540 70H578M730 70H768" stroke="#5B6779" stroke-width="1.5" marker-end="url(#a2)"/>
   <path d="M830 100V130H85V102" fill="none" stroke="#E10600" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a2)"/><text x="455" y="144" fill="#B91C1C" text-anchor="middle">append the chosen token and go again, until a stop token or max_tokens</text>
 </svg><figcaption>A generative language model does one thing: given the tokens so far, score every possible next token. Everything else is a loop around that.</figcaption></figure>
-<p>The model never "knows" an answer; it produces a probability for every possible next token and one is <strong>sampled</strong>. The parameters you set control the sampling, which is why they change behaviour so much:</p>
+<p class="insight">The model never knows the answer. It knows which token is likely to come next, and it is extraordinarily good at that.<small>Every parameter you can set, and every strange thing a chatbot does, follows from this one sentence.</small></p>
+<p>The parameters you set control how that next token is <strong>sampled</strong>, which is why they change behaviour so much:</p>
 <table>
 <thead><tr><th>Parameter</th><th>What it does</th><th>Set it to…</th></tr></thead>
 <tbody>
@@ -127,7 +130,8 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
   -d '{"text":"The people who work at that dealership are clueless morons and I hope every one of them gets fired.","categories":["Hate","SelfHarm","Sexual","Violence"],"outputType":"FourSeverityLevels"}' | jq</code></pre>
 <img class="shot" src="images/shots/lab1-safety-curl.png" alt="curl to contentsafety text:analyze returning Hate severity 2 and zeros elsewhere" loading="lazy" title="Click to zoom">
 <img class="shot" src="images/shots/lab1-safety-text.png" alt="Four texts scored: benign all zero, baseball-bat threat all zero, insult Hate 2, hopeless-after-accident SelfHarm 4" loading="lazy" title="Click to zoom">
-<p>Look closely at row two. The baseball-bat threat scored <strong>Violence 0</strong>. The classifier judged it as venting rather than a credible threat; you may disagree. That is the lesson: the service <em>scores</em>, your application <em>decides</em> the threshold per category, and some cases need a human. Row four scored <strong>SelfHarm 4</strong>: a well-designed assistant would respond with care and a helpline, not with a car-service answer.</p></li>
+<p>Look closely at row two. The baseball-bat threat scored <strong>Violence 0</strong>. The classifier judged it as venting rather than a credible threat; you may disagree. Row four scored <strong>SelfHarm 4</strong>: a well-designed assistant would respond with care and a helpline, not with a car-service answer.</p>
+<p class="insight">The service scores. Your application decides.<small>A severity number is evidence, not a verdict: you set the threshold per category, and some cases need a human.</small></p></li>
   <li><p><strong>Detect an attack on your prompt.</strong> Prompt Shields looks at what the <em>user</em> typed (a jailbreak attempt) and at <em>documents</em> your app is about to feed the model (an indirect injection hidden in a review). Both are flagged.</p>
 <pre><code>curl -s -X POST "$ENDPOINT/contentsafety/text:shieldPrompt?api-version=2024-09-01" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" \
@@ -166,6 +170,12 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
 <tr><td>Image-generation models</td><td>Create or edit images from text; controls: prompt, size, style; provenance metadata on output.</td></tr>
 <tr><td>Information extraction</td><td>Text · images · audio · video</td><td>One service (Content Understanding) with prebuilt analyzers and custom field schemas, returning typed fields plus markdown.</td></tr>
 </tbody></table>
+
+<div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>Eight levels instead of four.</b> Re-run the Content Safety call with <code>"outputType":"EightSeverityLevels"</code> on the baseball-bat text. Does a finer scale change your opinion of the verdict?</li>
+<li><b>Write the seventh dilemma.</b> Pick one principle and write a Velocity Motors scenario for it that is <em>not</em> on this page. Swap with a neighbour and guess each other's principle. If you both picked the same one, it is a good scenario.</li>
+<li><b>Read a model card for a model you will not use.</b> In the catalog open <code>gpt-5-mini</code>. Which parameters from the table in Part 2 does it not support, and what does that tell you about reasoning models?</li>
+</ol></div>
 
 <h2>Troubleshooting</h2>
 <details class="reveal hint"><summary>Content Safety returns 401 or "invalid subscription key"</summary><div class="body"><p>Your <code>KEY</code> variable is empty (new Cloud Shell session) or you used the wrong host. Re-run the pit-board block; the host for Content Safety is <code>$ENDPOINT</code> (cognitiveservices.azure.com).</p></div></details>

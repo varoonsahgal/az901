@@ -1,11 +1,12 @@
 <!--META {"title":"Lap 7 · Checkered flag","desc":"A 40-question AI-901 practice exam with explanations and a scoreboard, then the cool-down lap: delete everything you built today.",
 "h1":"Checkered flag · practice exam and cool-down lap",
 "lede":"Forty questions in the style of the real exam, every one explained and linked back to the lap that teaches it. Then the most important command of the day: the one that deletes your resource group.",
+"build":["A score across eight topic areas, with the weak ones named","A printable pit-crew licence","An empty resource group"],
 "chips":[["Time","40 min · 25 exam, 15 debrief and cleanup"],["Difficulty","Everything you did today"],["Covers","Both AI-901 domains · 8 topic areas"],["Pass mark","700 of 1000 on the real exam"]],
 "objectives":["Identify AI concepts and capabilities (40–45%)","Implement AI solutions by using Microsoft Foundry (55–60%)"],
 "head":"<script defer src=\"assets/questions.js\"></script><script defer src=\"assets/quiz.js\"></script>"}
 -->
-<div class="callout note"><div class="ico">🏁</div><div><span class="box-lbl">The story so far</span><p>Velo chats, remembers, cites the warranty guide, hears, speaks, sees, paints and reads paperwork. Legal has its answer about responsibility. The last thing a pit crew does is check the stopwatch and clean the garage.</p></div></div>
+<div class="callout story"><div class="ico">🏁</div><div><span class="box-lbl">The story so far</span><p>Velo chats, remembers, cites the warranty guide, hears, speaks, sees, paints and reads paperwork. Legal has its answer about responsibility. The last thing a pit crew does is check the stopwatch and clean the garage.</p></div></div>
 
 <h2>How the real exam works</h2>
 <ul>
@@ -14,6 +15,7 @@
   <li>Fundamentals exams typically run about 45 minutes with roughly 40–60 items: multiple choice, multiple response, drag-and-drop matching, hot-area and short scenario sets. You are expected to <em>recognise</em> Python, REST and CLI, not write them from memory.</li>
   <li>Official preparation: the <a href="https://learn.microsoft.com/credentials/certifications/exams/ai-901/">exam page</a>, the <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">study guide</a>, the free <strong>practice assessment</strong> on AI Skills Navigator (sign in required) and the <a href="https://microsoftlearning.github.io/mslearn-ai-fundamentals/">Microsoft Learning exercises</a> we mirrored today.</li>
 </ul>
+<p class="insight">Every scenario hides a workload. Read the last sentence first, name the input and the output, and the service names itself.</p>
 <div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Exam-room tactics</span><ul><li>Read the last sentence of the scenario first; it holds the actual question.</li><li>Name the <em>input</em> and the <em>output</em>: that picks the workload, and usually the service.</li><li>Eliminate answers from the wrong layer (a deployment type is never the answer to a responsible-AI question).</li><li>Flag and move on; the clock is the only real opponent.</li></ul></div></div>
 
 <h2>Practice exam · 40 questions</h2>
@@ -21,6 +23,7 @@
 <div class="scoreboard" role="region" aria-label="Score board"><div><small>Answered</small><br><b id="sb-n">0 / 40</b></div><div class="bar"><i id="sb-bar-i"></i></div><div><small>Score</small><br><b id="sb-pct" style="font-size:16px">no answers yet</b></div><button type="button" id="sb-reveal">Show all explanations</button><button type="button" id="sb-reset">Reset</button><span id="sb-live" class="skip" aria-live="polite"></span></div>
 <div id="quiz"></div>
 <div id="result" class="result" aria-live="polite"></div>
+<div id="licence" class="licence"></div>
 
 <h2>Cool-down lap · delete everything</h2>
 <p>Everything you built today lives in one resource group. Deleting it removes the Foundry resource, its project, every deployment, agent, vector store and analyzer. Nothing you need survives; the scripts and documents are on this site.</p>
@@ -44,7 +47,8 @@ az cognitiveservices account purge --name ai901-$STUDENT-pitcrew --resource-grou
 </ol>
   </div>
 </div>
-<div class="callout caution"><div class="ico">💸</div><div><span class="box-lbl">Why this matters</span><p>Pay-per-use services cost nothing when idle, but a forgotten Provisioned deployment, a running compute instance or an agent in a loop can cost real money overnight. The habit is: <em>one resource group per experiment, delete it when the experiment ends.</em></p></div></div>
+<div class="callout caution"><div class="ico">💸</div><div><span class="box-lbl">Why this matters</span><p>Pay-per-use services cost nothing when idle, but a forgotten Provisioned deployment, a running compute instance or an agent in a loop can cost real money overnight.</p></div></div>
+<p class="insight">One resource group per experiment. Delete it when the experiment ends.<small>It is the cheapest habit in cloud computing, and the one most people never form.</small></p>
 
 <h2>What's next</h2>
 <ul>

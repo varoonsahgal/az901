@@ -17,40 +17,48 @@
 <body data-page="lab7" class="hue-lab7">
 <a class="skip" href="#main">Skip to content</a>
 <div id="readbar" aria-hidden="true"></div>
-<header class="topbar"><div class="topbar-in">
-  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>AI-901 Grand Prix <span>· Velocity Motors · Microsoft Foundry labs</span></a>
-  <nav class="nav" aria-label="Laps">
-      <a href="index.html">Start here</a>
-      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8"><span class="dot"></span>Lap 0<span class="lbl-long"> · Pit lane</span><span class="done">★</span></a>
-      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444"><span class="dot"></span>Lap 1<span class="lbl-long"> · Race rules</span><span class="done">★</span></a>
-      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E"><span class="dot"></span>Lap 2<span class="lbl-long"> · Pole position</span><span class="done">★</span></a>
-      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B"><span class="dot"></span>Lap 3<span class="lbl-long"> · Pit crew</span><span class="done">★</span></a>
-      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8"><span class="dot"></span>Lap 4<span class="lbl-long"> · Radio check</span><span class="done">★</span></a>
-      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA"><span class="dot"></span>Lap 5<span class="lbl-long"> · Eyes on track</span><span class="done">★</span></a>
-      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6"><span class="dot"></span>Lap 6<span class="lbl-long"> · Paperwork</span><span class="done">★</span></a>
-      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" aria-current=page><span class="dot"></span>Lap 7<span class="lbl-long"> · Checkered flag</span><span class="done">★</span></a>
-      <a href="instructor.html">🏁 Race control</a>
-  </nav>
+<header class="topbar">
+<div class="topbar-in">
+  <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M6 10h20M6 16h20M6 22h20" stroke="#fff" stroke-width="1.2" opacity=".25"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg><span class="bn">AI-901 Grand Prix</span><span class="bt">Velocity Motors · Microsoft Foundry labs</span></a>
   <div class="tools">
-    <label class="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07"></label>
+    <span class="race-progress" id="race-progress" title="Laps completed in this browser"></span>
+    <label class="pitboard" id="pitboard" title="Your student number drives every resource name on this site"><span>Pit board</span><input id="student" type="text" maxlength="3" value="s07" aria-label="Your student number, like s07" placeholder="s07"><em class="nudge" aria-hidden="true">your number</em></label>
     <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
-</div></header>
+</div>
+<div class="lapstrip"><nav class="nav" aria-label="Laps">
+      <a href="index.html" class="home">Start here</a>
+      <a href="lab0.html" data-lab="lab0" style="--d:#94A3B8" title="Pit lane · set up your garage"><span class="dot"></span><b>Lap 0</b><span class="lbl-long">Pit lane</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab1.html" data-lab="lab1" style="--d:#EF4444" title="Race rules · AI concepts, models and responsible AI"><span class="dot"></span><b>Lap 1</b><span class="lbl-long">Race rules</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab2.html" data-lab="lab2" style="--d:#22C55E" title="Pole position · prompts, playground and your first chat app"><span class="dot"></span><b>Lap 2</b><span class="lbl-long">Pole position</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab3.html" data-lab="lab3" style="--d:#F59E0B" title="Pit crew · build and test an agent"><span class="dot"></span><b>Lap 3</b><span class="lbl-long">Pit crew</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab4.html" data-lab="lab4" style="--d:#38BDF8" title="Radio check · text analysis and speech"><span class="dot"></span><b>Lap 4</b><span class="lbl-long">Radio check</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab5.html" data-lab="lab5" style="--d:#A78BFA" title="Eyes on the track · vision and image generation"><span class="dot"></span><b>Lap 5</b><span class="lbl-long">Eyes on track</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab6.html" data-lab="lab6" style="--d:#14B8A6" title="Paperwork · information extraction with Content Understanding"><span class="dot"></span><b>Lap 6</b><span class="lbl-long">Paperwork</span><span class="done" aria-label="completed">★</span></a>
+      <a href="lab7.html" data-lab="lab7" style="--d:#FACC15" title="Checkered flag · practice exam and cool-down lap" aria-current=page><span class="dot"></span><b>Lap 7</b><span class="lbl-long">Checkered flag</span><span class="done" aria-label="completed">★</span></a>
+      <a href="instructor.html" class="rc">🏁 Race control</a>
+</nav></div>
+</header>
 <section class="mast"><canvas class="mast-fx" aria-hidden="true"></canvas><div class="mast-in">
   <div>
     <p class="eyebrow">Lap 7 of 7 · Checkered flag</p>
     <h1>Checkered flag · practice exam and cool-down lap</h1>
     <p class="lede">Forty questions in the style of the real exam, every one explained and linked back to the lap that teaches it. Then the most important command of the day: the one that deletes your resource group.</p>
     <div class="mast-meta"><span class="chip"><b>Time</b> 40 min · 25 exam, 15 debrief and cleanup</span><span class="chip"><b>Difficulty</b> Everything you did today</span><span class="chip"><b>Covers</b> Both AI-901 domains · 8 topic areas</span><span class="chip"><b>Pass mark</b> 700 of 1000 on the real exam</span></div>
-    <div class="objs" style="margin-top:14px"><span class="obj">🎯 Identify AI concepts and capabilities (40–45%)</span><span class="obj">🎯 Implement AI solutions by using Microsoft Foundry (55–60%)</span></div>
+    <div class="objs"><span class="objs-lbl">🎯 Skills measured in this lap</span><ul><li>Identify AI concepts and capabilities (40–45%)</li><li>Implement AI solutions by using Microsoft Foundry (55–60%)</li></ul></div>
   </div>
-  <div class="mast-art"></div>
+  <div class="mast-art"><div class="lapart" style="--d:#FACC15">
+  <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>7</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">🏁</div></div>
+  <div class="lapart-name">Checkered flag</div>
+  <div class="segs" aria-label="Lap 7 of 7"><i style="--d:#94A3B8" class="past" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="past" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="past" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="past" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="past" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="past" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="past" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="cur" title="Lap 7 · Checkered flag"></i></div>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>A score across eight topic areas, with the weak ones named</li><li>A printable pit-crew licence</li><li>An empty resource group</li></ul>
+  <div class="lapart-foot"><span>⏱ 40 min</span><span>Final lap</span></div>
+</div></div>
 </div></section>
 <main id="main" class="labwrap">
 <details class="toc" open><summary>On this page</summary><ol><li><a href="#how-the-real-exam-works">How the real exam works</a></li><li><a href="#practice-exam-40-questions">Practice exam · 40 questions</a></li><li><a href="#cool-down-lap-delete-everything">Cool-down lap · delete everything</a></li><li><a href="#what-s-next">What's next</a></li><li><a href="#pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</a></li></ol></details>
 
-<div class="callout note"><div class="ico">🏁</div><div><span class="box-lbl">The story so far</span><p>Velo chats, remembers, cites the warranty guide, hears, speaks, sees, paints and reads paperwork. Legal has its answer about responsibility. The last thing a pit crew does is check the stopwatch and clean the garage.</p></div></div>
+<div class="callout story"><div class="ico">🏁</div><div><span class="box-lbl">The story so far</span><p>Velo chats, remembers, cites the warranty guide, hears, speaks, sees, paints and reads paperwork. Legal has its answer about responsibility. The last thing a pit crew does is check the stopwatch and clean the garage.</p></div></div>
 
 <h2 id="how-the-real-exam-works">How the real exam works</h2>
 <ul>
@@ -59,6 +67,7 @@
   <li>Fundamentals exams typically run about 45 minutes with roughly 40–60 items: multiple choice, multiple response, drag-and-drop matching, hot-area and short scenario sets. You are expected to <em>recognise</em> Python, REST and CLI, not write them from memory.</li>
   <li>Official preparation: the <a href="https://learn.microsoft.com/credentials/certifications/exams/ai-901/">exam page</a>, the <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">study guide</a>, the free <strong>practice assessment</strong> on AI Skills Navigator (sign in required) and the <a href="https://microsoftlearning.github.io/mslearn-ai-fundamentals/">Microsoft Learning exercises</a> we mirrored today.</li>
 </ul>
+<p class="insight">Every scenario hides a workload. Read the last sentence first, name the input and the output, and the service names itself.</p>
 <div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Exam-room tactics</span><ul><li>Read the last sentence of the scenario first; it holds the actual question.</li><li>Name the <em>input</em> and the <em>output</em>: that picks the workload, and usually the service.</li><li>Eliminate answers from the wrong layer (a deployment type is never the answer to a responsible-AI question).</li><li>Flag and move on; the clock is the only real opponent.</li></ul></div></div>
 
 <h2 id="practice-exam-40-questions">Practice exam · 40 questions</h2>
@@ -66,6 +75,7 @@
 <div class="scoreboard" role="region" aria-label="Score board"><div><small>Answered</small><br><b id="sb-n">0 / 40</b></div><div class="bar"><i id="sb-bar-i"></i></div><div><small>Score</small><br><b id="sb-pct" style="font-size:16px">no answers yet</b></div><button type="button" id="sb-reveal">Show all explanations</button><button type="button" id="sb-reset">Reset</button><span id="sb-live" class="skip" aria-live="polite"></span></div>
 <div id="quiz"></div>
 <div id="result" class="result" aria-live="polite"></div>
+<div id="licence" class="licence"></div>
 
 <h2 id="cool-down-lap-delete-everything">Cool-down lap · delete everything</h2>
 <p>Everything you built today lives in one resource group. Deleting it removes the Foundry resource, its project, every deployment, agent, vector store and analyzer. Nothing you need survives; the scripts and documents are on this site.</p>
@@ -89,7 +99,8 @@ az cognitiveservices account purge --name ai901-$STUDENT-pitcrew --resource-grou
 </ol>
   </div>
 </div>
-<div class="callout caution"><div class="ico">💸</div><div><span class="box-lbl">Why this matters</span><p>Pay-per-use services cost nothing when idle, but a forgotten Provisioned deployment, a running compute instance or an agent in a loop can cost real money overnight. The habit is: <em>one resource group per experiment, delete it when the experiment ends.</em></p></div></div>
+<div class="callout caution"><div class="ico">💸</div><div><span class="box-lbl">Why this matters</span><p>Pay-per-use services cost nothing when idle, but a forgotten Provisioned deployment, a running compute instance or an agent in a loop can cost real money overnight.</p></div></div>
+<p class="insight">One resource group per experiment. Delete it when the experiment ends.<small>It is the cheapest habit in cloud computing, and the one most people never form.</small></p>
 
 <h2 id="what-s-next">What's next</h2>
 <ul>
