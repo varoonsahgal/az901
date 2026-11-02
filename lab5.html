@@ -175,10 +175,14 @@ Suggested inspection: Check the condition and operation of the truck’s suspens
 <p>Capacity 1 allows about <strong>one image per minute</strong>; a <code>429</code> means wait. Each image costs a few cents.</p></li>
   <li><p><strong>Image playground.</strong> When the deployment finishes the image playground opens. Prompt: <code>Dramatic studio photo of the Velocity Volt, a sleek electric sedan concept car in deep metallic red, parked on a wet racetrack at golden hour, low angle, photorealistic</code>. Then <strong>View code</strong> → Python → the OpenAI SDK sample calls <code>images.generate</code> and saves <code>output.png</code>.</p></li>
   <li><p><strong>The same call from Cloud Shell.</strong> The response carries the image as base64 in <code>data[0].b64_json</code>.</p>
-<pre><code>curl -s -X POST "$AI_ENDPOINT/openai/deployments/$IMAGE_MODEL/images/generations?api-version=2025-04-01-preview" \
+<pre><code><span class="cm"># FLUX.2-pro answers on its publisher's native route on the Foundry host:</span>
+curl -s -X POST "$AI_ENDPOINT/providers/blackforestlabs/v1/$IMAGE_MODEL?api-version=preview" \
   -H "api-key: $KEY" -H "Content-Type: application/json" \
-  -d '{"prompt":"Clean product render of a Velocity Ridge hybrid pickup truck in glacier white, three-quarter front view, on a mountain road at sunrise, photorealistic","n":1,"size":"1024x768"}' \
-  | jq -r '.data[0].b64_json' | base64 -d &gt; ridge.png &amp;&amp; ls -la ridge.png</code></pre>
+  -d '{"model":"flux-2-pro","prompt":"Clean product render of a Velocity Ridge hybrid pickup truck in glacier white, three-quarter front view, on a mountain road at sunrise, photorealistic","width":1024,"height":768}' \
+  | jq -r '.data[0].b64_json' | base64 -d &gt; ridge.png &amp;&amp; ls -la ridge.png
+<span class="cm"># FLUX-1.1-pro and the gpt-image models use the Azure OpenAI-style route instead:</span>
+curl -s -X POST "$AI_ENDPOINT/openai/deployments/flux-1-1-pro/images/generations?api-version=2025-04-01-preview" \
+  -H "api-key: $KEY" -H "Content-Type: application/json" -d '{"prompt":"…","n":1,"size":"1024x768"}' | jq -r '.data[0].b64_json' | base64 -d &gt; out.png</code></pre>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/make_image.py
 python make_image.py "Retro 1960s-style advertising poster for Velocity Motors: a cheerful family loading a surfboard onto a teal station wagon, bold typography reading VELOCITY" poster.png</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 5 · Generate an image with a Foundry image model (FLUX.2-pro, FLUX-1.1-pro, gpt-image-1-mini, ...).
@@ -193,18 +197,25 @@ import os, sys, base64, requests
 prompt = sys.argv[1] if len(sys.argv) &gt; 1 else &quot;A sleek Velocity Volt electric sedan on a wet racetrack at golden hour, photorealistic&quot;
 out = sys.argv[2] if len(sys.argv) &gt; 2 else &quot;out.png&quot;
 model = os.environ.get(&quot;IMAGE_MODEL&quot;, &quot;flux-2-pro&quot;)
+base = os.environ[&quot;FOUNDRY_ENDPOINT_AI&quot;].rstrip(&quot;/&quot;)
+headers = {&quot;api-key&quot;: os.environ[&quot;AI_KEY&quot;], &quot;Content-Type&quot;: &quot;application/json&quot;}
 
-url = f&quot;{os.environ[&#x27;FOUNDRY_ENDPOINT_AI&#x27;].rstrip(&#x27;/&#x27;)}/openai/deployments/{model}/images/generations?api-version=2025-04-01-preview&quot;
-r = requests.post(url, headers={&quot;api-key&quot;: os.environ[&quot;AI_KEY&quot;], &quot;Content-Type&quot;: &quot;application/json&quot;},
-                  json={&quot;prompt&quot;: prompt, &quot;n&quot;: 1, &quot;size&quot;: &quot;1024x768&quot;, &quot;output_format&quot;: &quot;png&quot;}, timeout=180)
+# Route 1 · the publisher&#x27;s native API on the Foundry host (this is how FLUX.2-pro answers)
+r = requests.post(f&quot;{base}/providers/blackforestlabs/v1/{model}?api-version=preview&quot;, headers=headers,
+                  json={&quot;model&quot;: model, &quot;prompt&quot;: prompt, &quot;width&quot;: 1024, &quot;height&quot;: 768}, timeout=180)
+if r.status_code == 404:
+    # Route 2 · the Azure OpenAI-style route (FLUX-1.1-pro, gpt-image-1-mini and friends)
+    r = requests.post(f&quot;{base}/openai/deployments/{model}/images/generations?api-version=2025-04-01-preview&quot;, headers=headers,
+                      json={&quot;prompt&quot;: prompt, &quot;n&quot;: 1, &quot;size&quot;: &quot;1024x768&quot;}, timeout=180)
 if r.status_code == 429:
     sys.exit(&quot;429: the deployment&#x27;s rate limit (about one image per minute at capacity 1) — wait a minute and try again&quot;)
 r.raise_for_status()
 open(out, &quot;wb&quot;).write(base64.b64decode(r.json()[&quot;data&quot;][0][&quot;b64_json&quot;]))
 print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · prompt: {prompt!r}&quot;)</code></pre>
-<p>What we got. The first two were generated with FLUX-1.1-pro while FLUX.2-pro's quota was being checked; the API and the prompts are the same.</p>
+<p>What we got. The first two were generated with FLUX-1.1-pro (East US, Azure OpenAI-style route); the next two with FLUX.2-pro (East US 2, provider route). Same prompts, same script.</p>
 <div class="shots2"><img class="shot" src="images/gen/flux-velocity-volt.jpg" alt="Generated: a red electric sedan concept car on a wet racetrack at golden hour" loading="lazy" title="Click to zoom"><img class="shot" src="images/gen/flux-velocity-ridge.jpg" alt="Generated: a white hybrid pickup on a mountain road at sunrise" loading="lazy" title="Click to zoom"></div>
 
+<div class="shots2"><img class="shot" src="images/gen/flux2-velocity-volt.jpg" alt="Generated with FLUX.2-pro: the Velocity Volt on a wet racetrack at golden hour" loading="lazy" title="Click to zoom"><img class="shot" src="images/gen/flux2-retro-poster.jpg" alt="Generated with FLUX.2-pro: a retro Velocity Motors advertising poster" loading="lazy" title="Click to zoom"></div>
 <img class="shot" src="images/shots/lab5-flux-card.png" alt="Card: prompt, generated image, endpoint and response keys" loading="lazy" title="Click to zoom"></li>
   <li><p><strong>Responsible use.</strong> Generated images from Foundry models include <em>content credentials</em> (C2PA provenance metadata). Do not generate real people, competitors' badges or copyrighted characters; the content filters will refuse some prompts and your brand team will refuse others. Label concept art as such in customer-facing material.</p></li>
 </ol>
@@ -214,7 +225,7 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
 <details class="reveal hint"><summary>Vision returns 400 "InvalidImageSize" or "InvalidImageFormat"</summary><div class="body"><p>Images must be JPEG/PNG/GIF/BMP/WEBP/TIFF, under 20 MB, at least 50×50 and at most 16,000 px on a side. The <code>read</code> feature needs text at least about 10 px tall.</p></div></details>
 <details class="reveal hint"><summary>The model playground has no Upload image button</summary><div class="body"><p>Only multimodal models show it. Check the deployment selector says <code>gpt-4-1-mini</code> (or gpt-4o, gpt-5); embeddings and image models do not take image prompts.</p></div></details>
 <details class="reveal hint"><summary>Image generation: 429 RateLimitReached</summary><div class="body"><p>Capacity 1 = one request per minute. Wait 60 seconds. If the whole class is blocked, race control can raise one deployment's capacity.</p></div></details>
-<details class="reveal hint"><summary>Image generation: 404 "Not Found" or repeated 429 right after deploying FLUX.2-pro</summary><div class="body"><p>On our East US 2 test resource a fresh <code>flux-2-pro</code> deployment answered 404 on one host and 429 on another for several minutes, regardless of path; FLUX-1.1-pro in East US answered immediately. Two fixes: wait a few minutes and retry with the <code>$AI_ENDPOINT</code> host as in the examples, or deploy <code>FLUX-1.1-pro</code> instead (same API, same lab): <code>az cognitiveservices account deployment create --name $NAME --resource-group $RG --deployment-name flux-1-1-pro --model-name FLUX-1.1-pro --model-version 1 --model-format "Black Forest Labs" --sku-name GlobalStandard --sku-capacity 1</code>, then <code>export IMAGE_MODEL=flux-1-1-pro</code>.</p></div></details>
+<details class="reveal hint"><summary>Image generation: 404 "Not Found" or 429 on the images/generations route</summary><div class="body"><p>Not every image model is wired to the Azure OpenAI-style <code>/openai/deployments/…/images/generations</code> route. On our East US 2 resource, <code>flux-2-pro</code> returned 404 or 429 there even when idle, but answered immediately on its publisher's route: <code>$AI_ENDPOINT/providers/blackforestlabs/v1/flux-2-pro?api-version=preview</code> with <code>{"model":"flux-2-pro","prompt":…,"width":1024,"height":768}</code>. FLUX-1.1-pro and the gpt-image models work on the images/generations route. <code>make_image.py</code> tries the provider route first and falls back. A real 429 (rate limit) clears after a minute.</p></div></details>
 <details class="reveal hint"><summary>"The deployment type GlobalStandard is not available"</summary><div class="body"><p>Image models are Global Standard only; your resource must allow it (ours in East US 2 does). Check <code>az cognitiveservices usage list --location $LOC -o table | grep FLUX</code> for quota.</p></div></details>
 
 <h2 id="quick-quiz">Quick quiz</h2>
