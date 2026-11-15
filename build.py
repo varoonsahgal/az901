@@ -61,7 +61,7 @@ def topbar(page):
 def footer():
     return f'''<footer>
   <div>{SITE["name"]} · a one-day, car-themed path through Microsoft exam AI-901 · built for Velocity Motors (a fictional company). Not affiliated with Microsoft.</div>
-  <div><a href="{SITE["repo"]}">Source on GitHub</a> · <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Official AI-901 study guide</a> · <a href="instructor.html">Race control</a> · <a href="credits.html">Photo credits</a></div>
+  <div><a href="{SITE["repo"]}">Source on GitHub</a> · <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">Official AI-901 study guide</a> · <a href="slides.html">Concept deck (slides)</a> · <a href="instructor.html">Race control</a> · <a href="credits.html">Photo credits</a></div>
 </footer>
 <script src="assets/site.js"></script>
 '''

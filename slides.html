@@ -1,0 +1,1495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Concept deck · AI-901 Grand Prix</title>
+<meta name="description" content="Fifty-six slides covering the Azure fundamentals and AI concepts behind the AI-901 Grand Prix labs.">
+<meta property="og:title" content="Concept deck · AI-901 Grand Prix"><meta property="og:description" content="The Azure fundamentals and AI concepts behind the labs, one memorable line per slide."><meta property="og:image" content="https://varoonsahgal.github.io/az901/images/og.png">
+<meta name="color-scheme" content="dark light">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B1220'/%3E%3Cpath d='M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z' fill='%23E10600'/%3E%3Ccircle cx='12' cy='22' r='2.4' fill='%23FACC15'/%3E%3Ccircle cx='22' cy='22' r='2.4' fill='%23FACC15'/%3E%3C/svg%3E">
+<style>
+:root{
+  --sans:"Sora","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --pit:#E10600; --gold:#FACC15; --green:#22C55E; --amber:#F59E0B; --red:#EF4444; --sky:#38BDF8; --violet:#A78BFA; --teal:#14B8A6; --slate:#94A3B8;
+  --bg:#080E1A; --bg2:#0C1424; --panel:#111B2F; --panel2:#18253F; --ink:#DCE5F4; --head:#FFFFFF; --muted:#9AA9C1; --faint:#6F7E97; --rule:#22314F; --rule2:#32456B;
+  --pre:#050A14; --hue:var(--pit); --hue-ink:#FF8A80;
+}
+:root[data-theme="light"]{
+  --bg:#F6F7FB; --bg2:#EEF1F7; --panel:#FFFFFF; --panel2:#EEF1F7; --ink:#1B2437; --head:#0B1220; --muted:#55627A; --faint:#7C879B; --rule:#DCE2EE; --rule2:#C3CCDD; --pre:#0B1220;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#03060C;color:var(--ink);font-family:var(--body);overflow:hidden}
+:root[data-theme="light"] body{background:#D9DEE8}
+.stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--s,.5));transform-origin:center}
+.slide{position:absolute;inset:0;width:1920px;height:1080px;padding:62px 110px 92px;display:none;flex-direction:column;background:var(--bg);overflow:hidden;font-size:28px;line-height:1.45}
+.slide.on{display:flex}
+.slide::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(900px 520px at 100% 0%,color-mix(in srgb,var(--hue) 20%,transparent),transparent 70%),
+  radial-gradient(700px 420px at 0% 100%,color-mix(in srgb,var(--hue) 9%,transparent),transparent 70%)}
+.slide::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:96px 96px;
+  -webkit-mask-image:radial-gradient(1100px 700px at 100% 0%,#000,transparent 75%);mask-image:radial-gradient(1100px 700px at 100% 0%,#000,transparent 75%)}
+.slide>*{position:relative;z-index:1}
+.ghost{position:absolute!important;right:108px;top:46px;font:800 104px/1 var(--sans);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px color-mix(in srgb,var(--hue) 38%,transparent);z-index:0!important;pointer-events:none}
+.take{flex:none;display:flex;align-items:center;gap:24px;margin-top:20px;padding:13px 28px 13px 13px;border-radius:18px;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 20%,var(--panel)),color-mix(in srgb,var(--gold) 5%,var(--panel)));
+  border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);font:600 29px/1.25 var(--sans);color:var(--head);letter-spacing:-.01em;box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.take .tl{flex:none;display:flex;align-items:center;gap:10px;font:700 17px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#0B1220;background:var(--gold);border-radius:11px;padding:12px 16px;position:relative;overflow:hidden}
+.take .tl::before{content:"";width:22px;height:22px;border-radius:3px;background:conic-gradient(#0B1220 25%,#fff 0 50%,#0B1220 0 75%,#fff 0) 0 0/11px 11px}
+.take i{font-style:normal;color:var(--gold)} :root[data-theme="light"] .take i{color:#A16207}
+.take u{text-decoration:none;color:var(--gold);font-weight:800} :root[data-theme="light"] .take u{color:#A16207}
+.recap .body{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}
+.recap .pit{font:800 150px/.9 var(--sans);letter-spacing:-.05em;color:var(--head)}
+.recap .pit em{display:block;font-style:normal;color:transparent;-webkit-text-stroke:3px var(--gold)}
+.recap ol{list-style:none;margin:0;padding:0;display:grid;gap:18px;counter-reset:r}
+.recap ol li{counter-increment:r;display:flex;align-items:center;gap:26px;background:var(--panel);border:1px solid var(--rule);border-left:8px solid var(--hue);border-radius:18px;padding:20px 28px;font:600 33px/1.25 var(--sans);color:var(--head);letter-spacing:-.01em}
+.recap ol li::before{content:counter(r);font:800 60px/1 var(--sans);color:var(--gold);width:48px;flex:none;text-align:center}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.three>div{background:var(--panel);border:1px solid var(--rule);border-top:8px solid var(--gold);border-radius:26px;padding:40px 36px}
+.three b{display:block;font:800 130px/1 var(--sans);color:transparent;-webkit-text-stroke:3px var(--gold);margin-bottom:18px}
+.three h3{font-size:46px;line-height:1.12}
+.three p{font-size:26px;color:var(--muted);margin-top:16px}
+[data-sec="open"]{--hue:var(--pit);--hue-ink:#FF8A80}
+[data-sec="azure"]{--hue:var(--sky);--hue-ink:#7DD3FC}
+[data-sec="foundry"]{--hue:var(--violet);--hue-ink:#C4B5FD}
+[data-sec="concepts"]{--hue:var(--red);--hue-ink:#FCA5A5}
+[data-sec="build"]{--hue:var(--green);--hue-ink:#86EFAC}
+[data-sec="senses"]{--hue:var(--teal);--hue-ink:#5EEAD4}
+[data-sec="exam"]{--hue:var(--gold);--hue-ink:#FDE047}
+:root[data-theme="light"] [data-sec="open"]{--hue-ink:#B91C1C}
+:root[data-theme="light"] [data-sec="azure"]{--hue-ink:#0369A1}
+:root[data-theme="light"] [data-sec="foundry"]{--hue-ink:#6D28D9}
+:root[data-theme="light"] [data-sec="concepts"]{--hue-ink:#B91C1C}
+:root[data-theme="light"] [data-sec="build"]{--hue-ink:#15803D}
+:root[data-theme="light"] [data-sec="senses"]{--hue-ink:#0F766E}
+:root[data-theme="light"] [data-sec="exam"]{--hue-ink:#A16207}
+
+/* type */
+.k{font:700 20px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--hue-ink);margin:0 0 18px;display:flex;align-items:center;gap:14px}
+.k::before{content:"";width:44px;height:6px;border-radius:3px;background:var(--hue)}
+h1,h2,h3{font-family:var(--sans);color:var(--head);margin:0;letter-spacing:-.02em;line-height:1.08}
+h2{font-size:62px;font-weight:700;max-width:1560px;text-wrap:balance}
+h2 em,h1 em{font-style:normal;color:var(--hue-ink)}
+h3{font-size:31px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.lede{font-size:31px;color:var(--muted);margin:20px 0 0;max-width:1400px;text-wrap:pretty}
+p{margin:0}
+b,strong{color:var(--head);font-weight:600}
+code{font-family:var(--mono);font-size:.86em;background:var(--panel2);color:var(--head);padding:.1em .36em;border-radius:8px}
+.body{flex:1;min-height:0;margin-top:26px;display:flex;flex-direction:column;justify-content:center}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.cols.w64{grid-template-columns:1.15fr .85fr}.cols.w46{grid-template-columns:.85fr 1.15fr}.cols.top{align-items:start}
+.grid{display:grid;gap:24px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:22px;padding:26px 28px;position:relative}
+.card.h{border-top:6px solid var(--c,var(--hue))}
+.card .ico{font-size:44px;line-height:1;margin-bottom:14px;display:block}
+.card h3{margin-bottom:8px}
+.card p,.card li{font-size:23.5px;color:var(--muted);line-height:1.42}
+.card p b{color:var(--ink)}
+.card .tag{font:700 16px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--c,var(--hue-ink));display:block;margin-bottom:8px}
+ul.pts{list-style:none;margin:0;padding:0;display:grid;gap:20px}
+ul.pts li{padding-left:44px;position:relative;font-size:29px;line-height:1.4}
+ul.pts li::before{content:"";position:absolute;left:4px;top:.5em;width:18px;height:18px;border-radius:5px;background:var(--hue);transform:rotate(45deg) scale(.8)}
+ul.pts li small{display:block;color:var(--muted);font-size:23.5px;margin-top:2px}
+.quote{border-left:8px solid var(--gold);background:linear-gradient(90deg,color-mix(in srgb,var(--gold) 13%,transparent),transparent);padding:22px 30px;border-radius:0 18px 18px 0;font:600 33px/1.3 var(--sans);color:var(--head);letter-spacing:-.01em}
+.quote small{display:block;font:400 24px/1.4 var(--body);color:var(--muted);margin-top:8px;letter-spacing:0}
+.exam{display:block;position:relative;padding-left:206px!important;background:color-mix(in srgb,var(--gold) 9%,var(--panel));border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:18px;padding:18px 24px;font-size:24px;line-height:1.4;color:var(--ink);margin-top:26px}
+.exam::before{content:"🎯 Exam lens";position:absolute;left:24px;top:18px;font:700 17px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:5px;white-space:nowrap}
+:root[data-theme="light"] .exam::before{color:#A16207}
+.tight .card{padding:20px 24px}.tight .card .ico{font-size:38px;margin-bottom:10px}
+.velo{font-size:22px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px dashed var(--rule2)}
+.velo::before{content:"🏎 Velocity · ";color:var(--hue-ink);font-weight:600}
+pre{margin:0;background:var(--pre);color:#DCE6F5;border:1px solid #1F2D47;border-radius:18px;padding:26px 30px;font:400 23px/1.55 var(--mono);white-space:pre;overflow:hidden}
+pre .c{color:#7E8CA6} pre .s{color:#86EFAC} pre .y{color:#FDE68A;font-weight:700} pre .b{color:#7DD3FC} pre .r{color:#FCA5A5}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:24.5px;background:var(--panel);border:1px solid var(--rule);border-radius:20px;overflow:hidden}
+th,td{text-align:left;padding:15px 22px;border-bottom:1px solid var(--rule);vertical-align:top;line-height:1.35}
+tr:last-child td{border-bottom:0}
+th{font:700 17px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--hue-ink);background:var(--panel2)}
+td:first-child{color:var(--head);font-weight:600;white-space:nowrap}
+td{color:var(--muted)} td b{color:var(--ink)}
+.pill{display:inline-block;font:600 19px var(--mono);padding:5px 14px;border-radius:999px;background:color-mix(in srgb,var(--c,var(--hue)) 18%,transparent);color:var(--c-ink,var(--hue-ink));border:1px solid color-mix(in srgb,var(--c,var(--hue)) 45%,transparent);white-space:nowrap}
+
+/* pictures */
+.frame{background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--rule2);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.frame .bar{height:42px;background:#E8ECF3;display:flex;align-items:center;gap:9px;padding:0 18px;font:500 16px var(--mono);color:#5B6779}
+.frame .bar i{width:13px;height:13px;border-radius:50%;background:#F87171}.frame .bar i:nth-child(2){background:#FBBF24}.frame .bar i:nth-child(3){background:#34D399}
+.frame .bar span{margin-left:14px;background:#fff;border-radius:8px;padding:3px 16px;flex:1;max-width:520px;white-space:nowrap;overflow:hidden}
+.frame img{display:block;width:100%;height:auto}
+.shotcard{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.45);border:1px solid var(--rule2)}
+.shotcard img{display:block;width:100%;height:auto}
+.photo{border-radius:24px;overflow:hidden;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.45);border:1px solid var(--rule2)}
+.photo img{display:block;width:100%;height:100%;object-fit:cover}
+.cap{font-size:20px;color:var(--faint);margin-top:12px}
+figure{margin:0}
+
+/* full-bleed slides */
+.slide.bleed{padding:0;justify-content:flex-end}
+.slide.bleed::before,.slide.bleed::after{display:none}
+.slide.div>img.bg{filter:grayscale(1) contrast(1.15) brightness(.85)}
+.slide.div .shade{background:linear-gradient(90deg,rgba(4,8,16,.95) 0%,rgba(4,8,16,.7) 42%,rgba(4,8,16,.1) 80%),linear-gradient(0deg,rgba(4,8,16,.9),transparent 50%),linear-gradient(120deg,color-mix(in srgb,var(--hue) 50%,transparent),color-mix(in srgb,var(--hue) 22%,transparent))}
+.slide.div .tint{position:absolute;inset:0;background:var(--hue);mix-blend-mode:color;opacity:.55;z-index:0}
+.bleed>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bleed .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,8,16,.94) 0%,rgba(4,8,16,.78) 38%,rgba(4,8,16,.15) 75%),linear-gradient(0deg,rgba(4,8,16,.85),transparent 45%)}
+.bleed .in{z-index:2;padding:0 110px 130px;max-width:1300px;color:#DCE5F4}
+.bleed h1{font-size:112px;font-weight:800;color:#fff;letter-spacing:-.035em;line-height:.98}
+.bleed h1 em{color:var(--hue)}
+.bleed .lede{color:#C5D1E6;font-size:34px;max-width:980px}
+.bleed .k{color:#fff}
+.bleed .secno{font:800 250px/0.8 var(--sans);color:transparent;-webkit-text-stroke:3px color-mix(in srgb,var(--hue) 85%,#fff);letter-spacing:-.05em;margin-bottom:26px;opacity:.95}
+.flagbar{height:14px;width:330px;margin-top:38px;background:repeating-linear-gradient(90deg,#fff 0 14px,#0B1220 14px 28px);border-radius:3px;opacity:.9}
+
+/* diagram bits */
+.box{background:var(--panel);border:2px solid var(--rule2);border-radius:18px;padding:16px 22px;text-align:center;font-size:24px;line-height:1.3}
+.box b{display:block;font:600 27px var(--sans)}
+.box small{color:var(--muted);font-size:20.5px;display:block;margin-top:3px}
+.box.hi{border-color:var(--hue);background:color-mix(in srgb,var(--hue) 13%,var(--panel))}
+.arrow{font-size:44px;color:var(--hue-ink);text-align:center;line-height:1;flex:none}
+.flow{display:flex;align-items:center;gap:18px}
+.flow>.box{flex:1}
+.nest{border:2px solid var(--c);border-radius:24px;padding:66px 26px 26px;position:relative;background:color-mix(in srgb,var(--c) 7%,transparent)}
+.nest>.lbl{position:absolute;top:16px;left:26px;right:26px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;font:600 28px var(--sans);color:var(--head)}
+.nest>.lbl small{font:500 20px var(--mono);color:var(--muted);white-space:nowrap}
+svg text{font-family:var(--body);fill:var(--ink)}
+svg .t-h{font-family:var(--sans);font-weight:600;fill:var(--head)}
+svg .t-m{fill:var(--muted)}
+svg .t-mono{font-family:var(--mono)}
+
+/* chrome */
+.foot{position:absolute !important;left:110px;right:110px;bottom:34px;display:flex;align-items:center;gap:22px;font:500 17px var(--mono);letter-spacing:.08em;color:var(--faint);text-transform:uppercase}
+.foot svg{width:30px;height:30px;flex:none}
+.foot .segs{flex:1;display:flex;gap:5px;margin:0 14px}
+.foot .segs i{flex:1;height:5px;border-radius:3px;background:var(--rule)}
+.foot .segs i.past{background:color-mix(in srgb,var(--hue) 45%,var(--rule))}.foot .segs i.cur{background:var(--hue)}
+.bleed .foot{color:#B8C4DA}.bleed .foot .segs i{background:rgba(255,255,255,.2)}
+.hud{position:fixed;right:18px;bottom:14px;display:flex;gap:8px;z-index:10;opacity:.0;transition:opacity .2s}
+body:hover .hud,.hud:focus-within{opacity:.9}
+.hud button{font:600 14px var(--body);color:#DCE5F4;background:rgba(17,27,47,.9);border:1px solid #32456B;border-radius:10px;padding:8px 13px;cursor:pointer}
+.hud button:hover{background:#18253F}
+.help{position:fixed;left:18px;bottom:16px;font:500 13px var(--body);color:#7C879B;z-index:10;opacity:0;transition:opacity .2s}
+body:hover .help{opacity:.9}
+.help kbd{font:600 12px var(--mono);background:rgba(17,27,47,.9);color:#DCE5F4;border:1px solid #32456B;border-radius:5px;padding:1px 6px}
+
+/* overview */
+body.ov{overflow:auto}
+body.ov .stage{position:static;transform:none;width:auto;height:auto;display:grid;grid-template-columns:repeat(auto-fill,384px);gap:22px;padding:28px;justify-content:center}
+body.ov .slide{position:relative;inset:auto;display:flex;zoom:.2;cursor:pointer;border-radius:40px;outline:8px solid transparent}
+body.ov .slide.on{outline-color:var(--gold)}
+body.ov .slide:hover{outline-color:var(--hue)}
+
+@media print{
+  @page{size:1920px 1080px;margin:0}
+  html,body{height:auto;overflow:visible;background:none}
+  .stage{position:static;transform:none;width:1920px;height:auto}
+  .slide{position:relative;display:flex;break-after:page;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .hud,.help{display:none}
+}
+@media (prefers-reduced-motion:no-preference){ .slide.on>*:not(.foot):not(.bg):not(.shade){animation:rise .45s cubic-bezier(.2,.7,.2,1) both} .slide.on>.body{animation-delay:.08s} body.ov .slide>*{animation:none!important} }
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<main class="stage" id="stage">
+
+<!-- 1 ─────────────────────────────── OPENING -->
+<section class="slide bleed" data-sec="open" data-name="Start">
+  <img class="bg" src="images/gen/flux2-velocity-volt.jpg" alt="A red Velocity Volt concept sedan on a wet race track at dusk">
+  <div class="shade"></div>
+  <div class="in">
+    <p class="k">Velocity Motors · Microsoft Foundry · exam AI-901</p>
+    <h1>AI-901<br><em>Grand Prix</em></h1>
+    <p class="lede">The concept deck. Every idea behind today's eight laps, from "what is a resource group" to "why did the chatbot invent a warranty".</p>
+    <div class="flagbar"></div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-sec="open" data-name="Start">
+  <p class="k">The exam at a glance</p>
+  <h2>AI-901 asks two things: do you <em>understand</em> it, and can you <em>build</em> it</h2>
+  <div class="body">
+    <div style="display:flex;gap:10px;height:230px">
+      <div class="card" style="flex:42.5;border-color:var(--red);background:color-mix(in srgb,var(--red) 12%,var(--panel))">
+        <span class="tag" style="--c:#FCA5A5">Domain 1 · 40–45%</span>
+        <h3 style="font-size:38px">Identify AI concepts and capabilities</h3>
+        <p style="margin-top:10px">Responsible AI · how generative models work · choosing models and deployments · recognising workloads</p>
+      </div>
+      <div class="card" style="flex:57.5;border-color:var(--green);background:color-mix(in srgb,var(--green) 11%,var(--panel))">
+        <span class="tag" style="--c:#86EFAC">Domain 2 · 55–60%</span>
+        <h3 style="font-size:38px">Implement AI solutions by using Microsoft Foundry</h3>
+        <p style="margin-top:10px">Prompts · playground · Foundry SDK chat client · agents · text, speech, vision, image generation · Content Understanding</p>
+      </div>
+    </div>
+    <div class="grid g4" style="margin-top:28px">
+      <div class="card"><h3 style="font-size:54px">700<span style="font-size:26px;color:var(--muted)"> / 1000</span></h3><p>Passing score. Scaled, not a percentage.</p></div>
+      <div class="card"><h3 style="font-size:54px">~45<span style="font-size:26px;color:var(--muted)"> min</span></h3><p>Roughly 40–60 items: multiple choice, matching, short scenarios.</p></div>
+      <div class="card"><h3 style="font-size:54px">Read<span style="font-size:26px;color:var(--muted)"> not write</span></h3><p>Recognise Python, REST and CLI when you see them.</p></div>
+      <div class="card"><h3 style="font-size:54px">AI-900<span style="font-size:26px;color:var(--muted)"> retired</span></h3><p>30 June 2026. AI-901 replaced it; classic ML and AutoML are gone.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Understand it <i>(40–45%)</i>, build it <i>(55–60%)</i>, pass at <u>700</u>.</span></p>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-sec="open" data-name="Start">
+  <p class="k">The track</p>
+  <h2>One day, eight laps, one fictional car company</h2>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card h" style="--c:#94A3B8"><span class="ico">🏎️</span><span class="tag">Lap 0 · 09:00</span><h3>Pit lane</h3><p>Resource group, Foundry resource, project, deployment, first API call.</p></div>
+      <div class="card h" style="--c:#EF4444"><span class="ico">⚖️</span><span class="tag">Lap 1 · 09:30</span><h3>Race rules</h3><p>Workloads, responsible AI, how models work, guardrails.</p></div>
+      <div class="card h" style="--c:#22C55E"><span class="ico">🎙️</span><span class="tag">Lap 2 · 10:45</span><h3>Pole position</h3><p>Prompts, parameters, grounding, JSON, the Foundry SDK.</p></div>
+      <div class="card h" style="--c:#F59E0B"><span class="ico">🔧</span><span class="tag">Lap 3 · 11:45</span><h3>Pit crew</h3><p>Build, test and publish an agent with tools.</p></div>
+      <div class="card h" style="--c:#38BDF8"><span class="ico">📻</span><span class="tag">Lap 4 · 13:30</span><h3>Radio check</h3><p>Text analysis, translation, speech in and out.</p></div>
+      <div class="card h" style="--c:#A78BFA"><span class="ico">📸</span><span class="tag">Lap 5 · 14:30</span><h3>Eyes on the track</h3><p>Azure AI Vision, multimodal prompts, image generation.</p></div>
+      <div class="card h" style="--c:#14B8A6"><span class="ico">🗂️</span><span class="tag">Lap 6 · 15:30</span><h3>Paperwork</h3><p>Content Understanding on documents, images, audio, video.</p></div>
+      <div class="card h" style="--c:#FACC15"><span class="ico">🏁</span><span class="tag">Lap 7 · 16:20</span><h3>Checkered flag</h3><p>40-question practice exam, then delete everything.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Portal first, code underneath: do it, then read it.</span></p>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-sec="open" data-name="Start">
+  <p class="k">Meet the cast</p>
+  <h2>Every department at Velocity Motors wants AI. <em>You</em> are the pit crew.</h2>
+  <div class="body">
+    <div class="cols w46">
+      <div class="photo" style="height:590px"><img src="images/gen/flux-velocity-ridge.jpg" alt="The Velocity Ridge pickup on a mountain road at sunrise"></div>
+      <div class="grid g2">
+        <div class="card"><span class="ico">💬</span><h3>Sales</h3><p>wants a chatbot that knows the warranty guide.</p></div>
+        <div class="card"><span class="ico">🧾</span><h3>Service</h3><p>wants invoices and VIN plates read automatically.</p></div>
+        <div class="card"><span class="ico">🎨</span><h3>Marketing</h3><p>wants concept art before a clay model exists.</p></div>
+        <div class="card"><span class="ico">⚖️</span><h3>Legal</h3><p>wants to know who answers when it is wrong.</p></div>
+        <div class="card" style="grid-column:1/-1;border-color:var(--hue)"><h3>Velo, the assistant you rebuild all day</h3><p>First a prompt, then an agent, then a voice, then a pair of eyes.</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>One assistant, rebuilt four times: <u>prompt → agent → voice → eyes</u>.</span></p>
+</section>
+
+<!-- 5 ─────────────────────────────── AZURE FUNDAMENTALS -->
+<section class="slide bleed div" data-sec="azure" data-name="Azure fundamentals">
+  <img class="bg" src="images/photos/engine-bay.jpg" alt="An open engine bay">
+  <div class="tint"></div><div class="shade"></div>
+  <div class="in">
+    <div class="secno">01</div>
+    <p class="k">Under the hood</p>
+    <h1 style="font-size:96px">Azure fundamentals</h1>
+    <p class="lede">The cloud vocabulary this course assumes: subscriptions, resource groups, regions, identity, endpoints, quota and cost.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Cloud in one slide</p>
+  <h2>You rent the engine. Microsoft keeps it running.</h2>
+  <div class="body">
+    <div class="cols w46">
+      <div style="display:grid;gap:14px">
+        <div class="box hi" style="text-align:left;display:flex;justify-content:space-between;align-items:center"><div><b>SaaS · software as a service</b><small>You use the finished product</small></div><span class="pill">Microsoft 365 Copilot</span></div>
+        <div class="box hi" style="text-align:left;display:flex;justify-content:space-between;align-items:center;border-width:4px"><div><b>PaaS · platform as a service</b><small>You bring data and code; Azure runs the platform</small></div><span class="pill">Microsoft Foundry ← today</span></div>
+        <div class="box" style="text-align:left;display:flex;justify-content:space-between;align-items:center"><div><b>IaaS · infrastructure as a service</b><small>You rent machines and run everything on them</small></div><span class="pill" style="--c:var(--slate);--c-ink:var(--muted)">Virtual machines, GPUs</span></div>
+        <div class="box" style="text-align:left;border-style:dashed"><b>The datacentre</b><small>Buildings, power, cooling, hardware: always Microsoft's job</small></div>
+      </div>
+      <ul class="pts">
+        <li><b>Pay for what you use</b><small>No hardware to buy. A model call is billed per token; an idle deployment on a Standard plan costs nothing.</small></li>
+        <li><b>Elastic</b><small>Ten requests or ten million: capacity is a setting, not a purchase order.</small></li>
+        <li><b>Shared responsibility</b><small>Microsoft secures the platform. You secure your keys, your data and who has access.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Foundry is PaaS: you get an <u>endpoint</u>, never a server.</span></p>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Where things live</p>
+  <h2>Four boxes inside each other</h2>
+  <div class="body">
+    <div class="cols w64">
+      <div class="nest" style="--c:var(--slate)">
+        <div class="lbl"><span>🏢 Tenant</span><small>Microsoft Entra ID · identities</small></div>
+        <div class="nest" style="--c:var(--gold)">
+          <div class="lbl"><span>💳 Subscription</span><small>the bill · the quota</small></div>
+          <div class="nest" style="--c:var(--sky)">
+            <div class="lbl"><span>📁 Resource group</span><small>rg-ai901-s07</small></div>
+            <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px">
+              <div class="box hi"><b>🏭 Foundry resource</b><small>ai901-s07-pitcrew</small></div>
+              <div class="box" style="border-style:dashed"><b>…</b><small>storage, search, apps</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="pts">
+        <li><b>Tenant</b><small>Your organisation's directory. Every user, group and app identity lives here.</small></li>
+        <li><b>Subscription</b><small>The billing and quota boundary. Twenty of us share one today.</small></li>
+        <li><b>Resource group</b><small>A folder with a lifecycle. Delete the group and everything in it goes.</small></li>
+        <li><b>Resource</b><small>The thing you actually use and pay for.</small></li>
+      </ul>
+    </div>
+    <div class="exam">Access and policy granted at an outer box are <b>inherited</b> by everything inside it.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Tenant = <u>who</u>. Subscription = <u>bill</u>. Resource group = <u>folder</u>. Resource = <u>thing</u>.</span></p>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Regions</p>
+  <h2>Every resource has an address on the planet</h2>
+  <div class="body">
+    <div class="cols w46">
+      <svg viewBox="0 0 640 600" role="img" aria-label="A globe with Azure regions marked; East US 2 is highlighted">
+        <defs><radialGradient id="gl" cx="35%" cy="30%"><stop offset="0" stop-color="#1D3B66"/><stop offset="1" stop-color="#0A1730"/></radialGradient></defs>
+        <circle cx="320" cy="300" r="250" fill="url(#gl)" stroke="var(--sky)" stroke-width="3"/>
+        <g fill="none" stroke="#38BDF8" stroke-opacity=".28" stroke-width="2">
+          <ellipse cx="320" cy="300" rx="250" ry="90"/><ellipse cx="320" cy="300" rx="250" ry="180"/><ellipse cx="320" cy="300" rx="90" ry="250"/><ellipse cx="320" cy="300" rx="180" ry="250"/><line x1="70" y1="300" x2="570" y2="300"/><line x1="320" y1="50" x2="320" y2="550"/>
+        </g>
+        <g fill="#94A3B8"><circle cx="170" cy="250" r="9"/><circle cx="420" cy="190" r="9"/><circle cx="470" cy="330" r="9"/><circle cx="360" cy="430" r="9"/><circle cx="210" cy="400" r="9"/><circle cx="300" cy="140" r="9"/></g>
+        <g font-size="19" class="t-mono" style="fill:#B8C4DA"><text x="186" y="244">West US</text><text x="436" y="184">Sweden Central</text><text x="486" y="336" >UAE North</text><text x="376" y="452">Brazil South</text><text x="316" y="134">UK South</text></g>
+        <circle cx="262" cy="282" r="34" fill="#FACC15" fill-opacity=".2"/><circle cx="262" cy="282" r="14" fill="#FACC15" stroke="#0B1220" stroke-width="4"/>
+        <rect x="286" y="262" width="196" height="46" rx="12" fill="#FACC15"/><text x="384" y="293" text-anchor="middle" font-size="24" font-weight="700" class="t-mono" style="fill:#0B1220">East US 2</text>
+      </svg>
+      <ul class="pts">
+        <li><b>A region is a set of datacentres</b><small>You pick one when you create a resource. Your data is stored and processed there.</small></li>
+        <li><b>Not every model is in every region</b><small>We use East US 2 because it carries every model today's labs need.</small></li>
+        <li><b>Quota is counted per region</b><small>Twenty deployments of one model in one region share one pool.</small></li>
+        <li><b>Residency is a legal question</b><small>"Customer data must stay in the EU" decides the region and the deployment type.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>A region decides where data lives, which models exist, and whose quota you share.</span></p>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Azure Resource Manager</p>
+  <h2>Three doors into the same garage</h2>
+  <div class="body">
+    <div style="display:grid;grid-template-columns:1fr 70px 1fr 70px 1fr;align-items:center;gap:10px">
+      <div style="display:grid;gap:16px">
+        <div class="box"><b>🖱 Portal</b><small>portal.azure.com · click</small></div>
+        <div class="box"><b>⌨️ Azure CLI in Cloud Shell</b><small>az group create …</small></div>
+        <div class="box"><b>🐍 SDK / REST</b><small>Python, HTTP, templates</small></div>
+      </div>
+      <div class="arrow">➜</div>
+      <div class="box hi" style="padding:40px 22px"><b style="font-size:34px">Azure Resource Manager</b><small style="font-size:23px;margin-top:10px">checks who you are and what you may do, then creates, changes or deletes the resource</small></div>
+      <div class="arrow">➜</div>
+      <div class="box" style="padding:40px 22px"><b style="font-size:34px">🏭 Your resource</b><small style="font-size:23px;margin-top:10px">identical whichever door you used</small></div>
+    </div>
+    <div class="grid g2" style="margin-top:34px">
+      <div class="card h" style="--c:var(--sky)"><span class="tag">Control plane · management.azure.com</span><h3>Manage the resource</h3><p>Create it, deploy a model to it, assign roles, read its keys, delete it.</p></div>
+      <div class="card h" style="--c:var(--green)"><span class="tag" style="--c:#86EFAC">Data plane · your-resource.cognitiveservices.azure.com</span><h3>Use the resource</h3><p>Send a prompt, caption a photo, transcribe a call. This is what your app does.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>The portal is a remote control, not a different garage.</span></p>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Two websites</p>
+  <h2>The Azure portal owns the resource. The Foundry portal owns the work.</h2>
+  <div class="body">
+    <div class="cols top">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>portal.azure.com</span></div><img src="images/shots/portal-01-rg-basics.jpg" alt="Creating a resource group in the Azure portal" style="height:372px;object-fit:cover;object-position:top"></div>
+        <h3 style="margin-top:24px">Azure portal</h3>
+        <p style="color:var(--muted);font-size:25px;margin-top:6px">Every Azure resource, who can access it, and what it costs. Resource groups, roles, keys, cost analysis, delete.</p>
+      </figure>
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>ai.azure.com</span></div><img src="images/shots/portal-06-models.jpg" alt="The Models page of the Microsoft Foundry portal" style="height:372px;object-fit:cover;object-position:top"></div>
+        <h3 style="margin-top:24px">Microsoft Foundry portal</h3>
+        <p style="color:var(--muted);font-size:25px;margin-top:6px">Projects, the model catalog, deployments, playgrounds, agents, guardrails, evaluations.</p>
+      </figure>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span><u>portal.azure.com</u> = the resource and the bill. <u>ai.azure.com</u> = the models and the work.</span></p>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Identity and access</p>
+  <h2>Access is one sentence: <em>who</em> can do <em>what</em>, <em>where</em></h2>
+  <div class="body">
+    <div class="flow">
+      <div class="box hi" style="padding:28px 20px"><span style="font-size:52px">🧑‍🔧</span><b>Who · principal</b><small>A user, a group, or an app's managed identity, all held in Microsoft Entra ID</small></div>
+      <div class="arrow">+</div>
+      <div class="box hi" style="padding:28px 20px"><span style="font-size:52px">🪪</span><b>What · role</b><small>A named bundle of permissions: Reader, Contributor, Owner, Azure AI User</small></div>
+      <div class="arrow">+</div>
+      <div class="box hi" style="padding:28px 20px"><span style="font-size:52px">📍</span><b>Where · scope</b><small>A subscription, a resource group, or one resource; inherited downward</small></div>
+      <div class="arrow">=</div>
+      <div class="box" style="padding:28px 20px;border-color:var(--gold)"><span style="font-size:52px">✅</span><b>Role assignment</b><small>This is Azure role-based access control (RBAC)</small></div>
+    </div>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h3>Authentication</h3><p>Proving who you are. <code>az login</code> does this against Entra ID.</p></div>
+      <div class="card"><h3>Authorization</h3><p>Deciding what you may do. Role assignments answer this on every request.</p></div>
+      <div class="card"><h3>Least privilege</h3><p>Give the smallest role at the narrowest scope that gets the job done.</p></div>
+    </div>
+    <div class="exam">"A developer must call models but must not delete the resource" is a <b>role</b> question: Azure AI User, not Contributor or Owner.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span><u>Who</u> + <u>what</u> + <u>where</u> = a role assignment.</span></p>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Two ways to prove who you are</p>
+  <h2>A key is a password for the garage. Entra ID is a badge with your name on it.</h2>
+  <div class="body">
+    <div class="cols top">
+      <div class="card h" style="--c:var(--amber);padding:34px">
+        <span class="ico">🔑</span><h3 style="font-size:38px">API key</h3>
+        <ul class="pts" style="margin-top:20px">
+          <li>One secret string sent in a request header</li>
+          <li>Works for the <b>whole resource</b>; anyone holding it is you</li>
+          <li>No record of which person made the call</li>
+          <li>Fine for a lab. In real life: store in Key Vault, rotate.</li>
+        </ul>
+        <p class="velo">The classic Foundry Tools (Vision, Language, Speech) accept a key.</p>
+      </div>
+      <div class="card h" style="--c:var(--sky);padding:34px">
+        <span class="ico">🪪</span><h3 style="font-size:38px">Microsoft Entra ID</h3>
+        <ul class="pts" style="margin-top:20px">
+          <li>You sign in; Azure issues a short-lived token</li>
+          <li>Permissions come from <b>your role</b>, at your scope</li>
+          <li>Every call is tied to an identity and can be audited</li>
+          <li>No secret in code: <code>DefaultAzureCredential()</code></li>
+        </ul>
+        <p class="velo">The Foundry SDK and agents require it.</p>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>A key says "someone has the password". Entra ID says "this person, with this role".</span></p>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Anatomy of an API call</p>
+  <h2>Every call has the same four parts</h2>
+  <div class="body">
+<pre><span class="c"># Ask Azure AI Vision to caption a photo. No SDK, just HTTP.</span>
+curl <span class="s">"<span class="y">https://ai901-s07-pitcrew.cognitiveservices.azure.com</span>/computervision/imageanalysis:analyze</span>
+      <span class="s">?<span class="b">api-version=2024-02-01</span>&amp;features=caption"</span> \
+  -H <span class="s">"<span class="r">Ocp-Apim-Subscription-Key: $KEY</span>"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"url": "https://…/suv-volvo-xc90.jpg"}'</span>
+
+<span class="c"># ← 200 OK</span>
+{ "captionResult": { "text": <span class="s">"a silver car parked in a parking lot"</span>, "confidence": 0.84 } }</pre>
+    <div class="grid g4" style="margin-top:26px">
+      <div class="card h" style="--c:#FDE68A"><span class="tag">1 · Endpoint</span><p>Your resource's own address. The name is public DNS, so it must be unique in the world.</p></div>
+      <div class="card h" style="--c:#7DD3FC"><span class="tag">2 · API version</span><p>A dated contract. The service changes; your call keeps working.</p></div>
+      <div class="card h" style="--c:#FCA5A5"><span class="tag">3 · Credential</span><p>A key in a header, or an Entra ID bearer token.</p></div>
+      <div class="card h" style="--c:#86EFAC"><span class="tag">4 · JSON in, JSON out</span><p>Plus a status code: 200 worked, 401 who are you, 429 slow down.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span><u>Where</u> (endpoint), <u>which</u> (version), <u>who</u> (credential), <u>what</u> (JSON).</span></p>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Tiers, quota and capacity</p>
+  <h2>Three limits, three different owners</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card h" style="padding:32px"><span class="ico">🏷️</span><span class="tag">Per resource</span><h3 style="font-size:36px">Pricing tier (SKU)</h3><p style="margin-top:10px"><b>S0</b> is standard pay-as-you-go. <b>F0</b> is free but limited, and only one per service type per subscription, so the second student's would fail.</p></div>
+      <div class="card h" style="padding:32px;--c:var(--gold)"><span class="ico">🪣</span><span class="tag" style="--c:var(--gold)">Per model · region · subscription</span><h3 style="font-size:36px">Quota</h3><p style="margin-top:10px">The pool of tokens per minute your subscription may hand out for one model in one region. Shared by everyone in it.</p></div>
+      <div class="card h" style="padding:32px;--c:var(--green)"><span class="ico">🚰</span><span class="tag" style="--c:#86EFAC">Per deployment</span><h3 style="font-size:36px">Capacity (TPM)</h3><p style="margin-top:10px">The slice of quota you give one deployment. Exceed it and the service answers <code>429 Too Many Requests</code>.</p></div>
+    </div>
+    <div style="margin-top:34px">
+      <div style="display:flex;justify-content:space-between;font:600 20px var(--mono);color:var(--muted);margin-bottom:10px"><span>REGIONAL QUOTA FOR GPT-4.1-MINI · EAST US 2</span><span>20 STUDENTS × 10K TPM = 200K USED</span></div>
+      <div style="display:flex;gap:4px;height:54px;border-radius:14px;overflow:hidden;background:var(--panel2);border:1px solid var(--rule2)" id="quota"></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>SKU is the <u>plan</u>. Quota is the <u>pool</u>. Capacity is your <u>slice</u>.</span></p>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Cost and cleanup</p>
+  <h2>One resource group per experiment. Delete it when the experiment ends.</h2>
+  <div class="body">
+    <div class="cols">
+      <div class="frame"><div class="bar"><i></i><i></i><i></i><span>portal.azure.com · rg-ai901-s07</span></div><img src="images/shots/lab7-portal-01-delete.jpg" alt="Deleting a resource group in the Azure portal"></div>
+      <ul class="pts">
+        <li><b>You pay per use</b><small>Tokens in and out, images generated, pages analysed, audio minutes. Output tokens cost more than input.</small></li>
+        <li><b>Tags make the bill readable</b><small><code>course=ai901</code> <code>student=s07</code> lets cost analysis group spending by person.</small></li>
+        <li><b>Deleting the group deletes everything in it</b><small>The cheapest habit in cloud computing.</small></li>
+        <li><b>Deleted is not the same as gone</b><small>A Foundry resource is soft-deleted and recoverable for 48 hours. Its name and quota stay taken until you <b>purge</b> it.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Delete the resource group. Purge the soft-deleted resource.</span></p>
+</section>
+
+<!-- recap -->
+<section class="slide recap" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Pit stop · say these out loud before the next lap</p>
+  <h2>Azure fundamentals in <em>five lines</em></h2>
+  <div class="body">
+    <div class="pit">Pit<em>stop</em></div>
+    <ol>
+      <li>Tenant is who, subscription is the bill, resource group is the folder.</li>
+      <li>A region decides where data lives and whose quota you share.</li>
+      <li>Who + what + where = a role assignment.</li>
+      <li>Every call: endpoint, version, credential, JSON.</li>
+      <li>Delete the group. Purge the resource.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 16 ─────────────────────────────── FOUNDRY -->
+<section class="slide bleed div" data-sec="foundry" data-name="Microsoft Foundry">
+  <img class="bg" src="images/photos/showroom-retro.jpg" alt="A car showroom">
+  <div class="tint"></div><div class="shade"></div>
+  <div class="in">
+    <div class="secno">02</div>
+    <p class="k">Lap 0 · Pit lane</p>
+    <h1 style="font-size:96px">Microsoft Foundry</h1>
+    <p class="lede">Dozens of service names, renamed regularly. You need five nouns.</p>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-sec="foundry" data-name="Microsoft Foundry">
+  <p class="k">The five nouns</p>
+  <h2>Folder, garage, workbench, engine, ignition</h2>
+  <div class="body">
+    <div class="cols w64">
+      <div class="nest" style="--c:var(--sky)">
+        <div class="lbl"><span>📁 Resource group</span><small>rg-ai901-s07</small></div>
+        <div class="nest" style="--c:var(--violet)">
+          <div class="lbl"><span>🏭 Foundry resource</span><small>ai901-s07-pitcrew · kind AIServices · S0</small></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="nest" style="--c:var(--green);padding-bottom:16px">
+              <div class="lbl"><span>🧰 Project</span><small>proj-ai901-s07</small></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap"><span class="pill" style="--c:var(--green);--c-ink:var(--ink)">agents</span><span class="pill" style="--c:var(--green);--c-ink:var(--ink)">files</span><span class="pill" style="--c:var(--green);--c-ink:var(--ink)">evaluations</span></div>
+            </div>
+            <div class="nest" style="--c:var(--gold);padding-bottom:16px">
+              <div class="lbl"><span>⚙️ Deployments</span><small>TPM</small></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap"><span class="pill" style="--c:var(--gold);--c-ink:var(--ink)">gpt-4-1-mini</span><span class="pill" style="--c:var(--gold);--c-ink:var(--ink)">gpt-audio-mini</span><span class="pill" style="--c:var(--gold);--c-ink:var(--ink)">flux-2-pro</span></div>
+            </div>
+          </div>
+          <div class="box" style="margin-top:16px;text-align:left;font-size:22px"><b style="font-size:23px;display:inline">🧩 Foundry Tools, built in:</b> Language · Speech · Vision · Translator · Content Safety · Content Understanding</div>
+        </div>
+      </div>
+      <ul class="pts" style="gap:16px">
+        <li><b>Microsoft Foundry</b><small>The platform and its portal. Called Azure AI Foundry until November 2025.</small></li>
+        <li><b>Foundry resource</b><small>Bills and secures everything: one endpoint, one key.</small></li>
+        <li><b>Project</b><small>Your workspace inside it. The SDK talks to the project endpoint.</small></li>
+        <li><b>Deployment</b><small>Your named, metered copy of a model.</small></li>
+        <li><b>Endpoint + credential</b><small>How code gets in: key or Entra ID.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>The resource <u>bills</u>. The project <u>organises</u>. The deployment <u>answers</u>.</span></p>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-sec="foundry" data-name="Microsoft Foundry">
+  <p class="k">The distinction that answers half the Foundry questions</p>
+  <h2>Code never calls a model. It calls a <em>deployment</em>.</h2>
+  <div class="body">
+    <div class="flow" style="align-items:stretch">
+      <div class="card" style="flex:1;padding:32px">
+        <span class="ico">📖</span><span class="tag">Model · a catalog entry</span>
+        <h3 style="font-size:44px;font-family:var(--mono)">gpt-4.1-mini</h3>
+        <p style="margin-top:14px">Published by OpenAI, listed in Foundry's catalog with a model card, a price and a version. You cannot call it. Nobody can.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;width:190px"><span class="pill">deploy</span><div class="arrow" style="font-size:70px">➜</div></div>
+      <div class="card" style="flex:1.25;padding:32px;border-color:var(--hue);background:color-mix(in srgb,var(--hue) 10%,var(--panel))">
+        <span class="ico">⚙️</span><span class="tag">Deployment · your running copy</span>
+        <h3 style="font-size:44px;font-family:var(--mono)">gpt-4-1-mini</h3>
+        <div class="grid g3" style="margin-top:18px;gap:12px">
+          <div class="box"><b style="font-size:23px">A name</b><small>you choose it</small></div>
+          <div class="box"><b style="font-size:23px">A type</b><small>Standard, Global…</small></div>
+          <div class="box"><b style="font-size:23px">A capacity</b><small>10K TPM</small></div>
+        </div>
+        <p style="margin-top:16px">On your resource, in your region, on your bill.</p>
+      </div>
+    </div>
+<pre style="margin-top:28px">client.chat.completions.create(model=<span class="y">"gpt-4-1-mini"</span>, messages=[…])   <span class="c"># ← the deployment name, never the model name</span></pre>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>A model is the blueprint. A deployment is the engine on your test bench.</span></p>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-sec="foundry" data-name="Microsoft Foundry">
+  <p class="k">Deployment types</p>
+  <h2>Where does the model run, and how do you pay?</h2>
+  <div class="body">
+    <table>
+      <tr><th>Type</th><th>Where it runs</th><th>Pick it when</th></tr>
+      <tr><td>📍 Standard</td><td>Your resource's region only</td><td>Data must stay in-region; low to medium traffic. <b>Today's gpt-4.1-mini.</b></td></tr>
+      <tr><td>🌍 Global Standard</td><td>Any Azure region with capacity</td><td>Best availability and newest models; residency is not a constraint. <b>Needed for gpt-audio-mini and FLUX.</b></td></tr>
+      <tr><td>🗺 Data Zone Standard</td><td>Inside one geography (EU or US)</td><td>More capacity than Standard, still inside a legal boundary.</td></tr>
+      <tr><td>🏎 Provisioned (PTU)</td><td>Reserved throughput, paid hourly</td><td>Predictable latency at high volume. Never for a lab.</td></tr>
+      <tr><td>📦 Batch</td><td>Asynchronous, 24-hour window</td><td>Millions of non-urgent requests at about half price.</td></tr>
+    </table>
+    <div class="exam">"A dealership must keep customer data in the United States" → <b>Data Zone</b> or <b>Standard</b>. "Predictable latency under heavy load" → <b>Provisioned</b>. "Overnight, cheapest" → <b>Batch</b>.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Standard <u>stays</u>. Data Zone <u>fences</u>. Global <u>roams</u>. Provisioned <u>reserves</u>. Batch <u>waits</u>.</span></p>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-sec="foundry" data-name="Microsoft Foundry">
+  <p class="k">The model catalog</p>
+  <h2>Choose by capability, then cost and latency, then deployment type</h2>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card h" style="--c:var(--green)"><span class="tag" style="--c:#86EFAC">The workhorse</span><h3 style="font-family:var(--mono)">gpt-4.1-mini</h3><p>Chat, tool calling, image input, JSON mode, 1M-token context. Cheap and fast.</p></div>
+      <div class="card h" style="--c:var(--amber)"><span class="tag" style="--c:#FCD34D">Reasoning</span><h3 style="font-family:var(--mono)">gpt-5 · gpt-5-mini</h3><p>Think before answering. Slower, costlier, no temperature control.</p></div>
+      <div class="card h" style="--c:var(--sky)"><span class="tag" style="--c:#7DD3FC">Audio in and out</span><h3 style="font-family:var(--mono)">gpt-audio-mini</h3><p>Hears a spoken prompt and answers in speech, in one call.</p></div>
+      <div class="card h" style="--c:var(--violet)"><span class="tag" style="--c:#C4B5FD">Text → image</span><h3 style="font-family:var(--mono)">FLUX.2-pro</h3><p>A partner model from Black Forest Labs, deployed like any other.</p></div>
+      <div class="card h" style="--c:var(--teal)"><span class="tag" style="--c:#5EEAD4">Text → vector</span><h3 style="font-family:var(--mono)">text-embedding-3-large</h3><p>Powers search over documents and Content Understanding.</p></div>
+      <div class="card h" style="--c:var(--slate)"><span class="tag" style="--c:var(--muted)">Open and partner</span><h3 style="font-family:var(--mono)">Phi-4 · Llama · Mistral</h3><p>Lower cost, on-device options, or when licence terms matter.</p></div>
+    </div>
+    <div class="exam">Thousands of deterministic classifications → a <b>small model at temperature 0</b> or a <b>Foundry Tool</b>, not the biggest GPT. Multi-step reasoning → a <b>reasoning model</b>. Read the <b>model card</b> and <b>benchmarks</b> to justify the choice.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Pick the smallest model that does the job.</span></p>
+</section>
+
+<!-- recap -->
+<section class="slide recap" data-sec="foundry" data-name="Microsoft Foundry">
+  <p class="k">Pit stop · say these out loud before the next lap</p>
+  <h2>Microsoft Foundry in <em>five lines</em></h2>
+  <div class="body">
+    <div class="pit">Pit<em>stop</em></div>
+    <ol>
+      <li>The resource bills, the project organises, the deployment answers.</li>
+      <li>Code calls the deployment name, never the model name.</li>
+      <li>Standard stays, Data Zone fences, Global roams.</li>
+      <li>Provisioned reserves, Batch waits.</li>
+      <li>Pick the smallest model that does the job.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 21 ─────────────────────────────── CONCEPTS -->
+<section class="slide bleed div" data-sec="concepts" data-name="AI concepts">
+  <img class="bg" src="images/photos/roadtrip-iceland.jpg" alt="A car on an open road">
+  <div class="tint"></div><div class="shade"></div>
+  <div class="in">
+    <div class="secno">03</div>
+    <p class="k">Lap 1 · Race rules</p>
+    <h1 style="font-size:96px">AI concepts</h1>
+    <p class="lede">What "AI" means on this exam, the six principles of using it responsibly, and how a generative model actually produces a sentence.</p>
+  </div>
+</section>
+
+<!-- 22 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">Three words people use as one</p>
+  <h2>AI is the goal. Machine learning is the method. Generative AI is the newest kind.</h2>
+  <div class="body">
+    <div class="cols w46">
+      <svg viewBox="0 0 700 600" style="max-height:540px;justify-self:center" role="img" aria-label="Nested circles: artificial intelligence contains machine learning, which contains generative AI">
+        <circle cx="350" cy="300" r="290" fill="#94A3B8" fill-opacity=".1" stroke="#94A3B8" stroke-width="3"/>
+        <circle cx="350" cy="350" r="215" fill="#38BDF8" fill-opacity=".13" stroke="#38BDF8" stroke-width="3"/>
+        <circle cx="350" cy="405" r="135" fill="#EF4444" fill-opacity=".22" stroke="#EF4444" stroke-width="4"/>
+        <text x="350" y="100" text-anchor="middle" font-size="34" class="t-h">Artificial intelligence</text>
+        <text x="350" y="222" text-anchor="middle" font-size="32" class="t-h">Machine learning</text>
+        <text x="350" y="396" text-anchor="middle" font-size="34" class="t-h">Generative</text><text x="350" y="438" text-anchor="middle" font-size="34" class="t-h">AI</text>
+      </svg>
+      <div class="grid tight" style="gap:14px">
+        <div class="card h" style="--c:var(--slate)"><h3>Artificial intelligence</h3><p>Software that performs tasks which normally need human perception or judgement.</p></div>
+        <div class="card h" style="--c:var(--sky)"><h3>Machine learning</h3><p>Instead of writing rules, you show a model many examples and it learns the function. It <b>labels and predicts</b>.</p><p class="velo">Is this photo an SUV? What will this used car sell for?</p></div>
+        <div class="card h" style="--c:var(--red)"><h3>Generative AI</h3><p>Trained on enormous amounts of text, images and audio, it <b>produces new content</b>: an answer, a picture, a voice.</p><p class="velo">Draft a reply to this complaint. Paint the Volt at sunset.</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Machine learning <u>predicts a label</u>. Generative AI <u>produces something new</u>.</span></p>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">The seven workloads</p>
+  <h2>Every scenario question is one of these in disguise</h2>
+  <div class="body">
+    <div class="grid g4 tight" style="gap:16px">
+      <div class="card"><span class="ico">✍️</span><h3>Generative AI</h3><p>Writes, summarises, translates, codes.</p><p class="velo">Velo drafting a reply</p></div>
+      <div class="card"><span class="ico">🤖</span><h3>Agentic AI</h3><p>A model that acts: uses tools to finish a task.</p><p class="velo">Reads the guide, books a slot</p></div>
+      <div class="card"><span class="ico">🔤</span><h3>Text analysis</h3><p>Language, sentiment, key phrases, entities, PII.</p><p class="velo">40,000 reviews, sorted</p></div>
+      <div class="card"><span class="ico">🎧</span><h3>Speech</h3><p>Audio to text, and text to a voice.</p><p class="velo">"Set the cabin to 70"</p></div>
+      <div class="card"><span class="ico">👁️</span><h3>Computer vision</h3><p>Captions, objects, people, text in images.</p><p class="velo">A lot camera counting cars</p></div>
+      <div class="card"><span class="ico">🎨</span><h3>Image generation</h3><p>Pictures from a text prompt.</p><p class="velo">Concept art, ad posters</p></div>
+      <div class="card"><span class="ico">🗂️</span><h3>Information extraction</h3><p>Documents and media into typed fields.</p><p class="velo">Invoices become rows</p></div>
+      <div class="card" style="border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--panel));display:flex;flex-direction:column;justify-content:center"><h3 style="font-size:29px;line-height:1.25">Name the input.<br>Name the output.<br>The service names itself.</h3></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Seven verbs: <u>write · act · read · listen · look · draw · file</u>.</span></p>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">Responsible AI</p>
+  <h2>Six principles. The exam asks which one a situation is about.</h2>
+  <div class="body">
+    <div class="grid g3 tight" style="gap:14px">
+      <div class="card h" style="--c:#F59E0B"><span class="ico">⚖️</span><h3>Fairness</h3><p>No group gets worse outcomes because of who they are.</p><p class="velo">A loan model learns an old zip-code bias perfectly.</p></div>
+      <div class="card h" style="--c:#22C55E"><span class="ico">🛡️</span><h3>Reliability and safety</h3><p>Works within its limits and fails gracefully.</p><p class="velo">Highway pilot meets a construction zone.</p></div>
+      <div class="card h" style="--c:#38BDF8"><span class="ico">🔒</span><h3>Privacy and security</h3><p>Collect the minimum, secure it, control access.</p><p class="velo">The drowsiness camera could identify the driver.</p></div>
+      <div class="card h" style="--c:#A78BFA"><span class="ico">🌍</span><h3>Inclusiveness</h3><p>Empowers everyone, including people with disabilities.</p><p class="velo">Voice control only understands the test team's accents.</p></div>
+      <div class="card h" style="--c:#14B8A6"><span class="ico">🔍</span><h3>Transparency</h3><p>People know it is an AI, and how and why it decides.</p><p class="velo">The warranty bot is confident even when it invents.</p></div>
+      <div class="card h" style="--c:#EF4444"><span class="ico">🧾</span><h3>Accountability</h3><p>People own the outcomes, with governance and review.</p><p class="velo">An agent books 300 services on the wrong day.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span><u>F</u>ast <u>R</u>acers <u>P</u>it <u>I</u>n <u>T</u>ime, <u>A</u>lways. One initial per principle.</span></p>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">Telling the principles apart</p>
+  <h2>When two seem to fit, ask: what is the <em>harm</em>, exactly?</h2>
+  <div class="body">
+    <div class="cols w64 top">
+      <table>
+        <tr><th>If the harm is about…</th><th>…the principle is</th></tr>
+        <tr><td style="font-weight:400;color:var(--ink);white-space:normal">Groups of people getting <b>different outcomes</b></td><td><b>⚖️ Fairness</b></td></tr>
+        <tr><td style="font-weight:400;color:var(--ink);white-space:normal">The system <b>failing</b> or working outside its limits</td><td><b>🛡️ Reliability and safety</b></td></tr>
+        <tr><td style="font-weight:400;color:var(--ink);white-space:normal"><b>Data</b>: what is collected, kept, exposed</td><td><b>🔒 Privacy and security</b></td></tr>
+        <tr><td style="font-weight:400;color:var(--ink);white-space:normal"><b>Who can use it</b> at all</td><td><b>🌍 Inclusiveness</b></td></tr>
+        <tr><td style="font-weight:400;color:var(--ink);white-space:normal"><b>Explaining</b> and disclosing</td><td><b>🔍 Transparency</b></td></tr>
+        <tr><td style="font-weight:400;color:var(--ink);white-space:normal"><b>Who is responsible</b> and how it is governed</td><td><b>🧾 Accountability</b></td></tr>
+      </table>
+      <div>
+        <div class="photo" style="height:330px"><img src="images/photos/ev-tesla-model3.jpg" alt="An electric car"></div>
+        <div class="quote" style="margin-top:26px;font-size:28px">The service scores. Your application decides.<small>A severity number is evidence, not a verdict. Accountability does not live in a slider.</small></div>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Ask what the <u>harm</u> is, not what the technology is.</span></p>
+</section>
+
+<!-- 26 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">Responsible AI in Foundry, concretely</p>
+  <h2>Principles become settings you can click</h2>
+  <div class="body">
+    <div class="cols">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>ai.azure.com · playground</span></div><img src="images/shots/lab1-portal-04-blocked.jpg" alt="A jailbreak attempt blocked by a Foundry guardrail"></div>
+        <p class="cap">A jailbreak attempt on Velo, stopped by a guardrail before the model answers.</p>
+      </figure>
+      <div class="grid" style="gap:12px">
+        <div class="card" style="padding:16px 24px"><h3>🚧 Guardrails</h3><p>Content filters on every deployment: hate, violence, self-harm, jailbreaks. You set the thresholds.</p></div>
+        <div class="card" style="padding:16px 24px"><h3>🧪 Azure AI Content Safety</h3><p>The same classifiers as an API, plus <b>Prompt Shields</b>, <b>groundedness detection</b> and protected-material detection.</p></div>
+        <div class="card" style="padding:16px 24px"><h3>📏 Evaluations</h3><p>Score groundedness, relevance, coherence and safety across a test set before you ship.</p></div>
+        <div class="card" style="padding:16px 24px"><h3>📇 Model cards · tracing</h3><p>What each model is for and where it is weak; which tools an agent called and why.</p></div>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Guardrails <u>block</u>. Content Safety <u>scores</u>. Evaluations <u>measure</u>. People <u>decide</u>.</span></p>
+</section>
+
+<!-- 27 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 1 of 6</p>
+  <h2>Models read <em>tokens</em>, not words</h2>
+  <div class="body">
+    <div class="card" style="padding:36px">
+      <p style="font:500 21px var(--mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:18px">"The 2027 Velocity Volt charges from 10 to 80 percent in 18 minutes." → 19 tokens</p>
+      <div id="tokens" style="display:flex;flex-wrap:wrap;gap:10px"></div>
+    </div>
+    <div class="grid g3" style="margin-top:28px">
+      <div class="card h"><span class="ico">📏</span><h3>The context window</h3><p>How much the model can consider at once. About 1 million tokens for gpt-4.1-mini.</p></div>
+      <div class="card h"><span class="ico">🚦</span><h3>The quota</h3><p>Tokens per minute on your deployment. Run out and you get a 429.</p></div>
+      <div class="card h"><span class="ico">💵</span><h3>The bill</h3><p>Input and output tokens are priced separately. Output costs more.</p></div>
+    </div>
+    <div class="exam">Common words are one token; numbers and rare words split oddly. As a rule of thumb, 1 token ≈ ¾ of an English word.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Tokens are the unit of everything: <u>memory</u>, <u>speed limit</u> and <u>money</u>.</span></p>
+</section>
+
+<!-- 28 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 2 of 6</p>
+  <h2><em>Embeddings</em> turn meaning into distance</h2>
+  <div class="body">
+    <div class="cols w64">
+      <svg viewBox="0 0 980 600" style="max-height:560px" role="img" aria-label="A scatter plot where related car terms cluster together and a question lands near the brake cluster">
+        <rect x="2" y="2" width="976" height="596" rx="24" fill="var(--panel)" stroke="var(--rule)" stroke-width="2"/>
+        <g stroke="var(--rule)" stroke-width="1.5"><path d="M0 150H980M0 300H980M0 450H980M245 0V600M490 0V600M735 0V600"/></g>
+        <ellipse cx="250" cy="190" rx="200" ry="135" fill="#EF4444" fill-opacity=".12" stroke="#EF4444" stroke-dasharray="8 8" stroke-width="2"/>
+        <ellipse cx="730" cy="170" rx="185" ry="120" fill="#38BDF8" fill-opacity=".12" stroke="#38BDF8" stroke-dasharray="8 8" stroke-width="2"/>
+        <ellipse cx="610" cy="455" rx="215" ry="110" fill="#22C55E" fill-opacity=".12" stroke="#22C55E" stroke-dasharray="8 8" stroke-width="2"/>
+        <g fill="#EF4444"><circle cx="170" cy="150" r="11"/><circle cx="300" cy="130" r="11"/><circle cx="330" cy="225" r="11"/><circle cx="135" cy="262" r="11"/></g>
+        <g font-size="25"><text x="188" y="158">brake</text><text x="318" y="138">rotor</text><text x="348" y="233">caliper</text><text x="153" y="270">pads</text></g>
+        <g fill="#38BDF8"><circle cx="640" cy="130" r="11"/><circle cx="790" cy="120" r="11"/><circle cx="720" cy="220" r="11"/></g>
+        <g font-size="25"><text x="658" y="138">sunroof</text><text x="808" y="128">seats</text><text x="738" y="228">cupholder</text></g>
+        <g fill="#22C55E"><circle cx="480" cy="440" r="11"/><circle cx="640" cy="410" r="11"/><circle cx="700" cy="500" r="11"/></g>
+        <g font-size="25"><text x="498" y="448">battery</text><text x="658" y="418">charger</text><text x="718" y="508">range</text></g>
+        <line x1="330" y1="420" x2="248" y2="234" stroke="#FACC15" stroke-width="3" stroke-dasharray="6 8"/>
+        <path d="M232 178l8 18 20 2-15 13 5 20-18-11-18 11 5-20-15-13 20-2z" fill="#FACC15" stroke="#0B1220" stroke-width="2"/>
+        <rect x="26" y="420" width="388" height="84" rx="14" fill="#FACC15"/><text x="44" y="454" font-size="22" font-weight="700" style="fill:#0B1220">"Why does my car squeal</text><text x="44" y="486" font-size="22" font-weight="700" style="fill:#0B1220">when I stop?"</text>
+        <text x="950" y="578" text-anchor="end" font-size="19" class="t-m t-mono">2 of 3,072 dimensions, simplified</text>
+      </svg>
+      <ul class="pts">
+        <li><b>An embedding is a long list of numbers</b><small>A position in a space where related meanings sit close together.</small></li>
+        <li><b>"brake" is near "rotor", far from "sunroof"</b><small>Nobody wrote that rule. The model learned it from text.</small></li>
+        <li><b>Search by meaning, not keywords</b><small>The question never says "brake", yet it lands in the brake cluster.</small></li>
+        <li><b>This is how grounding finds the right paragraph</b><small><code>text-embedding-3-large</code> powers File search in Lap 3 and field extraction in Lap 6.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Close in meaning = close in space.</span></p>
+</section>
+
+<!-- 29 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 3 of 6</p>
+  <h2>The transformer: every token looks at every other token</h2>
+  <div class="body">
+    <svg viewBox="0 0 1500 400" role="img" aria-label="Attention arcs from the word it to infotainment system" style="width:100%">
+      <g fill="none" stroke-linecap="round">
+        <path d="M1424 250C1424 20 268 20 268 250" stroke="#EF4444" stroke-width="12" stroke-opacity=".95"/>
+        <path d="M1424 250C1424 80 480 80 480 250" stroke="#EF4444" stroke-width="9" stroke-opacity=".8"/>
+        <path d="M1424 250C1424 150 647 150 647 250" stroke="#EF4444" stroke-width="3" stroke-opacity=".4"/>
+        <path d="M1424 250C1424 190 1125 190 1125 250" stroke="#EF4444" stroke-width="2.5" stroke-opacity=".35"/>
+        <path d="M1424 250C1424 215 1292 215 1292 250" stroke="#EF4444" stroke-width="2" stroke-opacity=".3"/>
+      </g>
+      <g font-size="32" text-anchor="middle" class="t-mono" id="attn"></g>
+      <text x="846" y="50" text-anchor="middle" font-size="24" class="t-m">strong attention</text>
+      <text x="1424" y="385" text-anchor="middle" font-size="24" class="t-h" style="fill:var(--hue-ink)">what is "it"?</text>
+    </svg>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card"><h3>Attention</h3><p>For each token, the model weighs which other tokens matter for predicting what comes next.</p></div>
+      <div class="card"><h3>Transformer</h3><p>A stack of attention layers. The architecture behind GPT, and the "T" in its name.</p></div>
+      <div class="card"><h3>Why you care</h3><p>A long, well-structured prompt helps: the model can attend to the relevant parts.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Attention: every word looks at every other word to work out what matters.</span></p>
+</section>
+
+<!-- 30 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 4 of 6</p>
+  <h2>It does one thing: score every possible <em>next token</em></h2>
+  <div class="body">
+    <div class="cols w64">
+      <div class="card" style="padding:34px">
+        <p style="font:500 30px/1.5 var(--mono);color:var(--head)">The Velocity Volt charges from 10 to 80 percent in 18 <span style="background:var(--gold);color:#0B1220;border-radius:8px;padding:0 14px">?</span></p>
+        <svg viewBox="0 0 900 300" style="width:100%;margin-top:22px" role="img" aria-label="Bar chart of next-token probabilities: minutes is by far the most likely">
+          <g font-size="25" class="t-mono">
+            <text x="160" y="42" text-anchor="end">␣minutes</text><rect x="180" y="16" width="600" height="38" rx="8" fill="#EF4444"/><text x="794" y="43">91%</text>
+            <text x="160" y="102" text-anchor="end">␣min</text><rect x="180" y="76" width="33" height="38" rx="8" fill="#EF4444" fill-opacity=".6"/><text x="227" y="103">5%</text>
+            <text x="160" y="162" text-anchor="end">␣hours</text><rect x="180" y="136" width="13" height="38" rx="6" fill="#EF4444" fill-opacity=".45"/><text x="207" y="163">2%</text>
+            <text x="160" y="222" text-anchor="end">␣seconds</text><rect x="180" y="196" width="7" height="38" rx="3" fill="#EF4444" fill-opacity=".35"/><text x="201" y="223">1%</text>
+            <text x="160" y="282" text-anchor="end" class="t-m">…the rest</text><rect x="180" y="256" width="5" height="38" rx="2" fill="#94A3B8" fill-opacity=".4"/>
+          </g>
+        </svg>
+        <p class="cap">Illustrative probabilities. Pick one, append it, and run the whole thing again for the next token.</p>
+      </div>
+      <div>
+        <div class="quote" style="font-size:38px">The model never knows the answer. It knows which token is likely to come next.<small>Every parameter you can set, and every strange thing a chatbot does, follows from this one sentence.</small></div>
+        <ul class="pts" style="margin-top:30px">
+          <li><b>Fluent is not the same as true</b><small>"18 minutes" is likely text. Whether it is correct is another matter.</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span><u>Predict, sample, append, repeat.</u> That loop is the whole machine.</span></p>
+</section>
+
+<!-- 31 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 4 of 6, continued</p>
+  <h2>Parameters change how the next token is <em>sampled</em></h2>
+  <div class="body">
+    <div class="cols top">
+      <div>
+        <div class="shotcard"><img src="images/shots/lab6-temperature.png" alt="Three identical taglines at temperature 0, three varied ones at 1.3"></div>
+        <svg viewBox="0 0 760 190" style="width:100%;margin-top:22px" role="img" aria-label="At low temperature one token dominates; at high temperature the probabilities flatten">
+          <g font-size="21" class="t-mono t-m"><text x="170" y="182" text-anchor="middle">temperature 0</text><text x="590" y="182" text-anchor="middle">temperature 1.3</text></g>
+          <g fill="#38BDF8"><rect x="60" y="10" width="44" height="140" rx="6"/><rect x="114" y="136" width="44" height="14" rx="4" fill-opacity=".6"/><rect x="168" y="143" width="44" height="7" rx="3" fill-opacity=".6"/><rect x="222" y="146" width="44" height="4" rx="2" fill-opacity=".6"/></g>
+          <g fill="#F59E0B"><rect x="480" y="62" width="44" height="88" rx="6"/><rect x="534" y="92" width="44" height="58" rx="6"/><rect x="588" y="110" width="44" height="40" rx="6"/><rect x="642" y="122" width="44" height="28" rx="6"/></g>
+          <text x="380" y="92" text-anchor="middle" font-size="40" style="fill:var(--muted)">→</text>
+        </svg>
+      </div>
+      <table>
+        <tr><th>Parameter</th><th>What it does</th></tr>
+        <tr><td><code>temperature</code></td><td>Sharpens or flattens the odds. <b>0–0.3</b> for extraction and code; <b>0.7–1.0</b> for marketing copy.</td></tr>
+        <tr><td><code>top_p</code></td><td>Sample only from the most likely tokens that add up to p. Change this <b>or</b> temperature, not both.</td></tr>
+        <tr><td><code>max_tokens</code></td><td>Hard cap on output. The answer is <b>cut off</b>, not shortened. Bounds cost.</td></tr>
+        <tr><td><code>stop</code></td><td>Strings that end generation when produced.</td></tr>
+        <tr><td><code>seed</code></td><td>Makes sampling repeatable, best effort. For testing.</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Temperature <u>0</u> for facts and code. Turn it <u>up</u> for ideas.</span></p>
+</section>
+
+<!-- 32 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 5 of 6</p>
+  <h2>A chat is a list of messages, resent every time</h2>
+  <div class="body">
+    <div class="cols w46">
+      <div style="border:3px dashed var(--rule2);border-radius:26px;padding:44px 22px 22px;position:relative">
+        <span style="position:absolute;top:10px;left:24px;font:700 18px var(--mono);letter-spacing:.14em;color:var(--muted)">THE CONTEXT WINDOW · EVERYTHING MUST FIT</span>
+        <div style="display:grid;gap:12px">
+          <div class="box" style="text-align:left;border-color:var(--violet)"><span class="pill" style="--c:var(--violet);--c-ink:var(--ink)">system</span> <span style="margin-left:10px">You are Velo. Be concise. Safety first.</span></div>
+          <div class="box" style="text-align:left;border-color:var(--sky);margin-left:70px"><span class="pill" style="--c:var(--sky);--c-ink:var(--ink)">user</span> <span style="margin-left:10px">My brake light is on.</span></div>
+          <div class="box" style="text-align:left;border-color:var(--green);margin-right:70px"><span class="pill" style="--c:var(--green);--c-ink:var(--ink)">assistant</span> <span style="margin-left:10px">Check the fluid level first…</span></div>
+          <div class="box" style="text-align:left;border-color:var(--sky);margin-left:70px"><span class="pill" style="--c:var(--sky);--c-ink:var(--ink)">user</span> <span style="margin-left:10px">And if <b style="display:inline;font:inherit;color:var(--gold)">it</b> is full?</span></div>
+          <div class="box" style="text-align:left;border-style:dashed"><span class="pill" style="--c:var(--slate);--c-ink:var(--muted)">+ documents, images, tool results</span></div>
+        </div>
+      </div>
+      <div>
+        <ul class="pts">
+          <li><b>system</b> sets the persona and the rules<small>The user never sees it.</small></li>
+          <li><b>user</b> is the question or task</li>
+          <li><b>assistant</b> is the model's earlier answers<small>You send them back so it "remembers".</small></li>
+          <li><b>"New chat"</b> empties the list<small>That is all a fresh conversation is.</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Models do not remember. Your app resends the history.</span></p>
+</section>
+
+<!-- 33 -->
+<section class="slide" data-sec="concepts" data-name="AI concepts">
+  <p class="k">How a generative model works · 6 of 6</p>
+  <h2>Hallucination has two remedies, and the exam wants the difference</h2>
+  <div class="body">
+    <div class="flow" style="margin-bottom:28px">
+      <div class="box"><b>❓ Question</b><small>"Does the battery warranty transfer?"</small></div>
+      <div class="arrow">➜</div>
+      <div class="box hi"><b>🔎 Retrieve</b><small>find the matching paragraph by embedding</small></div>
+      <div class="arrow">➜</div>
+      <div class="box hi"><b>📎 Augment</b><small>put it in the prompt: "answer only from this"</small></div>
+      <div class="arrow">➜</div>
+      <div class="box" style="border-color:var(--green)"><b>✅ Generate</b><small>an answer with a citation</small></div>
+    </div>
+    <div class="cols top" style="gap:28px">
+      <div class="card h" style="--c:var(--green);padding:30px"><span class="tag" style="--c:#86EFAC">Give it the facts at question time</span><h3 style="font-size:36px">Grounding (RAG)</h3>
+        <p style="margin-top:10px">Cheap, instant, auditable. The knowledge can change daily. This is what <b>File search</b> in agents does.</p><p class="velo">Use for facts: warranty terms, prices, policies.</p></div>
+      <div class="card h" style="--c:var(--amber);padding:30px"><span class="tag" style="--c:#FCD34D">Train it further on examples</span><h3 style="font-size:36px">Fine-tuning</h3>
+        <p style="margin-top:10px">Changes style and format reliably. A poor way to teach facts. Costs money and time, and must be redone when things change.</p><p class="velo">Use when prompting cannot get the behaviour.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Grounding teaches <u>facts</u>. Fine-tuning teaches <u>manners</u>.</span></p>
+</section>
+
+<!-- recap -->
+<section class="slide recap" data-sec="concepts" data-name="AI concepts">
+  <p class="k">Pit stop · say these out loud before the next lap</p>
+  <h2>AI concepts in <em>five lines</em></h2>
+  <div class="body">
+    <div class="pit">Pit<em>stop</em></div>
+    <ol>
+      <li>Name the input, name the output; the service names itself.</li>
+      <li>Fast Racers Pit In Time, Always.</li>
+      <li>The model predicts the next token. It never "knows".</li>
+      <li>Temperature 0 for facts, higher for ideas.</li>
+      <li>Grounding teaches facts. Fine-tuning teaches manners.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 34 ─────────────────────────────── BUILD -->
+<section class="slide bleed div" data-sec="build" data-name="Prompts and agents">
+  <img class="bg" src="images/photos/pickup-ford-f150.jpg" alt="A pickup truck">
+  <div class="tint"></div><div class="shade"></div>
+  <div class="in">
+    <div class="secno">04</div>
+    <p class="k">Laps 2 and 3 · Pole position, Pit crew</p>
+    <h1 style="font-size:96px">Prompts and agents</h1>
+    <p class="lede">A chat model answers. An agent finishes the job.</p>
+  </div>
+</section>
+
+<!-- 35 -->
+<section class="slide" data-sec="build" data-name="Prompts and agents">
+  <p class="k">Anatomy of an effective prompt</p>
+  <h2>A system prompt is a job description. A user prompt is a ticket.</h2>
+  <div class="body">
+    <div class="frame"><div class="bar"><i></i><i></i><i></i><span>ai.azure.com · model playground</span></div><img src="images/shots/lab2-portal-04-grounded.jpg" alt="The Foundry playground: grounding text in the Instructions box and a cited answer"></div>
+    <div class="grid g3" style="margin-top:24px;gap:16px">
+      <div class="card" style="padding:18px 24px"><h3>🧑‍💼 System prompt</h3><p>Who the model is, what it may do, how to answer.</p></div>
+      <div class="card" style="padding:18px 24px"><h3>🎫 User prompt</h3><p>The task, with context and the format you want.</p></div>
+      <div class="card" style="padding:18px 24px"><h3>🧠 History</h3><p>The only memory. "New chat" clears it.</p></div>
+      <div class="card" style="padding:18px 24px"><h3>🧪 Few-shot examples</h3><p>Two or three worked examples teach a format.</p></div>
+      <div class="card" style="padding:18px 24px"><h3>📎 Grounding</h3><p>The facts, in the prompt: "answer only from this".</p></div>
+      <div class="card" style="padding:18px 24px"><h3>🧱 Structured output</h3><p>Ask for JSON so a program can read it.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Every good prompt has five things: <u>role, rules, context, format, examples</u>.</span></p>
+</section>
+
+<!-- 36 -->
+<section class="slide" data-sec="build" data-name="Prompts and agents">
+  <p class="k">Three ways to talk to one deployment</p>
+  <h2>Click it, curl it, code it</h2>
+  <div class="body">
+    <div class="cols w46 top">
+      <div class="grid" style="gap:18px">
+        <div class="card h"><span class="tag">1 · Playground</span><h3>Click</h3><p>Shape instructions and parameters with no code. Fastest way to iterate.</p></div>
+        <div class="card h"><span class="tag">2 · REST</span><h3>curl</h3><p>See the raw JSON. Any language that speaks HTTP can call it.</p></div>
+        <div class="card h" style="border-color:var(--hue)"><span class="tag">3 · Foundry SDK</span><h3>Python</h3><p>The lightweight client the exam describes. Signs in with Entra ID; no keys in code.</p></div>
+      </div>
+      <div>
+<pre style="font-size:19.5px;line-height:1.5;padding:18px 24px"><span class="b">from</span> azure.identity <span class="b">import</span> <span class="y">DefaultAzureCredential</span>
+<span class="b">from</span> azure.ai.projects <span class="b">import</span> <span class="y">AIProjectClient</span>
+
+project = <span class="y">AIProjectClient</span>(
+    endpoint=PROJECT_ENDPOINT,
+    credential=<span class="y">DefaultAzureCredential</span>())  <span class="c"># your az login</span>
+
+client = project.<span class="y">get_openai_client</span>()
+
+r = client.chat.completions.<span class="y">create</span>(
+    model=<span class="s">"gpt-4-1-mini"</span>,            <span class="c"># deployment name</span>
+    messages=[
+      {<span class="s">"role"</span>: <span class="s">"system"</span>, <span class="s">"content"</span>: <span class="s">"You are Velo…"</span>},
+      {<span class="s">"role"</span>: <span class="s">"user"</span>,   <span class="s">"content"</span>: <span class="s">"Is my Volt covered?"</span>}],
+    temperature=0.5, max_tokens=300)
+
+print(r.choices[0].message.content)</pre>
+        <div class="exam" style="margin-top:16px">Recognise the four highlighted names. You will be asked to read this pattern, not write it.</div>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>No keys in code: <u>DefaultAzureCredential</u> signs in as you.</span></p>
+</section>
+
+<!-- 37 -->
+<section class="slide" data-sec="build" data-name="Prompts and agents">
+  <p class="k">Agentic AI</p>
+  <h2>An agent is a model, instructions and tools, <em>in a loop</em></h2>
+  <div class="body">
+    <div class="cols w64">
+      <svg viewBox="0 0 1000 560" role="img" aria-label="The agent loop: a user message goes to the model, which calls tools and reads results until it can answer">
+        <rect x="10" y="215" width="210" height="130" rx="20" fill="var(--panel)" stroke="var(--rule2)" stroke-width="3"/>
+        <text x="115" y="272" text-anchor="middle" font-size="30" class="t-h">🧑 User</text><text x="115" y="308" text-anchor="middle" font-size="21" class="t-m">"Book my service"</text>
+        <rect x="350" y="170" width="300" height="220" rx="26" fill="#22C55E" fill-opacity=".14" stroke="#22C55E" stroke-width="4"/>
+        <text x="500" y="240" text-anchor="middle" font-size="36" class="t-h">🤖 Agent</text>
+        <text x="500" y="282" text-anchor="middle" font-size="22" class="t-m">model + instructions</text>
+        <text x="500" y="330" text-anchor="middle" font-size="22" style="fill:var(--hue-ink)" font-weight="600">decides: answer, or</text><text x="500" y="358" text-anchor="middle" font-size="22" style="fill:var(--hue-ink)" font-weight="600">call a tool?</text>
+        <g fill="var(--panel)" stroke="var(--rule2)" stroke-width="3"><rect x="780" y="30" width="210" height="100" rx="18"/><rect x="780" y="230" width="210" height="100" rx="18"/><rect x="780" y="430" width="210" height="100" rx="18"/></g>
+        <g text-anchor="middle" font-size="25" class="t-h"><text x="885" y="76">📚 File search</text><text x="885" y="276">🧮 Code</text><text x="885" y="476">🔌 Function</text></g>
+        <g text-anchor="middle" font-size="19" class="t-m"><text x="885" y="106">warranty guide</text><text x="885" y="306">Python sandbox</text><text x="885" y="506">booking API</text></g>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#22C55E"/></marker></defs>
+        <g fill="none" stroke="#22C55E" stroke-width="4" marker-end="url(#ah)">
+          <path d="M224 262H342"/><path d="M346 300H228" stroke-dasharray="2 10" stroke-linecap="round"/>
+          <path d="M654 220C710 190 720 110 772 86" marker-start="url(#ah)"/><path d="M654 280H772" marker-start="url(#ah)"/><path d="M654 340C710 370 720 450 772 474" marker-start="url(#ah)"/>
+        </g>
+        <text x="283" y="246" text-anchor="middle" font-size="19" class="t-m">message</text><text x="283" y="330" text-anchor="middle" font-size="19" class="t-m">answer</text>
+        <text x="500" y="440" text-anchor="middle" font-size="22" class="t-m">↻ repeats until the task is done</text>
+        <text x="500" y="474" text-anchor="middle" font-size="20" class="t-m t-mono">conversation state kept by the service</text>
+      </svg>
+      <div>
+        <ul class="pts">
+          <li><b>Agent</b><small>A named, versioned definition: model, instructions, tools.</small></li>
+          <li><b>Foundry Agent Service</b><small>Runs it, calls the tools, stores the conversation, traces every step.</small></li>
+          <li><b>Conversation</b><small>The thread the service keeps for you. Your client just passes its id.</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>A chat model <u>answers</u>. An agent <u>finishes the job</u>.</span></p>
+</section>
+
+<!-- 38 -->
+<section class="slide" data-sec="build" data-name="Prompts and agents">
+  <p class="k">Agent tools</p>
+  <h2>Tools turn a guess into a lookup, and a guess into arithmetic</h2>
+  <div class="body">
+    <div class="cols w46 top">
+      <figure>
+        <div class="frame"><div class="bar"><i></i><i></i><i></i><span>ai.azure.com · agent playground</span></div><img src="images/shots/lab3-portal-05-answer.jpg" alt="An agent answering a battery warranty question from the uploaded guide"></div>
+        <div class="quote" style="margin-top:18px;font-size:27px">A citation shows where the agent looked, not that the answer is there.<small>Check cited answers against the source.</small></div>
+      </figure>
+      <div>
+        <div class="grid g2" style="gap:16px">
+          <div class="card"><h3>📚 File search</h3><p>Your documents, chunked and embedded into a vector store. Grounding.</p></div>
+          <div class="card"><h3>🧮 Code interpreter</h3><p>A Python sandbox. Real maths: <b>$62.99625</b>, not "about $63".</p></div>
+          <div class="card"><h3>🔌 Function tools</h3><p>Your own APIs: book a slot, look up a VIN.</p></div>
+          <div class="card"><h3>🌐 And more</h3><p>Web search, Azure AI Search, OpenAPI, MCP servers.</p></div>
+        </div>
+<pre style="margin-top:16px;font-size:20px;padding:18px 22px">client.responses.create(
+  conversation=conv.id, input=<span class="s">"Is my Volt covered?"</span>,
+  extra_body={<span class="s">"agent_reference"</span>: {<span class="s">"name"</span>: <span class="y">"velo-warranty-expert"</span>,
+              <span class="s">"version"</span>: <span class="s">"1"</span>, <span class="s">"type"</span>: <span class="y">"agent_reference"</span>}})</pre>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>File search to <u>know</u>. Code interpreter to <u>calculate</u>. Functions to <u>act</u>.</span></p>
+</section>
+
+<!-- recap -->
+<section class="slide recap" data-sec="build" data-name="Prompts and agents">
+  <p class="k">Pit stop · say these out loud before the next lap</p>
+  <h2>Prompts and agents in <em>five lines</em></h2>
+  <div class="body">
+    <div class="pit">Pit<em>stop</em></div>
+    <ol>
+      <li>System prompt is the job description; history is the only memory.</li>
+      <li>Show two examples and ask for JSON.</li>
+      <li>No keys in code: sign in with Entra ID.</li>
+      <li>Agent = model + instructions + tools, in a loop.</li>
+      <li>A citation shows where it looked, not that it is right.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 39 ─────────────────────────────── SENSES -->
+<section class="slide bleed div" data-sec="senses" data-name="Language, speech, vision, documents">
+  <img class="bg" src="images/photos/convertible-dog.jpg" alt="A dog riding in a convertible">
+  <div class="tint"></div><div class="shade"></div>
+  <div class="in">
+    <div class="secno">05</div>
+    <p class="k">Laps 4, 5 and 6 · Radio check, Eyes on the track, Paperwork</p>
+    <h1 style="font-size:92px">Read, listen, look, extract</h1>
+    <p class="lede">The Foundry Tools: prebuilt AI that needs no training and no model deployment, and where a multimodal model does the job instead.</p>
+  </div>
+</section>
+
+<!-- 40 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Text analysis · Azure AI Language</p>
+  <h2>Sentiment tells you how they feel. Opinion mining tells you <em>about what</em>.</h2>
+  <div class="body">
+    <div class="cols w64 top">
+      <div class="shotcard" style="height:580px"><img src="images/shots/lab5-sentiment-card.png" alt="Sentiment and opinion mining results for six customer reviews" style="height:100%;width:100%;object-fit:cover;object-position:top left"></div>
+      <ul class="pts" style="gap:15px">
+        <li><b>🌐 Language detection</b><small>Which language is this, and how sure?</small></li>
+        <li><b>🙂 Sentiment</b><small>Positive, negative, neutral or mixed, with scores.</small></li>
+        <li><b>🔑 Key phrases</b><small>The main talking points, as a list.</small></li>
+        <li><b>🏷 Entities and PII</b><small>People, dates, products; identifiers found and redacted.</small></li>
+        <li><b>📝 Summarization</b><small>Extractive copies key sentences; abstractive writes new ones.</small></li>
+        <li><b>🔁 Translator</b><small>100+ languages, several targets in one call.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Language reads text and returns labels: <u>who</u>, <u>what</u>, and <u>how they feel</u>.</span></p>
+</section>
+
+<!-- 41 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Azure Speech</p>
+  <h2>Recognition is audio → text. Synthesis is text → audio.</h2>
+  <div class="body">
+    <div class="shotcard" style="background:#0B1220;border-color:var(--rule2)"><img src="images/charts/speech-waveform.png" alt="The waveform of a spoken customer question" style="height:250px;object-fit:cover"></div>
+    <div class="cols top" style="margin-top:26px;gap:28px">
+      <div class="card h" style="--c:var(--sky)"><span class="tag" style="--c:#7DD3FC">Speech-to-text</span><h3 style="font-size:34px">🎙 Speech recognition</h3>
+        <p style="margin-top:8px">Real time or batch, 100+ languages, timestamps and confidence. <b>Diarization</b> says who spoke. A <b>phrase list</b> or <b>custom speech</b> teaches your jargon.</p><p class="velo">It heard "break light". A phrase list fixes "brake".</p></div>
+      <div class="card h" style="--c:var(--violet)"><span class="tag" style="--c:#C4B5FD">Text-to-speech</span><h3 style="font-size:34px">🔊 Speech synthesis</h3>
+        <p style="margin-top:8px">Neural voices. <b>SSML</b> controls voice, style, rate, pitch and pauses. <b>Custom neural voice</b> gives a brand its own voice.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Speech-to-text <u>hears</u>. Text-to-speech <u>speaks</u>. SSML <u>directs the performance</u>.</span></p>
+</section>
+
+<!-- 42 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Two ways to answer a spoken question</p>
+  <h2>Pipeline for control. One model for simplicity.</h2>
+  <div class="body">
+    <div class="card" style="padding:30px">
+      <span class="tag">The Speech pipeline · three services</span>
+      <div class="flow" style="margin-top:8px">
+        <div class="box"><b>🎙 Audio in</b></div><div class="arrow">➜</div>
+        <div class="box hi"><b>Speech-to-text</b><small>Azure Speech</small></div><div class="arrow">➜</div>
+        <div class="box hi"><b>Chat model</b><small>gpt-4.1-mini</small></div><div class="arrow">➜</div>
+        <div class="box hi"><b>Text-to-speech</b><small>Azure Speech</small></div><div class="arrow">➜</div>
+        <div class="box"><b>🔊 Audio out</b></div>
+      </div>
+      <p style="margin-top:16px;font-size:24px;color:var(--muted)"><b>You get:</b> a custom brand voice, automotive vocabulary, a text transcript at every stage, cheaper models.</p>
+    </div>
+    <div class="card" style="padding:30px;margin-top:24px">
+      <span class="tag">One multimodal audio model · one call</span>
+      <div class="flow" style="margin-top:8px">
+        <div class="box"><b>🎙 Audio in</b></div><div class="arrow">➜</div>
+        <div class="box" style="flex:3.4;border-color:var(--gold);background:color-mix(in srgb,var(--gold) 10%,var(--panel))"><b>gpt-audio-mini</b><small>hears, thinks and speaks</small></div><div class="arrow">➜</div>
+        <div class="box"><b>🔊 Audio out</b></div>
+      </div>
+      <p style="margin-top:16px;font-size:24px;color:var(--muted)"><b>You get:</b> less code, natural turn-taking, tone of voice understood. Less control over the voice.</p>
+    </div>
+    <div class="exam">The exam does not ask you to pick a winner. It asks whether you know the trade. A third option: <b>Voice mode</b> switches speech on for a Foundry agent with no audio code.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Brand voice or jargon? <u>Pipeline</u>. Natural conversation, fast? <u>One audio model</u>.</span></p>
+</section>
+
+<!-- 43 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Computer vision · Azure AI Vision</p>
+  <h2>One photo, four kinds of answer</h2>
+  <div class="body">
+    <div class="cols w64">
+      <figure style="max-width:800px">
+        <div class="photo" id="traffic" style="aspect-ratio:1400/933"><img src="images/photos/traffic-auckland.jpg" alt="Motorway traffic with detected cars outlined"></div>
+        <p class="cap">Real output from Azure AI Vision on this photo: 11 objects detected, each with a confidence.</p>
+      </figure>
+      <div class="grid" style="gap:12px">
+        <div class="card h" style="padding:16px 24px"><h3>🏷 Classification and tags</h3><p>Labels for the whole image: <code>vehicle 1.00</code> <code>road 1.00</code></p></div>
+        <div class="card h" style="padding:16px 24px"><h3>📦 Object detection</h3><p>Labels <b>with bounding boxes</b>. Counting and locating.</p></div>
+        <div class="card h" style="padding:16px 24px"><h3>💬 Captions</h3><p>A sentence: <i>"a traffic jam on a highway"</i>, confidence 0.71.</p></div>
+        <div class="card h" style="padding:16px 24px"><h3>🔤 OCR (Read)</h3><p>Printed and handwritten text, with positions. VIN plates, stickers.</p></div>
+        <p style="font-size:22px;color:var(--muted)">People detection is open to all. <b>Face identification is Limited Access</b>: a responsible-AI gate, not a technical one.</p>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Tags <u>name</u> it. Boxes <u>locate</u> it. Captions <u>describe</u> it. OCR <u>reads</u> it.</span></p>
+</section>
+
+<!-- 44 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Two different eyes</p>
+  <h2>Vision measures. The model judges.</h2>
+  <div class="body">
+    <div style="display:grid;grid-template-columns:1fr 520px 1fr;gap:30px;align-items:center">
+      <div class="card h" style="--c:var(--teal);padding:30px">
+        <span class="tag">Azure AI Vision · a Foundry Tool</span><h3 style="font-size:34px">The fast, structured eye</h3>
+        <p style="margin-top:10px">JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. No model to deploy.</p>
+<pre style="margin-top:16px;font-size:20px;padding:18px 20px">"caption": <span class="s">"a silver car parked
+            in a parking lot"</span>,
+"confidence": <span class="y">0.84</span>,
+"tags": [<span class="s">"wheel"</span>, <span class="s">"tire"</span>, <span class="s">"suv"</span>…]</pre>
+        <p class="velo">Count the lot. Read the VIN.</p>
+      </div>
+      <div class="photo" style="height:520px"><img src="images/photos/suv-volvo-xc90.jpg" alt="A silver SUV in a parking lot"></div>
+      <div class="card h" style="--c:var(--amber);padding:30px">
+        <span class="tag" style="--c:#FCD34D">gpt-4.1-mini · a multimodal model</span><h3 style="font-size:34px">The thoughtful eye</h3>
+        <p style="margin-top:10px">Slower and costs tokens, but it can reason about what it sees and write.</p>
+        <div class="box" style="text-align:left;margin-top:16px;font-size:21px;line-height:1.4;font-style:italic">"Clean silver SUV, alloy wheels in good condition. Before listing, inspect the front bumper and photograph the interior…"</div>
+        <p class="velo">Appraise it. Write the listing.</p>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Count and read with Vision. Ask the model only when you need an opinion.</span></p>
+</section>
+
+<!-- 45 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Image generation</p>
+  <h2>Words in, pixels out, same deployment habit</h2>
+  <div class="body">
+    <div class="grid g3" style="gap:20px">
+      <div class="photo" style="height:400px"><img src="images/gen/flux2-velocity-volt.jpg" alt="Generated: a red concept sedan on a wet track"></div>
+      <div class="photo" style="height:400px"><img src="images/gen/flux-velocity-ridge.jpg" alt="Generated: a silver pickup on a mountain road"></div>
+      <div class="photo" style="height:400px"><img src="images/gen/flux2-retro-poster.jpg" alt="Generated: a retro-style poster"></div>
+    </div>
+    <p class="cap">All three rendered by FLUX models deployed in Foundry during this course. None of these vehicles exists.</p>
+    <div class="grid g4" style="margin-top:20px;gap:18px">
+      <div class="card" style="padding:20px 24px"><h3>🧾 The prompt</h3><p>Subject, setting, light, lens, style. Specific beats long.</p></div>
+      <div class="card" style="padding:20px 24px"><h3>🎛 The controls</h3><p>Size, number of images, style; editing an existing image.</p></div>
+      <div class="card" style="padding:20px 24px"><h3>🏭 The habit</h3><p>Catalog → deploy → playground → code. Nothing changed.</p></div>
+      <div class="card" style="padding:20px 24px"><h3>🔏 Provenance</h3><p>Outputs carry C2PA metadata so generated images can be recognised.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Same four steps as any model: <u>catalog, deploy, playground, code</u>.</span></p>
+</section>
+
+<!-- 46 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Information extraction · Azure Content Understanding</p>
+  <h2>Send a file, get fields</h2>
+  <div class="body">
+    <div style="display:grid;grid-template-columns:1fr 80px 1.1fr 80px 1.2fr;align-items:center;gap:8px">
+      <div class="grid" style="gap:14px">
+        <div class="box" style="text-align:left"><b>📄 Documents</b><small>invoices, window stickers, forms</small></div>
+        <div class="box" style="text-align:left"><b>🖼 Images</b><small>lot photos, damage shots</small></div>
+        <div class="box" style="text-align:left"><b>🎧 Audio</b><small>showroom and service calls</small></div>
+        <div class="box" style="text-align:left"><b>🎬 Video</b><small>launch films, walk-arounds</small></div>
+      </div>
+      <div class="arrow">➜</div>
+      <div class="box hi" style="padding:34px 24px"><span style="font-size:60px">🗂️</span><b style="font-size:34px">An analyzer</b><small style="font-size:23px;margin-top:10px"><b style="display:inline;font:inherit;color:var(--ink)">Prebuilt:</b> invoice, receipt, ID, call centre, video synopsis</small><small style="font-size:23px;margin-top:10px"><b style="display:inline;font:inherit;color:var(--ink)">Custom:</b> a base analyzer plus your own field schema</small></div>
+      <div class="arrow">➜</div>
+<pre style="font-size:21px;padding:22px 24px">"contents": [{
+  "markdown": <span class="s">"# VELOCITY MOTORS…"</span>,
+  "fields": {
+    "VIN": {
+      "valueString": <span class="s">"1VMSTR8A3RA210077"</span>,
+      "confidence": <span class="y">0.97</span>,
+      "source": <span class="s">"D(1,58,203,…)"</span> },
+    "TotalMSRP": {
+      "valueNumber": <span class="y">36445</span>,
+      "confidence": <span class="y">0.69</span> } } }]</pre>
+    </div>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h3>One habit, four modalities</h3><p>Everything comes back in the same shape: markdown plus typed fields.</p></div>
+      <div class="card"><h3>It is asynchronous</h3><p>POST returns <code>202</code> and an <code>Operation-Location</code>; poll it until <code>Succeeded</code>.</p></div>
+      <div class="card"><h3>It replaces three pipelines</h3><p>The successor to separate document, video and transcription services for extraction work.</p></div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>One service, four file types, one result shape: <u>markdown + fields</u>.</span></p>
+</section>
+
+<!-- 47 -->
+<section class="slide" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">The field schema</p>
+  <h2>Each field has a type, a method and a description</h2>
+  <div class="body">
+    <div class="cols w64 top">
+      <div class="shotcard" style="height:560px"><img src="images/shots/lab6-cu-sticker.png" alt="A custom analyzer extracting fields from a Velocity Motors window sticker" style="height:100%;width:100%;object-fit:cover;object-position:top left"></div>
+      <div class="grid" style="gap:14px">
+        <div class="card h" style="--c:var(--green);padding:18px 26px"><span class="tag" style="--c:#86EFAC">method · extract</span><h3>Copy what is on the page</h3><p>Comes with a <b>source</b> and a <b>confidence</b>. Verify by exception.</p></div>
+        <div class="card h" style="--c:var(--amber);padding:18px 26px"><span class="tag" style="--c:#FCD34D">method · generate</span><h3>Write it</h3><p>A summary, a list of options. No source, because the model wrote it. Read it every time.</p></div>
+        <div class="card h" style="--c:var(--violet);padding:18px 26px"><span class="tag" style="--c:#C4B5FD">method · classify</span><h3>Pick one of your values</h3><p><code>sedan</code> / <code>SUV</code> / <code>pickup</code>; <code>damaged</code> / <code>clean</code>.</p></div>
+        <div class="quote" style="font-size:25px;padding:14px 26px">The description is the prompt the model follows.</div>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Extract = <u>copied</u>, with proof. Generate = <u>written</u>, so check it. Classify = <u>chosen</u> from your list.</span></p>
+</section>
+
+<!-- recap -->
+<section class="slide recap" data-sec="senses" data-name="Language, speech, vision, documents">
+  <p class="k">Pit stop · say these out loud before the next lap</p>
+  <h2>The Foundry Tools in <em>five lines</em></h2>
+  <div class="body">
+    <div class="pit">Pit<em>stop</em></div>
+    <ol>
+      <li>Language labels text. Translator changes its language.</li>
+      <li>Speech-to-text hears, text-to-speech speaks, SSML directs.</li>
+      <li>Vision measures. The model judges.</li>
+      <li>Words in, pixels out, same deployment habit.</li>
+      <li>Send a file, get fields: extract, generate, classify.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 48 ─────────────────────────────── EXAM -->
+<section class="slide" data-sec="exam" data-name="Checkered flag">
+  <p class="k">The whole course on one slide</p>
+  <h2>Name the input, name the output, and the service names itself</h2>
+  <div class="body">
+    <table style="font-size:23.5px">
+      <tr><th>The request</th><th>In → out</th><th>Workload</th><th>Reach for</th></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Which reviews are angry about the infotainment?"</td><td>text → labels</td><td>Text analysis</td><td><b>Azure AI Language</b></td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Turn customer calls into searchable text."</td><td>audio → text</td><td>Speech recognition</td><td><b>Azure Speech</b></td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Read the next turn out loud in a friendly voice."</td><td>text → audio</td><td>Speech synthesis</td><td><b>Azure Speech</b> + SSML</td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Count the cars on the lot. Read this VIN plate."</td><td>image → boxes, text</td><td>Computer vision</td><td><b>Azure AI Vision</b></td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Make a poster of the Ridge on a mountain road."</td><td>prompt → image</td><td>Image generation</td><td><b>FLUX</b> or gpt-image deployment</td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Put every invoice's total and VIN in the database."</td><td>file → typed fields</td><td>Information extraction</td><td><b>Content Understanding</b></td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Draft a polite reply in the customer's language."</td><td>prompt → new text</td><td>Generative AI</td><td><b>A chat model</b> deployment</td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Check the guide, find a free slot and book it."</td><td>goal → tool calls</td><td>Agentic AI</td><td><b>Foundry Agent Service</b></td></tr>
+      <tr><td style="white-space:normal;font-weight:400;color:var(--ink)">"Is this uploaded photo appropriate to publish?"</td><td>content → severity</td><td>Responsible AI</td><td><b>Azure AI Content Safety</b></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 49 -->
+<section class="slide" data-sec="exam" data-name="Checkered flag">
+  <p class="k">Exam-room tactics</p>
+  <h2>The clock is the only real opponent</h2>
+  <div class="body">
+    <div class="cols w64">
+      <div class="grid g2">
+        <div class="card h" style="padding:30px"><h3 style="font-size:60px;color:var(--gold)">1</h3><h3>Read the last sentence first</h3><p>It holds the actual question. The scenario above it is context.</p></div>
+        <div class="card h" style="padding:30px"><h3 style="font-size:60px;color:var(--gold)">2</h3><h3>Name the input and the output</h3><p>That picks the workload, and usually the service.</p></div>
+        <div class="card h" style="padding:30px"><h3 style="font-size:60px;color:var(--gold)">3</h3><h3>Eliminate the wrong layer</h3><p>A deployment type is never the answer to a responsible-AI question.</p></div>
+        <div class="card h" style="padding:30px"><h3 style="font-size:60px;color:var(--gold)">4</h3><h3>Flag and move on</h3><p>Under a minute per item. Come back with what is left.</p></div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:16px">Names that changed</h3>
+        <table style="font-size:22px">
+          <tr><th>Older questions say</th><th>It is now</th></tr>
+          <tr><td style="white-space:normal">Azure AI Foundry</td><td><b>Microsoft Foundry</b></td></tr>
+          <tr><td style="white-space:normal">Cognitive Services, Azure AI services</td><td><b>Foundry Tools</b></td></tr>
+          <tr><td style="white-space:normal">Content filters</td><td><b>Guardrails</b></td></tr>
+          <tr><td style="white-space:normal">Azure Active Directory</td><td><b>Microsoft Entra ID</b></td></tr>
+          <tr><td style="white-space:normal">AI-900</td><td><b>AI-901</b></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>Last sentence first. Then: input, output, service.</span></p>
+</section>
+
+<!-- three things -->
+<section class="slide" data-sec="exam" data-name="Checkered flag">
+  <p class="k">If you remember only three things</p>
+  <h2>The whole day, on three fingers</h2>
+  <div class="body">
+    <div class="three">
+      <div><b>1</b><h3>Name the input and the output.</h3><p>That picks the workload, and the workload picks the service. It works on every scenario question.</p></div>
+      <div><b>2</b><h3>Code calls a deployment, not a model.</h3><p>Your named, metered copy: on your resource, in your region, on your bill, behind your credential.</p></div>
+      <div><b>3</b><h3>The model predicts. You ground, check and decide.</h3><p>It writes likely text, not true text. Give it the facts, verify the output, keep a person accountable.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 50 -->
+<section class="slide bleed" data-sec="exam" data-name="Checkered flag">
+  <img class="bg" src="images/gen/flux-velocity-ridge.jpg" alt="The Velocity Ridge pickup at sunrise">
+  <div class="shade"></div>
+  <div class="in">
+    <p class="k">Lights out</p>
+    <h1 style="font-size:104px">Now go and <em>build it</em>.</h1>
+    <p class="lede">Open Lap 0, type your student number into the pit board, and create your garage. Everything on these slides is about to become something you clicked.</p>
+    <div class="flagbar"></div>
+  </div>
+</section>
+
+</main>
+<div class="help"><kbd>←</kbd> <kbd>→</kbd> move · <kbd>O</kbd> overview · <kbd>F</kbd> fullscreen · <kbd>T</kbd> theme · <kbd>P</kbd> print to PDF</div>
+<div class="hud"><button id="b-prev" aria-label="Previous slide">◀</button><button id="b-ov">Overview</button><button id="b-next" aria-label="Next slide">▶</button></div>
+<script>
+(function(){
+  var root=document.documentElement, stage=document.getElementById('stage');
+  var slides=[].slice.call(document.querySelectorAll('.slide')), cur=0;
+  try{var t=localStorage.getItem('ai901-gp:deck-theme'); if(t) root.setAttribute('data-theme',t);}catch(e){}
+
+  // generated pictures
+  var tok=['The','␣','202','7','␣Velocity','␣Volt','␣charges','␣from','␣','10','␣to','␣','80','␣percent','␣in','␣','18','␣minutes','.'];
+  var hues=['#EF4444','#F59E0B','#22C55E','#38BDF8','#A78BFA','#14B8A6'];
+  document.getElementById('tokens').innerHTML=tok.map(function(w,i){var c=hues[i%hues.length];
+    return '<span style="font:500 34px var(--mono);padding:10px 16px;border-radius:12px;color:var(--head);background:color-mix(in srgb,'+c+' 22%,transparent);border:2px solid color-mix(in srgb,'+c+' 60%,transparent)">'+w+'</span>';}).join('');
+  var words=[['The',90],['infotainment',250],['system',150],['crashed',160],['twice,',130],['so',70],['the',80],['dealer',140],['replaced',170],['it',70]], x=40, g='';
+  words.forEach(function(w,i){var hot=(i===1||i===2), it=(i===9);
+    g+='<rect x="'+x+'" y="250" width="'+w[1]+'" height="76" rx="14" fill="'+(it?'#FACC15':hot?'rgba(239,68,68,.22)':'var(--panel)')+'" stroke="'+(it?'#FACC15':hot?'#EF4444':'var(--rule2)')+'" stroke-width="3"/>'+
+       '<text x="'+(x+w[1]/2)+'" y="299"'+(it?' style="fill:#0B1220;font-weight:700"':'')+'>'+w[0]+'</text>'; x+=w[1]+12;});
+  document.getElementById('attn').innerHTML=g;
+  var q='';for(var i=0;i<20;i++)q+='<i style="flex:1;background:color-mix(in srgb,var(--sky) '+(i%2?55:75)+'%,transparent);font:600 15px var(--mono);font-style:normal;color:#04121F;display:flex;align-items:center;justify-content:center">s'+(i<9?'0':'')+(i+1)+'</i>';
+  document.getElementById('quota').innerHTML=q+'<i style="flex:14;display:flex;align-items:center;justify-content:center;font:600 18px var(--mono);font-style:normal;color:var(--muted)">headroom</i>';
+  var objs=[['car',.52,645,337,79,62],['vehicle',.51,1118,350,100,70],['car',.53,840,544,118,85],['van',.53,1276,517,120,121],['car',.57,956,611,125,110],['car',.58,697,649,130,135],['car',.62,423,779,191,145],['car',.60,1289,819,105,114],['car',.60,316,614,176,197],['car',.86,800,781,223,152],['car',.77,1089,708,205,183]];
+  document.getElementById('traffic').insertAdjacentHTML('beforeend',objs.map(function(o){
+    return '<span style="position:absolute;left:'+(o[2]/14)+'%;top:'+(o[3]/9.33)+'%;width:'+(o[4]/14)+'%;height:'+(o[5]/9.33)+'%;border:3px solid #FACC15;border-radius:6px;box-shadow:0 0 0 1px rgba(0,0,0,.5)"><b style="position:absolute;left:-3px;bottom:100%;background:#FACC15;color:#0B1220;font:700 14px var(--mono);padding:1px 6px;border-radius:4px 4px 0 0;white-space:nowrap">'+o[0]+' '+o[1].toFixed(2)+'</b></span>';}).join(''));
+
+  // footer chrome
+  var secs=[];slides.forEach(function(s){if(secs.indexOf(s.dataset.sec)<0)secs.push(s.dataset.sec)});
+  var logo='<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0B1220"/><path d="M8 20c2-6 6-9 11-9h5l-3 5H13c-2 0-3 1-5 4z" fill="#E10600"/><circle cx="12" cy="22" r="2.4" fill="#FACC15"/><circle cx="22" cy="22" r="2.4" fill="#FACC15"/></svg>';
+  slides.forEach(function(s,i){
+    var si=secs.indexOf(s.dataset.sec), segs=secs.map(function(_,k){return '<i class="'+(k<si?'past':k===si?'cur':'')+'"></i>'}).join('');
+    if(!s.classList.contains('bleed'))s.insertAdjacentHTML('afterbegin','<div class="ghost" aria-hidden="true">'+(i<9?'0':'')+(i+1)+'</div>');
+    s.insertAdjacentHTML('beforeend','<div class="foot">'+logo+'<span>AI-901 Grand Prix</span><span class="segs">'+segs+'</span><span>'+s.dataset.name+'</span><span>'+(i+1)+' / '+slides.length+'</span></div>');
+    s.addEventListener('click',function(){ if(document.body.classList.contains('ov')){ov(false);go(i);} });
+  });
+
+  function fit(){root.style.setProperty('--s',Math.min(innerWidth/1920,innerHeight/1080));}
+  function go(n,nohash){cur=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,i){s.classList.toggle('on',i===cur)});
+    document.title=(cur+1)+' · Concept deck · AI-901 Grand Prix';
+    if(!nohash) history.replaceState(null,'','#'+(cur+1));}
+  function ov(on){document.body.classList.toggle('ov',on); if(on){var el=slides[cur]; if(el.scrollIntoView) el.scrollIntoView({block:'center'});} else scrollTo(0,0);}
+  function theme(){var l=root.getAttribute('data-theme')==='light'; if(l)root.removeAttribute('data-theme'); else root.setAttribute('data-theme','light');
+    try{localStorage.setItem('ai901-gp:deck-theme',l?'':'light')}catch(e){}}
+  addEventListener('resize',fit);
+  addEventListener('hashchange',function(){var n=parseInt(location.hash.slice(1),10); if(n) go(n-1,true);});
+  addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey) return; var k=e.key;
+    if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault(); if(document.body.classList.contains('ov')&&k==='Enter'){ov(false);return;} go(cur+1);}
+    else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'||k==='Backspace'){e.preventDefault();go(cur-1);}
+    else if(k==='Home')go(0); else if(k==='End')go(slides.length-1);
+    else if(k==='o'||k==='O'||k==='g'||k==='G')ov(!document.body.classList.contains('ov'));
+    else if(k==='Escape')ov(false);
+    else if(k==='f'||k==='F'){if(document.fullscreenElement)document.exitFullscreen();else if(root.requestFullscreen)root.requestFullscreen();}
+    else if(k==='t'||k==='T')theme();
+    else if(k==='p'||k==='P')print();
+  });
+  document.getElementById('b-prev').onclick=function(){go(cur-1)};
+  document.getElementById('b-next').onclick=function(){go(cur+1)};
+  document.getElementById('b-ov').onclick=function(){ov(!document.body.classList.contains('ov'))};
+  var tx=null; addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){if(tx===null||document.body.classList.contains('ov'))return;var d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(cur+(d<0?1:-1));tx=null},{passive:true});
+  fit(); go((parseInt(location.hash.slice(1),10)||1)-1,true);
+})();
+</script>
+</body>
+</html>

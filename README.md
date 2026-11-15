@@ -15,6 +15,8 @@ A hands-on, car-themed one-day course for **Microsoft exam AI-901 (Azure AI Fund
 | 6 | Paperwork | Azure Content Understanding on documents, images, audio and video; custom analyzers |
 | 7 | Checkered flag | 40-question practice exam, cleanup |
 
+**Concept deck:** https://varoonsahgal.github.io/az901/slides.html — 56 slides on the Azure fundamentals and AI concepts behind the labs, one line to remember per slide. Arrow keys to move, `O` overview, `F` fullscreen, `T` light theme, `P` print to PDF. It is a standalone file (`slides.html`), not built by `build.py`.
+
 ## What makes it engaging
 
 - **Portal first, code underneath.** Every hands-on part opens on the Foundry or Azure portal, with real annotated screenshots (numbered red markers that match the numbered steps) and a short *why* for each decision. The same work as exact commands and Python sits one tab away. Students choose their path once on the home page and every lap follows.
