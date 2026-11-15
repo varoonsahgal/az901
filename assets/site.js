@@ -56,10 +56,22 @@
   });
 
   /* screenshots: caption from the alt text, then click to zoom */
+  const hostOf = src => {
+    if (!/(^|[\/-])portal-\d/.test(src)) return null;
+    return /\/portal-0[1-3]|lab0-portal-13|lab7-portal/.test(src) ? 'portal.azure.com' : 'ai.azure.com';
+  };
   $$('img.shot').forEach(img => {
     if (img.alt && !img.closest('figure') && !img.closest('.callout')) {
       const f = document.createElement('figure'); f.className = 'shotwrap';
-      img.replaceWith(f); f.appendChild(img);
+      img.replaceWith(f);
+      const host = hostOf(img.getAttribute('src') || '');
+      if (host) {
+        f.classList.add('browser');
+        const bar = document.createElement('div'); bar.className = 'bbar'; bar.setAttribute('aria-hidden', 'true');
+        bar.innerHTML = '<i></i><i></i><i></i><span>🔒 ' + host + '</span>';
+        f.appendChild(bar);
+      }
+      f.appendChild(img);
       const c = document.createElement('figcaption'); c.textContent = img.alt; f.appendChild(c);
     }
     img.addEventListener('click', () => {
@@ -71,11 +83,42 @@
   addEventListener('keydown', e => { if (e.key === 'Escape') { $$('img.shot.zoomed').forEach(i => i.classList.remove('zoomed')); $('.dim')?.remove(); } });
 
   /* tabs (Portal / Cloud Shell / Python) */
+  /* one choice of path ("portal" / "shell" / "python") follows the student across every lap */
+  const kindOf = txt => /portal/i.test(txt) ? 'portal' : /python/i.test(txt) ? 'python' : /shell|cli|command/i.test(txt) ? 'shell' : 'other';
+  const allTabs = [];
   $$('.tabs').forEach(t => {
     const tabs = $$('[role="tab"]', t), panels = $$('[role="tabpanel"]', t);
+    tabs.forEach(x => x.dataset.kind = kindOf(x.textContent));
     const pick = i => { tabs.forEach((x, k) => x.setAttribute('aria-selected', k === i)); panels.forEach((p, k) => p.hidden = k !== i); };
-    tabs.forEach((x, i) => x.addEventListener('click', () => { pick(i); store.set('tab', x.textContent.trim()); }));
-    const pref = store.get('tab', null); const idx = tabs.findIndex(x => x.textContent.trim() === pref); pick(idx >= 0 ? idx : 0);
+    const pickKind = kind => { const i = tabs.findIndex(x => x.dataset.kind === kind); if (i >= 0) pick(i); };
+    tabs.forEach((x, i) => x.addEventListener('click', () => {
+      pick(i); store.set('path', x.dataset.kind);
+      allTabs.forEach(o => o !== pickKind && o(x.dataset.kind));
+    }));
+    allTabs.push(pickKind);
+    pick(0); const pref = store.get('path', null); if (pref) pickKind(pref);
+  });
+
+  /* home-page path picker */
+  const paintPick = () => { const cur = store.get('path', 'portal'); $$('[data-setpath]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setpath === cur)); };
+  $$('[data-setpath]').forEach(b => b.addEventListener('click', () => { store.set('path', b.dataset.setpath); paintPick(); }));
+  paintPick();
+
+  /* tick off steps as you go (per page, remembered) */
+  const stepsKey = 'steps:' + (document.body.dataset.page || location.pathname);
+  const ticked = new Set(store.get(stepsKey, []));
+  $$('ol.steps').forEach((ol, oi) => {
+    $$(':scope > li', ol).forEach((li, li_i) => {
+      const id = oi + '.' + li_i;
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'stepchk';
+      b.title = 'Mark this step done'; b.setAttribute('aria-pressed', ticked.has(id));
+      if (ticked.has(id)) li.classList.add('done');
+      b.addEventListener('click', () => {
+        const on = li.classList.toggle('done'); b.setAttribute('aria-pressed', on);
+        on ? ticked.add(id) : ticked.delete(id); store.set(stepsKey, [...ticked]);
+      });
+      li.prepend(b);
+    });
   });
 
   /* completion tracking */

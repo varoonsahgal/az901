@@ -17,6 +17,8 @@ A hands-on, car-themed one-day course for **Microsoft exam AI-901 (Azure AI Fund
 
 ## What makes it engaging
 
+- **Portal first, code underneath.** Every hands-on part opens on the Foundry or Azure portal, with real annotated screenshots (numbered red markers that match the numbered steps) and a short *why* for each decision. The same work as exact commands and Python sits one tab away. Students choose their path once on the home page and every lap follows.
+- **Tick as you go.** Click a step number to mark it done; ticks are remembered per page.
 - **Pit board.** Students type their number once; every command on every page rewrites itself (`rg-ai901-s07`, `ai901-s07-pitcrew`, …).
 - **Lap cards and insights.** Each lap opens with a card (what you build, where you are on the track) and carries one-sentence insights to remember.
 - **Overtake boxes.** Every lap ends with unguided stretch challenges for anyone ahead of the field.

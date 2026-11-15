@@ -1,8 +1,8 @@
 <!--META {"title":"Lap 4 · Radio check","desc":"Text analysis with Azure AI Language on Velocity customer reviews, Azure Speech text-to-speech and speech-to-text, Voice mode on a Foundry agent, and a spoken question answered by the gpt-audio-mini multimodal model.",
 "h1":"Radio check · text analysis and speech",
 "lede":"Race radio only works if both ends understand each other. In this lap Velo learns to read forty thousand reviews without getting tired, to strip names and card numbers from tickets, to speak in a calm neural voice, and to answer a driver who simply talks to the car.",
-"build":["Six reviews scored for sentiment, targets and key phrases","A service ticket with the personal data redacted","An MP3 built from SSML, and a transcript of it","Two spoken answers: one from a pipeline, one from gpt-audio-mini","Voice mode switched on for your agent"],
-"chips":[["Time","60 min"],["Difficulty","Beginner · curl and three short Python scripts"],["Services","Azure AI Language · Azure AI Translator · Azure Speech · gpt-audio-mini"],["Exam weight","Part of both domains · text, speech and multimodal"]],
+"build":["A service ticket redacted in the Text PII Redaction playground","A German complaint detected and translated in the portal","Velo's welcome spoken in the Text to Speech playground, and a driver's question transcribed","Six reviews scored for sentiment, targets and key phrases, by API","Two spoken answers: one from a pipeline, one from gpt-audio-mini","Voice mode switched on for your agent"],
+"chips":[["Time","60 min"],["Difficulty","Beginner · portal playgrounds first, then curl and three short Python scripts"],["Services","Azure AI Language · Azure AI Translator · Azure Speech · gpt-audio-mini"],["Exam weight","Part of both domains · text, speech and multimodal"]],
 "objectives":["Describe common text analysis techniques, including keyword extraction, entity detection, sentiment analysis, and summarization","Identify features and capabilities of speech recognition and speech synthesis","Build a lightweight application that includes text analysis","Respond to spoken prompts by using a deployed multimodal model","Build a lightweight application by using Azure Speech in Foundry Tools"]}
 -->
 <div class="callout story"><div class="ico">📻</div><div><span class="box-lbl">The story so far</span><p>Customer Experience has a folder of reviews in five languages, a stack of service tickets full of personal data, and a press release nobody has time to read. Engineering wants the in-car assistant to <em>talk</em>. Every one of these is a Foundry Tool call away, and all of them are already in your resource from Lap 0.</p></div></div>
@@ -19,6 +19,7 @@
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Match the technique to the output: key phrases → a list of topics; entities → typed things (person, date, product, PII); sentiment → positive/negative/neutral/mixed with scores; summarization → extractive (sentences copied) or abstractive (new text). Speech: recognition is audio→text, synthesis is text→audio, SSML tunes synthesis. Two ways to answer a spoken question: the Speech pipeline (STT → model → TTS) or one multimodal audio model. Know the trade-off: pipeline = control and cheaper models; multimodal = simpler and more natural.</p></div></div>
 
 <h2>Part 1 · Reload your pit board</h2>
+<p><strong>Portal path:</strong> the playgrounds in Parts 2 and 3 need nothing but <a href="https://ai.azure.com">ai.azure.com</a>. Paste this block into Cloud Shell when you reach the Cloud Shell steps, Part 4, or the lightweight apps.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
@@ -26,7 +27,39 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-4-1-mini AUDIO_MODEL=gpt-audio-mini</code></pre>
 
 <h2>Part 2 · Text analysis on customer reviews</h2>
-<p>Azure AI Language has one synchronous endpoint; you change the <code>kind</code>. Start with sentiment on a grumpy review, then look at the full set of six reviews we analysed.</p>
+<p>Start in the portal: redact a real-looking service ticket, then detect and translate a German complaint. The Cloud Shell tab does the same by API and adds the techniques the portal does not show, sentiment first.</p>
+<div class="callout note"><div class="ico">🔑</div><div><span class="box-lbl">The playgrounds use your sign-in, not the key</span><p>The Language, Speech and Translator playgrounds call the service as <em>you</em>. If one fails with <em>CheckAccess request is invalid because: This resource is not ready to accept requests</em>, your account is missing the <strong>Cognitive Services User</strong> role on your resource. Ask race control, then wait 2–5 minutes and try again. The Cloud Shell tab uses the key and works meanwhile.</p></div></div>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
+  <div role="tabpanel">
+<ol class="steps">
+  <li><p><strong>Find the Language playgrounds.</strong> Open <a href="https://ai.azure.com">ai.azure.com</a> and your project. In the left nav select <strong>Services</strong>. Under <strong>Explore services</strong> you see tiles for <strong>Document Intelligence and Content Understanding</strong>, <strong>Speech</strong>, <strong>Language</strong> and <strong>Translator</strong>, plus <strong>Featured playgrounds</strong> below. Select <strong>Language</strong>. Its playgrounds are Language Detection, Text PII Redaction, Document PII Redaction, Text Analytics for Health and Conversational PII Redaction.</p>
+<p class="why"><b>Why Services</b>These are the prebuilt Foundry Tools, already inside the resource you made in Lap 0. Nothing to deploy and nothing to train: you send text, you get structured results.</p>
+<p>There is no sentiment, key-phrase or entity playground here. The portal shows the privacy features; sentiment and opinion mining are one API call away, in step 5.</p></li>
+
+  <li><p><strong>Redact a service ticket.</strong> Open <strong>Text PII Redaction</strong>. In <strong>Input text</strong> paste the ticket below (you can also pick from the <strong>Sample</strong> list or upload a file), then select <strong>Detect</strong>.</p>
+<pre><code>Service ticket 4471. Customer Dana Whitfield (dana.whitfield@example.com, 937-555-0142) dropped off her 2024 Velocity Strata on 12 March 2026. Address: 1200 Brown St, Dayton, OH 45409. Paid the deposit with card 4111 1111 1111 1111.</code></pre>
+<p>The text comes back with each identifier masked and labelled: PersonType, Person, Email, PhoneNumber, Date, Address and CreditCardNumber. The <strong>Redact PII</strong> switch toggles between masked and original. On the right, the <strong>Response</strong> tab lists every entity with its <strong>Type</strong>, <strong>Confidence</strong> (Dana Whitfield: Person, 99%), <strong>Offset</strong> and <strong>Length</strong>; <strong>JSON</strong> and <strong>Code</strong> show the raw call.</p>
+<p class="why"><b>Why redact</b>Service tickets get copied into CRMs, emails and now AI prompts. Redact before you store or forward one, and a leak exposes asterisks, not a customer's card number.</p>
+<img class="shot" src="images/shots/lab4-portal-01-pii.jpg" alt="Text PII Redaction playground: the service ticket with PersonType, Person, Email, PhoneNumber, Date, Address and CreditCardNumber masked, Redact PII on, and the Response panel listing Customer (PersonType, 96%) and Dana Whitfield (Person, 99%) with offset and length" loading="lazy" title="Click to zoom">
+<p>Look at what it left alone: ticket number 4471 and "2024 Velocity Strata" are not personal data. It did flag the word "Customer" as a PersonType: a role, not an identity. The configuration panel (<strong>API version</strong>, <strong>Model version</strong>, <strong>Language</strong>, <strong>Select types to include</strong>) decides which types count; a service team that needs the drop-off date could keep Date unmasked.</p>
+<p class="insight">Offset and Length turn a highlighter into an API.<small>Your code gets the exact position of every identifier, so it can mask, hash or vault each one before the ticket is saved. The JSON tab is the same response the Cloud Shell tab gets from curl.</small></p></li>
+
+  <li><p><strong>Detect a language.</strong> Go back to <strong>Language</strong> and open <strong>Language Detection</strong>. Paste this review from a customer in Germany and run it:</p>
+<pre><code>Der Volt fährt sich wunderbar leise, aber das Navigationssystem stürzt ständig ab und der Händler in München hat mich nie zurückgerufen.</code></pre>
+<p>It should come back as German, with a confidence score.</p>
+<p class="why"><b>Why detect first</b>Reviews arrive in five languages. Knowing the language routes each one to the right market team, or to translation, before anyone has to read it.</p></li>
+
+  <li><p><strong>Translate it.</strong> In the left nav select <strong>Services</strong> → <strong>Translator</strong> → <strong>Text Translation</strong>. Keep <strong>Model: Azure-MT</strong> and the <strong>Translator</strong> tab (the <strong>Code</strong> tab shows the call). Leave <strong>Source text</strong> on <strong>Auto Detect</strong>, paste the same German review, set the target language to <strong>English</strong>, and select <strong>Translate</strong>.</p>
+<p>Expect: <em>The Volt drives wonderfully quietly, but the navigation system keeps crashing and the dealer in Munich never called me back.</em> The <strong>Configuration</strong> panel offers <strong>Tone</strong> and <strong>Gender</strong>, but only for LLM-based translation, not Azure-MT.</p>
+<p class="why"><b>Why it matters</b>That one sentence holds two problems for two teams: a navigation bug for Engineering and a missed callback for the Munich dealer. Nobody in Dayton reads German; now they do not have to.</p>
+<img class="shot" src="images/shots/lab4-portal-04-translate.jpg" alt="Translator Text Translation playground: Model Azure-MT, the German review with Auto Detect on the left, the English translation on the right, and the Configuration panel with Tone and Gender for LLM-based translation" loading="lazy" title="Click to zoom"></li>
+
+  <li><p><strong>Sentiment, key phrases, entities and summaries: switch tabs.</strong> Select the <strong>Cloud Shell path</strong> tab above and run its step 1 (sentiment with opinion mining) and the lightweight app <code>text_analysis.py</code> at the end of it. The exam asks about all of these techniques, and an API call is the fastest way to see them.</p></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p>Same results by API: this is what the playgrounds did for you, plus the techniques the portal does not show. Azure AI Language has one synchronous endpoint; you change the <code>kind</code>. Start with sentiment on a grumpy review, then look at the full set of six reviews we analysed.</p>
 <ol class="steps">
   <li><p><strong>Sentiment with opinion mining.</strong> The document score says "negative"; opinion mining says <em>what</em> was negative (the cupholders).</p>
 <pre><code>curl -s -X POST "$ENDPOINT/language/:analyze-text?api-version=2024-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" -d '{
@@ -127,8 +160,44 @@ for r in client.recognize_pii_entities(ticket):
   found: Customer [PersonType], Marcus Alvarez [Person], (614-555-0188 [PhoneNumber], marcus.alvarez@example.com [Email]
   redacted: ******** ************** *************, **************************) reports a grinding noise. VIN 1VMSUM7K2NA048213. Card ending 4421.</span></code></pre>
 <p>Notice "Velocity Summit [Skill]" and "Dayton [Organization]": entity categories are guesses with confidence, and a made-up car brand confuses them. Real deployments add a custom entity model or a short allow-list.</p>
+  </div>
+</div>
 
 <h2>Part 3 · Make the car talk · Azure Speech</h2>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
+  <div role="tabpanel">
+<ol class="steps">
+  <li><p><strong>Find the Speech playgrounds.</strong> In the left nav select <strong>Services</strong> → <strong>Speech</strong>. Its playgrounds are Voice Live, Speech to Text, Text to Speech, Text to Speech Avatar and Speech Translation.</p></li>
+
+  <li><p><strong>Give Velo a voice.</strong> Open <strong>Text to Speech</strong>. The left panel holds <strong>Input mode</strong> (plain text or SSML), <strong>Voice</strong>, <strong>Model</strong>, <strong>Language skill</strong> and <strong>Tuning</strong>. Set:</p>
+<ul>
+  <li><span class="mk">1</span><strong>Voice</strong>: leave the default, <strong>Ava</strong>. The model is <strong>Dragon HD Latest</strong> (marked <em>Emotion enabled</em>) and <strong>Language skill</strong> is <strong>Auto detect</strong>.</li>
+  <li>Replace the text on the right with Velo's welcome:</li>
+</ul>
+<pre><code>Welcome back to your Velocity Volt. The cabin is warming to seventy degrees, your battery is at eighty-two percent, and you have two hundred and ten miles of range. Your next service is due in two thousand one hundred miles. Drive safely!</code></pre>
+<ul>
+  <li><span class="mk">2</span>Select <strong>Play</strong>. Each word highlights as it is spoken. <strong>Download</strong> saves the audio; <strong>Sample rate</strong> is 24kHz.</li>
+</ul>
+<p class="why"><b>Why pick a voice deliberately</b>The voice is the car's personality, heard every time a driver starts it. A brand chooses it the way it chooses a logo. Pick two other voices from the list and play the same text: which one sounds like Velocity?</p>
+<img class="shot" src="images/shots/lab4-portal-02-tts.jpg" alt="Text to Speech playground: Voice Ava (1), model Dragon HD Latest with Emotion enabled, language Auto detect, and Play (2), showing Pause while the welcome message is spoken" loading="lazy" title="Click to zoom">
+<p>The sample-text chips (Customer service, Casual chat, News report…) show the same voice in other moods. Switch <strong>Input mode</strong> to SSML when you need control over style, pauses or a language change mid-sentence: that is the markup the Cloud Shell tab posts.</p></li>
+
+  <li><p><strong>Listen to a driver.</strong> Download <a href="media/user-brake-question.wav" download>user-brake-question.wav</a>, a driver asking Velo about a warning light. Open <strong>Speech to Text</strong> and check the settings:</p>
+<ul>
+  <li><strong>Speech Service</strong>: Real-time transcription. <strong>Model</strong>: Azure Speech (Default).</li>
+  <li><strong>Language</strong>: English (United States). Leave <strong>Language identification</strong> off; with it on you would list candidate languages.</li>
+  <li>Output format <strong>Detailed</strong>, and an empty <strong>Phrase list</strong> for now.</li>
+</ul>
+<p>Upload the WAV file (or use <strong>New Recording</strong> to try your own voice). The <strong>Transcript</strong> tab shows the text, with <strong>JSON</strong> and <strong>Call service</strong> beside it and an audio player below:</p>
+<pre><code><span class="out">Hey Velo, my break warning light just came on while I was driving. Is it safe to keep driving to the dealership or should I pull over?</span></code></pre>
+<img class="shot" src="images/shots/lab4-portal-03-stt.jpg" alt="Speech to Text playground: real-time transcription, Azure Speech (Default), English (United States), and the boxed transcript of user-brake-question.wav that says 'my break warning light'" loading="lazy" title="Click to zoom">
+<p>Read it again: "my <strong>break</strong> warning light". Break and brake sound identical, so the recogniser picked the more common word.</p>
+<p class="insight">The recogniser hears sounds; the spelling is a guess.<small>For a car company, "brake" is the word that matters most. A <strong>Phrase list</strong> tells Speech which words your business uses, with no training; custom speech goes further.</small></p></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p>Same results by API: this is what the playgrounds did for you, plus SSML and a three-step pipeline app.</p>
 <ol class="steps">
   <li><p><strong>Text-to-speech with SSML.</strong> Write the SSML to a file and POST it to the regional TTS endpoint. The header <code>X-Microsoft-OutputFormat</code> chooses the audio format.</p>
 <img class="shot" src="images/shots/lab5-speech-curl.png" alt="SSML with a multilingual voice, excited style, emphasis, a pause and German and Japanese segments; curl to the TTS endpoint saves velo.mp3" loading="lazy" title="Click to zoom">
@@ -184,13 +253,21 @@ answer  : Please safely pull over and stop your car. Check your brake fluid leve
 spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
 <audio controls src="media/user-brake-question.wav"></audio>
 <audio controls src="media/pipeline-answer.wav"></audio>
-<p>The recognizer heard "<strong>break</strong> warning light". Homophones are the classic speech failure; the model still answered correctly because context carried it. For a car product you would add a custom speech model trained on automotive vocabulary.</p></li>
-  <li><p><strong>Voice mode on your agent (portal).</strong> Open <code>velo-warranty-expert</code> from Lap 3 in the agent playground. In the left pane, under the model list, enable <strong>Voice mode</strong>. If the <strong>Configuration</strong> pane does not open, select the cog icon above the chat; under <strong>Voice mode</strong> preview the speech input and output settings and pick a voice. Close it and <strong>Save</strong>. In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>; the <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Call agent</strong> shows the client code, which streams audio both ways. This is Voice Live: Azure Speech wired into an agent with no audio code of yours.</p></li>
+<p>The recognizer heard "<strong>break</strong> warning light". Homophones are the classic speech failure; the model still answered correctly because context carried it. For a car product you would add a phrase list or a custom speech model trained on automotive vocabulary.</p></li>
+</ol>
+  </div>
+</div>
+
+<h3>Both paths · Voice mode on your agent</h3>
+<ol class="steps">
+  <li><p><strong>Let the warranty expert talk.</strong> Open <code>velo-warranty-expert</code> from Lap 3: left nav <strong>Agents</strong>, then the agent. In the left pane, under the model, switch on <strong>Voice mode</strong>. If the <strong>Configuration</strong> pane does not open, select the cog icon above the chat; under <strong>Voice mode</strong> preview the speech input and output settings and pick a voice. Close it and <strong>Save</strong>. In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>; the <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Continue in code</strong> shows the client code, which streams audio both ways.</p>
+<p class="why"><b>Why it matters</b>This is Voice Live: the recognition and synthesis you just tried, wired into an agent with its instructions and File search, and no audio code of yours. Drivers keep their eyes on the road and still get the cited answer.</p></li>
 </ol>
 
 <h2>Part 4 · One model that listens and speaks · gpt-audio-mini</h2>
+<p>This part is code, and that is not a choice: the model page for <code>gpt-audio-mini</code> says <em>Playground isn't available for this model yet</em>. The portal way to talk to Velo is the agent's <strong>Voice mode</strong> you just used. Here you see the other architecture: one model that hears the question and speaks the answer.</p>
 <ol class="steps">
-  <li><p>Deploy the audio model. It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out.</p>
+  <li><p>Deploy the audio model. It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out. Prefer clicks? Deploy it the Lap 0 way (<strong>Models</strong> → <strong>Deploy</strong> → <strong>Deploy a base model</strong>, search <code>gpt-audio-mini</code>, <strong>Custom settings</strong>, deployment name <code>gpt-audio-mini</code>, <strong>Global Standard</strong>, <code>1000</code> tokens per minute) and skip the command.</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name gpt-audio-mini --model-name gpt-audio-mini --model-version 2025-10-06 --model-format OpenAI \
   --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre></li>
@@ -228,15 +305,17 @@ saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
   <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech.</p></li>
 </ol>
 <p class="insight">Pipeline for control. One model for simplicity.<small>The exam does not ask you to pick a winner. It asks whether you know the trade: a custom brand voice and automotive vocabulary on one side, one call and natural turn-taking on the other.</small></p>
-<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You ran at least sentiment, key phrases, entities and PII through Azure AI Language; produced an MP3 with SSML and transcribed a WAV; ran <code>speech_pipeline.py</code> and <code>talk_to_velo.py</code> and have two answer files; and your agent spoke to you in Voice mode.</p></div></div>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>In the portal you redacted the service ticket in <strong>Text PII Redaction</strong>, detected and translated the Munich review, played Velo's welcome in <strong>Text to Speech</strong>, and transcribed the brake question (and spotted "break"). By API you ran at least sentiment with opinion mining and <code>text_analysis.py</code>. You ran <code>talk_to_velo.py</code> (and, on the Cloud Shell path, <code>speech_pipeline.py</code>), and your agent spoke to you in Voice mode.</p></div></div>
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
+<li><b>Teach it "brake".</b> In the Speech to Text playground add <code>brake</code> to the <strong>Phrase list</strong> and run <code>user-brake-question.wav</code> again. Does the transcript change? What other words would a dealership's phrase list need?</li>
 <li><b>Five languages, one script.</b> Replace the three English reviews in <code>text_analysis.py</code> with the German, Spanish, Japanese and French ones from the language-detection card (write your own: two sentences each). Does sentiment still work without a <code>language</code> hint? Which entity categories survive translation-free?</li>
 <li><b>Summarise, translate, speak.</b> Take the abstractive summary of the press release, translate it to Japanese with Translator, and synthesise it with a <code>ja-JP</code> voice (list voices to find one). Three services, one key, under a minute.</li>
 <li><b>Velo answers in the driver's language.</b> In <code>speech_pipeline.py</code>, run language detection on <code>heard.text</code> and switch the synthesis voice accordingly. Record a short question in another language on your laptop (16 kHz mono WAV) and try it.</li>
 </ol></div>
 
 <h2>Troubleshooting</h2>
+<details class="reveal hint"><summary>Playground error: "CheckAccess request is invalid because: This resource is not ready to accept requests"</summary><div class="body"><p>The Language, Speech and Translator playgrounds call the service with your Entra identity, not the key, and your account lacks the <strong>Cognitive Services User</strong> role on your resource. Ask race control to grant it, then wait 2–5 minutes (role changes take a moment to reach the service) and reload the playground. Meanwhile the Cloud Shell tab works, because it uses the key.</p></div></details>
 <details class="reveal hint"><summary>Translator returns 401 while Language works</summary><div class="body"><p>Translator's global host needs the extra header <code>Ocp-Apim-Subscription-Region: eastus2</code> so it knows which resource the key belongs to.</p></div></details>
 <details class="reveal hint"><summary>STT returns "InitialSilenceTimeout" or an empty DisplayText</summary><div class="body"><p>The WAV must be 16-bit PCM, 16 kHz, mono. Generate it with the TTS format <code>riff-16khz-16bit-mono-pcm</code> or convert with ffmpeg: <code>ffmpeg -i in.m4a -ar 16000 -ac 1 out.wav</code>.</p></div></details>
 <details class="reveal hint"><summary>speech_pipeline.py: "ImportError: libssl" or the Speech SDK will not load</summary><div class="body"><p>In Cloud Shell run <code>pip install --upgrade azure-cognitiveservices-speech</code>; on some Linux images you also need <code>sudo apt-get install -y libssl-dev libasound2</code>. The REST calls in Part 3 need nothing.</p></div></details>
@@ -249,6 +328,7 @@ saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
 <details class="reveal quiz"><summary>Which summary type can contain sentences that are not in the original?</summary><div class="body"><p><strong>Abstractive.</strong> Extractive only selects existing sentences.</p></div></details>
 <details class="reveal quiz"><summary>Which SSML element switches the voice's language mid-sentence?</summary><div class="body"><p><code>&lt;lang xml:lang="de-DE"&gt;</code> (with a multilingual voice). <code>&lt;voice&gt;</code> changes the voice; <code>&lt;mstts:express-as&gt;</code> the style; <code>&lt;break&gt;</code> adds a pause.</p></div></details>
 <details class="reveal quiz"><summary>A product must answer spoken questions with the least custom code. Pipeline or multimodal audio model?</summary><div class="body"><p><strong>Multimodal audio model</strong> (or Voice mode on an agent): one call in, audio out. Choose the pipeline when you need a specific brand voice, custom vocabulary, or cheaper text models.</p></div></details>
+<details class="reveal quiz"><summary>Speech to text writes "break warning light" for a driver who said "brake". What is the quickest fix that needs no training?</summary><div class="body"><p>Add <strong>brake</strong> to a <strong>phrase list</strong>, which biases recognition toward your business's words. A <strong>custom speech</strong> model trained on automotive audio goes further but takes data and time.</p></div></details>
 <details class="reveal quiz"><summary>Which service feature returns a redacted copy of a ticket?</summary><div class="body"><p>Azure AI Language <strong>PII detection</strong> (<code>PiiEntityRecognition</code>), via <code>redactedText</code>.</p></div></details>
 
 <h2>Pit wall debrief · what you learned</h2>

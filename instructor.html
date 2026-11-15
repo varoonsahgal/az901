@@ -55,10 +55,10 @@
 <p class="insight">Twenty people, one subscription, zero collisions: student numbers for names, S0 instead of F0, and deployments small enough that twenty of them fit the regional quota.<small>Everything on this page follows from those three choices.</small></p>
 <h2 id="the-day-before">The day before</h2>
 <ol class="steps">
-  <li><p><strong>One subscription, Owner access for you.</strong> Students need <strong>Contributor</strong> (to create resource groups and resources) and <strong>Azure AI User</strong> (data-plane access to Foundry projects and agents) at subscription scope. Put their sign-in names in <code>students.txt</code>, one per line, and run the helper:</p>
+  <li><p><strong>One subscription, Owner access for you.</strong> Students need three roles at subscription scope: <strong>Contributor</strong> (to create resource groups and resources), <strong>Azure AI User</strong> (data-plane access to Foundry projects and agents) and <strong>Cognitive Services User</strong> (the Language, Speech and Translator playgrounds call the service with the student's own identity; without it they fail with "CheckAccess request is invalid… resource is not ready"). Put their sign-in names in <code>students.txt</code>, one per line, and run the helper:</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/race_control.sh &amp;&amp; chmod +x race_control.sh
 ./race_control.sh prep                 <span class="cm"># registers providers, prints the quotas that matter</span>
-./race_control.sh roles students.txt   <span class="cm"># Contributor + Azure AI User per student</span></code></pre>
+./race_control.sh roles students.txt   <span class="cm"># Contributor + Azure AI User + Cognitive Services User per student</span></code></pre>
 <p>If everyone signs in with one shared account instead, grant that account the two roles once; the student-number scheme still keeps resources apart.</p></li>
   <li><p><strong>Check quotas in East US 2.</strong> The numbers that bound class size on a fresh subscription (yours may differ; the <code>prep</code> command prints them):</p>
 <table>
@@ -66,13 +66,14 @@
 <tbody>
 <tr><td><code>OpenAI.Standard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>10K</td><td>20 exactly, with no headroom for your own demo: deploy <em>your</em> gpt-4.1-mini in another region (we used East US), or request a quota increase in advance (Azure portal → Quotas → Azure OpenAI; usually approved within hours), or tell students to deploy at 8K.</td></tr>
 <tr><td><code>OpenAI.GlobalStandard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>—</td><td>A second pool: half the class can deploy Global Standard instead if Standard runs dry.</td></tr>
+<tr><td><code>OpenAI.GlobalStandard.gpt4.1</code> (TPM)</td><td>1,000K</td><td>20K</td><td>20 with lots of room. Lap 6 now has every student deploy <code>gpt-4-1</code> Global Standard so the Content Understanding field analyzers run in their own garage.</td></tr>
 <tr><td><code>OpenAI.GlobalStandard.gpt-audio-mini</code> (TPM)</td><td>30K</td><td>1K</td><td>20 with room.</td></tr>
 <tr><td><code>AIServices.GlobalStandard.FLUX.2-pro</code> (capacity units)</td><td>30</td><td>1</td><td>20 with room; each unit is one request per minute.</td></tr>
 <tr><td><code>OpenAI.Standard.text-embedding-3-large</code> (TPM)</td><td>350K+</td><td>10K</td><td>Fine.</td></tr>
 <tr><td><code>AIServices.S0.AccountCount</code></td><td>100</td><td>1</td><td>Fine.</td></tr>
 <tr><td><code>OpenAI.Standard.gpt4.1</code> (TPM)</td><td>50K</td><td>—</td><td>Only you need it, for the <code>prebuilt-invoice</code> demo in Lap 6.</td></tr>
 </tbody></table></li>
-  <li><p><strong>Build your own garage (student s00)</strong> by running Lap 0 yourself in East US (not East US 2) so your deployments do not eat the class's Standard quota, plus for Lap 6: a <code>gpt-4-1</code> deployment and the Content Understanding defaults mapping <code>prebuilt-analyzer-completion</code> to it. Run every lab once; it takes about three hours and surfaces anything Microsoft changed since this site was built.</p></li>
+  <li><p><strong>Build your own garage (student s00)</strong> by running Lap 0 yourself in East US (not East US 2) so your deployments do not eat the class's Standard quota, including Lap 6, where students deploy <code>gpt-4-1</code> and map it as the Content Understanding completion model. Run every lab once; it takes about three hours and surfaces anything Microsoft changed since this site was built.</p></li>
   <li><p><strong>Whiteboard:</strong> student numbers s01–s20 next to names; the site URL; the three rules (your number is your namespace; S0 never F0; small deployments). <strong>Headphones</strong> for Lap 4.</p></li>
   <li><p><strong>Cloud Shell</strong> works without a storage account in ephemeral mode. If your tenant blocks it, students can use a laptop with <code>az</code> and Python 3.10+; every command on the site is plain bash.</p></li>
 </ol>
@@ -80,7 +81,8 @@
 <div class="callout tip"><div class="ico">✅</div><div><span class="box-lbl">Day-of checklist</span><ul>
 <li>Projector on the index page; student numbers on the board; the three rules written next to them.</li>
 <li><code>./race_control.sh prep</code> run this morning and the gpt-4.1-mini Standard quota in East US 2 still shows at least 10K × students free.</li>
-<li>Your own s00 garage is in a <em>different</em> region (East US) and has <code>gpt-4-1</code> plus the Content Understanding defaults, for the Lap 6 invoice demo.</li>
+<li>Your own s00 garage is in a <em>different</em> region (East US), and you have clicked through every portal path once this week: Foundry redraws screens often, and the labs now lead with the portal.</li>
+<li>Every student has the three roles (Contributor, Azure AI User, Cognitive Services User). Role changes take up to five minutes to reach the playgrounds.</li>
 <li>Headphones for everyone before Lap 4; a quiet corner for Voice mode, or the decision to play the audio files instead.</li>
 <li>Two moments to make sure nobody misses: the invented warranty in Lap 2 Part 4, and the first <strong>Preview web app</strong> in Lap 3.</li>
 </ul></div></div>
@@ -127,7 +129,7 @@
 <h2 id="cleanup">Cleanup</h2>
 <pre><code>./race_control.sh status      <span class="cm"># what is left</span>
 ./race_control.sh cleanup     <span class="cm"># delete every rg-ai901-* and purge soft-deleted Foundry names</span>
-az role assignment list --query "[?roleDefinitionName=='Azure AI User' || roleDefinitionName=='Contributor'].{who:principalName,role:roleDefinitionName}" -o table   <span class="cm"># revoke student roles afterwards if the subscription lives on</span></code></pre>
+az role assignment list --query "[?roleDefinitionName=='Azure AI User' || roleDefinitionName=='Cognitive Services User' || roleDefinitionName=='Contributor'].{who:principalName,role:roleDefinitionName}" -o table   <span class="cm"># revoke student roles afterwards if the subscription lives on</span></code></pre>
 <div class="callout warning"><div class="ico">⚠️</div><div><span class="box-lbl">Soft delete</span><p>Deleting a resource group soft-deletes the Foundry resource for 48 hours and keeps its DNS name reserved. If you run the course again next week with the same student numbers, purge first or the names will be "already taken".</p></div></div>
 
 <h2 id="verification">How this site was verified, and what the screenshots are</h2>

@@ -109,6 +109,7 @@
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Expect questions like "a dealership must keep customer data in the United States; which deployment type?" (Data Zone or Standard) or "what does TPM limit?" (tokens per minute per deployment, drawn from a per-region quota). Capacity is set <em>per deployment</em>; quota is shared <em>per model per region per subscription</em>, which is exactly why twenty of us deploy small.</p></div></div>
 
 <h2 id="part-1-open-cloud-shell"><span class="pn">Part 1</span>Open Cloud Shell</h2>
+<p>Even if you drive the portal today, open Cloud Shell now and leave the tab open. Part 3 ends by handing your garage to it, and Part 4 makes your first call from it. Two minutes now saves a scramble later.</p>
 <ol class="steps">
   <li><p>Open <a href="https://portal.azure.com">portal.azure.com</a> and sign in with the account the instructor gave you. In the top bar click the <strong>Cloud Shell</strong> icon (<code>&gt;_</code>), or go straight to <a href="https://shell.azure.com">shell.azure.com</a>.</p></li>
   <li><p>Choose <strong>Bash</strong>. If asked about storage, pick <strong>No storage account required</strong> (ephemeral). Nothing today needs files to survive between sessions; the pit-board block below rebuilds your variables in two seconds.</p></li>
@@ -129,45 +130,9 @@ echo $RG $NAME $LOC $PROJECT</code></pre>
 
 <h2 id="part-3-build-the-garage"><span class="pn">Part 3</span>Build the garage</h2>
 <div class="tabs">
-  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Cloud Shell path (exact)</button><button role="tab">Portal path (ai.azure.com)</button></div>
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
-<ol class="steps">
-  <li><p><strong>Resource group.</strong> A folder for everything you build. Tags let race control find and cost every student's work.</p>
-<pre><code>az group create --name $RG --location $LOC --tags course=ai901 student=$STUDENT -o jsonc</code></pre>
-<img class="shot" src="images/shots/lab0-rg.png" alt="az group create output showing provisioningState Succeeded" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>The Foundry resource.</strong> One command, four decisions: kind <code>AIServices</code> (the multi-service kind), SKU <code>S0</code> (pay-per-use; never F0 in a shared subscription), a custom domain equal to the name (that is what gives you a private endpoint URL), and <code>--allow-project-management</code> so Foundry projects can live inside it. It takes about a minute.</p>
-<pre><code>az cognitiveservices account create --name $NAME --resource-group $RG --location $LOC \
-  --kind AIServices --sku S0 --custom-domain $NAME --assign-identity --allow-project-management true --yes \
-  --query "{name:name,kind:kind,sku:sku.name,location:location,endpoint:properties.endpoint,state:properties.provisioningState}" -o jsonc</code></pre>
-<img class="shot" src="images/shots/lab0-create-account.png" alt="Output of creating the AIServices resource with kind, sku S0 and endpoint" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Keys and endpoints.</strong> Two keys exist so you can rotate one while the other keeps working. Put them in variables; never paste them into chat, slides or Git.</p>
-<pre><code>az cognitiveservices account keys list --name $NAME --resource-group $RG -o jsonc
-export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
-export ENDPOINT=https://$NAME.cognitiveservices.azure.com     <span class="cm"># Vision · Language · Speech · Content Safety</span>
-export AI_ENDPOINT=https://$NAME.services.ai.azure.com        <span class="cm"># Foundry API · agents · Content Understanding</span>
-export AOAI_ENDPOINT=https://$NAME.openai.azure.com           <span class="cm"># OpenAI models · images · audio</span>
-echo $ENDPOINT</code></pre>
-<img class="shot" src="images/shots/lab0-keys.png" alt="Masked keys and the three endpoint host names" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>The project.</strong> This is what the Foundry portal and SDK connect to.</p>
-<pre><code>az cognitiveservices account project create --name $NAME --resource-group $RG --location $LOC \
-  --project-name $PROJECT --display-name "Velocity Motors AI ($STUDENT)" \
-  --query "{name:name,state:properties.provisioningState,endpoint:properties.endpoints.\"AI Foundry API\"}" -o jsonc
-export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
-<img class="shot" src="images/shots/lab0-project.png" alt="Project created with its Foundry API endpoint" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Deploy a model.</strong> <code>gpt-4.1-mini</code> is cheap, fast, understands images and (unlike the gpt-5 family) still lets you set <code>temperature</code>, which Lap 2 needs. Capacity 10 means 10,000 tokens per minute: plenty for one person, and twenty of them fit in the regional quota of 200K.</p>
-<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
-  --deployment-name gpt-4-1-mini --model-name gpt-4.1-mini --model-version 2025-04-14 --model-format OpenAI \
-  --sku-name Standard --sku-capacity 10 -o none
-az cognitiveservices account deployment list -n $NAME -g $RG -o table</code></pre>
-<img class="shot" src="images/shots/lab0-deploy.png" alt="Deployment list showing gpt-4-1-mini Standard capacity 10 Succeeded, and the regional quota usage" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Python libraries</strong> for the lightweight apps you will run later. Cloud Shell already has Python 3; this takes about a minute.</p>
-<pre><code>pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests
-python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code></pre>
-<img class="shot" src="images/shots/lab0-pip.png" alt="pip install of the Foundry SDK and tools completing" loading="lazy" title="Click to zoom"></li>
-</ol>
-  </div>
-  <div role="tabpanel" hidden>
-<p>Same garage, built with clicks. Do this path at least once: the exam asks about the portal, and seeing each screen makes the four objects real. Every screenshot below is from a real run, with the fields you touch circled and numbered.</p>
+<p>Build the garage with clicks. This is the path we recommend today: the exam asks about the portal, and seeing each screen makes the four objects real. Every screenshot below is from a real run, with the fields you touch circled and numbered.</p>
 <p class="insight">You will use two websites, and they are not the same thing.<small><a href="https://portal.azure.com">portal.azure.com</a> is the <strong>Azure portal</strong>: every Azure resource, its access and its bill. <a href="https://ai.azure.com">ai.azure.com</a> is the <strong>Foundry portal</strong>: projects, models, agents and playgrounds. Step 1 happens in the first; everything after it in the second.</small></p>
 <ol class="route">
   <li><b>Resource group</b><span>the folder that holds and costs it all</span></li>
@@ -244,6 +209,43 @@ pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azur
 </ol>
 <div class="callout note"><div class="ico">📝</div><div><span class="box-lbl">If the portal has moved a button</span><p>These screenshots are from 15 November 2026, and Microsoft redraws Foundry often. The nouns do not change: a resource group holds a Foundry resource, a project lives inside the resource, a deployment is your copy of a model, and a playground tries it. If a screen looks different, look for those nouns, or switch to the Cloud Shell tab, whose commands are exact.</p></div></div>
   </div>
+  <div role="tabpanel" hidden>
+<p>Same garage, by command: six blocks, exact to the letter. Choose this if you type fast or want the portal path as homework. Either way, finish with the same four objects.</p>
+<ol class="steps">
+  <li><p><strong>Resource group.</strong> A folder for everything you build. Tags let race control find and cost every student's work.</p>
+<pre><code>az group create --name $RG --location $LOC --tags course=ai901 student=$STUDENT -o jsonc</code></pre>
+<img class="shot" src="images/shots/lab0-rg.png" alt="az group create output showing provisioningState Succeeded" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>The Foundry resource.</strong> One command, four decisions: kind <code>AIServices</code> (the multi-service kind), SKU <code>S0</code> (pay-per-use; never F0 in a shared subscription), a custom domain equal to the name (that is what gives you a private endpoint URL), and <code>--allow-project-management</code> so Foundry projects can live inside it. It takes about a minute.</p>
+<pre><code>az cognitiveservices account create --name $NAME --resource-group $RG --location $LOC \
+  --kind AIServices --sku S0 --custom-domain $NAME --assign-identity --allow-project-management true --yes \
+  --query "{name:name,kind:kind,sku:sku.name,location:location,endpoint:properties.endpoint,state:properties.provisioningState}" -o jsonc</code></pre>
+<img class="shot" src="images/shots/lab0-create-account.png" alt="Output of creating the AIServices resource with kind, sku S0 and endpoint" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Keys and endpoints.</strong> Two keys exist so you can rotate one while the other keeps working. Put them in variables; never paste them into chat, slides or Git.</p>
+<pre><code>az cognitiveservices account keys list --name $NAME --resource-group $RG -o jsonc
+export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
+export ENDPOINT=https://$NAME.cognitiveservices.azure.com     <span class="cm"># Vision · Language · Speech · Content Safety</span>
+export AI_ENDPOINT=https://$NAME.services.ai.azure.com        <span class="cm"># Foundry API · agents · Content Understanding</span>
+export AOAI_ENDPOINT=https://$NAME.openai.azure.com           <span class="cm"># OpenAI models · images · audio</span>
+echo $ENDPOINT</code></pre>
+<img class="shot" src="images/shots/lab0-keys.png" alt="Masked keys and the three endpoint host names" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>The project.</strong> This is what the Foundry portal and SDK connect to.</p>
+<pre><code>az cognitiveservices account project create --name $NAME --resource-group $RG --location $LOC \
+  --project-name $PROJECT --display-name "Velocity Motors AI ($STUDENT)" \
+  --query "{name:name,state:properties.provisioningState,endpoint:properties.endpoints.\"AI Foundry API\"}" -o jsonc
+export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
+<img class="shot" src="images/shots/lab0-project.png" alt="Project created with its Foundry API endpoint" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Deploy a model.</strong> <code>gpt-4.1-mini</code> is cheap, fast, understands images and (unlike the gpt-5 family) still lets you set <code>temperature</code>, which Lap 2 needs. Capacity 10 means 10,000 tokens per minute: plenty for one person, and twenty of them fit in the regional quota of 200K.</p>
+<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name gpt-4-1-mini --model-name gpt-4.1-mini --model-version 2025-04-14 --model-format OpenAI \
+  --sku-name Standard --sku-capacity 10 -o none
+az cognitiveservices account deployment list -n $NAME -g $RG -o table</code></pre>
+<img class="shot" src="images/shots/lab0-deploy.png" alt="Deployment list showing gpt-4-1-mini Standard capacity 10 Succeeded, and the regional quota usage" loading="lazy" title="Click to zoom"></li>
+  <li><p><strong>Python libraries</strong> for the lightweight apps you will run later. Cloud Shell already has Python 3; this takes about a minute.</p>
+<pre><code>pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests
+python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code></pre>
+<img class="shot" src="images/shots/lab0-pip.png" alt="pip install of the Foundry SDK and tools completing" loading="lazy" title="Click to zoom"></li>
+</ol>
+  </div>
 </div>
 
 <h2 id="part-4-your-first-ai-call"><span class="pn">Part 4</span>Your first AI call</h2>
@@ -254,6 +256,7 @@ pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azur
   -d '{"url":"https://varoonsahgal.github.io/az901/images/photos/classic-rambler.jpg"}' | jq .captionResult</code></pre>
 <div class="shots2"><img class="shot" src="images/shots/lab0-first-call.png" alt="curl output: caption 'an orange and white car parked in a parking lot' with confidence 0.86" loading="lazy" title="Click to zoom"><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You should now have: a resource group <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; inside it a Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> with one project and one deployment; variables <code>KEY</code>, <code>ENDPOINT</code>, <code>AI_ENDPOINT</code>, <code>AOAI_ENDPOINT</code>, <code>PROJECT_ENDPOINT</code> set in your shell; and a caption for a 1958 Rambler. Open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → yours, and look at the two resources. Then <a href="https://ai.azure.com">ai.azure.com</a> should show your project. If both are true, you are out of the pit lane.</p></div></div>
+<img class="shot" src="images/shots/lab0-portal-13-rg.jpg" alt="Azure portal: rg-ai901-s99 holds exactly two resources, ai901-s99-pitcrew (Foundry) and proj-ai901-s99 (Foundry project), both in East US 2" loading="lazy" title="Click to zoom">
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes and uses only what is on this page.</p><ol>
 <li><b>Deploy a second model.</b> Add <code>gpt-4o-mini</code> (version <code>2024-07-18</code>) as a Standard deployment named <code>gpt-4o-mini</code> at 5K TPM, then list both deployments. Then delete it: <code>az cognitiveservices account deployment delete</code>. You just did what the portal's Deploy button does.</li>

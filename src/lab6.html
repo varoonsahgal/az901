@@ -1,8 +1,8 @@
 <!--META {"title":"Lap 6 · Paperwork","desc":"Information extraction with Azure Content Understanding in Microsoft Foundry: a service invoice, a window sticker with your own field schema, lot photos classified into a table, a launch video and its audio, and a lightweight Python extractor.",
 "h1":"Paperwork · information extraction with Content Understanding",
-"lede":"Every dealership drowns in paper and pixels: invoices, window stickers, photos, recorded calls, launch videos. Azure Content Understanding turns all four kinds of content into the same thing: typed fields you can put in a database. In this lap you run the prebuilt analyzers, write your own schema, and finish with a 40-line extractor.",
-"build":["Content Understanding defaults pointing at your deployments","velocityWindowSticker: a schema you wrote","velocityLotPhoto: photos classified into a table","A transcript, call-centre fields and a video synopsis","extract_info.py: send, poll, print"],
-"chips":[["Time","50 min"],["Difficulty","Beginner · JSON schemas and curl, one Python script"],["Services","Azure Content Understanding (api 2025-11-01) · gpt-4.1-mini · text-embedding-3-large"],["Exam weight","Part of Implement AI solutions · 55–60%"]],
+"lede":"Every dealership drowns in paper and pixels: invoices, window stickers, photos, recorded calls, launch videos. Azure Content Understanding turns all four kinds of content into the same thing: typed fields you can put in a database. In this lap you run prebuilt analyzers in the portal, build your own analyzer, and finish with a 40-line extractor.",
+"build":["gpt-4-1 and text-embedding-3-large deployed and registered with Content Understanding","Invoice fields from the Document fields analyzer, in the portal","velocityWindowSticker: an analyzer you wrote","velocityLotPhoto: photos classified into a table","A call-centre summary, a transcript and a video synopsis","extract_info.py: send, poll, print"],
+"chips":[["Time","50 min"],["Difficulty","Beginner · portal playground, then JSON schemas and curl"],["Services","Azure Content Understanding (api 2025-11-01) · gpt-4.1 · gpt-4.1-mini · text-embedding-3-large"],["Exam weight","Part of Implement AI solutions · 55–60%"]],
 "objectives":["Extract information from documents and forms by using Azure Content Understanding in Foundry Tools","Extract information from images by using Content Understanding","Extract information from audio and video by using Content Understanding","Build a lightweight application with information extraction capabilities by using Content Understanding","Identify techniques to extract information from text, images, audio, and videos"]}
 -->
 <div class="callout story"><div class="ico">🗂️</div><div><span class="box-lbl">The story so far</span><p>Finance keys 900 service invoices a month by hand. The used-car team retypes window stickers. Marketing cannot find the clip where the Volt's charging time is mentioned. The pit crew's answer is one service with one habit: send a file, get fields.</p></div></div>
@@ -12,48 +12,114 @@
   <div><b>Content Understanding</b>A Foundry Tool that takes <strong>documents, images, audio and video</strong> and returns structured results: markdown of the content plus <em>fields</em> you define or that a prebuilt analyzer defines. It is the successor to the separate Document Intelligence, Video Indexer and speech-transcription pipelines for extraction work.</div>
   <div><b>Analyzer</b>The unit of configuration. <em>Prebuilt</em> analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>, <code>prebuilt-idDocument</code>, <code>prebuilt-callCenter</code>, <code>prebuilt-videoSynopsis</code>…) know their fields already. <em>Custom</em> analyzers start from a base (<code>prebuilt-document</code>, <code>prebuilt-image</code>, <code>prebuilt-audio</code>, <code>prebuilt-video</code>) and add your <strong>field schema</strong>.</div>
   <div><b>Field schema</b>Each field has a <code>type</code> (string, number, integer, boolean, date, array, object), a <code>method</code> (<code>extract</code> = copy what is on the page, with a source and confidence; <code>generate</code> = write it, e.g. a summary; <code>classify</code> = pick one of your <code>enum</code> values) and a description, which is the prompt the model follows.</div>
-  <div><b>Models behind it</b>OCR and layout need no model. Field extraction uses a GPT <em>completion</em> model and an <em>embedding</em> model that you deploy and register once per resource (<code>PATCH /contentunderstanding/defaults</code>). Prebuilt invoice wants gpt-4.1 or a gpt-5; custom analyzers are happy with gpt-4.1-mini.</div>
+  <div><b>Models behind it</b>OCR and layout need no model. Field extraction uses a GPT <em>completion</em> model and an <em>embedding</em> model that you deploy and register once per resource (<code>PATCH /contentunderstanding/defaults</code>). The prebuilt field analyzers want a full gpt-4.1-class model (you deploy <code>gpt-4-1</code> in Part 1); custom analyzers are happy with gpt-4.1-mini.</div>
   <div><b>The async pattern</b><code>POST …/analyzers/{id}:analyzeBinary</code> returns <code>202 Accepted</code> and an <code>Operation-Location</code> header; you GET that URL until <code>status</code> is <code>Succeeded</code>. Creating a custom analyzer works the same way.</div>
   <div><b>Result shape</b><code>result.contents[]</code>: one entry per document, image, audio track or video segment, each with <code>markdown</code>, <code>fields</code> (<code>valueString</code>, <code>valueNumber</code>, <code>valueArray</code>…, plus <code>confidence</code> and <code>source</code> for extracted fields), and for media, <code>startTimeMs</code>/<code>endTimeMs</code>, transcripts and key frames.</div>
 </div>
 <p class="insight">Send a file, get fields.<small>Documents, images, audio and video all come back in the same shape: markdown of the content, plus the typed fields you named. One habit, four modalities.</small></p>
-<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Documents and forms → prebuilt analyzers or a custom schema on <code>prebuilt-document</code>. Images → a custom schema on <code>prebuilt-image</code> (classify / describe). Audio → transcript, then fields such as summary, topics, sentiment (<code>prebuilt-callCenter</code>). Video → shots, key frames, transcript, synopsis (<code>prebuilt-video</code>, <code>prebuilt-videoSynopsis</code>). The portal playground lives at <strong>Build → Services → Content Understanding</strong>; the API version is <code>2025-11-01</code>; analyzer IDs cannot contain hyphens; it is asynchronous.</p></div></div>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Documents and forms → prebuilt analyzers or a custom schema on <code>prebuilt-document</code>. Images → a custom schema on <code>prebuilt-image</code> (classify / describe). Audio → transcript, then fields such as summary, topics, sentiment (<code>prebuilt-callCenter</code>). Video → shots, key frames, transcript, synopsis (<code>prebuilt-video</code>, <code>prebuilt-videoSynopsis</code>). The portal playground lives at <strong>Services → Document Intelligence and Content Understanding</strong>; the API version is <code>2025-11-01</code>; analyzer IDs cannot contain hyphens; it is asynchronous.</p></div></div>
 
-<h2>Part 1 · Reload your pit board and register the models</h2>
+<h2>Part 1 · Get the files and register the models</h2>
+<ol class="steps">
+  <li><p><strong>Files on your laptop</strong>, for the portal: <a href="downloads/service-invoice.png">service-invoice.png</a>, <a href="downloads/window-sticker.png">window-sticker.png</a> and <a href="media/user-brake-question.wav">user-brake-question.wav</a> (the brake-light call from Lap 4). The playground uploads from the computer your browser runs on.</p></li>
+  <li><p><strong>Files and variables in Cloud Shell</strong>, for Parts 3 to 6. Paste this in <a href="https://shell.azure.com">shell.azure.com</a> whichever path you take below:</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY
 for f in service-invoice.pdf window-sticker.png velocity-teaser.mp4; do curl -sLO https://varoonsahgal.github.io/az901/downloads/$f; done
 curl -sLo narration.mp3 https://varoonsahgal.github.io/az901/media/velo-andrew-multilingual.mp3
-curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot</code></pre>
+curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot</code></pre></li>
+</ol>
+<p>Content Understanding reads pixels and sound itself, but turning them into <em>fields</em> takes language models that you deploy and hand to it. Two more deployments, then one settings panel.</p>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
+  <div role="tabpanel">
 <ol class="steps">
-  <li><p><strong>Deploy an embedding model</strong> (field extraction on documents needs one) next to your gpt-4.1-mini from Lap 0:</p>
+  <li><p><strong>Deploy an embedding model.</strong> Same flow as Lap 0: <strong>Models</strong> → <strong>Deploy</strong> ▾ → <strong>Deploy a base model</strong>, find <strong>text-embedding-3-large</strong>, <strong>Deploy</strong> → <strong>Custom settings</strong>:</p>
+<ul>
+  <li><strong>Deployment name</strong>: <code>text-embedding-3-large</code></li>
+  <li><strong>Deployment type</strong>: <strong>Standard</strong>, <strong>Tokens per Minute Rate Limit</strong>: <code>10000</code>, then <strong>Deploy</strong>.</li>
+</ul>
+<p class="why"><b>Why embeddings</b>On a long document the service turns passages into vectors to find the parts that matter for each field, the same idea as file search in Lap 3. Without an embedding model, document field extraction refuses to start.</p></li>
+  <li><p><strong>Deploy gpt-4.1.</strong> Same flow. Search <code>gpt-4.1</code> and open the card named exactly <strong>gpt-4.1</strong> (not mini, not nano). <strong>Deploy</strong> → <strong>Custom settings</strong>:</p>
+<ul>
+  <li><strong>Deployment name</strong>: <code>gpt-4-1</code> (hyphens, like <code>gpt-4-1-mini</code>).</li>
+  <li><strong>Deployment type</strong>: <strong>Global Standard</strong>. Not Standard this time.</li>
+  <li><strong>Tokens per Minute Rate Limit</strong>: <code>20000</code>, then <strong>Deploy</strong>.</li>
+</ul>
+<p class="why"><b>Why the full model</b>Content Understanding's field-extraction analyzers insist on a full gpt-4.1-class completion model; they do not accept mini. Reading thirty invoice fields correctly is worth the bigger engine.</p>
+<p class="why"><b>Why Global Standard</b>That is where the quota is: Global Standard gpt-4.1 has 1,000K tokens per minute in East US 2 on this subscription, so twenty students at 20K fit with room to spare. Global means a request may be processed in any Azure region. Fine for our fictional invoices; for real customer documents with data-residency rules you would pick Data Zone Standard or Standard.</p></li>
+  <li><p><strong>Open Content Understanding.</strong> In the left menu select <strong>Services</strong> → <strong>Document Intelligence and Content Understanding</strong>. The page lists 74 prebuilt analyzers in groups: <strong>Content extraction</strong> (OCR (Read), Layout, General document extraction), <strong>Procurement</strong>, <strong>US tax</strong>, <strong>Legal</strong>, <strong>Identity</strong>, <strong>Payment &amp; banking</strong>, and <strong>Multimodal RAG and Search</strong>. Open any one, for example <strong>OCR (Read)</strong>, to reach the playground.</p>
+<p class="why"><b>Why browse the groups</b>Finance asks "can it read invoices?", HR asks "ID cards?", the F&amp;I desk asks "bank statements?". The groups answer before anyone writes a schema: check for a prebuilt first, build your own only when none fits.</p></li>
+  <li><p><strong>Register the models.</strong> In the playground's analyzer dropdown choose <strong>Document fields</strong>. A <em>Model deployments required</em> dialog appears; select <strong>Deploy models</strong>. The <strong>Configure</strong> panel opens on the right:</p>
+<ul>
+  <li><span class="mk">1</span><strong>Chat completion model</strong>: <code>gpt-4-1</code>. The list also offers to deploy other models; pick your own under <em>Deployments</em>.</li>
+  <li><strong>Chat completion model (mini)</strong>: <code>gpt-4-1-mini</code></li>
+  <li><strong>Embedding model</strong>: <code>text-embedding-3-large</code></li>
+  <li><span class="mk">2</span>Select <strong>Apply changes</strong>.</li>
+</ul>
+<img class="shot" src="images/shots/lab6-portal-01-models.jpg" alt="Content Understanding playground with analyzer Document fields and the Configure panel: Chat completion model gpt-4-1 (1), mini gpt-4-1-mini, embedding text-embedding-3-large, and Apply changes (2)" loading="lazy" title="Click to zoom">
+<p class="why"><b>Why once</b>This is the portal version of the <em>defaults</em> call in the Cloud Shell tab. It is stored on your Foundry resource, so every analyzer you run from here on, prebuilt or your own, uses these three deployments. You do it once per resource.</p></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p>Same result, by API: this is what the portal did for you.</p>
+<ol class="steps">
+  <li><p><strong>Deploy an embedding model</strong> (field extraction on documents needs one) next to your gpt-4.1-mini from Lap 0, and <strong>gpt-4.1</strong>, which the prebuilt field analyzers require (Global Standard is where the gpt-4.1 quota is):</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name text-embedding-3-large --model-name text-embedding-3-large --model-version 1 --model-format OpenAI \
-  --sku-name Standard --sku-capacity 10 -o table</code></pre></li>
+  --sku-name Standard --sku-capacity 10 -o table
+az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name gpt-4-1 --model-name gpt-4.1 --model-version 2025-04-14 --model-format OpenAI \
+  --sku-name GlobalStandard --sku-capacity 20 -o table</code></pre></li>
   <li><p><strong>Tell Content Understanding which deployments to use.</strong> The keys on the left are the service's model aliases; the values are your deployment names.</p>
 <pre><code>curl -s -X PATCH "$AI_ENDPOINT/contentunderstanding/defaults?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" \
   -H "Content-Type: application/merge-patch+json" \
-  -d '{"modelDeployments":{"prebuilt-analyzer-completion-mini":"gpt-4-1-mini","prebuilt-analyzer-embedding":"text-embedding-3-large","gpt-4.1-mini":"gpt-4-1-mini","text-embedding-3-large":"text-embedding-3-large"}}'
+  -d '{"modelDeployments":{"prebuilt-analyzer-completion":"gpt-4-1","gpt-4.1":"gpt-4-1","prebuilt-analyzer-completion-mini":"gpt-4-1-mini","prebuilt-analyzer-embedding":"text-embedding-3-large","gpt-4.1-mini":"gpt-4-1-mini","text-embedding-3-large":"text-embedding-3-large"}}'
 curl -s "$AI_ENDPOINT/contentunderstanding/analyzers?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '[.value[].analyzerId] | length, .[0:12]'</code></pre>
 <p>The second command lists the prebuilt analyzers (about 90, from <code>prebuilt-invoice</code> to <code>prebuilt-tax.us.w2</code> to <code>prebuilt-videoSynopsis</code>).</p></li>
 </ol>
+  </div>
+</div>
 
 <h2>Part 2 · Documents</h2>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
+  <div role="tabpanel">
+<ol class="steps">
+  <li><p><strong>Run the invoice.</strong> In the playground keep <strong>Modality: Document</strong> and the analyzer <strong>Document fields</strong>. Upload <code>service-invoice.png</code> with <strong>Browse for files</strong> (or drag it onto the panel), select it, then <strong>Run analysis</strong>.</p>
+<p class="why"><b>Why Document fields</b>It is a general-purpose field extractor: we never told it the file was an invoice, and it came back with invoice fields. That is the 900-invoices-a-month problem from the story, with no schema written.</p></li>
+  <li><p><strong>Read the Fields tab.</strong> Each field has a value, a confidence, a page badge (<strong>p.1</strong>) and a coloured dot that matches a coloured box on the document: <code>InvoiceNumber</code> <strong>INV-48213</strong> at 79.40%, <code>InvoiceDate</code> <strong>October 28, 2026</strong> at 72.60%, <code>DueDate</code> at 72.00%, and on down the page. <strong>Hide missing fields</strong> hides the fields this invoice does not have.</p>
+<img class="shot" src="images/shots/lab6-portal-02-invoice.jpg" alt="Document fields analysis of service-invoice.png: colour-coded boxes on the invoice, and the Fields tab with InvoiceNumber INV-48213 79.40%, InvoiceDate October 28, 2026 72.60% and DueDate 72.00%, each with a p.1 badge" loading="lazy" title="Click to zoom">
+<p>Then open the other tabs: <strong>Markdown</strong> (the whole invoice as text), <strong>Paragraphs</strong>, <strong>Tables</strong> (the parts and labour lines), <strong>Figures</strong>, <strong>Metadata</strong>, and <strong>Result</strong>, the raw JSON your code would get, including the tokens the analysis used.</p>
+<p class="insight">Every field points back to the paper.<small>The page badge and the coloured box are the field's source. A clerk checks a 72% date against the document in one glance instead of retyping the invoice.</small></p></li>
+  <li><p><strong>Invoice specialists.</strong> Look in the <strong>Procurement</strong> group for analyzers built for invoices and purchase paperwork. Run one on the same file and compare its field list with Document fields.</p></li>
+  <li><p><strong>No model at all.</strong> Switch the analyzer to <strong>Layout</strong> (or <strong>OCR (Read)</strong>) and run <code>window-sticker.png</code>. The <strong>Markdown</strong> tab shows the heading <code>2026 VELOCITY STRATA SPORT</code>, the equipment list and the price table, in reading order. That markdown is what the language model reads when you ask for fields.</p></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p>Same results, by API. The playground's <strong>Code</strong> tab shows these calls as code.</p>
 <ol class="steps">
   <li><p><strong>OCR and layout, no model needed.</strong> <code>prebuilt-document</code> returns markdown with headings, tables and reading order. Send the window sticker, then poll:</p>
 <pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-document:analyzeBinary?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: image/png" --data-binary @window-sticker.png | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
 sleep 8; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].markdown' | head -30</code></pre>
 <p>You get <code># 2026 VELOCITY STRATA SPORT</code>, the equipment list as bullets and the price table as HTML, in order. That markdown is what the model reads in the next step.</p></li>
-  <li><p><strong>A prebuilt form analyzer: the invoice.</strong> <code>prebuilt-invoice</code> knows thirty invoice fields and line items. It insists on a gpt-4.1 (or gpt-5-family) completion model, which the class does not deploy today; race control ran it, and the portal shows pre-prepared results. Here is the service invoice through it, typed values and all:</p>
+  <li><p><strong>A prebuilt form analyzer: the invoice.</strong> <code>prebuilt-invoice</code> knows thirty invoice fields and line items. It insists on a gpt-4.1 (or gpt-5-family) completion model, which is why Part 1 deployed <code>gpt-4-1</code> and mapped <code>prebuilt-analyzer-completion</code> to it:</p>
+<pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-invoice:analyzeBinary?api-version=2025-11-01" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/pdf" --data-binary @service-invoice.pdf | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
+sleep 20; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.result.contents[0].fields | keys)'</code></pre>
+<p>Here is the service invoice through it, typed values and all:</p>
 <img class="shot" src="images/shots/lab6-cu-invoice.png" alt="prebuilt-invoice fields with confidences: INV-48213, dates, customer, Net 14, subtotal 839.95, tax 63, total 902.95 USD, and five line items" loading="lazy" title="Click to zoom">
 <img class="shot" src="images/shots/lab6-extract-invoice.png" alt="Terminal: extract_info.py on the invoice printing typed fields" loading="lazy" title="Click to zoom">
-<p>Notice the field types: <code>TotalAmount</code> is a currency object with <code>Amount</code> and <code>CurrencyCode</code>, dates are ISO dates, and line items are an array of objects. Confidence is per field.</p>
-<p><em>Portal path:</em> in your project open <strong>Build</strong> → <strong>Services</strong> → <strong>Content Understanding</strong>. Select <strong>OCR/Read</strong>, confirm <strong>Modality</strong> is <strong>Document</strong>, upload <code>window-sticker.png</code> and <strong>Run analysis</strong>; read the <strong>Markdown</strong>, <strong>Paragraphs</strong> and <strong>Result</strong> tabs. Then select <strong>Layout</strong> and run again to see tables. Finally in the analyzer types list choose <strong>Procurement</strong> → <strong>Invoice</strong>; if prompted to deploy models select <strong>Cancel</strong> and review the pre-prepared <strong>Fields</strong>, <strong>Markdown</strong> and <strong>Code</strong> tabs. The Code tab is the same REST call you are making here, in Python.</p></li>
+<p>Notice the field types: <code>TotalAmount</code> is a currency object with <code>Amount</code> and <code>CurrencyCode</code>, dates are ISO dates, and line items are an array of objects. Confidence is per field. <code>python extract_info.py prebuilt-invoice service-invoice.pdf</code> (Part 6) prints them all.</p></li>
 </ol>
+  </div>
+</div>
 
-<h2>Part 3 · Your own schema · the window sticker</h2>
+<h2>Part 3 · Build your own analyzer · the window sticker</h2>
+<p>Prebuilt analyzers know other people's paperwork. The Velocity window sticker is ours: no prebuilt knows that the used-car team wants the VIN, the total MSRP and the options with their prices. So you build an analyzer: pick a base, name the fields, and describe each one in plain English.</p>
+<div class="callout note"><div class="ico">🧭</div><div><span class="box-lbl">The portal door</span><p>The playground's <strong>Customize in CU Studio</strong> button (top right) opens <strong>Content Understanding Studio</strong>, a separate site for building your own analyzers with clicks. Explore it if you finish early. Here we write the analyzer as JSON in Cloud Shell, because the JSON shows the three things that matter most clearly: each field's type, its method, and the description the model follows.</p></div></div>
 <ol class="steps">
   <li><p>Describe the fields you want. The <code>description</code> is the instruction; <code>method</code> says whether to copy, write or choose.</p>
 <pre><code>cat &gt; sticker-analyzer.json &lt;&lt;'JSON'
@@ -91,7 +157,7 @@ sleep 15; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.re
 </ol>
 
 <h2>Part 4 · Images · lot photos into a table</h2>
-<p>The same idea on photographs. Base the analyzer on <code>prebuilt-image</code>, use <code>classify</code> with an <code>enum</code> where you want controlled values, and <code>generate</code> for free text.</p>
+<p>A second analyzer of your own, this time on photographs. Base the analyzer on <code>prebuilt-image</code>, use <code>classify</code> with an <code>enum</code> where you want controlled values, and <code>generate</code> for free text.</p>
 <pre><code>cat &gt; lot-analyzer.json &lt;&lt;'JSON'
 {
   "description": "Dealer lot photo triage",
@@ -120,15 +186,30 @@ done</code></pre>
 <p>Six photos, one table. The traffic photo counted 38 vehicles; the convertible became a "coupe" because that was the closest allowed value, which is exactly what an enum is for.</p>
 
 <h2>Part 5 · Audio and video</h2>
+<p>The service desk records every call. Nobody listens to them twice. Content Understanding turns a call into a summary and a list of topics a manager can scan.</p>
+<div class="tabs">
+  <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
+  <div role="tabpanel">
 <ol class="steps">
-  <li><p><strong>Audio.</strong> <code>prebuilt-audio</code> transcribes with timestamps and speaker tags (no model needed); <code>prebuilt-callCenter</code> adds a summary, topics, companies and sentiment. Send the narration track:</p>
+  <li><p><strong>Switch to audio.</strong> In the playground set <strong>Modality</strong> to <strong>Audio</strong>. The analyzer list changes to audio analyzers: choose <strong>Call center</strong> (the other option is <strong>Audio search</strong>).</p></li>
+  <li><p><strong>Run the brake call.</strong> Upload <code>user-brake-question.wav</code> from your laptop, select it, and <strong>Run analysis</strong>. A player appears so you can hear the eight seconds you are analysing.</p></li>
+  <li><p><strong>Read the fields.</strong> <strong>Summary</strong>: <em>"The customer contacted Velo to report that their brake warning light came on while driving and asked whether it is safe to continue driving to the dealership or if they should pull over."</em> <strong>Topics (5)</strong>, starting with <em>Brake warning light</em>. Under <strong>Content</strong> you get <code>Audio: 00:00.000 =&gt; 00:08.162</code> and the transcript in WEBVTT, the subtitle format with timestamps.</p>
+<img class="shot" src="images/shots/lab6-portal-03-callcenter.jpg" alt="Content Understanding playground, Modality Audio, analyzer Call center: user-brake-question.wav analysed, Content showing Audio 00:00.000 => 00:08.162 and a WEBVTT transcript, Fields showing the Summary about the brake warning light and Topics (5) starting with Brake warning light" loading="lazy" title="Click to zoom">
+<p class="insight">Lap 4's speech-to-text heard "break". This summary says "brake".<small>The transcript is still sound turned into words; the summary is written by the language model, which knows a warning light on a dashboard is a brake light. Context fixed what the ear got wrong.</small></p></li>
+</ol>
+  </div>
+  <div role="tabpanel" hidden>
+<p>Same idea, by API, on the multilingual narration track. <code>prebuilt-audio</code> transcribes with timestamps and speaker tags (no model needed); <code>prebuilt-callCenter</code> adds a summary, topics, companies and sentiment.</p>
 <pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-audio:analyzeBinary?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: audio/mpeg" --data-binary @narration.mp3 | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
 sleep 20; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].markdown'</code></pre>
 <img class="shot" src="images/shots/lab6-cu-audio.png" alt="WebVTT transcript with speaker tags, and callCenter fields: summary, topics, companies, sentiment, categories" loading="lazy" title="Click to zoom">
 <audio controls src="media/velo-andrew-multilingual.mp3"></audio>
-<p>Note the transcript's weak spot: the German sentence "Willkommen bei" became "Velkommen by". Language detection in audio is per file; tell the analyzer the locales when you know them.</p></li>
-  <li><p><strong>Video.</strong> <code>prebuilt-video</code> returns structure (resolution, duration, key frames, transcript); <code>prebuilt-videoSynopsis</code> samples frames through the completion model and writes a synopsis. The 18-second launch teaser:</p>
+<p>Note the transcript's weak spot: the German sentence "Willkommen bei" became "Velkommen by". Language detection in audio is per file; tell the analyzer the locales when you know them.</p>
+  </div>
+</div>
+<ol class="steps">
+  <li><p><strong>Video</strong> (Cloud Shell; the playground also has <strong>Modality: Video</strong> if you want to try the teaser there). <code>prebuilt-video</code> returns structure (resolution, duration, key frames, transcript); <code>prebuilt-videoSynopsis</code> samples frames through the completion model and writes a synopsis. The 18-second launch teaser:</p>
 <pre><code>OP=$(curl -s -i -X POST "$AI_ENDPOINT/contentunderstanding/analyzers/prebuilt-videoSynopsis:analyzeBinary?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: video/mp4" --data-binary @velocity-teaser.mp4 | grep -i operation-location | cut -d' ' -f2 | tr -d '\r')
 sleep 45; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].fields.Summary.valueString'</code></pre>
@@ -190,18 +271,21 @@ for content in result[&quot;result&quot;][&quot;contents&quot;]:
     if not content.get(&quot;fields&quot;):
         print(&quot;  markdown:&quot;, content.get(&quot;markdown&quot;, &quot;&quot;)[:600].replace(&quot;\n&quot;, &quot;\n            &quot;))</code></pre>
 <img class="shot" src="images/shots/lab6-extract-info.png" alt="Terminal: extract_info.py printing the window sticker fields with confidences" loading="lazy" title="Click to zoom">
-<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>Your resource has an embedding deployment and registered defaults; you created <code>velocityWindowSticker</code> and <code>velocityLotPhoto</code>; you have fields for the sticker, a table for four photos, a transcript for the narration and (optionally) a synopsis for the teaser; and <code>extract_info.py</code> runs.</p></div></div>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>Your resource has <code>gpt-4-1</code> and <code>text-embedding-3-large</code> deployments, registered with Content Understanding (portal <strong>Configure</strong> panel or the <code>PATCH …/defaults</code>); you have invoice fields from <strong>Document fields</strong> and a summary of the brake call from <strong>Call center</strong>; you created <code>velocityWindowSticker</code> and <code>velocityLotPhoto</code>; you have fields for the sticker, a table for four photos, a transcript for the narration and (optionally) a synopsis for the teaser; and <code>extract_info.py</code> runs.</p></div></div>
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
 <li><b>One more field.</b> Add <code>DestinationCharge</code> (number, extract) and <code>Drivetrain</code> (string, classify, enum FWD / AWD / RWD) to the sticker schema, <code>DELETE</code> the analyzer, <code>PUT</code> it again and re-run. Which method did you pick for each, and why?</li>
-<li><b>The brake call.</b> Send <code>question.wav</code> from Lap 4 to <code>prebuilt-callCenter</code>. What topics, sentiment and summary does it produce from six seconds of audio, and would you trust the sentiment?</li>
+<li><b>The brake call, by API.</b> You ran it in the playground; now send <code>question.wav</code> from Lap 4 to <code>prebuilt-callCenter</code> with <code>extract_info.py</code>. Does the summary match the playground word for word? Which fields does the JSON hold that <strong>Hide missing fields</strong> hid, and would you trust a sentiment from eight seconds of audio?</li>
 <li><b>Whole lot, one table.</b> Loop <code>extract_info.py velocityLotPhoto</code> over all sixteen photos and collect <code>VehicleType</code> and <code>VehicleCount</code> into a CSV. Compare the counts with Azure AI Vision's object boxes from Lap 5. Where they disagree, who is right?</li>
 </ol></div>
 
 <h2>Troubleshooting</h2>
+<details class="reveal hint"><summary>Portal path: "Failed to start analysis. Request failed with status code 400"</summary><div class="body"><p>Usually right after you deploy <code>gpt-4-1</code>: the new deployment takes a few minutes to become visible to Content Understanding (the API says <code>DeploymentIdNotFound</code>). Wait two to three minutes and select <strong>Run analysis</strong> again. Still failing after five? Open the <strong>Configure</strong> panel again and check that <strong>Chat completion model</strong> is your <code>gpt-4-1</code> under <em>Deployments</em>.</p></div></details>
+<details class="reveal hint"><summary>Portal path: "Model deployments required" every time I pick Document fields</summary><div class="body"><p>The models were never applied. Select <strong>Deploy models</strong>, choose your three deployments in the <strong>Configure</strong> panel, and finish with <strong>Apply changes</strong>; closing the panel without it changes nothing.</p></div></details>
+<details class="reveal hint"><summary>Portal path: gpt-4.1 will not deploy, or says no quota</summary><div class="body"><p>Check the deployment type: <strong>Global Standard</strong>, not Standard. Global Standard is where this subscription's gpt-4.1 quota is: 1,000K tokens per minute in East US 2. Keep the rate limit at <code>20000</code> so twenty people fit.</p></div></details>
 <details class="reveal hint"><summary>"The 'analyzerId' cannot contain '-'"</summary><div class="body"><p>Use letters and digits only: <code>velocityWindowSticker</code>, not <code>velocity-window-sticker</code>.</p></div></details>
-<details class="reveal hint"><summary>"Defaults have not yet been set to 'prebuilt-analyzer-embedding'"</summary><div class="body"><p>Run the <code>PATCH …/defaults</code> from Part 1 after deploying <code>text-embedding-3-large</code>. Custom document analyzers need both a completion and an embedding mapping.</p></div></details>
-<details class="reveal hint"><summary>"Provided model 'gpt-4.1-mini' is not supported by this analyzer"</summary><div class="body"><p>Some prebuilt analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>…) accept only gpt-4.1 or gpt-5-family models. <code>GET …/analyzers/prebuilt-invoice</code> shows <code>supportedModels</code>. Deploy one of those and map <code>prebuilt-analyzer-completion</code> to it, or use a custom schema on <code>prebuilt-document</code>, which accepts gpt-4.1-mini.</p></div></details>
+<details class="reveal hint"><summary>"Defaults have not yet been set to 'prebuilt-analyzer-embedding'"</summary><div class="body"><p>Run the <code>PATCH …/defaults</code> from Part 1 (or set <strong>Embedding model</strong> in the portal Configure panel) after deploying <code>text-embedding-3-large</code>. Custom document analyzers need both a completion and an embedding mapping.</p></div></details>
+<details class="reveal hint"><summary>"Provided model 'gpt-4.1-mini' is not supported by this analyzer"</summary><div class="body"><p>Some prebuilt analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>…) accept only gpt-4.1 or gpt-5-family models. <code>GET …/analyzers/prebuilt-invoice</code> shows <code>supportedModels</code>. Deploy <code>gpt-4-1</code> as in Part 1 and map <code>prebuilt-analyzer-completion</code> to it (portal: the <strong>Chat completion model</strong> in the Configure panel), or use a custom schema on <code>prebuilt-document</code>, which accepts gpt-4.1-mini.</p></div></details>
 <details class="reveal hint"><summary>410 "The requested API version has been retired"</summary><div class="body"><p>The preview versions (2024-12-01-preview, 2025-05-01-preview) are gone. Use <code>api-version=2025-11-01</code>.</p></div></details>
 <details class="reveal hint"><summary>Status Failed with RateLimit / 429 inside the error</summary><div class="body"><p>The completion deployment ran out of tokens per minute, typically on video. Wait a minute and retry, shorten the clip, or raise the deployment capacity.</p></div></details>
 <details class="reveal hint"><summary>404 "Analyzer … with status 'Failed' is not ready"</summary><div class="body"><p>Creation failed (usually a model mapping problem). <code>GET …/analyzers/&lt;id&gt;</code> shows the error; <code>DELETE</code> it, fix the JSON, <code>PUT</code> again.</p></div></details>
@@ -216,7 +300,7 @@ for content in result[&quot;result&quot;][&quot;contents&quot;]:
 <h2>Pit wall debrief · what you learned</h2>
 <ul>
   <li>Content Understanding is one API for documents, images, audio and video: analyzers, field schemas, async operations, typed results with confidence.</li>
-  <li>Prebuilt analyzers for common forms; custom analyzers (base + schema) for your own paperwork and photos.</li>
+  <li>Prebuilt analyzers for common forms, runnable in the portal playground (Document fields, Call center, OCR, Layout); custom analyzers (base + schema) for your own paperwork and photos.</li>
   <li>Field methods: extract (with source), generate (composed), classify (enum). Models are registered once per resource.</li>
   <li>Audio gives transcripts and call-center fields; video gives key frames, transcripts and a synopsis.</li>
   <li><code>extract_info.py</code> is the lightweight extraction app: send, poll, print.</li>
