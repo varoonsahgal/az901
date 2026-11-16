@@ -10,7 +10,7 @@ LOC=${LOC:-eastus2}; SUB=$(az account show --query id -o tsv)
 case "${1:-}" in
   prep)
     for ns in Microsoft.CognitiveServices Microsoft.Storage Microsoft.KeyVault Microsoft.Insights; do az provider register --namespace $ns -o none; done
-    echo "Quotas in $LOC (need: gpt4.1-mini Standard ≥ 10K × students, gpt-audio-mini GlobalStandard ≥ 1K × students, FLUX.2-pro ≥ 1 × students, AIServices accounts ≥ students):"
+    echo "Quotas in $LOC (need: gpt4.1-mini Standard ≥ 8K × students, gpt-audio-mini GlobalStandard ≥ 1K × students, FLUX.2-pro ≥ 1 × students, AIServices accounts ≥ students):"
     az cognitiveservices usage list --location $LOC --query "[?limit > \`0\` && (contains(name.value,'Standard.gpt4.1-mini') || contains(name.value,'gpt-audio-mini') || contains(name.value,'FLUX.2-pro') || contains(name.value,'text-embedding-3-large') || contains(name.value,'AIServices.S0'))].{quota:name.value,used:currentValue,limit:limit}" -o table ;;
   roles)
     while read -r upn; do [ -z "$upn" ] && continue

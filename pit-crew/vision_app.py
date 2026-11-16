@@ -1,10 +1,10 @@
 """Lap 5 · Vision two ways: Azure AI Vision (Foundry Tool) and a multimodal GPT model.
 
 Run:  python vision_app.py photo.jpg
-Needs: pip install azure-ai-vision-imageanalysis openai azure-identity azure-ai-projects
+Needs: pip install azure-ai-vision-imageanalysis openai azure-identity azure-ai-projects requests
 Env:   FOUNDRY_ENDPOINT (https://<resource>.cognitiveservices.azure.com)  AI_KEY  PROJECT_ENDPOINT  CHAT_MODEL
 """
-import os, sys, base64
+import os, sys, base64, requests
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.vision.imageanalysis import ImageAnalysisClient
 from azure.ai.vision.imageanalysis.models import VisualFeatures
@@ -14,11 +14,15 @@ from azure.ai.projects import AIProjectClient
 path = sys.argv[1] if len(sys.argv) > 1 else "photo.jpg"
 image = open(path, "rb").read()
 
-# 1) Azure AI Vision: fast, cheap, structured — captions, objects with boxes, OCR
+# 1) Azure AI Vision: fast, cheap, structured — objects with boxes, tags, OCR (Image Analysis 4.0)
 vision = ImageAnalysisClient(endpoint=os.environ["FOUNDRY_ENDPOINT"], credential=AzureKeyCredential(os.environ["AI_KEY"]))
-res = vision.analyze(image_data=image, visual_features=[VisualFeatures.CAPTION, VisualFeatures.OBJECTS, VisualFeatures.READ, VisualFeatures.TAGS], gender_neutral_caption=True)
+res = vision.analyze(image_data=image, visual_features=[VisualFeatures.OBJECTS, VisualFeatures.READ, VisualFeatures.TAGS])
+# 4.0 captions exist only in some regions (not East US 2), so the caption comes from the v3.2 describe operation
+cap = requests.post(os.environ["FOUNDRY_ENDPOINT"].rstrip("/") + "/vision/v3.2/describe?maxCandidates=1", data=image,
+                    headers={"Ocp-Apim-Subscription-Key": os.environ["AI_KEY"], "Content-Type": "application/octet-stream"}).json()
+caption = (cap.get("description", {}).get("captions") or [{"text": "(no caption)", "confidence": 0}])[0]
 print(f"── Azure AI Vision on {path} ──")
-print(f"  caption : “{res.caption.text}” ({res.caption.confidence:.2f})")
+print(f"  caption : “{caption['text']}” ({caption['confidence']:.2f})")
 print("  objects :", ", ".join(f"{o.tags[0].name} {o.tags[0].confidence:.2f} @ {o.bounding_box}" for o in res.objects.list) or "none")
 print("  tags    :", ", ".join(t.name for t in res.tags.list[:10]))
 if res.read and res.read.blocks:

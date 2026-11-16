@@ -31,6 +31,14 @@ export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=ht
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY CHAT_MODEL=gpt-4-1-mini IMAGE_MODEL=flux-2-pro
 curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot &amp;&amp; ls lot</code></pre></li>
+  <li><p><strong>Start Lap 6's engines now.</strong> Still in Cloud Shell, create the two deployments Lap 6 needs, an embedding model and the full gpt-4.1, so they have an hour to settle before you use them:</p>
+<pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name text-embedding-3-large --model-name text-embedding-3-large --model-version 1 --model-format OpenAI \
+  --sku-name Standard --sku-capacity 10 -o table
+az cognitiveservices account deployment create --name $NAME --resource-group $RG \
+  --deployment-name gpt-4-1 --model-name gpt-4.1 --model-version 2025-04-14 --model-format OpenAI \
+  --sku-name GlobalStandard --sku-capacity 40 -o table</code></pre>
+<p class="why"><b>Why now</b>A brand-new deployment answers chat calls within seconds, but Content Understanding can take ten to fifteen minutes to see it reliably; until then its calls fail on and off with <code>DeploymentIdNotFound</code>. Deployments cost nothing while idle, so creating them an hour early costs nothing and saves Lap 6 a confusing wait.</p></li>
 </ol>
 <p>Sixteen public-domain photos: sedans, an SUV, a pickup, a minivan, an EV, a classic, a motorcycle, bicycles, a traffic jam, a car wash, an engine bay, a showroom and a road trip. Credits are on the <a href="credits.html">credits page</a>.</p>
 
@@ -50,18 +58,20 @@ curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&am
 </ol>
   </div>
   <div role="tabpanel" hidden>
-<p>Same reading job by API, plus everything the portal cannot show yet: captions, tags, objects with boxes and people. This is Azure AI Vision's Image Analysis endpoint.</p>
+<p>Same reading job by API, plus everything the portal cannot show yet: tags, objects with boxes, people and a caption. This is Azure AI Vision's Image Analysis endpoint.</p>
 <ol class="steps">
-  <li><p>One request, every feature. Send the SUV photo as raw bytes and ask for caption, dense captions, tags, objects, people and text:</p>
-<pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=caption,denseCaptions,tags,objects,people,read&amp;gender-neutral-caption=true" \
-  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq '{caption: .captionResult, objects: [.objectsResult.values[] | {name: .tags[0].name, conf: .tags[0].confidence, box: .boundingBox}], tags: [.tagsResult.values[:8][] | .name]}'</code></pre>
-<img class="shot" src="images/shots/lab3-vision-curl.png" alt="curl image analysis returning caption 'a silver car parked in a parking lot' 0.84, one object station wagon, and tags" loading="lazy" title="Click to zoom">
-<img class="shot" src="images/shots/lab3-vision-card.png" alt="Card: caption, 32 tags with confidences, and dense captions with bounding boxes for the SUV photo" loading="lazy" title="Click to zoom">
-<p>Every feature returns a confidence. The caption is 0.84; the object detector called the SUV a "station wagon" at lower confidence. Structured, honest, and fast.</p></li>
+  <li><p>One request, four features. Send the SUV photo as raw bytes and ask for tags, objects, people and text (Image Analysis 4.0); then ask the v3.2 <em>describe</em> operation for a caption:</p>
+<pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=tags,objects,people,read" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq '{objects: [.objectsResult.values[] | {name: .tags[0].name, conf: .tags[0].confidence, box: .boundingBox}], tags: [.tagsResult.values[:8][] | .name]}'
+curl -s -X POST "$ENDPOINT/vision/v3.2/describe?maxCandidates=1" \
+  -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq .description.captions</code></pre>
+<p class="why"><b>Why two calls</b>Image Analysis 4.0 captions and dense captions are offered only in eight regions (East US, West US, West Europe, North Europe, France Central, Southeast Asia, East Asia, Korea Central). East US 2 is not one, and asking for <code>caption</code> there returns <em>"The feature 'Caption' is not supported in this region."</em> The v3.2 caption runs everywhere. Region availability is a real design input: check it before you choose a region.</p>
+<img class="shot" src="images/shots/lab3-vision-card.png" alt="Card: caption, 32 tags with confidences, and dense captions with bounding boxes for the SUV photo, captured in a region that offers 4.0 captions" loading="lazy" title="Click to zoom">
+<p>Every feature returns a confidence. The object detector called the SUV a <em>station wagon</em> at 0.53; the v3.2 caption, <em>"a silver car parked on a road"</em>, came back at 0.47. The card above was made in a captions region and adds dense captions: one sentence per region of the photo. Structured, honest, and fast.</p></li>
   <li><p>Try the busy one. The traffic jam returns <strong>11 objects</strong> with boxes; the bicycles photo returns cars <em>and</em> a bicycle; the road-trip photo detects a <em>person</em>. Here is what the JSON looks like drawn back onto the photos:</p>
 <div class="shots2"><img class="shot" src="images/vision/traffic-auckland-objects.jpg" alt="Traffic photo with 11 object bounding boxes and the caption 'a traffic jam on a highway'" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/bicycles-wall-objects.jpg" alt="Bicycles against a wall with car, van and bicycle boxes" loading="lazy" title="Click to zoom"></div>
 <div class="shots2"><img class="shot" src="images/vision/roadtrip-iceland-people.jpg" alt="Person detected beside a car" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-dense.jpg" alt="Dense captions: one sentence per region of the SUV photo" loading="lazy" title="Click to zoom"></div>
-<p>Run it on <code>lot/carwash.jpg</code> too. The caption we got was <em>"a small bushes in a field"</em> at 0.57.</p>
+<p>Run it on <code>lot/carwash.jpg</code> too. The caption we got was <em>"a building with a sign in front"</em> at 0.33.</p>
 <p class="insight">Low confidence is the model asking you to look.<small>Every feature returns a number for a reason. Thresholds belong in your application, not in the service.</small></p>
 <div class="shots2"><img class="shot" src="images/vision/carwash-objects.jpg" alt="Car wash photo with a doubtful caption" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-tags.jpg" alt="Tags strip for the SUV photo" loading="lazy" title="Click to zoom"></div></li>
   <li><p><strong>OCR.</strong> Point the <code>read</code> feature at documents instead of scenes. The window sticker returns 34 lines in reading order with word confidences; the VIN plate reads <code>1VMSTR8A3RA210077</code> correctly; the handwritten note reads seven lines and turns "100 ft-lb" into "100 ft-16".</p>
@@ -100,10 +110,10 @@ python vision_app.py lot/pickup-ford-f150.jpg</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 5 · Vision two ways: Azure AI Vision (Foundry Tool) and a multimodal GPT model.
 
 Run:  python vision_app.py photo.jpg
-Needs: pip install azure-ai-vision-imageanalysis openai azure-identity azure-ai-projects
+Needs: pip install azure-ai-vision-imageanalysis openai azure-identity azure-ai-projects requests
 Env:   FOUNDRY_ENDPOINT (https://&lt;resource&gt;.cognitiveservices.azure.com)  AI_KEY  PROJECT_ENDPOINT  CHAT_MODEL
 &quot;&quot;&quot;
-import os, sys, base64
+import os, sys, base64, requests
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.vision.imageanalysis import ImageAnalysisClient
 from azure.ai.vision.imageanalysis.models import VisualFeatures
@@ -113,11 +123,15 @@ from azure.ai.projects import AIProjectClient
 path = sys.argv[1] if len(sys.argv) &gt; 1 else &quot;photo.jpg&quot;
 image = open(path, &quot;rb&quot;).read()
 
-# 1) Azure AI Vision: fast, cheap, structured — captions, objects with boxes, OCR
+# 1) Azure AI Vision: fast, cheap, structured — objects with boxes, tags, OCR (Image Analysis 4.0)
 vision = ImageAnalysisClient(endpoint=os.environ[&quot;FOUNDRY_ENDPOINT&quot;], credential=AzureKeyCredential(os.environ[&quot;AI_KEY&quot;]))
-res = vision.analyze(image_data=image, visual_features=[VisualFeatures.CAPTION, VisualFeatures.OBJECTS, VisualFeatures.READ, VisualFeatures.TAGS], gender_neutral_caption=True)
+res = vision.analyze(image_data=image, visual_features=[VisualFeatures.OBJECTS, VisualFeatures.READ, VisualFeatures.TAGS])
+# 4.0 captions exist only in some regions (not East US 2), so the caption comes from the v3.2 describe operation
+cap = requests.post(os.environ[&quot;FOUNDRY_ENDPOINT&quot;].rstrip(&quot;/&quot;) + &quot;/vision/v3.2/describe?maxCandidates=1&quot;, data=image,
+                    headers={&quot;Ocp-Apim-Subscription-Key&quot;: os.environ[&quot;AI_KEY&quot;], &quot;Content-Type&quot;: &quot;application/octet-stream&quot;}).json()
+caption = (cap.get(&quot;description&quot;, {}).get(&quot;captions&quot;) or [{&quot;text&quot;: &quot;(no caption)&quot;, &quot;confidence&quot;: 0}])[0]
 print(f&quot;── Azure AI Vision on {path} ──&quot;)
-print(f&quot;  caption : “{res.caption.text}” ({res.caption.confidence:.2f})&quot;)
+print(f&quot;  caption : “{caption[&#x27;text&#x27;]}” ({caption[&#x27;confidence&#x27;]:.2f})&quot;)
 print(&quot;  objects :&quot;, &quot;, &quot;.join(f&quot;{o.tags[0].name} {o.tags[0].confidence:.2f} @ {o.bounding_box}&quot; for o in res.objects.list) or &quot;none&quot;)
 print(&quot;  tags    :&quot;, &quot;, &quot;.join(t.name for t in res.tags.list[:10]))
 if res.read and res.read.blocks:
@@ -134,8 +148,8 @@ r = client.chat.completions.create(model=os.environ.get(&quot;CHAT_MODEL&quot;, 
         {&quot;type&quot;: &quot;image_url&quot;, &quot;image_url&quot;: {&quot;url&quot;: f&quot;data:image/jpeg;base64,{b64}&quot;, &quot;detail&quot;: &quot;low&quot;}}]}])
 print(f&quot;\n── {r.model} (multimodal) ──\n&quot; + r.choices[0].message.content)
 print(f&quot;  [{r.usage.prompt_tokens} prompt tokens incl. the image]&quot;)</code></pre>
-<pre><code><span class="out">── Azure AI Vision on pickup.jpg ──
-  caption : “a white truck parked in a lot” (0.77)
+<pre><code><span class="out">── Azure AI Vision on lot/pickup-ford-f150.jpg ──
+  caption : “a white truck parked in a parking lot” (0.69)
   objects : car 0.52 @ {&#x27;x&#x27;: 4, &#x27;y&#x27;: 120, &#x27;w&#x27;: 193, &#x27;h&#x27;: 378}, car 0.80 @ {&#x27;x&#x27;: 0, &#x27;y&#x27;: 30, &#x27;w&#x27;: 894, &#x27;h&#x27;: 745}, car 0.71 @ {&#x27;x&#x27;: 438, &#x27;y&#x27;: 27, &#x27;w&#x27;: 931, &#x27;h&#x27;: 736}
   tags    : tire, vehicle, land vehicle, wheel, transport, bumper, auto part, outdoor, pickup truck, grille
   text    : Varen!
@@ -230,7 +244,7 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You have the VIN read from the plate in the OCR playground (or by <code>read</code>), a JSON analysis with boxes for at least two lot photos, a listing written by the model from a photo (playground or <code>vision_app.py</code>), a deployed <code>flux-2-pro</code> and at least one generated image (playground or PNG on disk).</p></div></div>
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
-<li><b>Sixteen photos, one CSV.</b> Loop <code>vision_app.py</code> (or just the Vision half) over every file in <code>lot/</code> and write one line per photo: file, caption, confidence, number of objects. Sort by confidence. Which photos would you send to a human?</li>
+<li><b>Sixteen photos, one CSV.</b> Loop <code>vision_app.py</code> (or just the Vision half) over every file in <code>lot/</code> and write one line per photo: file, caption, caption confidence, number of objects. Sort by confidence. Which photos would you send to a human?</li>
 <li><b>OCR versus the model.</b> Send <code>window-sticker.png</code> to gpt-4.1-mini with "List the VIN, total MSRP and combined MPG" at <code>detail: high</code>, then compare with the Read result. Which one got the VIN right, and how many tokens did the model's version cost?</li>
 <li><b>Same prompt, different canvas.</b> Generate the Volt prompt at <code>1024x768</code> and then at <code>768x1024</code> (one minute apart). Does the composition change, or only the crop? Now add "no text, no badges" to the prompt and see what the content filter and the model do with brand marks.</li>
 </ol></div>

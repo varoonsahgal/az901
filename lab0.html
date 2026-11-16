@@ -51,7 +51,7 @@
   <div class="lapart-top"><div class="lapart-num"><small>Lap</small><b>0</b><small>of 7</small></div><div class="lapart-ico" aria-hidden="true">🏎️</div></div>
   <div class="lapart-name">Pit lane</div>
   <div class="segs" aria-label="Lap 0 of 7"><i style="--d:#94A3B8" class="cur" title="Lap 0 · Pit lane"></i><i style="--d:#EF4444" class="" title="Lap 1 · Race rules"></i><i style="--d:#22C55E" class="" title="Lap 2 · Pole position"></i><i style="--d:#F59E0B" class="" title="Lap 3 · Pit crew"></i><i style="--d:#38BDF8" class="" title="Lap 4 · Radio check"></i><i style="--d:#A78BFA" class="" title="Lap 5 · Eyes on track"></i><i style="--d:#14B8A6" class="" title="Lap 6 · Paperwork"></i><i style="--d:#FACC15" class="" title="Lap 7 · Checkered flag"></i></div>
-  <div class="lapart-lbl">You build</div><ul class="build"><li>Resource group rg-ai901-sNN</li><li>Foundry resource, kind AIServices, tier S0</li><li>Project proj-ai901-sNN</li><li>gpt-4.1-mini deployment at 10K TPM</li><li>Your first API call: a captioned photo</li></ul>
+  <div class="lapart-lbl">You build</div><ul class="build"><li>Resource group rg-ai901-sNN</li><li>Foundry resource, kind AIServices, tier S0</li><li>Project proj-ai901-sNN</li><li>gpt-4.1-mini deployment at 8K TPM</li><li>Your first API call: a captioned photo</li></ul>
   <div class="lapart-foot"><span>⏱ 30 min</span><span>Next · Lap 1 Race rules</span></div>
 </div></div>
 </div></section>
@@ -85,7 +85,7 @@
   <text x="56" y="200" fill="#38BDF8" font-size="12" font-family="JetBrains Mono,monospace">…/api/projects/proj-ai901-s07</text>
   <rect x="280" y="96" width="240" height="164" rx="12" fill="#142036" stroke="#1F2D47"/>
   <text x="296" y="122" fill="#fff" font-size="14" font-weight="600">Deployments</text>
-  <g font-size="12" font-family="JetBrains Mono,monospace"><text x="296" y="148" fill="#86EFAC">gpt-4-1-mini</text><text x="430" y="148" fill="#98A6BD">10K TPM</text>
+  <g font-size="12" font-family="JetBrains Mono,monospace"><text x="296" y="148" fill="#86EFAC">gpt-4-1-mini</text><text x="430" y="148" fill="#98A6BD">8K TPM</text>
   <text x="296" y="170" fill="#86EFAC">gpt-audio-mini</text><text x="430" y="170" fill="#98A6BD">1K TPM</text>
   <text x="296" y="192" fill="#86EFAC">flux-2-pro</text><text x="430" y="192" fill="#98A6BD">capacity 1</text></g>
   <text x="296" y="236" fill="#B6C2D6" font-size="12">Standard · Global Standard · Provisioned</text>
@@ -184,10 +184,10 @@ echo $RG $NAME $LOC $PROJECT</code></pre>
 <ul>
   <li><span class="mk">1</span><strong>Deployment name</strong>: <code>gpt-4-1-mini</code> (hyphens). This is the name your code and the playground call, not the model's name.</li>
   <li><span class="mk">2</span><strong>Deployment type</strong>: <strong>Standard</strong>. Open the dropdown and look: it is the exam's list of deployment types, from Global Standard to Provisioned Throughput (the Lap 0 quiz asks about it).</li>
-  <li><span class="mk">3</span><strong>Tokens per Minute Rate Limit</strong>: type <code>10000</code> in the box. Leave dynamic quota off.</li>
+  <li><span class="mk">3</span><strong>Tokens per Minute Rate Limit</strong>: type <code>8000</code> in the box (the screenshot shows 10000 from an earlier, smaller class). Leave dynamic quota off.</li>
   <li><span class="mk">4</span>Select <strong>Deploy</strong>.</li>
 </ul>
-<p class="why"><b>Why 10,000</b>The box defaults to 100,000 out of a 200,000 regional pool that the <em>whole class</em> shares. Two people on the default would leave nothing for the other eighteen. 10K tokens a minute is far more than one person can type.</p>
+<p class="why"><b>Why 8,000</b>The box defaults to 100,000 out of a 200,000 regional pool that the <em>whole class</em> shares. Two people on the default would leave nothing for everyone else; twenty-three of us at 8K use 184K. 8K tokens a minute is far more than one person can type.</p>
 <div class="shots2"><img class="shot" src="images/shots/portal-10-deploy-form.jpg" alt="Deploy panel: name gpt-4-1-mini (1), type Standard (2), 10000 tokens per minute (3), Deploy (4)" loading="lazy" title="Click to zoom"><img class="shot" src="images/shots/portal-09-types.jpg" alt="The deployment type dropdown: Global Standard, Data Zone Standard, Standard, Developer, Global Batch, Data Zone Batch, Global Provisioned Throughput" loading="lazy" title="Click to zoom"></div></li>
 
   <li><p><strong>Take it for a test drive.</strong> When the deployment is ready the <strong>playground</strong> opens on it. In the chat box type <code>Who are you, and what can you do for a car dealership?</code> and press Enter. That is your first model call. The <em>Instructions</em> box on the left is the system message; Lap 2 lives here.</p>
@@ -204,8 +204,8 @@ export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 az cognitiveservices account deployment list -n $NAME -g $RG -o table
 pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests</code></pre>
-<p>The first command should print <code>"kind": "AIServices"</code> and <code>"sku": "S0"</code>; the deployment list should show <code>gpt-4-1-mini</code>, <code>Standard</code>, capacity <code>10</code>. If <code>az</code> says the resource is not found, the name in step 3 does not match <code>$NAME</code>: fix the export, not the resource.</p>
-<p class="insight">The portal built exactly what the Cloud Shell commands build.<small>Same kind (AIServices), same SKU (S0), same custom domain, same Standard deployment at capacity 10: we checked both with <code>az</code>. Clicks and commands are two doors into the same garage.</small></p></li>
+<p>The first command should print <code>"kind": "AIServices"</code> and <code>"sku": "S0"</code>; the deployment list should show <code>gpt-4-1-mini</code>, <code>Standard</code>, capacity <code>8</code>. If <code>az</code> says the resource is not found, the name in step 3 does not match <code>$NAME</code>: fix the export, not the resource.</p>
+<p class="insight">The portal built exactly what the Cloud Shell commands build.<small>Same kind (AIServices), same SKU (S0), same custom domain, same Standard deployment at capacity 8: we checked both with <code>az</code>. Clicks and commands are two doors into the same garage.</small></p></li>
 </ol>
 <div class="callout note"><div class="ico">📝</div><div><span class="box-lbl">If the portal has moved a button</span><p>These screenshots are from 15 November 2026, and Microsoft redraws Foundry often. The nouns do not change: a resource group holds a Foundry resource, a project lives inside the resource, a deployment is your copy of a model, and a playground tries it. If a screen looks different, look for those nouns, or switch to the Cloud Shell tab, whose commands are exact.</p></div></div>
   </div>
@@ -234,10 +234,10 @@ echo $ENDPOINT</code></pre>
   --query "{name:name,state:properties.provisioningState,endpoint:properties.endpoints.\"AI Foundry API\"}" -o jsonc
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
 <img class="shot" src="images/shots/lab0-project.png" alt="Project created with its Foundry API endpoint" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Deploy a model.</strong> <code>gpt-4.1-mini</code> is cheap, fast, understands images and (unlike the gpt-5 family) still lets you set <code>temperature</code>, which Lap 2 needs. Capacity 10 means 10,000 tokens per minute: plenty for one person, and twenty of them fit in the regional quota of 200K.</p>
+  <li><p><strong>Deploy a model.</strong> <code>gpt-4.1-mini</code> is cheap, fast, understands images and (unlike the gpt-5 family) still lets you set <code>temperature</code>, which Lap 2 needs. Capacity 8 means 8,000 tokens per minute: plenty for one person, and twenty-three of them fit in the regional quota of 200K.</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name gpt-4-1-mini --model-name gpt-4.1-mini --model-version 2025-04-14 --model-format OpenAI \
-  --sku-name Standard --sku-capacity 10 -o none
+  --sku-name Standard --sku-capacity 8 -o none
 az cognitiveservices account deployment list -n $NAME -g $RG -o table</code></pre>
 <img class="shot" src="images/shots/lab0-deploy.png" alt="Deployment list showing gpt-4-1-mini Standard capacity 10 Succeeded, and the regional quota usage" loading="lazy" title="Click to zoom"></li>
   <li><p><strong>Python libraries</strong> for the lightweight apps you will run later. Cloud Shell already has Python 3; this takes about a minute.</p>
@@ -251,16 +251,22 @@ python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code><
 <h2 id="part-4-your-first-ai-call"><span class="pn">Part 4</span>Your first AI call</h2>
 <p>Prove the garage works with one HTTP request to Azure AI Vision, asking it to caption a photo from this site. No SDK, no Python, just <code>curl</code>.</p>
 <p class="insight">Every Foundry Tool call has the same four parts: an endpoint, an API version, your key in a header, and JSON back.<small>Learn the shape once here and you can read every call on this site, and every one on the exam.</small></p>
-<pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&features=caption" \
+<pre><code>curl -s -X POST "$ENDPOINT/vision/v3.2/describe?maxCandidates=1" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" \
-  -d '{"url":"https://varoonsahgal.github.io/az901/images/photos/classic-rambler.jpg"}' | jq .captionResult</code></pre>
-<div class="shots2"><img class="shot" src="images/shots/lab0-first-call.png" alt="curl output: caption 'an orange and white car parked in a parking lot' with confidence 0.86" loading="lazy" title="Click to zoom"><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
+  -d '{"url":"https://varoonsahgal.github.io/az901/images/photos/classic-rambler.jpg"}' | jq .description.captions</code></pre>
+<div class="shots2"><pre><code><span class="out">[
+  {
+    "text": "an orange car parked on pavement",
+    "confidence": 0.4857805073261261
+  }
+]</span></code></pre><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
+<p class="why"><b>Why v3.2</b>The API version is in the path here (<code>v3.2</code>). Azure AI Vision's newer Image Analysis 4.0 also captions, but only in eight regions (East US, West US, West Europe, North Europe, France Central, Southeast Asia, East Asia, Korea Central). East US 2, chosen because it carries every model we need today, is not one of them, so we use the v3.2 <em>describe</em> operation, which runs everywhere. Lap 5 uses 4.0 for everything else.</p>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You should now have: a resource group <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; inside it a Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> with one project and one deployment; variables <code>KEY</code>, <code>ENDPOINT</code>, <code>AI_ENDPOINT</code>, <code>AOAI_ENDPOINT</code>, <code>PROJECT_ENDPOINT</code> set in your shell; and a caption for a 1958 Rambler. Open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → yours, and look at the two resources. Then <a href="https://ai.azure.com">ai.azure.com</a> should show your project. If both are true, you are out of the pit lane.</p></div></div>
 <img class="shot" src="images/shots/lab0-portal-13-rg.jpg" alt="Azure portal: rg-ai901-s99 holds exactly two resources, ai901-s99-pitcrew (Foundry) and proj-ai901-s99 (Foundry project), both in East US 2" loading="lazy" title="Click to zoom">
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes and uses only what is on this page.</p><ol>
 <li><b>Deploy a second model.</b> Add <code>gpt-4o-mini</code> (version <code>2024-07-18</code>) as a Standard deployment named <code>gpt-4o-mini</code> at 5K TPM, then list both deployments. Then delete it: <code>az cognitiveservices account deployment delete</code>. You just did what the portal's Deploy button does.</li>
-<li><b>Ask Vision for more.</b> Re-run the first call with <code>features=caption,denseCaptions,tags</code>. How many sentences does dense captioning return for one photo, and which part of the picture does each describe?</li>
+<li><b>Ask Vision for more.</b> Call Image Analysis 4.0 on the same photo: <code>$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=tags,objects</code>. How many tags come back above 90% confidence? Then add <code>caption</code> to the features and read the error: it tells you exactly why the first call used v3.2.</li>
 <li><b>Find the three hosts in the portal.</b> Open your Foundry resource in <a href="https://portal.azure.com">portal.azure.com</a> and find <strong>Keys and Endpoint</strong>. Match the endpoints shown there to the three variables you exported. Which one does the Foundry portal use?</li>
 </ol></div>
 
@@ -269,7 +275,7 @@ python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code><
 <details class="reveal hint"><summary>"InsufficientQuota" when deploying the model</summary><div class="body"><p>The regional pool for that model is used up. Check with <code>az cognitiveservices usage list --location $LOC -o table | grep -i gpt4.1-mini</code>. Ask race control; the fix is to lower a capacity somewhere or deploy <code>gpt-4o-mini</code> instead (same commands, model name <code>gpt-4o-mini</code>, version <code>2024-07-18</code>).</p></div></details>
 <details class="reveal hint"><summary>"AuthorizationFailed" or the portal says you cannot create a project</summary><div class="body"><p>Your account needs <em>Contributor</em> on the subscription (to create resources) and <em>Foundry User</em> or <em>Azure AI Developer</em> on the resource (to use the project and agents). Race control grants both; see the instructor page. The error message names the role it wanted.</p></div></details>
 <details class="reveal hint"><summary>Portal path: my resource group is not in the Foundry dropdown</summary><div class="body"><p>The list loads when the <em>Create a project</em> dialog opens, so a group made a moment ago may be missing. Cancel, reopen <strong>Create new project</strong>, and expand <strong>Advanced options</strong> again. Still missing? Check the <strong>Subscription</strong> field above it: the group only appears under the subscription it was created in.</p></div></details>
-<details class="reveal hint"><summary>Portal path: I deployed with the default settings</summary><div class="body"><p>No harm done if you notice now. Open <strong>Models</strong>, select your deployment, and either edit it down to 10K tokens per minute or delete it and deploy again with <strong>Custom settings</strong>. Check the deployment name too: code in later laps calls <code>gpt-4-1-mini</code>, with hyphens.</p></div></details>
+<details class="reveal hint"><summary>Portal path: I deployed with the default settings</summary><div class="body"><p>No harm done if you notice now. Open <strong>Models</strong>, select your deployment, and either edit it down to 8K tokens per minute or delete it and deploy again with <strong>Custom settings</strong>. Check the deployment name too: code in later laps calls <code>gpt-4-1-mini</code>, with hyphens.</p></div></details>
 <details class="reveal hint"><summary>Cloud Shell forgot my variables</summary><div class="body"><p>Every new Cloud Shell session starts clean. Paste the Part 2 block again, then the three <code>export</code> lines from the keys step. Thirty seconds. This is normal.</p></div></details>
 <details class="reveal hint"><summary>I created everything in East US instead of East US 2</summary><div class="body"><p>It will mostly work, but two models we use later (<code>gpt-audio-mini</code> and FLUX) only have quota in East US 2 on this subscription. Delete and recreate: <code>az group delete -n $RG --yes</code>, then set <code>LOC=eastus2</code> and start Part 3 again. Five minutes.</p></div></details>
 

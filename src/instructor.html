@@ -17,10 +17,10 @@
 <table>
 <thead><tr><th>Quota</th><th>Typical limit</th><th>Per student</th><th>Fits</th></tr></thead>
 <tbody>
-<tr><td><code>OpenAI.Standard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>10K</td><td>20 exactly, with no headroom for your own demo: deploy <em>your</em> gpt-4.1-mini in another region (we used East US), or request a quota increase in advance (Azure portal → Quotas → Azure OpenAI; usually approved within hours), or tell students to deploy at 8K.</td></tr>
+<tr><td><code>OpenAI.Standard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>8K</td><td>23 at 8K = 184K, leaving 16K. Deploy <em>your</em> gpt-4.1-mini in another region (we used East US). More than 25 students: request a quota increase in advance (Azure portal → Quotas → Azure OpenAI; usually approved within hours).</td></tr>
 <tr><td><code>OpenAI.GlobalStandard.gpt4.1-mini</code> (TPM)</td><td>200K</td><td>—</td><td>A second pool: half the class can deploy Global Standard instead if Standard runs dry.</td></tr>
-<tr><td><code>OpenAI.GlobalStandard.gpt4.1</code> (TPM)</td><td>1,000K</td><td>20K</td><td>20 with lots of room. Lap 6 now has every student deploy <code>gpt-4-1</code> Global Standard so the Content Understanding field analyzers run in their own garage.</td></tr>
-<tr><td><code>OpenAI.GlobalStandard.gpt-audio-mini</code> (TPM)</td><td>30K</td><td>1K</td><td>20 with room.</td></tr>
+<tr><td><code>OpenAI.GlobalStandard.gpt4.1</code> (TPM)</td><td>1,000K</td><td>40K</td><td>23 at 40K = 920K. 40K because the Lap 6 video synopsis hit the rate limit every time at 20K. Lap 6 now has every student deploy <code>gpt-4-1</code> Global Standard so the Content Understanding field analyzers run in their own garage.</td></tr>
+<tr><td><code>OpenAI.GlobalStandard.gpt-audio-mini</code> (capacity units)</td><td>20</td><td>1</td><td>20 exactly; this is the tightest limit. For more students, request an increase before the day, or have students 21+ deploy gpt-audio-mini in Sweden Central (a second pool of 20) on a second Foundry resource.</td></tr>
 <tr><td><code>AIServices.GlobalStandard.FLUX.2-pro</code> (capacity units)</td><td>30</td><td>1</td><td>20 with room; each unit is one request per minute.</td></tr>
 <tr><td><code>OpenAI.Standard.text-embedding-3-large</code> (TPM)</td><td>350K+</td><td>10K</td><td>Fine.</td></tr>
 <tr><td><code>AIServices.S0.AccountCount</code></td><td>100</td><td>1</td><td>Fine.</td></tr>
@@ -33,7 +33,7 @@
 
 <div class="callout tip"><div class="ico">✅</div><div><span class="box-lbl">Day-of checklist</span><ul>
 <li>Projector on the index page; student numbers on the board; the three rules written next to them.</li>
-<li><code>./race_control.sh prep</code> run this morning and the gpt-4.1-mini Standard quota in East US 2 still shows at least 10K × students free.</li>
+<li><code>./race_control.sh prep</code> run this morning and the gpt-4.1-mini Standard quota in East US 2 still shows at least 8K × students free.</li>
 <li>Your own s00 garage is in a <em>different</em> region (East US), and you have clicked through every portal path once this week: Foundry redraws screens often, and the labs now lead with the portal.</li>
 <li>Every student has the three roles (Contributor, Foundry User, Cognitive Services User). Role changes take up to five minutes to reach the playgrounds.</li>
 <li>Headphones for everyone before Lap 4; a quiet corner for Voice mode, or the decision to play the audio files instead.</li>
@@ -49,7 +49,7 @@
   <div class="t">11:45</div><div class="w"><b>Lap 3</b> <span>— 60 min. Agent creation in the portal is click-heavy; pair up. Preview web app is the applause moment.</span></div>
   <div class="t">12:45</div><div class="w"><span>Lunch 45 min</span></div>
   <div class="t">13:30</div><div class="w"><b>Lap 4</b> <span>— 60 min. Voice mode needs microphones and a quiet room; skip it if the room is loud and play the audio files instead. gpt-audio-mini deployment first, then the scripts.</span></div>
-  <div class="t">14:30</div><div class="w"><b>Lap 5</b> <span>— 50 min. FLUX at capacity 1 is one image a minute per student; stagger prompts and nobody waits.</span></div>
+  <div class="t">14:30</div><div class="w"><b>Lap 5</b> <span>— 50 min. Make sure everyone runs Part 1 step 3 (gpt-4-1 and the embedding deployment): Content Understanding needs 10–15 minutes to see a new deployment, and Lap 6 is where they would otherwise wait. FLUX at capacity 1 is one image a minute per student; stagger prompts and nobody waits.</span></div>
   <div class="t">15:20</div><div class="w"><span>Break 10 min</span></div>
   <div class="t">15:30</div><div class="w"><b>Lap 6</b> <span>— 50 min. The embedding deployment and the defaults PATCH must happen before the custom analyzer; the sticker schema is the core exercise, video is optional.</span></div>
   <div class="t">16:20</div><div class="w"><b>Lap 7</b> <span>— 40 min. 25 minutes of practice exam, then everyone runs the delete command before leaving. Run <code>./race_control.sh status</code> to confirm.</span></div>
