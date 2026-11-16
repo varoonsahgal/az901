@@ -337,6 +337,102 @@ body.ov .slide:hover{outline-color:var(--hue)}
   <p class="take"><span class="tl">Remember</span><span>Tenant = <u>who</u>. Subscription = <u>bill</u>. Resource group = <u>folder</u>. Resource = <u>thing</u>.</span></p>
 </section>
 
+<!-- 7a -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Tenant · the problem it solves</p>
+  <h2>Without a tenant, every app keeps its own list of people</h2>
+  <div class="body">
+    <div class="cols top">
+      <div class="card h" style="--c:var(--red);padding:28px 34px">
+        <span class="tag" style="--c:#FCA5A5">🗂️ Without one directory</span>
+        <ul class="pts" style="margin-top:18px">
+          <li><b>A login per app</b><small>Email, the dealer portal, the parts system and Azure each keep their own users and passwords.</small></li>
+          <li><b>Leavers linger</b><small>When someone leaves, IT must remember every system they had. The one it forgets stays open.</small></li>
+          <li><b>The weakest rule wins</b><small>MFA and password policy are set app by app, so security is only as good as the laxest app.</small></li>
+        </ul>
+      </div>
+      <div class="card h" style="--c:var(--sky);padding:28px 34px">
+        <span class="tag">🏢 With one tenant · Microsoft Entra ID</span>
+        <ul class="pts" style="margin-top:18px">
+          <li><b>One sign-in</b><small>The same account opens Microsoft 365, the Azure portal and the Foundry portal.</small></li>
+          <li><b>One switch to turn off</b><small>Disable the account once and access ends in every app that trusts the tenant.</small></li>
+          <li><b>One set of rules</b><small>MFA and sign-in policy are set once for the whole organisation.</small></li>
+        </ul>
+        <p class="velo">A technician who leaves on Friday is disabled once and loses Outlook, Azure and the playground on the same click.</p>
+      </div>
+    </div>
+    <div class="exam">A tenant is about <b>identity</b>, not money. One tenant can hold many subscriptions; each subscription trusts exactly one tenant.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>The tenant answers <u>who is this?</u> once, for every app.</span></p>
+</section>
+
+<!-- 7b -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Subscription · the problem it solves</p>
+  <h2>Without subscriptions, one invoice pays for everything and nobody knows who spent it</h2>
+  <div class="body">
+    <div class="grid g4 tight">
+      <div class="card h" style="--c:var(--gold)"><span class="ico">💳</span><span class="tag" style="--c:var(--gold)">Who pays?</span><h3>Billing</h3><p>Each subscription has its own invoice and payment method. Marketing's AI spend lands on Marketing's bill.</p></div>
+      <div class="card h" style="--c:var(--gold)"><span class="ico">🪣</span><span class="tag" style="--c:var(--gold)">Who gets capacity?</span><h3>Limits</h3><p>Quota is counted per subscription, per region. A runaway test in Dev cannot use up Production's tokens.</p></div>
+      <div class="card h" style="--c:var(--gold)"><span class="ico">🧱</span><span class="tag" style="--c:var(--gold)">What can a mistake reach?</span><h3>Blast radius</h3><p>Being Owner of the Dev subscription gives no rights in Production. A wrong delete stays inside one subscription.</p></div>
+      <div class="card h" style="--c:var(--gold)"><span class="ico">📜</span><span class="tag" style="--c:var(--gold)">Which rules apply?</span><h3>Policy</h3><p>"EU regions only" or "every resource needs a cost tag" is set once and applies to everything inside.</p></div>
+    </div>
+    <div style="margin-top:30px;font:600 20px var(--mono);letter-spacing:.08em;color:var(--muted)">HOW VELOCITY MOTORS MIGHT SPLIT IT</div>
+    <div class="grid g3" style="margin-top:12px">
+      <div class="box"><b>💳 Production</b><small>the customer chatbot · strict access · its own quota</small></div>
+      <div class="box"><b>💳 Dev / Test</b><small>engineers experiment · cheap to break</small></div>
+      <div class="box hi"><b>💳 Training ← today</b><small>20 students share one bill and one quota pool</small></div>
+    </div>
+    <div class="exam">Needs a <b>separate bill, separate quota or separate admins</b>? That is a new subscription. Many subscriptions under one set of rules? A <b>management group</b>.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>The subscription answers <u>who pays</u> and <u>how much can be used</u>.</span></p>
+</section>
+
+<!-- 7c -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Resource group · the problem it solves</p>
+  <h2>Without resource groups, cleanup is a scavenger hunt</h2>
+  <div class="body">
+    <div class="cols w46 top">
+      <div style="display:grid;gap:18px">
+        <div class="card h" style="--c:var(--red)">
+          <span class="tag" style="--c:#FCA5A5">One flat subscription · which are safe to delete?</span>
+          <p class="t-mono" style="font-family:var(--mono);font-size:21px;line-height:1.6;margin-top:8px">ai901-s07-pitcrew<br>ai901-s12-pitcrew<br>stor8f3a1c<br>search-test-2<br>chatbot-prod-eus2<br>kv-velocity-demo<br>…and 40 more</p>
+        </div>
+        <div class="card h" style="--c:var(--sky)">
+          <span class="tag">Grouped · the answer is in the name</span>
+          <p style="font-family:var(--mono);font-size:21px;line-height:1.6;margin-top:8px">📁 rg-ai901-s07 → delete after class<br>📁 rg-ai901-s12 → delete after class<br>📁 rg-chatbot-prod → never touch</p>
+        </div>
+      </div>
+      <ul class="pts">
+        <li><b>Lifecycle</b><small>Things created together are deleted together. One delete, nothing forgotten, nothing still billing next month.</small></li>
+        <li><b>Access</b><small>Contributor on <code>rg-ai901-s07</code> lets student 7 manage their own garage and nobody else's.</small></li>
+        <li><b>Cost</b><small>Cost analysis groups spending by resource group: one line per student, per project, per experiment.</small></li>
+        <li><b>The rules</b><small>Every resource is in exactly one group. Groups do not nest. Resources in a group can sit in different regions.</small></li>
+      </ul>
+    </div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>A resource group answers <u>what belongs together</u>, so it can be secured, costed and deleted together.</span></p>
+</section>
+
+<!-- 7d -->
+<section class="slide" data-sec="azure" data-name="Azure fundamentals">
+  <p class="k">Which box solves it?</p>
+  <h2>Name the problem and the box names itself</h2>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px"><p style="margin:0">"A contractor leaves. Remove their access to everything."</p><span class="pill" style="--c:var(--slate);--c-ink:var(--ink)">🏢 Tenant</span></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px"><p style="margin:0">"Marketing's AI spend must appear on Marketing's invoice."</p><span class="pill" style="--c:var(--gold);--c-ink:var(--gold)">💳 Subscription</span></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px"><p style="margin:0">"Testing must never use up Production's model quota."</p><span class="pill" style="--c:var(--gold);--c-ink:var(--gold)">💳 Subscription</span></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px"><p style="margin:0">"Delete everything from the hackathon, and nothing else."</p><span class="pill">📁 Resource group</span></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px"><p style="margin:0">"Each student may manage only their own resources."</p><span class="pill">📁 Role on a resource group</span></div>
+      <div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:20px"><p style="margin:0">"Every subscription in the company may deploy only in the EU."</p><span class="pill" style="--c:var(--violet);--c-ink:var(--violet)">🗄 Management group + Policy</span></div>
+    </div>
+    <div class="exam">Today's set-up uses all three: one <b>tenant</b> for your sign-in, one shared <b>subscription</b> for the bill and quota, and your own <b>resource group</b> to build in and delete.</div>
+  </div>
+  <p class="take"><span class="tl">Remember</span><span>People → <u>tenant</u>. Money and limits → <u>subscription</u>. Lifecycle → <u>resource group</u>.</span></p>
+</section>
+
 <!-- 8 -->
 <section class="slide" data-sec="azure" data-name="Azure fundamentals">
   <p class="k">Regions</p>
@@ -532,7 +628,7 @@ curl <span class="s">"<span class="y">https://ai901-s07-pitcrew.cognitiveservice
   <div class="body">
     <div class="pit">Pit<em>stop</em></div>
     <ol>
-      <li>Tenant is who, subscription is the bill, resource group is the folder.</li>
+      <li>Tenant solves who. Subscription solves who pays. Group solves what goes together.</li>
       <li>A region decides where data lives and whose quota you share.</li>
       <li>Who + what + where = a role assignment.</li>
       <li>Every call: endpoint, version, credential, JSON.</li>
