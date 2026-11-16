@@ -5,9 +5,12 @@ multifactor, so it also satisfies Azure's mandatory MFA. Students type their use
 
 Run (the morning of class, or the evening before with --start):
     pip install azure-identity requests
-    python issue_passes.py                                  # every member of "AI-901 Students", valid 8 hours from now
-    python issue_passes.py --start "2026-11-20 08:00"       # valid from 08:00 local time that day
-    python issue_passes.py --hours 10 --only student01,student02
+    python issue_passes.py                                  # every member of "AI-901 Students", valid 12 hours from now
+    python issue_passes.py --start "2026-11-20 08:00"       # valid 08:00 to 20:00 local time that day
+    python issue_passes.py --hours 4 --only student01,student02
+
+12 hours needs the tenant's TAP policy raised from Entra's default maximum of 8: Entra admin center →
+Authentication methods → Policies → Temporary Access Pass → Configure → Maximum lifetime.
 
 Sign-in: the script prints a device code. Sign in as a Global Administrator or Authentication Administrator.
 The first time, Entra asks you to consent to "Microsoft Graph Command Line Tools" reading group members and
@@ -30,7 +33,8 @@ SCOPES = ["https://graph.microsoft.com/UserAuthenticationMethod.ReadWrite.All",
 p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 p.add_argument("--tenant", default="vsahgal.onmicrosoft.com")
 p.add_argument("--group", default="AI-901 Students", help="display name of the students group")
-p.add_argument("--hours", type=float, default=8, help="lifetime in hours (the tenant policy caps it; default max is 8)")
+p.add_argument("--hours", type=float, default=12,
+               help="lifetime in hours (default 12; the tenant's TAP policy caps it, and Entra's out-of-the-box max is 8)")
 p.add_argument("--start", help='local start time, "YYYY-MM-DD HH:MM" (default: now)')
 p.add_argument("--only", help="comma-separated usernames or prefixes, e.g. student01,student02")
 p.add_argument("--out", help="CSV path (default: passes-<date>.csv next to this script)")
