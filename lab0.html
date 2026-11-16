@@ -203,7 +203,7 @@ export AI_ENDPOINT=https://$NAME.services.ai.azure.com
 export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 az cognitiveservices account deployment list -n $NAME -g $RG -o table
-pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests</code></pre>
+pip install --user --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests</code></pre>
 <p>The first command should print <code>"kind": "AIServices"</code> and <code>"sku": "S0"</code>; the deployment list should show <code>gpt-4-1-mini</code>, <code>Standard</code>, capacity <code>8</code>. If <code>az</code> says the resource is not found, the names you typed in steps 1 and 3 do not match <code>$RG</code> and <code>$NAME</code>: fix the export, not the resource.</p>
 <p class="insight">The portal built exactly what the Cloud Shell commands build.<small>Same kind, SKU, custom domain and deployment: we checked both with <code>az</code>. Clicks and commands are two doors into the same garage.</small></p></li>
 </ol>
@@ -241,7 +241,7 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT</code></pre>
 az cognitiveservices account deployment list -n $NAME -g $RG -o table</code></pre>
 <img class="shot" src="images/shots/lab0-deploy.png" alt="Deployment list showing gpt-4-1-mini Standard capacity 10 Succeeded, and the regional quota usage" loading="lazy" title="Click to zoom"></li>
   <li><p><strong>Python libraries</strong> for the lightweight apps you will run later. Cloud Shell already has Python 3; this takes about a minute.</p>
-<pre><code>pip install --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests
+<pre><code>pip install --user --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests
 python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code></pre>
 <img class="shot" src="images/shots/lab0-pip.png" alt="pip install of the Foundry SDK and tools completing" loading="lazy" title="Click to zoom"></li>
 </ol>
