@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Race control · instructor helper for the AI-901 Grand Prix (run in Azure Cloud Shell as a subscription Owner)
 #   ./race_control.sh prep                 register providers, check quotas in eastus2
-#   ./race_control.sh roles students.txt   grant Contributor + Azure AI User + Cognitive Services User at subscription scope to each UPN in the file (one per line)
+#   ./race_control.sh roles students.txt   grant Contributor + Foundry User (formerly Azure AI User) + Cognitive Services User at subscription scope to each UPN in the file (one per line)
 #   ./race_control.sh status               list every rg-ai901-* group, its resources and deployments
 #   ./race_control.sh cost                 cost by student resource group for today (data lags a few hours)
 #   ./race_control.sh cleanup              delete every rg-ai901-* group and purge soft-deleted Foundry resources
@@ -14,7 +14,7 @@ case "${1:-}" in
     az cognitiveservices usage list --location $LOC --query "[?limit > \`0\` && (contains(name.value,'Standard.gpt4.1-mini') || contains(name.value,'gpt-audio-mini') || contains(name.value,'FLUX.2-pro') || contains(name.value,'text-embedding-3-large') || contains(name.value,'AIServices.S0'))].{quota:name.value,used:currentValue,limit:limit}" -o table ;;
   roles)
     while read -r upn; do [ -z "$upn" ] && continue
-      for role in "Contributor" "Azure AI User" "Cognitive Services User"; do az role assignment create --assignee "$upn" --role "$role" --scope /subscriptions/$SUB -o none && echo "$upn ← $role"; done
+      for role in b24988ac-6180-42a0-ab88-20f7382dd24c 53ca6127-db72-4b80-b1b0-d745d6d5456d a97b65f3-24c7-4388-baec-2e87135dc908; do az role assignment create --assignee "$upn" --role "$role" --scope /subscriptions/$SUB -o none && echo "$upn ← $(az role definition list --name $role --query [0].roleName -o tsv)"; done  # Contributor, Foundry User, Cognitive Services User (IDs survive renames)
     done < "${2:?students.txt}" ;;
   status)
     for rg in $(az group list --query "[?starts_with(name,'rg-ai901')].name" -o tsv); do echo "== $rg"; az resource list -g $rg --query "[].{name:name,type:type}" -o table

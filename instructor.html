@@ -55,10 +55,10 @@
 <p class="insight">Twenty people, one subscription, zero collisions: student numbers for names, S0 instead of F0, and deployments small enough that twenty of them fit the regional quota.<small>Everything on this page follows from those three choices.</small></p>
 <h2 id="the-day-before">The day before</h2>
 <ol class="steps">
-  <li><p><strong>One subscription, Owner access for you.</strong> Students need three roles at subscription scope: <strong>Contributor</strong> (to create resource groups and resources), <strong>Azure AI User</strong> (data-plane access to Foundry projects and agents) and <strong>Cognitive Services User</strong> (the Language, Speech and Translator playgrounds call the service with the student's own identity; without it they fail with "CheckAccess request is invalid… resource is not ready"). Put their sign-in names in <code>students.txt</code>, one per line, and run the helper:</p>
+  <li><p><strong>One subscription, Owner access for you.</strong> Students need three roles at subscription scope: <strong>Contributor</strong> (to create resource groups and resources), <strong>Foundry User</strong>, formerly Azure AI User (data-plane access to Foundry projects and agents) and <strong>Cognitive Services User</strong> (the Language, Speech and Translator playgrounds call the service with the student's own identity; without it they fail with "CheckAccess request is invalid… resource is not ready"). Put their sign-in names in <code>students.txt</code>, one per line, and run the helper:</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/race_control.sh &amp;&amp; chmod +x race_control.sh
 ./race_control.sh prep                 <span class="cm"># registers providers, prints the quotas that matter</span>
-./race_control.sh roles students.txt   <span class="cm"># Contributor + Azure AI User + Cognitive Services User per student</span></code></pre>
+./race_control.sh roles students.txt   <span class="cm"># Contributor + Foundry User + Cognitive Services User per student</span></code></pre>
 <p>If everyone signs in with one shared account instead, grant that account the two roles once; the student-number scheme still keeps resources apart.</p></li>
   <li><p><strong>Check quotas in East US 2.</strong> The numbers that bound class size on a fresh subscription (yours may differ; the <code>prep</code> command prints them):</p>
 <table>
@@ -82,7 +82,7 @@
 <li>Projector on the index page; student numbers on the board; the three rules written next to them.</li>
 <li><code>./race_control.sh prep</code> run this morning and the gpt-4.1-mini Standard quota in East US 2 still shows at least 10K × students free.</li>
 <li>Your own s00 garage is in a <em>different</em> region (East US), and you have clicked through every portal path once this week: Foundry redraws screens often, and the labs now lead with the portal.</li>
-<li>Every student has the three roles (Contributor, Azure AI User, Cognitive Services User). Role changes take up to five minutes to reach the playgrounds.</li>
+<li>Every student has the three roles (Contributor, Foundry User, Cognitive Services User). Role changes take up to five minutes to reach the playgrounds.</li>
 <li>Headphones for everyone before Lap 4; a quiet corner for Voice mode, or the decision to play the audio files instead.</li>
 <li>Two moments to make sure nobody misses: the invented warranty in Lap 2 Part 4, and the first <strong>Preview web app</strong> in Lap 3.</li>
 </ul></div></div>
@@ -92,7 +92,7 @@
   <div class="t">09:00</div><div class="w"><b>Lap 0</b> <span>— 30 min. Watch for name collisions and the East US / East US 2 mistake. Checkpoint: everyone has a caption from the first call.</span></div>
   <div class="t">09:30</div><div class="w"><b>Lap 1</b> <span>— 60 min. The principles grid and the workload sort are discussion material; run them as a group. Content Safety hands-on in the last 20 minutes.</span></div>
   <div class="t">10:30</div><div class="w"><span>Break 15 min</span></div>
-  <div class="t">10:45</div><div class="w"><b>Lap 2</b> <span>— 60 min. Make sure everyone sees the hallucinated warranty before the grounded answer; it is the moment of the day. The chat client needs the Azure AI User role: check it in Lap 0 if you can.</span></div>
+  <div class="t">10:45</div><div class="w"><b>Lap 2</b> <span>— 60 min. Make sure everyone sees the hallucinated warranty before the grounded answer; it is the moment of the day. The chat client needs the Foundry User role: check it in Lap 0 if you can.</span></div>
   <div class="t">11:45</div><div class="w"><b>Lap 3</b> <span>— 60 min. Agent creation in the portal is click-heavy; pair up. Preview web app is the applause moment.</span></div>
   <div class="t">12:45</div><div class="w"><span>Lunch 45 min</span></div>
   <div class="t">13:30</div><div class="w"><b>Lap 4</b> <span>— 60 min. Voice mode needs microphones and a quiet room; skip it if the room is loud and play the audio files instead. gpt-audio-mini deployment first, then the scripts.</span></div>
@@ -129,7 +129,7 @@
 <h2 id="cleanup">Cleanup</h2>
 <pre><code>./race_control.sh status      <span class="cm"># what is left</span>
 ./race_control.sh cleanup     <span class="cm"># delete every rg-ai901-* and purge soft-deleted Foundry names</span>
-az role assignment list --query "[?roleDefinitionName=='Azure AI User' || roleDefinitionName=='Cognitive Services User' || roleDefinitionName=='Contributor'].{who:principalName,role:roleDefinitionName}" -o table   <span class="cm"># revoke student roles afterwards if the subscription lives on</span></code></pre>
+az role assignment list --query "[?roleDefinitionName=='Foundry User' || roleDefinitionName=='Cognitive Services User' || roleDefinitionName=='Contributor'].{who:principalName,role:roleDefinitionName}" -o table   <span class="cm"># revoke student roles afterwards if the subscription lives on</span></code></pre>
 <div class="callout warning"><div class="ico">⚠️</div><div><span class="box-lbl">Soft delete</span><p>Deleting a resource group soft-deletes the Foundry resource for 48 hours and keeps its DNS name reserved. If you run the course again next week with the same student numbers, purge first or the names will be "already taken".</p></div></div>
 
 <h2 id="verification">How this site was verified, and what the screenshots are</h2>
