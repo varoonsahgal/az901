@@ -72,7 +72,7 @@
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Match the technique to the output: key phrases → a list of topics; entities → typed things (person, date, product, PII); sentiment → positive/negative/neutral/mixed with scores; summarization → extractive (sentences copied) or abstractive (new text). Speech: recognition is audio→text, synthesis is text→audio, SSML tunes synthesis. Two ways to answer a spoken question: the Speech pipeline (STT → model → TTS) or one multimodal audio model. Know the trade-off: pipeline = control and cheaper models; multimodal = simpler and more natural.</p></div></div>
 
 <h2 id="part-1-reload-your-pit-board"><span class="pn">Part 1</span>Reload your pit board</h2>
-<p><strong>Portal path:</strong> the playgrounds in Parts 2 and 3 need nothing but <a href="https://ai.azure.com">ai.azure.com</a>. Paste this block into Cloud Shell when you reach the Cloud Shell steps, Part 4, or the lightweight apps.</p>
+<p>The portal playgrounds in Parts 2 and 3 need nothing but <a href="https://ai.azure.com">ai.azure.com</a>. Everyone needs this block in Cloud Shell before a Cloud Shell tab or Part 4, which is code on both paths.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
@@ -80,22 +80,22 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-4-1-mini AUDIO_MODEL=gpt-audio-mini</code></pre>
 
 <h2 id="part-2-text-analysis-on-customer-reviews"><span class="pn">Part 2</span>Text analysis on customer reviews</h2>
-<p>Start in the portal: redact a real-looking service ticket, then detect and translate a German complaint. The Cloud Shell tab does the same by API and adds the techniques the portal does not show, sentiment first.</p>
-<div class="callout note"><div class="ico">🔑</div><div><span class="box-lbl">The playgrounds use your sign-in, not the key</span><p>The Language, Speech and Translator playgrounds call the service as <em>you</em>. If one fails with <em>CheckAccess request is invalid because: This resource is not ready to accept requests</em>, your account is missing the <strong>Cognitive Services User</strong> role on your resource. Ask race control, then wait 2–5 minutes and try again. The Cloud Shell tab uses the key and works meanwhile.</p></div></div>
+<p>In the portal you redact a real-looking service ticket, then detect and translate a German complaint. The Cloud Shell tab covers the same techniques by API, plus the ones the portal does not show, starting with sentiment.</p>
+<div class="callout note"><div class="ico">🔑</div><div><span class="box-lbl">The playgrounds use your sign-in, not the key</span><p>The Language, Speech and Translator playgrounds call the service as <em>you</em>. If one fails with <em>CheckAccess request is invalid…</em>, your account is missing the <strong>Cognitive Services User</strong> role: see Troubleshooting. The Cloud Shell tab uses the key and works meanwhile.</p></div></div>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
 <ol class="steps">
   <li><p><strong>Find the Language playgrounds.</strong> Open <a href="https://ai.azure.com">ai.azure.com</a> and your project. In the left nav select <strong>Services</strong>. Under <strong>Explore services</strong> you see tiles for <strong>Document Intelligence and Content Understanding</strong>, <strong>Speech</strong>, <strong>Language</strong> and <strong>Translator</strong>, plus <strong>Featured playgrounds</strong> below. Select <strong>Language</strong>. Its playgrounds are Language Detection, Text PII Redaction, Document PII Redaction, Text Analytics for Health and Conversational PII Redaction.</p>
 <p class="why"><b>Why Services</b>These are the prebuilt Foundry Tools, already inside the resource you made in Lap 0. Nothing to deploy and nothing to train: you send text, you get structured results.</p>
-<p>There is no sentiment, key-phrase or entity playground here. The portal shows the privacy features; sentiment and opinion mining are one API call away, in step 5.</p></li>
+<p>There is no sentiment, key-phrase or entity playground here; step 5 sends you to the API for those.</p></li>
 
   <li><p><strong>Redact a service ticket.</strong> Open <strong>Text PII Redaction</strong>. In <strong>Input text</strong> paste the ticket below (you can also pick from the <strong>Sample</strong> list or upload a file), then select <strong>Detect</strong>.</p>
 <pre><code>Service ticket 4471. Customer Dana Whitfield (dana.whitfield@example.com, 937-555-0142) dropped off her 2024 Velocity Strata on 12 March 2026. Address: 1200 Brown St, Dayton, OH 45409. Paid the deposit with card 4111 1111 1111 1111.</code></pre>
 <p>The text comes back with each identifier masked and labelled: PersonType, Person, Email, PhoneNumber, Date, Address and CreditCardNumber. The <strong>Redact PII</strong> switch toggles between masked and original. On the right, the <strong>Response</strong> tab lists every entity with its <strong>Type</strong>, <strong>Confidence</strong> (Dana Whitfield: Person, 99%), <strong>Offset</strong> and <strong>Length</strong>; <strong>JSON</strong> and <strong>Code</strong> show the raw call.</p>
 <p class="why"><b>Why redact</b>Service tickets get copied into CRMs, emails and now AI prompts. Redact before you store or forward one, and a leak exposes asterisks, not a customer's card number.</p>
 <img class="shot" src="images/shots/lab4-portal-01-pii.jpg" alt="Text PII Redaction playground: the service ticket with PersonType, Person, Email, PhoneNumber, Date, Address and CreditCardNumber masked, Redact PII on, and the Response panel listing Customer (PersonType, 96%) and Dana Whitfield (Person, 99%) with offset and length" loading="lazy" title="Click to zoom">
-<p>Look at what it left alone: ticket number 4471 and "2024 Velocity Strata" are not personal data. It did flag the word "Customer" as a PersonType: a role, not an identity. The configuration panel (<strong>API version</strong>, <strong>Model version</strong>, <strong>Language</strong>, <strong>Select types to include</strong>) decides which types count; a service team that needs the drop-off date could keep Date unmasked.</p>
+<p>It left ticket number 4471 and "2024 Velocity Strata" alone: not personal data. It did flag "Customer" as a PersonType, a role rather than an identity. The configuration panel (<strong>API version</strong>, <strong>Model version</strong>, <strong>Language</strong>, <strong>Select types to include</strong>) decides which types count; a service team that needs the drop-off date could keep Date unmasked.</p>
 <p class="insight">Offset and Length turn a highlighter into an API.<small>Your code gets the exact position of every identifier, so it can mask, hash or vault each one before the ticket is saved. The JSON tab is the same response the Cloud Shell tab gets from curl.</small></p></li>
 
   <li><p><strong>Detect a language.</strong> Go back to <strong>Language</strong> and open <strong>Language Detection</strong>. Paste this review from a customer in Germany and run it:</p>
@@ -108,30 +108,30 @@ export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-
 <p class="why"><b>Why it matters</b>That one sentence holds two problems for two teams: a navigation bug for Engineering and a missed callback for the Munich dealer. Nobody in Dayton reads German; now they do not have to.</p>
 <img class="shot" src="images/shots/lab4-portal-04-translate.jpg" alt="Translator Text Translation playground: Model Azure-MT, the German review with Auto Detect on the left, the English translation on the right, and the Configuration panel with Tone and Gender for LLM-based translation" loading="lazy" title="Click to zoom"></li>
 
-  <li><p><strong>Sentiment, key phrases, entities and summaries: switch tabs.</strong> Select the <strong>Cloud Shell path</strong> tab above and run its step 1 (sentiment with opinion mining) and the lightweight app <code>text_analysis.py</code> at the end of it. The exam asks about all of these techniques, and an API call is the fastest way to see them.</p></li>
+  <li><p><strong>Sentiment, key phrases, entities and summaries: switch tabs.</strong> The exam asks about all of these. Select the <strong>Cloud Shell path</strong> tab above and run its step 1 (sentiment with opinion mining) and the lightweight app <code>text_analysis.py</code> at the end of it.</p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
-<p>Same results by API: this is what the playgrounds did for you, plus the techniques the portal does not show. Azure AI Language has one synchronous endpoint; you change the <code>kind</code>. Start with sentiment on a grumpy review, then look at the full set of six reviews we analysed.</p>
+<p>This is what the playgrounds did for you, plus the techniques the portal does not show. Azure AI Language has one synchronous endpoint; you change the <code>kind</code>. Start with sentiment on a grumpy review, then look at the six reviews we analysed.</p>
 <ol class="steps">
-  <li><p><strong>Sentiment with opinion mining.</strong> The document score says "negative"; opinion mining says <em>what</em> was negative (the cupholders).</p>
+  <li><p><strong>Sentiment with opinion mining.</strong> The document score says "negative"; opinion mining says <em>what</em> was negative (the cupholders). The <code>jq</code> filter keeps only the score; drop it to see the targets under <code>sentences</code>.</p>
 <pre><code>curl -s -X POST "$ENDPOINT/language/:analyze-text?api-version=2024-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/json" -d '{
   "kind": "SentimentAnalysis", "parameters": {"opinionMining": true},
   "analysisInput": {"documents": [{"id": "1", "language": "en", "text": "Meh. It is a car. It goes. The cupholders are too small for my travel mug."}]}
 }' | jq '.results.documents[0] | {sentiment, confidenceScores}'</code></pre>
 <img class="shot" src="images/shots/lab5-sentiment-curl.png" alt="curl sentiment call returning negative with confidence scores" loading="lazy" title="Click to zoom">
 <img class="shot" src="images/shots/lab5-sentiment-card.png" alt="Six reviews with sentiment labels, confidence bars and opinion targets such as hybrid engine (positive) and infotainment system (negative)" loading="lazy" title="Click to zoom">
-<p>Look at review 1: <em>mixed</em>, because the engine is praised and the infotainment system is not. Opinion mining attaches the sentiment to each target, which is what a product team actually needs.</p>
+<p>In the six-review card, review 1 is <em>mixed</em>: the engine is praised and the infotainment system is not. Opinion mining attaches a sentiment to each target.</p>
 <p class="insight">Sentiment tells you how they feel. Opinion mining tells you about what.<small>A product team cannot act on "mixed". It can act on "the infotainment system crashed".</small></p></li>
   <li><p><strong>Key phrases and entities.</strong> Change <code>"kind"</code> to <code>KeyPhraseExtraction</code> and then <code>EntityRecognition</code> (no parameters needed). Key phrases give you the talking points; entities give you typed things: Organization, Product, Location, DateTime, Quantity, Person.</p>
 <div class="shots2"><img class="shot" src="images/shots/lab5-keyphrases-card.png" alt="Key phrases per review" loading="lazy" title="Click to zoom"><img class="shot" src="images/shots/lab5-ner-card.png" alt="Press release with 50-plus highlighted entities by category" loading="lazy" title="Click to zoom"></div></li>
   <li><p><strong>PII detection.</strong> Kind <code>PiiEntityRecognition</code>. The service returns every personal identifier it found <em>and</em> a redacted copy of the text, ready to store. This is the privacy-and-security principle as an API call.</p>
 <img class="shot" src="images/shots/lab5-pii-card.png" alt="Service ticket with person, phone, email, address and date highlighted, and the redacted text below" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Language detection</strong> (kind <code>LanguageDetection</code>, no <code>language</code> field in the documents) on reviews from Germany, Spain, Japan, France and the US: every one detected at confidence 1.00. Route each to the right market team, or translate first.</p>
+  <li><p><strong>Language detection.</strong> Kind <code>LanguageDetection</code>, with no <code>language</code> field in the documents. On reviews from Germany, Spain, Japan, France and the US, every one came back at confidence 1.00, ready to route to the right market team or to translation.</p>
 <img class="shot" src="images/shots/lab5-langdetect-card.png" alt="Language detection results for five reviews" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Summarization</strong> is asynchronous: you POST a job to <code>$ENDPOINT/language/analyze-text/jobs?api-version=2024-11-01</code> with tasks <code>ExtractiveSummarization</code> and <code>AbstractiveSummarization</code>, then GET the <code>operation-location</code> URL until <code>status</code> is <code>succeeded</code>. On the Volt press release, extractive picked three real sentences; abstractive wrote a new two-sentence summary.</p>
+  <li><p><strong>Summarization</strong> is asynchronous. You POST a job to <code>$ENDPOINT/language/analyze-text/jobs?api-version=2024-11-01</code> with tasks <code>ExtractiveSummarization</code> and <code>AbstractiveSummarization</code>, then GET the <code>operation-location</code> URL until <code>status</code> is <code>succeeded</code>. On the Volt press release, extractive picked three real sentences; abstractive wrote a new two-sentence summary.</p>
 <img class="shot" src="images/shots/lab5-summarization-card.png" alt="Extractive summary of three sentences with rank scores, and an abstractive summary" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Translator</strong> is a separate host with the same key; add your region header. One call, six languages:</p>
+  <li><p><strong>Translator</strong> is a separate host that takes the same key plus a region header. One call, six languages:</p>
 <pre><code>curl -s -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&amp;from=en&amp;to=de&amp;to=ja&amp;to=es&amp;to=fr&amp;to=hi&amp;to=zh-Hans" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Ocp-Apim-Subscription-Region: $LOC" -H "Content-Type: application/json" \
   -d '[{"text":"Welcome to Velocity Motors. The 2027 Velocity Volt charges from 10 to 80 percent in 18 minutes."}]' | jq</code></pre>
@@ -212,7 +212,7 @@ for r in client.recognize_pii_entities(ticket):
 ── PII (what we must redact before storing) ──
   found: Customer [PersonType], Marcus Alvarez [Person], (614-555-0188 [PhoneNumber], marcus.alvarez@example.com [Email]
   redacted: ******** ************** *************, **************************) reports a grinding noise. VIN 1VMSUM7K2NA048213. Card ending 4421.</span></code></pre>
-<p>Notice "Velocity Summit [Skill]" and "Dayton [Organization]": entity categories are guesses with confidence, and a made-up car brand confuses them. Real deployments add a custom entity model or a short allow-list.</p>
+<p>Notice "Velocity Summit [Skill]" and "Dayton [Organization]": entity categories are guesses with a confidence score, and a made-up car brand confuses them. Real deployments add a custom entity model or a short allow-list.</p>
   </div>
 </div>
 
@@ -234,7 +234,7 @@ for r in client.recognize_pii_entities(ticket):
 </ul>
 <p class="why"><b>Why pick a voice deliberately</b>The voice is the car's personality, heard every time a driver starts it. A brand chooses it the way it chooses a logo. Pick two other voices from the list and play the same text: which one sounds like Velocity?</p>
 <img class="shot" src="images/shots/lab4-portal-02-tts.jpg" alt="Text to Speech playground: Voice Ava (1), model Dragon HD Latest with Emotion enabled, language Auto detect, and Play (2), showing Pause while the welcome message is spoken" loading="lazy" title="Click to zoom">
-<p>The sample-text chips (Customer service, Casual chat, News report…) show the same voice in other moods. Switch <strong>Input mode</strong> to SSML when you need control over style, pauses or a language change mid-sentence: that is the markup the Cloud Shell tab posts.</p></li>
+<p>The sample-text chips (Customer service, Casual chat, News report…) show the same voice in other moods. Switch <strong>Input mode</strong> to SSML to control style, pauses or a mid-sentence language change: the markup the Cloud Shell tab posts.</p></li>
 
   <li><p><strong>Listen to a driver.</strong> Download <a href="media/user-brake-question.wav" download>user-brake-question.wav</a>, a driver asking Velo about a warning light. Open <strong>Speech to Text</strong> and check the settings:</p>
 <ul>
@@ -250,21 +250,22 @@ for r in client.recognize_pii_entities(ticket):
 </ol>
   </div>
   <div role="tabpanel" hidden>
-<p>Same results by API: this is what the playgrounds did for you, plus SSML and a three-step pipeline app.</p>
+<p>This is what the playgrounds did for you, plus SSML and a three-step pipeline app.</p>
 <ol class="steps">
   <li><p><strong>Text-to-speech with SSML.</strong> Write the SSML to a file and POST it to the regional TTS endpoint. The header <code>X-Microsoft-OutputFormat</code> chooses the audio format.</p>
 <img class="shot" src="images/shots/lab5-speech-curl.png" alt="SSML with a multilingual voice, excited style, emphasis, a pause and German and Japanese segments; curl to the TTS endpoint saves velo.mp3" loading="lazy" title="Click to zoom">
-<p>Listen to the two voices we made. The first is the plain welcome message; the second uses an <em>express-as</em> style, <em>emphasis</em>, a <em>break</em> and two <em>lang</em> tags in one utterance.</p>
+<p>Listen to the two recordings we made. The first is the plain welcome message; the second uses an <em>express-as</em> style, <em>emphasis</em>, a <em>break</em> and two <em>lang</em> tags in one utterance.</p>
 <audio controls src="media/velo-ava.mp3"></audio>
 <audio controls src="media/velo-andrew-multilingual.mp3"></audio>
 <p>List the voices available to you (1,000+ across 150+ locales) with <code>curl -s https://$LOC.tts.speech.microsoft.com/cognitiveservices/voices/list -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.[] | select(.Locale=="en-US") | .ShortName' | head</code>.</p></li>
-  <li><p><strong>Speech-to-text.</strong> Send a WAV to the regional STT endpoint. We sent the welcome message back in:</p>
-<pre><code>curl -s "https://$LOC.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US&amp;format=detailed" \
+  <li><p><strong>Speech-to-text.</strong> Send a WAV to the regional STT endpoint. We sent the welcome message back in, saved as a 16 kHz WAV (<code>velo-ava.wav</code>):</p>
+<pre><code>curl -sO https://varoonsahgal.github.io/az901/downloads/velo-ava.wav
+curl -s "https://$LOC.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US&amp;format=detailed" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: audio/wav; codecs=audio/pcm; samplerate=16000" --data-binary @velo-ava.wav | jq</code></pre>
 <img class="shot" src="images/shots/lab5-speech-card.png" alt="Round trip: the text sent to TTS and what STT heard back, with RecognitionStatus Success, confidence 0.79 and the lexical form" loading="lazy" title="Click to zoom">
 <figure class="figure"><img src="images/charts/speech-waveform.png" alt="Waveform of the synthesized welcome message"><figcaption>What the recognizer received: 16 kHz mono PCM, about ten seconds.</figcaption></figure>
 <p>"Seventy degrees" came back as "70°" and "two thousand one hundred" as "2100": the <em>display</em> text applies inverse text normalization; the <em>lexical</em> field keeps the spoken words. Both are in the detailed response.</p></li>
-  <li><p><strong>The pipeline app.</strong> <code>speech_pipeline.py</code> recognises a question from a WAV file with the Speech SDK, asks gpt-4.1-mini, and speaks the answer into another WAV. File in, file out, so it runs in Cloud Shell without a microphone.</p>
+  <li><p><strong>The pipeline app.</strong> <code>speech_pipeline.py</code> recognises a question from a WAV file with the Speech SDK, asks your <code>gpt-4-1-mini</code> deployment, and speaks the answer into another WAV. File in, file out, so it runs in Cloud Shell without a microphone.</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/speech_pipeline.py
 curl -sO https://varoonsahgal.github.io/az901/downloads/question.wav     <span class="cm"># "Hey Velo, my brake warning light just came on…"</span>
 python speech_pipeline.py question.wav answer.wav</code></pre>
@@ -306,25 +307,26 @@ answer  : Please safely pull over and stop your car. Check your brake fluid leve
 spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
 <audio controls src="media/user-brake-question.wav"></audio>
 <audio controls src="media/pipeline-answer.wav"></audio>
-<p>The recognizer heard "<strong>break</strong> warning light". Homophones are the classic speech failure; the model still answered correctly because context carried it. For a car product you would add a phrase list or a custom speech model trained on automotive vocabulary.</p></li>
+<p>The recognizer heard "<strong>break</strong> warning light", and <code>recognize_once</code> stopped at the first pause, so only the first sentence arrived. Context still carried the model to a sensible answer. A car product would add a phrase list or a custom speech model.</p></li>
 </ol>
   </div>
 </div>
 
 <h3>Both paths · Voice mode on your agent</h3>
 <ol class="steps">
-  <li><p><strong>Let the warranty expert talk.</strong> Open <code>velo-warranty-expert</code> from Lap 3: left nav <strong>Agents</strong>, then the agent. In the left pane, under the model, switch on <strong>Voice mode</strong>. If the <strong>Configuration</strong> pane does not open, select the cog icon above the chat; under <strong>Voice mode</strong> preview the speech input and output settings and pick a voice. Close it and <strong>Save</strong>. In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>; the <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Continue in code</strong> shows the client code, which streams audio both ways.</p>
+  <li><p><strong>Let the warranty expert talk.</strong> Open <code>velo-warranty-expert</code> from Lap 3 (left nav <strong>Agents</strong>, then the agent). In the left pane, under the model, switch on <strong>Voice mode</strong>. In the <strong>Configuration</strong> pane (if it does not open, select the cog above the chat), check the speech input and output settings under <strong>Voice mode</strong> and pick a voice. Close it and select <strong>Save</strong>.</p>
 <p class="why"><b>Why it matters</b>This is Voice Live: the recognition and synthesis you just tried, wired into an agent with its instructions and File search, and no audio code of yours. Drivers keep their eyes on the road and still get the cited answer.</p></li>
+  <li><p><strong>Ask it out loud.</strong> In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>. The <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Continue in code</strong> shows client code that streams audio both ways.</p></li>
 </ol>
 
 <h2 id="part-4-one-model-that-listens-and-speaks-gpt-audio-mini"><span class="pn">Part 4</span>One model that listens and speaks · gpt-audio-mini</h2>
-<p>This part is code, and that is not a choice: the model page for <code>gpt-audio-mini</code> says <em>Playground isn't available for this model yet</em>. The portal way to talk to Velo is the agent's <strong>Voice mode</strong> you just used. Here you see the other architecture: one model that hears the question and speaks the answer.</p>
+<p>Now the other architecture: one model that hears the question and speaks the answer. This part is code on both paths: the <code>gpt-audio-mini</code> model page says <em>Playground isn't available for this model yet</em>.</p>
 <ol class="steps">
-  <li><p>Deploy the audio model. It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out. Prefer clicks? Deploy it the Lap 0 way (<strong>Models</strong> → <strong>Deploy</strong> → <strong>Deploy a base model</strong>, search <code>gpt-audio-mini</code>, <strong>Custom settings</strong>, deployment name <code>gpt-audio-mini</code>, <strong>Global Standard</strong>, <code>1000</code> tokens per minute) and skip the command.</p>
+  <li><p><strong>Deploy the audio model.</strong> It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out. Prefer clicks? Deploy it the Lap 0 way (<strong>Models</strong> → <strong>Deploy</strong> → <strong>Deploy a base model</strong>, search <code>gpt-audio-mini</code>, <strong>Custom settings</strong>, deployment name <code>gpt-audio-mini</code>, <strong>Global Standard</strong>, <code>1000</code> tokens per minute) and skip the command.</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name gpt-audio-mini --model-name gpt-audio-mini --model-version 2025-10-06 --model-format OpenAI \
   --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre></li>
-  <li><p>Send the same spoken question straight to it and get spoken audio plus a transcript back:</p>
+  <li><p><strong>Ask it the brake question.</strong> Send the same spoken question straight to the model and get spoken audio plus a transcript back. On the portal path, fetch the question into Cloud Shell first: <code>curl -sO https://varoonsahgal.github.io/az901/downloads/question.wav</code>.</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/talk_to_velo.py
 python talk_to_velo.py question.wav reply.wav</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 4 · Respond to a SPOKEN prompt with a multimodal audio model (gpt-audio-mini).
@@ -355,20 +357,21 @@ print(f&quot;saved {out_wav} · tokens: {r.usage.prompt_tokens_details.audio_tok
 saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
 <audio controls src="media/velo-audio-reply.wav"></audio>
 <img class="shot" src="images/shots/lab4-audio-model.png" alt="Card: the spoken question, the model's spoken reply transcript, and the audio and text token counts" loading="lazy" title="Click to zoom"></li>
-  <li><p>Compare the two answers you now have for the same question (<code>answer.wav</code> from the pipeline, <code>reply.wav</code> from the audio model). One call instead of three; the model heard "brake" correctly from context; but you chose neither the voice nor the recogniser, and the deployment is costlier per minute of speech.</p></li>
+  <li><p><strong>Compare the two answers.</strong> Play the pipeline's answer (<code>answer.wav</code>, or the second player in Part 3's Cloud Shell tab) against <code>reply.wav</code> from the audio model. One call instead of three, and the model understood "brake" from context; but you chose neither the voice nor the recogniser, and the deployment costs more per minute of speech.</p></li>
 </ol>
 <p class="insight">Pipeline for control. One model for simplicity.<small>The exam does not ask you to pick a winner. It asks whether you know the trade: a custom brand voice and automotive vocabulary on one side, one call and natural turn-taking on the other.</small></p>
-<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>In the portal you redacted the service ticket in <strong>Text PII Redaction</strong>, detected and translated the Munich review, played Velo's welcome in <strong>Text to Speech</strong>, and transcribed the brake question (and spotted "break"). By API you ran at least sentiment with opinion mining and <code>text_analysis.py</code>. You ran <code>talk_to_velo.py</code> (and, on the Cloud Shell path, <code>speech_pipeline.py</code>), and your agent spoke to you in Voice mode.</p></div></div>
+<div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p><strong>Portal path:</strong> you redacted the service ticket in <strong>Text PII Redaction</strong>, detected and translated the Munich review, played Velo's welcome in <strong>Text to Speech</strong>, and transcribed the brake question (and spotted "break"). <strong>Both paths:</strong> you ran sentiment with opinion mining and <code>text_analysis.py</code>, then <code>talk_to_velo.py</code>, and your agent spoke to you in Voice mode. The Cloud Shell path also ran <code>speech_pipeline.py</code>.</p></div></div>
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
 <li><b>Teach it "brake".</b> In the Speech to Text playground add <code>brake</code> to the <strong>Phrase list</strong> and run <code>user-brake-question.wav</code> again. Does the transcript change? What other words would a dealership's phrase list need?</li>
-<li><b>Five languages, one script.</b> Replace the three English reviews in <code>text_analysis.py</code> with the German, Spanish, Japanese and French ones from the language-detection card (write your own: two sentences each). Does sentiment still work without a <code>language</code> hint? Which entity categories survive translation-free?</li>
+<li><b>Five languages, one script.</b> Add German, Spanish, Japanese and French reviews (two sentences each, your own or from the language-detection card) to the English ones in <code>text_analysis.py</code>. Does sentiment still work without a <code>language</code> hint? Which entity categories still come out right without translation?</li>
 <li><b>Summarise, translate, speak.</b> Take the abstractive summary of the press release, translate it to Japanese with Translator, and synthesise it with a <code>ja-JP</code> voice (list voices to find one). Three services, one key, under a minute.</li>
 <li><b>Velo answers in the driver's language.</b> In <code>speech_pipeline.py</code>, run language detection on <code>heard.text</code> and switch the synthesis voice accordingly. Record a short question in another language on your laptop (16 kHz mono WAV) and try it.</li>
 </ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
-<details class="reveal hint"><summary>Playground error: "CheckAccess request is invalid because: This resource is not ready to accept requests"</summary><div class="body"><p>The Language, Speech and Translator playgrounds call the service with your Entra identity, not the key, and your account lacks the <strong>Cognitive Services User</strong> role on your resource. Ask race control to grant it, then wait 2–5 minutes (role changes take a moment to reach the service) and reload the playground. Meanwhile the Cloud Shell tab works, because it uses the key.</p></div></details>
+<details class="reveal hint"><summary>gpt-audio-mini will not deploy: "InsufficientQuota" or no capacity left</summary><div class="body"><p>The subscription allows 20 gpt-audio-mini deployments in East US 2, one per student, so in a class of more than twenty the last few can run out. Tell your instructor rather than retrying. Meanwhile do the rest of Part 4 with the recorded reply in Part 3, or watch a neighbour's run: the point is one model hearing and speaking, and that is visible on any screen.</p></div></details>
+<details class="reveal hint"><summary>Playground error: "CheckAccess request is invalid because: This resource is not ready to accept requests"</summary><div class="body"><p>The playgrounds use your Entra sign-in, not the key, and your account lacks the <strong>Cognitive Services User</strong> role on your resource. Ask race control to grant it, wait 2–5 minutes for the role to reach the service, and reload the playground. The Cloud Shell tab works meanwhile, because it uses the key.</p></div></details>
 <details class="reveal hint"><summary>Translator returns 401 while Language works</summary><div class="body"><p>Translator's global host needs the extra header <code>Ocp-Apim-Subscription-Region: eastus2</code> so it knows which resource the key belongs to.</p></div></details>
 <details class="reveal hint"><summary>STT returns "InitialSilenceTimeout" or an empty DisplayText</summary><div class="body"><p>The WAV must be 16-bit PCM, 16 kHz, mono. Generate it with the TTS format <code>riff-16khz-16bit-mono-pcm</code> or convert with ffmpeg: <code>ffmpeg -i in.m4a -ar 16000 -ac 1 out.wav</code>.</p></div></details>
 <details class="reveal hint"><summary>speech_pipeline.py: "ImportError: libssl" or the Speech SDK will not load</summary><div class="body"><p>In Cloud Shell run <code>pip install --upgrade azure-cognitiveservices-speech</code>; on some Linux images you also need <code>sudo apt-get install -y libssl-dev libasound2</code>. The REST calls in Part 3 need nothing.</p></div></details>

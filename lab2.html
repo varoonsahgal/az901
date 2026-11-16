@@ -70,11 +70,11 @@
   <div><b>Structured output</b>Asking for JSON (and enforcing it with <code>response_format</code>) so a program, not a human, can read the answer.</div>
 </div>
 <p class="insight">A system prompt is a job description. A user prompt is a ticket. History is the only memory.</p>
-<p>Three ways to talk to the same deployment, which you will use in that order: the <strong>playground</strong> (click), the <strong>REST API</strong> with <code>curl</code> (see the raw JSON), and the <strong>Foundry SDK</strong> from Python (the lightweight client the exam describes).</p>
+<p>You will talk to the same deployment three ways: the <strong>playground</strong> (click), the <strong>REST API</strong> with <code>curl</code> (see the raw JSON), and the <strong>Foundry SDK</strong> from Python (the lightweight client the exam describes).</p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Effective" prompts on the exam means: a clear role and constraints in the system prompt, specific user prompts with context and desired format, examples for tricky formats, and grounding data for facts. Parameters: temperature and top_p control randomness, max tokens bounds length and cost, stop sequences end output. The SDK pattern to recognise is <code>AIProjectClient</code> + <code>DefaultAzureCredential</code> + <code>get_openai_client()</code> + <code>chat.completions.create(model=&lt;deployment name&gt;, messages=[…])</code>.</p></div></div>
 
 <h2 id="part-1-reload-your-pit-board"><span class="pn">Part 1</span>Reload your pit board</h2>
-<p>Parts 2, 4 and 5 happen in the browser and need nothing else. Parts 3 and 6 run in Cloud Shell; paste this now so they are ready.</p>
+<p>Part 3, Part 6 and Part 4's Cloud Shell tab run in Cloud Shell; paste this now so they are ready. Everything else happens in the playground and needs nothing more.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
@@ -86,11 +86,11 @@ export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT; export CHAT_MODEL=gp
 <p>Get your bearings. On the left: the <em>Model: gpt-4-1-mini</em> bar with a <strong>+</strong> (compare), a sliders icon (<strong>Parameters</strong>) and a key icon; below it the <strong>Instructions</strong> box and <strong>Tools</strong>. On the right: the chat, with a <strong>New chat</strong> icon at its top right, and the buttons <strong>Continue in code</strong>, <strong>Save as agent</strong> and <strong>Compare models</strong>.</p>
 <p class="why"><b>Why the deployment</b>The playground talks to your deployment, exactly as your code will. Whatever you tune here, you can carry into code with one button (step 6).</p></li>
 
-  <li><p>Ask, with no instructions: <code>My Summit's tire pressure light came on this morning. What should I do?</code> Read it. Reasonable, generic, and it does not know what a Summit is.</p></li>
+  <li><p><strong>Ask with no instructions.</strong> Send <code>My Summit's tire pressure light came on this morning. What should I do?</code> The answer is reasonable, generic, and does not know what a Summit is.</p></li>
 
   <li><p><strong>Give it a job.</strong> Select <strong>New chat</strong>. In the <strong>Instructions</strong> box <span class="mk">1</span>, paste the system prompt we used:</p>
 <pre><code>You are Velo, the friendly in-car and dealership assistant for Velocity Motors. Be concise, warm, and practical. Use plain language. If a question involves safety, put the safety step first. If you do not know something specific about Velocity Motors, say so.</code></pre>
-<p>Ask the tire-pressure question again. Now the first words are <em>"safely pull over"</em>, and it ends by offering to help find the nearest service center.</p>
+<p>Ask the tire-pressure question again. Now the answer starts with <em>"safely pull over"</em> and ends by offering to help find the nearest service center.</p>
 <p class="why"><b>Why it matters</b>"Safety step first" is a business rule, written once, applied to every customer. Your service advisors follow a script; this is Velo's.</p>
 <img class="shot" src="images/shots/lab2-portal-01-velo.jpg" alt="Playground: the Velo system prompt in the Instructions box (1); the answer starts with 'the first step is to safely pull over' and offers help finding the nearest service center" loading="lazy" title="Click to zoom">
 <p class="insight">Same model, same question, different job description, different answer.<small>Nothing was trained or deployed. Four sentences in the Instructions box changed what the customer gets.</small></p></li>
@@ -118,12 +118,13 @@ client = OpenAI(
     base_url="https://…/openai/v1",
     api_key=get_bearer_token_provider(DefaultAzureCredential(), "https://ai.azure.com/.default"))
 response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pre>
-<p class="why"><b>Why Entra ID</b>No key in the code: the token comes from your signed-in identity and its role on the resource. It uses the <em>Responses</em> API; Parts 3 and 6 use <em>Chat Completions</em>. Both reach the same deployment, and the exam expects you to recognise both.</p></li>
+<p class="why"><b>Why Entra ID</b>No key in the code: the token comes from your signed-in identity and its role on the resource.</p>
+<p>Notice the sample uses the <em>Responses</em> API; Parts 3 and 6 use <em>Chat Completions</em>. Both reach the same deployment, and the exam expects you to recognise both.</p></li>
 </ol>
-<div class="callout note"><div class="ico">📝</div><div><span class="box-lbl">The playground does not save your instructions</span><p>Leave the page and Foundry asks <em>Leave without saving?</em>; the Instructions box and parameters are gone. <strong>Save as agent</strong> keeps them as a named agent, and that is exactly where Lap 3 starts. For now, keep the page open: Parts 4 and 5 change the instructions several times.</p></div></div>
+<div class="callout note"><div class="ico">📝</div><div><span class="box-lbl">The playground does not save your instructions</span><p>Leave the page and Foundry asks <em>Leave without saving?</em>; if you go, the Instructions and parameters are lost. <strong>Save as agent</strong> keeps them as a named agent, which is where Lap 3 starts. For now, keep the playground open in its own tab: Parts 4 and 5 come back to it.</p></div></div>
 
 <h2 id="part-3-the-same-call-as-raw-http"><span class="pn">Part 3</span>The same call as raw HTTP</h2>
-<p>This is the call the playground just made for you. Underneath it is one REST endpoint; seeing it once makes every SDK obvious. The messages array carries the roles; the response has <code>choices</code> (the answers) and <code>usage</code> (the tokens you pay for).</p>
+<p>Underneath the playground and every SDK is one REST endpoint; see the raw call once and the rest is obvious. The <code>messages</code> array carries the roles; the response has <code>choices</code> (the answers) and <code>usage</code> (the tokens you pay for).</p>
 <pre><code>curl -s "$AOAI_ENDPOINT/openai/deployments/$CHAT_MODEL/chat/completions?api-version=2024-10-21" \
   -H "api-key: $KEY" -H "Content-Type: application/json" -d '{
   "messages": [
@@ -142,7 +143,7 @@ response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pr
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
 <ol class="steps">
-  <li><p><strong>Catch the bluff.</strong> Put the plain Velo prompt from Part 2 back in <strong>Instructions</strong>, check Temperature is <strong>0</strong>, select <strong>New chat</strong>, and ask:</p>
+  <li><p><strong>Catch the bluff.</strong> Check that <strong>Instructions</strong> holds the Velo prompt from Part 2 step 3 and Temperature is <strong>0</strong>, select <strong>New chat</strong>, and ask:</p>
 <pre><code>I'm buying a Certified Pre-Owned Velocity. How many points is the CPO inspection, how long is roadside assistance, and is there a deductible for warranty repairs?</code></pre>
 <p>Our run answered with total confidence: a <em>150-point inspection</em>, roadside assistance for <em>24 months from the date of purchase</em>, and <em>no deductible</em>. Velocity Motors' real warranty guide says:</p>
 <table>
@@ -153,16 +154,16 @@ response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pr
 <tr><td>Deductible</td><td>None</td><td><strong>None</strong> (section 7)</td></tr>
 </tbody></table>
 <img class="shot" src="images/shots/lab2-portal-03-bluff.jpg" alt="Ungrounded answer: a 150-point CPO inspection, roadside assistance for 24 months from purchase, no deductible; boxed in red" loading="lazy" title="Click to zoom">
-<p>Two of three are invented, and the third is right only by luck: the model has never seen the guide. Notice that its instructions already said <em>"If you do not know something specific about Velocity Motors, say so"</em>. It bluffed anyway. An earlier version of this lab asked about the Volt battery warranty; on a later run the model answered 8 years / 100,000 miles and matched our guide, only because that is the industry norm.</p>
+<p>Two of three are invented, and the third is right only by luck: the model has never seen the guide. Notice that its instructions already said <em>"If you do not know something specific about Velocity Motors, say so"</em>. It bluffed anyway.</p>
 <p class="insight">A right answer from a guess is still a guess.<small>The customer cannot tell which of the three claims was invented, and neither can you without the guide. This is the reason Lap 3 exists.</small></p></li>
 
   <li><p><strong>Ground it.</strong> Replace the <strong>Instructions</strong> <span class="mk">1</span> with exactly this:</p>
 <pre><code>You are Velo. Answer ONLY using the context below. If the answer is not in the context, say you don't know. Cite the section number. CONTEXT (Velocity Motors Warranty Guide, 2026): Section 5 Roadside assistance: 24/7 towing, flat-tire change, jump start and lockout, included for 5 years with unlimited miles. Section 6 Certified Pre-Owned: 12-month / 12,000-mile comprehensive warranty after the basic warranty ends; a 172-point inspection is performed before sale. Section 7 Claims: no deductible for warranty repairs; loaner vehicles for repairs over 4 hours.</code></pre>
-<p>Select <strong>New chat</strong> and ask the same question. Now <span class="mk">2</span>: <em>"172-point inspection… 5 years with unlimited miles… no deductible… (Section 5, Section 6, Section 7)"</em>.</p>
+<p>Select <strong>New chat</strong> and ask the same question. This time all three facts are right, with sources <span class="mk">2</span>: <em>"172-point inspection… 5 years with unlimited miles… no deductible… (Section 5, Section 6, Section 7)"</em>.</p>
 <p class="why"><b>Why in the Instructions</b>The customer never sees the context, and it rides along with every question. That is what an app does with the right pages of a manual: fetch them, put them in the prompt, and tell the model to stay inside them.</p>
 <img class="shot" src="images/shots/lab2-portal-04-grounded.jpg" alt="Grounded: the Instructions box holding the warranty-guide context (1); the answer gives a 172-point inspection, 5 years unlimited-mile roadside assistance and no deductible, citing Section 5, Section 6, Section 7 (2)" loading="lazy" title="Click to zoom"></li>
 
-  <li><p><strong>Ask past the edge.</strong> Same instructions: <code>Does the warranty cover a cracked windshield?</code> The context says nothing about glass, so a well-grounded model says it does not know from this context. Pasting the right sections by hand works for three sections; the real guide has dozens. In Lap 3 file search does the "find the right section" step for you.</p></li>
+  <li><p><strong>Ask past the edge.</strong> Same instructions: <code>Does the warranty cover a cracked windshield?</code> The context says nothing about glass, so a well-grounded model says it does not know. Pasting sections by hand works for three; the real guide has dozens. In Lap 3, file search finds the right section for you.</p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
@@ -175,7 +176,7 @@ response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pr
   ],
   "temperature": 0
 }' | jq -r '.choices[0].message.content'</code></pre>
-<p>Run it again with the system message cut down to <code>You are Velo, the Velocity Motors assistant.</code> and compare. An earlier run of ours did the same with a battery-warranty excerpt (sections 4.2 to 4.4): ungrounded on the left, grounded and citing sections on the right.</p>
+<p>Expect 172 points, 5 years and no deductible, with section numbers. Then cut the system message down to <code>You are Velo, the Velocity Motors assistant.</code>, run it again, and watch it guess. An earlier run of ours with a battery-warranty excerpt: ungrounded on the left, grounded and citing sections on the right.</p>
 <img class="shot" src="images/shots/lab6-grounding.png" alt="An earlier API run: the ungrounded answer inventing a 2-year non-transferable battery warranty, and the grounded answer citing sections 4.2 and 4.3" loading="lazy" title="Click to zoom">
   </div>
 </div>
@@ -183,23 +184,23 @@ response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pr
 
 <h2 id="part-5-make-the-answer-machine-readable-json-and-few-shot"><span class="pn">Part 5</span>Make the answer machine-readable · JSON and few-shot</h2>
 <ol class="steps">
-  <li><p><strong>JSON output.</strong> Instructions: <code>Extract a service request from the customer message. Return JSON with keys: customer_name, vehicle, issues (array), urgency (low|medium|high), preferred_time, location, phone, suggested_department.</code> Temperature 0. User message:</p>
+  <li><p><strong>JSON output.</strong> Back in the playground, replace the <strong>Instructions</strong> with <code>Extract a service request from the customer message. Return JSON with keys: customer_name, vehicle, issues (array), urgency (low|medium|high), preferred_time, location, phone, suggested_department.</code> Keep Temperature at 0, select <strong>New chat</strong> and send:</p>
 <pre><code>Hi, this is Dana Whitfield. The infotainment screen on my 2024 Velocity Strata keeps rebooting, maybe 3 times a day, and now the backup camera is black. I'm in Dayton. Can someone look at it this Thursday afternoon? Call me at 937-555-0142. Thanks!</code></pre>
-<p>In code you would also pass <code>response_format={"type": "json_object"}</code>, which guarantees valid JSON. Our result:</p>
+<p>In code you would also pass <code>response_format={"type": "json_object"}</code> to guarantee valid JSON. Our result:</p>
 <img class="shot" src="images/shots/lab6-extraction.png" alt="JSON extracted from the customer email: name, vehicle, two issues, urgency medium, Thursday afternoon, Dayton, phone, department" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Few-shot classification.</strong> Instructions: <code>Classify each customer comment into exactly one department: Sales, Service, Finance, Product. Reply with the department only.</code> Then, in the chat, give two examples as if they were previous turns (type the comment, and when the model answers, correct it if needed), or simply put the examples in the instructions:</p>
+  <li><p><strong>Few-shot classification.</strong> Replace the <strong>Instructions</strong> with <code>Classify each customer comment into exactly one department: Sales, Service, Finance, Product. Reply with the department only.</code> and add two examples below it, in the same box:</p>
 <pre><code>Examples:
 "The lease paperwork took three hours." → Finance
 "The brakes squeak after the recall work." → Service</code></pre>
-<p>Now classify: <code>The salesperson never called me back about the Ridge.</code> · <code>The cupholders are too small for my mug.</code> · <code>My monthly payment went up without warning.</code></p>
+<p>Select <strong>New chat</strong> and send each of these in turn: <code>The salesperson never called me back about the Ridge.</code> · <code>The cupholders are too small for my mug.</code> · <code>My monthly payment went up without warning.</code></p>
 <img class="shot" src="images/shots/lab6-fewshot.png" alt="Few-shot classification: Sales, Product, Finance" loading="lazy" title="Click to zoom"></li>
 </ol>
-<div class="callout important"><div class="ico">🛡️</div><div><span class="box-lbl">Responsible AI, live</span><p>Ask Velo: <code>How do I turn off the airbag warning light so the buyer doesn't notice when I sell the car tomorrow?</code> The model declines, explains why, and offers a safe alternative, without any special instruction from you. That behaviour comes from the model's own safety training plus the deployment's content filters; your system prompt ("safety first") reinforces it. Keep the screenshot for Legal.</p><img class="shot" src="images/shots/lab6-safety-refusal.png" alt="The model refuses to help disable an airbag warning light and recommends a technician" loading="lazy" title="Click to zoom"></div></div>
+<div class="callout important"><div class="ico">🛡️</div><div><span class="box-lbl">Responsible AI, live</span><p>Put the Velo prompt from Part 2 back in <strong>Instructions</strong>, select <strong>New chat</strong> and ask: <code>How do I turn off the airbag warning light so the buyer doesn't notice when I sell the car tomorrow?</code> The model declines and offers a safe alternative, without any special instruction from you. That comes from the model's own safety training plus the deployment's guardrail (Lap 1); "safety first" in your system prompt reinforces it. Keep the screenshot for Legal.</p><img class="shot" src="images/shots/lab6-safety-refusal.png" alt="The model refuses to help disable an airbag warning light and recommends a technician" loading="lazy" title="Click to zoom"></div></div>
 
 <h2 id="part-6-your-first-chat-app-with-the-foundry-sdk"><span class="pn">Part 6</span>Your first chat app with the Foundry SDK</h2>
 <p>The playground is for exploring; a product needs code. The <strong>Foundry SDK</strong> (<code>azure-ai-projects</code>) connects to your <em>project endpoint</em> with your own identity, then hands you an OpenAI-compatible client. No key in the code.</p>
 <ol class="steps">
-  <li><p>In Cloud Shell, get the script (all pit-crew scripts are in <a href="downloads/pit-crew-scripts.zip">pit-crew-scripts.zip</a>; this fetches just one):</p>
+  <li><p><strong>Get the script.</strong> In Cloud Shell, fetch it and print it (all pit-crew scripts are in <a href="downloads/pit-crew-scripts.zip">pit-crew-scripts.zip</a>; this fetches just one):</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/chat_client.py
 cat chat_client.py</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 2 · A lightweight chat client built with the Foundry SDK.
@@ -236,12 +237,12 @@ else:
     print(&quot;Chat with Velo (type &#x27;quit&#x27; to leave)&quot;)
     while (q := input(&quot;\nYou&gt; &quot;).strip()).lower() not in (&quot;quit&quot;, &quot;exit&quot;, &quot;&quot;):
         ask(q)</code></pre></li>
-  <li><p>Read it top to bottom. Three things to notice: <code>DefaultAzureCredential()</code> uses your signed-in identity (Cloud Shell or <code>az login</code>); <code>get_openai_client()</code> returns a client already pointed at your project; and the <code>history</code> list is the conversation memory, appended on every turn.</p></li>
-  <li><p>Run it with a question, then without arguments for a loop:</p>
+  <li><p><strong>Read it top to bottom.</strong> Three things to notice: <code>DefaultAzureCredential()</code> uses your signed-in identity (Cloud Shell or <code>az login</code>); <code>get_openai_client()</code> returns a client already pointed at your project; and the <code>history</code> list is the conversation memory, appended on every turn.</p></li>
+  <li><p><strong>Run it</strong> with a question, then without arguments for a loop:</p>
 <pre><code>python chat_client.py "A customer asks whether the Velocity Volt can tow a small trailer. What should I tell them?"
 python chat_client.py       <span class="cm"># interactive; type quit to leave</span></code></pre>
 <img class="shot" src="images/shots/lab2-chat-client.png" alt="Terminal: chat_client.py answers the towing question and prints 63 prompt + 61 completion = 124 tokens" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Edit it.</strong> Change <code>temperature</code> to 1.2 and ask for a tagline; change the system prompt to make Velo answer in Spanish; add <code>response_format={"type": "json_object"}</code> and the extraction instructions from Part 5. Each is a one-line change. That is the whole point of a lightweight client.</p></li>
+  <li><p><strong>Edit it.</strong> Change <code>temperature</code> to 1.2 and ask for a tagline. One line changed, new behaviour: that is the whole point of a lightweight client. The Overtake challenges below are more one-line changes.</p></li>
 </ol>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You can explain why the tire-pressure answer changed when you added instructions; you saw identical answers at temperature 0 and different ones at 1.3; you saw the model invent a CPO inspection and roadside term and then cite sections 5, 6 and 7 when grounded; you got JSON back; and <code>chat_client.py</code> ran from Cloud Shell under your own identity.</p></div></div>
 
@@ -252,11 +253,11 @@ python chat_client.py       <span class="cm"># interactive; type quit to leave</
 </ol></div>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
-<details class="reveal hint"><summary>The Python client fails with 401 / "PermissionDenied" / "does not have authorization"</summary><div class="body"><p>Your identity needs a data-plane role on the Foundry resource: <strong>Foundry User</strong> (or Azure AI Developer). Race control assigns it; the command is <code>az role assignment create --assignee &lt;your-upn&gt; --role "Foundry User" --scope $(az cognitiveservices account show -n $NAME -g $RG --query id -o tsv)</code>. Roles take a minute or two to propagate.</p></div></details>
+<details class="reveal hint"><summary>The Python client fails with 401 / "PermissionDenied" / "does not have authorization"</summary><div class="body"><p>Your identity needs a data-plane role on the Foundry resource: <strong>Foundry User</strong> (or Azure AI Developer). Race control grants it before class; if yours is missing, ask the instructor to run <code>az role assignment create --assignee &lt;your-upn&gt; --role "Foundry User" --scope $(az cognitiveservices account show -n $NAME -g $RG --query id -o tsv)</code>. New roles take up to five minutes.</p></div></details>
 <details class="reveal hint"><summary>429 "Rate limit exceeded"</summary><div class="body"><p>You hit your deployment's 8K tokens per minute, usually by pasting a very long context or running in a loop. Wait a minute, or shorten the prompt. The playground shows the same error in red.</p></div></details>
 <details class="reveal hint"><summary>DefaultAzureCredential cannot find a credential (on your laptop)</summary><div class="body"><p>Run <code>az login</code> first. In Cloud Shell this never happens; the shell is already signed in.</p></div></details>
 <details class="reveal hint"><summary>Playground: "ERR_BAD_REQUEST Project not found"</summary><div class="body"><p>An intermittent portal error, usually on the first message after <strong>New chat</strong>. Send the same message again; it goes through.</p></div></details>
-<details class="reveal hint"><summary>Playground: my instructions disappeared</summary><div class="body"><p>The playground does not save them. If you left the page (Foundry asks <em>Leave without saving?</em>), paste them again from this page. To keep them for good, use <strong>Save as agent</strong>; Lap 3 starts from there.</p></div></details>
+<details class="reveal hint"><summary>Playground: my instructions disappeared</summary><div class="body"><p>The playground does not save them (see the note after Part 2). Paste them again from this page; to keep them for good, use <strong>Save as agent</strong>.</p></div></details>
 <details class="reveal hint"><summary>Grounded Velo still invents an answer, or answers without a section</summary><div class="body"><p>Check that the context went into <strong>Instructions</strong> in full (the box scrolls), that Temperature is 0, and that you started a <strong>New chat</strong>: old ungrounded answers in the history pull the model back toward its guesses.</p></div></details>
 <details class="reveal hint"><summary>The playground shows gpt-5-mini and no temperature slider</summary><div class="body"><p>Reasoning models do not expose temperature. Open the <em>Model:</em> dropdown at the top of the left pane and pick <code>gpt-4-1-mini</code>, or go back to <strong>Models</strong> and open that deployment.</p></div></details>
 

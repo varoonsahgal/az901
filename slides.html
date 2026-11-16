@@ -596,7 +596,7 @@ curl <span class="s">"<span class="y">https://ai901-s07-pitcrew.cognitiveservice
       <div class="card h" style="padding:32px;--c:var(--green)"><span class="ico">🚰</span><span class="tag" style="--c:#86EFAC">Per deployment</span><h3 style="font-size:36px">Capacity (TPM)</h3><p style="margin-top:10px">The slice of quota you give one deployment. Exceed it and the service answers <code>429 Too Many Requests</code>.</p></div>
     </div>
     <div style="margin-top:34px">
-      <div style="display:flex;justify-content:space-between;font:600 20px var(--mono);color:var(--muted);margin-bottom:10px"><span>REGIONAL QUOTA FOR GPT-4.1-MINI · EAST US 2</span><span>20 STUDENTS × 10K TPM = 200K USED</span></div>
+      <div style="display:flex;justify-content:space-between;font:600 20px var(--mono);color:var(--muted);margin-bottom:10px"><span>REGIONAL QUOTA FOR GPT-4.1-MINI · EAST US 2</span><span>23 STUDENTS × 8K TPM = 184K OF 200K</span></div>
       <div style="display:flex;gap:4px;height:54px;border-radius:14px;overflow:hidden;background:var(--panel2);border:1px solid var(--rule2)" id="quota"></div>
     </div>
   </div>
@@ -1542,8 +1542,8 @@ print(r.choices[0].message.content)</pre>
     g+='<rect x="'+x+'" y="250" width="'+w[1]+'" height="76" rx="14" fill="'+(it?'#FACC15':hot?'rgba(239,68,68,.22)':'var(--panel)')+'" stroke="'+(it?'#FACC15':hot?'#EF4444':'var(--rule2)')+'" stroke-width="3"/>'+
        '<text x="'+(x+w[1]/2)+'" y="299"'+(it?' style="fill:#0B1220;font-weight:700"':'')+'>'+w[0]+'</text>'; x+=w[1]+12;});
   document.getElementById('attn').innerHTML=g;
-  var q='';for(var i=0;i<20;i++)q+='<i style="flex:1;background:color-mix(in srgb,var(--sky) '+(i%2?55:75)+'%,transparent);font:600 15px var(--mono);font-style:normal;color:#04121F;display:flex;align-items:center;justify-content:center">s'+(i<9?'0':'')+(i+1)+'</i>';
-  document.getElementById('quota').innerHTML=q+'<i style="flex:14;display:flex;align-items:center;justify-content:center;font:600 18px var(--mono);font-style:normal;color:var(--muted)">headroom</i>';
+  var q='';for(var i=0;i<23;i++)q+='<i style="flex:8;background:color-mix(in srgb,var(--sky) '+(i%2?55:75)+'%,transparent);font:600 15px var(--mono);font-style:normal;color:#04121F;display:flex;align-items:center;justify-content:center">s'+(i<9?'0':'')+(i+1)+'</i>';
+  document.getElementById('quota').innerHTML=q+'<i style="flex:16;display:flex;align-items:center;justify-content:center;font:600 18px var(--mono);font-style:normal;color:var(--muted)">headroom</i>';
   var objs=[['car',.52,645,337,79,62],['vehicle',.51,1118,350,100,70],['car',.53,840,544,118,85],['van',.53,1276,517,120,121],['car',.57,956,611,125,110],['car',.58,697,649,130,135],['car',.62,423,779,191,145],['car',.60,1289,819,105,114],['car',.60,316,614,176,197],['car',.86,800,781,223,152],['car',.77,1089,708,205,183]];
   document.getElementById('traffic').insertAdjacentHTML('beforeend',objs.map(function(o){
     return '<span style="position:absolute;left:'+(o[2]/14)+'%;top:'+(o[3]/9.33)+'%;width:'+(o[4]/14)+'%;height:'+(o[5]/9.33)+'%;border:3px solid #FACC15;border-radius:6px;box-shadow:0 0 0 1px rgba(0,0,0,.5)"><b style="position:absolute;left:-3px;bottom:100%;background:#FACC15;color:#0B1220;font:700 14px var(--mono);padding:1px 6px;border-radius:4px 4px 0 0;white-space:nowrap">'+o[0]+' '+o[1].toFixed(2)+'</b></span>';}).join(''));

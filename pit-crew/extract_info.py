@@ -3,7 +3,7 @@ Works on documents, images, audio and video. This script sends a file to an anal
 
 Run:  python extract_info.py prebuilt-invoice service-invoice.pdf
       python extract_info.py velocityWindowSticker window-sticker.png
-      python extract_info.py prebuilt-audio teaser.mp3
+      python extract_info.py prebuilt-audio narration.mp3
 Needs: pip install requests
 Env:   FOUNDRY_ENDPOINT_AI (https://<resource>.services.ai.azure.com)   AI_KEY
 """

@@ -16,65 +16,64 @@
   <div><b>People and faces</b>Azure AI Vision detects <em>people</em> (boxes). The separate Azure AI Face service detects and matches <em>faces</em>; identification is Limited Access and needs an approved use case: a responsible-AI gate, not a technical one.</div>
   <div><b>Image generation</b>Text-to-image models (FLUX.2-pro, FLUX-1.1-pro, gpt-image-1-mini) and image editing. Controls: prompt, size, number, style; outputs carry provenance metadata (C2PA) so generated images can be recognised as such.</div>
 </div>
-<p>Two different tools look at an image today. <strong>Azure AI Vision</strong> (a Foundry Tool) is fast, cheap and structured: it returns JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. A <strong>multimodal model</strong> (gpt-4.1-mini with an image in the prompt) is slower and costs tokens, but it can <em>reason</em>: write a listing, suggest what to inspect, answer questions.</p>
+<p>Two tools look at an image today. <strong>Azure AI Vision</strong> (a Foundry Tool) is fast, cheap and structured: JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. A <strong>multimodal model</strong> (gpt-4.1-mini with an image in the prompt) is slower and costs tokens, but it can <em>reason</em>: write a listing, suggest what to inspect, answer questions.</p>
 <p class="insight">Vision measures. The model judges.<small>Count with Vision, read with Vision, and ask the model only when you need an opinion.</small></p>
-<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Interpret visual input in prompts" = send an image to a multimodal chat model as an <code>image_url</code> (or <code>input_image</code>) content item alongside text. "Create new visual outputs" = deploy an image-generation model and call <code>images/generations</code> with a prompt. "Vision capabilities in an app" = either the Azure AI Vision SDK/REST (captions, objects, OCR) or the multimodal model, chosen by whether you need structure or judgement. Face recognition is restricted; people detection is not.</p></div></div>
+<div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Interpret visual input in prompts" = send an image to a multimodal chat model as an <code>image_url</code> (or <code>input_image</code>) content item next to text. "Create new visual outputs" = deploy an image-generation model and call <code>images/generations</code> with a prompt. "Vision capabilities in an app" = Azure AI Vision (captions, objects, OCR) or the multimodal model, chosen by whether you need structure or judgement. Face recognition is restricted; people detection is not.</p></div></div>
 
 <h2>Part 1 · Reload your pit board and get the photos</h2>
 <ol class="steps">
-  <li><p><strong>Photos on your laptop.</strong> Download <a href="downloads/lot-photos.zip">lot-photos.zip</a> and unzip it to a folder you can find, then save the three document images next to it: <a href="downloads/vin-plate.png">vin-plate.png</a>, <a href="downloads/window-sticker.png">window-sticker.png</a> and <a href="downloads/service-note.png">service-note.png</a>.</p>
-<p class="why"><b>Why the laptop</b>The portal uploads files from the computer your browser runs on, not from Cloud Shell. Files you download in Cloud Shell are invisible to the <strong>Browse for files</strong> button.</p></li>
-  <li><p><strong>The same photos in Cloud Shell</strong>, for the API half of the lap. Open <a href="https://shell.azure.com">shell.azure.com</a> and paste:</p>
+  <li><p><strong>Photos on your laptop.</strong> Download <a href="downloads/lot-photos.zip">lot-photos.zip</a> and unzip it to a folder you can find, then save the three document images next to it: <a href="downloads/vin-plate.png">vin-plate.png</a>, <a href="downloads/window-sticker.png">window-sticker.png</a> and <a href="downloads/service-note.png">service-note.png</a>. The zip holds sixteen public-domain photos: sedans, an SUV, a pickup, a minivan, an EV, a classic, a motorcycle, bicycles, a traffic jam, a car wash, an engine bay, a showroom and a road trip (credits on the <a href="credits.html">credits page</a>).</p>
+<p class="why"><b>Why the laptop</b>The portal uploads files from the computer your browser runs on. Files you download in Cloud Shell are invisible to its <strong>Browse for files</strong> button.</p></li>
+  <li><p><strong>The same photos in Cloud Shell</strong>, for the API half of the lap. Open <a href="https://shell.azure.com">shell.azure.com</a> and paste this to reload your pit board and unzip the photos into <code>lot/</code>:</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY CHAT_MODEL=gpt-4-1-mini IMAGE_MODEL=flux-2-pro
 curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot &amp;&amp; ls lot</code></pre></li>
-  <li><p><strong>Start Lap 6's engines now.</strong> Still in Cloud Shell, create the two deployments Lap 6 needs, an embedding model and the full gpt-4.1, so they have an hour to settle before you use them:</p>
+  <li><p><strong>Start Lap 6's engines now.</strong> Still in Cloud Shell, create the two deployments Lap 6 needs, an embedding model and the full gpt-4.1, so they have an hour to settle before you use them. Do this on either path:</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name text-embedding-3-large --model-name text-embedding-3-large --model-version 1 --model-format OpenAI \
   --sku-name Standard --sku-capacity 10 -o table
 az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name gpt-4-1 --model-name gpt-4.1 --model-version 2025-04-14 --model-format OpenAI \
   --sku-name GlobalStandard --sku-capacity 40 -o table</code></pre>
-<p class="why"><b>Why now</b>A brand-new deployment answers chat calls within seconds, but Content Understanding can take ten to fifteen minutes to see it reliably; until then its calls fail on and off with <code>DeploymentIdNotFound</code>. Deployments cost nothing while idle, so creating them an hour early costs nothing and saves Lap 6 a confusing wait.</p></li>
+<p class="why"><b>Why now</b>A brand-new deployment answers chat calls within seconds, but Content Understanding can take ten to fifteen minutes to see it reliably; until then its calls fail on and off with <code>DeploymentIdNotFound</code>. Idle deployments cost nothing, so creating them an hour early is free and saves Lap 6 a confusing wait.</p></li>
 </ol>
-<p>Sixteen public-domain photos: sedans, an SUV, a pickup, a minivan, an EV, a classic, a motorcycle, bicycles, a traffic jam, a car wash, an engine bay, a showroom and a road trip. Credits are on the <a href="credits.html">credits page</a>.</p>
 
 <h2>Part 2 · Azure AI Vision · the fast, structured eye</h2>
-<p>The structured eye does two jobs: it <strong>reads</strong> text (OCR) and it <strong>sees</strong> scenes (tags, objects with boxes, people, captions). The Foundry portal has a playground for reading. Image tagging and object boxes are API-only today, so they live in the Cloud Shell tab. Do the portal tab first, then switch tabs for the boxes: they are the best pictures in this lap.</p>
+<p>The structured eye does two jobs: it <strong>reads</strong> text (OCR) and it <strong>sees</strong> scenes (tags, objects with boxes, people, captions). The Foundry portal has a playground for reading; tags and object boxes are API-only today, so they live in the Cloud Shell tab. On the portal path, do the portal tab first, then switch tabs for the boxes: they are the best pictures in this lap.</p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
 <ol class="steps">
   <li><p><strong>Open the OCR playground.</strong> In <a href="https://ai.azure.com">ai.azure.com</a>, in your project, select <strong>Services</strong> in the left menu → <strong>Document Intelligence and Content Understanding</strong> → <strong>OCR (Read)</strong>.</p>
 <p class="why"><b>Why this one</b>OCR needs no model deployment, so it works the moment your resource exists. It is the raw material: every form, sticker and plate is pixels until something turns it into text.</p></li>
-  <li><p><strong>Upload the VIN plate.</strong> The playground has a <strong>Playground</strong> and a <strong>Code</strong> tab at the top, then <strong>Modality: Document</strong> and the analyzer dropdown showing <strong>OCR (Read)</strong>. In the upload panel on the left, drag <code>vin-plate.png</code> from your laptop onto <strong>Drag &amp; drop files here</strong>, or select <strong>Browse for files</strong>. Microsoft's sample files are listed below it; yours appears at the bottom. Select it, then <strong>Run analysis</strong>.</p></li>
-  <li><p><strong>Read the result.</strong> The <strong>Markdown</strong> tab lists every line on the plate in reading order, and the VIN comes back character for character: a line <code>VIN</code>, then <code>1VMSTR8A3RA210077</code>. <strong>Paragraphs</strong> groups the lines, <strong>Metadata</strong> describes the page, and <strong>Result</strong> is the raw JSON your code would get.</p>
+  <li><p><strong>Upload the VIN plate.</strong> Check the top of the playground shows <strong>Modality: Document</strong> and the analyzer <strong>OCR (Read)</strong>. In the upload panel on the left, drag <code>vin-plate.png</code> from your laptop onto <strong>Drag &amp; drop files here</strong>, or select <strong>Browse for files</strong>. Microsoft's sample files are listed below it; yours appears at the bottom. Select it, then <strong>Run analysis</strong>.</p></li>
+  <li><p><strong>Read the result.</strong> The <strong>Markdown</strong> tab lists every line on the plate in reading order, and the VIN comes back character for character: a line <code>VIN</code>, then <code>1VMSTR8A3RA210077</code>. <strong>Result</strong> is the raw JSON your code would get.</p>
 <img class="shot" src="images/shots/lab5-portal-02-ocr.jpg" alt="Content Understanding playground, Modality Document, analyzer OCR (Read): vin-plate.png uploaded and analysed, the Markdown tab listing each line with the VIN 1VMSTR8A3RA210077 circled" loading="lazy" title="Click to zoom">
 <p class="insight">Seventeen characters, no typos, no model deployed.<small>That is the service desk's VIN retyping gone. A wrong VIN orders the wrong part; OCR on the door-jamb photo removes the human keystroke where the errors happen.</small></p></li>
-  <li><p><strong>Two harder documents.</strong> Run <code>window-sticker.png</code> (34 lines of small print and a price table) and <code>service-note.png</code> (handwriting). Look closely at the torque value in the note: does the playground read <code>100 ft-lb</code>, or something else? The <strong>Code</strong> tab shows this same analysis as code.</p></li>
+  <li><p><strong>Two harder documents.</strong> Run <code>window-sticker.png</code> (34 lines of small print and a price table) and <code>service-note.png</code> (handwriting). Look closely at the torque value in the note: does the playground read <code>100 ft-lb</code>, or something else? The <strong>Code</strong> tab at the top shows the same analysis as code.</p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
-<p>Same reading job by API, plus everything the portal cannot show yet: tags, objects with boxes, people and a caption. This is Azure AI Vision's Image Analysis endpoint.</p>
+<p>Same reading job by API, plus what the portal cannot show yet: tags, objects with boxes, people and a caption, all from Azure AI Vision's Image Analysis endpoint.</p>
 <ol class="steps">
-  <li><p>One request, four features. Send the SUV photo as raw bytes and ask for tags, objects, people and text (Image Analysis 4.0); then ask the v3.2 <em>describe</em> operation for a caption:</p>
+  <li><p><strong>Analyse the SUV.</strong> Send the photo as raw bytes twice: one Image Analysis 4.0 request for tags, objects, people and text, then the v3.2 <em>describe</em> operation for a caption:</p>
 <pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=tags,objects,people,read" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq '{objects: [.objectsResult.values[] | {name: .tags[0].name, conf: .tags[0].confidence, box: .boundingBox}], tags: [.tagsResult.values[:8][] | .name]}'
 curl -s -X POST "$ENDPOINT/vision/v3.2/describe?maxCandidates=1" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq .description.captions</code></pre>
-<p class="why"><b>Why two calls</b>Image Analysis 4.0 captions and dense captions are offered only in eight regions (East US, West US, West Europe, North Europe, France Central, Southeast Asia, East Asia, Korea Central). East US 2 is not one, and asking for <code>caption</code> there returns <em>"The feature 'Caption' is not supported in this region."</em> The v3.2 caption runs everywhere. Region availability is a real design input: check it before you choose a region.</p>
+<p class="why"><b>Why two calls</b>Image Analysis 4.0 captions and dense captions are offered only in eight regions (East US, West US, West Europe, North Europe, France Central, Southeast Asia, East Asia, Korea Central). East US 2 is not one: asking for <code>caption</code> there returns <em>"The feature 'Caption' is not supported in this region."</em> The v3.2 caption runs everywhere. Region availability is a real design input; check it before you choose a region.</p>
 <img class="shot" src="images/shots/lab3-vision-card.png" alt="Card: caption, 32 tags with confidences, and dense captions with bounding boxes for the SUV photo, captured in a region that offers 4.0 captions" loading="lazy" title="Click to zoom">
-<p>Every feature returns a confidence. The object detector called the SUV a <em>station wagon</em> at 0.53; the v3.2 caption, <em>"a silver car parked on a road"</em>, came back at 0.47. The card above was made in a captions region and adds dense captions: one sentence per region of the photo. Structured, honest, and fast.</p></li>
-  <li><p>Try the busy one. The traffic jam returns <strong>11 objects</strong> with boxes; the bicycles photo returns cars <em>and</em> a bicycle; the road-trip photo detects a <em>person</em>. Here is what the JSON looks like drawn back onto the photos:</p>
+<p>The object detector called the SUV a <em>station wagon</em> at 0.53; the v3.2 caption, <em>"a silver car parked on a road"</em>, came back at 0.47. The card above, made in a captions region, adds dense captions: one sentence per region of the photo. Structured, honest, and fast.</p></li>
+  <li><p><strong>Try the busy ones.</strong> Swap in <code>lot/traffic-auckland.jpg</code>, <code>lot/bicycles-wall.jpg</code> and <code>lot/roadtrip-iceland.jpg</code>. The traffic jam returns <strong>11 objects</strong> with boxes; the bicycles photo returns cars <em>and</em> a bicycle; the road-trip photo detects a <em>person</em>. Here is what the JSON looks like drawn back onto the photos:</p>
 <div class="shots2"><img class="shot" src="images/vision/traffic-auckland-objects.jpg" alt="Traffic photo with 11 object bounding boxes and the caption 'a traffic jam on a highway'" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/bicycles-wall-objects.jpg" alt="Bicycles against a wall with car, van and bicycle boxes" loading="lazy" title="Click to zoom"></div>
 <div class="shots2"><img class="shot" src="images/vision/roadtrip-iceland-people.jpg" alt="Person detected beside a car" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-dense.jpg" alt="Dense captions: one sentence per region of the SUV photo" loading="lazy" title="Click to zoom"></div>
-<p>Run it on <code>lot/carwash.jpg</code> too. The caption we got was <em>"a building with a sign in front"</em> at 0.33.</p>
+<p>Run <code>lot/carwash.jpg</code> too. Our caption: <em>"a building with a sign in front"</em> at 0.33.</p>
 <p class="insight">Low confidence is the model asking you to look.<small>Every feature returns a number for a reason. Thresholds belong in your application, not in the service.</small></p>
 <div class="shots2"><img class="shot" src="images/vision/carwash-objects.jpg" alt="Car wash photo with a doubtful caption" loading="lazy" title="Click to zoom"><img class="shot" src="images/vision/suv-volvo-xc90-tags.jpg" alt="Tags strip for the SUV photo" loading="lazy" title="Click to zoom"></div></li>
-  <li><p><strong>OCR.</strong> Point the <code>read</code> feature at documents instead of scenes. The window sticker returns 34 lines in reading order with word confidences; the VIN plate reads <code>1VMSTR8A3RA210077</code> correctly; the handwritten note reads seven lines and turns "100 ft-lb" into "100 ft-16".</p>
+  <li><p><strong>OCR.</strong> Point the <code>read</code> feature at documents instead of scenes: the commands fetch the images and read the VIN plate; swap the file name for the others. The window sticker returns 34 lines in reading order with word confidences; the VIN plate reads <code>1VMSTR8A3RA210077</code> correctly; the handwritten note reads seven lines and turns "100 ft-lb" into "100 ft-16".</p>
 <pre><code>for f in window-sticker vin-plate service-note; do curl -sLO https://varoonsahgal.github.io/az901/downloads/$f.png; done
 curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=read" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @vin-plate.png | jq '[.readResult.blocks[].lines[].text]'</code></pre>
@@ -83,7 +82,7 @@ curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024
 </ol>
   </div>
 </div>
-<p>For typed fields out of documents (not just lines of text) you will use Content Understanding in Lap 6. OCR is the raw material.</p>
+<p>OCR gives you lines of text. For typed fields (the VIN, the price, the date) you will use Content Understanding in Lap 6.</p>
 
 <h2>Part 3 · The thoughtful eye · a multimodal model</h2>
 <div class="tabs">
@@ -92,14 +91,14 @@ curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024
 <ol class="steps">
   <li><p><strong>Open the playground.</strong> In the left menu select <strong>Models</strong>, select your <code>gpt-4-1-mini</code> deployment, and open the <strong>Playground</strong> tab.</p>
 <p class="why"><b>Why this model</b>gpt-4.1-mini accepts images as well as text. The deployment you made in Lap 0 already has eyes; you just have not shown it a picture yet.</p></li>
-  <li><p>In <strong>Instructions</strong> type <code>You are a Velocity Motors used-car appraiser.</code></p>
+  <li><p><strong>Give it a role.</strong> In <strong>Instructions</strong> type <code>You are a Velocity Motors used-car appraiser.</code></p>
 <p class="why"><b>Why a role</b>The same photo gets a different answer from an appraiser, a salesperson and an insurer. The instruction decides which one is looking.</p></li>
   <li><p><strong>Attach the photo.</strong> In the chat box select the paperclip <strong>Attach files</strong> button and choose <code>pickup-ford-f150.jpg</code> from the lot folder on your laptop. It appears as a chip under your message <span class="mk">1</span>. Type <code>Describe this vehicle for a listing in 3 bullets, then suggest one thing to inspect.</code> and send.</p>
 <img class="shot" src="images/shots/lab5-portal-01-appraise.jpg" alt="gpt-4-1-mini playground with the appraiser instruction, the prompt and the attached pickup-ford-f150.jpg chip (1), and a three-bullet listing: 4-door F-150 crew cab, 4x4, two-tone with running boards" loading="lazy" title="Click to zoom">
-<p>Our run: a 4-door F-150 crew cab, 4x4 capability, a two-tone exterior with running boards, and a suggestion to inspect the <strong>4x4 drivetrain</strong>. Vision in Part 2 could tell you "pickup truck"; only the model turns the picture into a listing and an inspection plan.</p></li>
-  <li><p>Select the <strong>New chat</strong> icon (top right of the chat), attach <code>engine-bay.jpg</code> and ask <code>What am I looking at and which routine maintenance items can you see?</code> Our engine-bay run named the engine cover, the air intake and the coolant reservoir, for 144 image tokens at <em>low</em> detail:</p>
+<p>Our run: a 4-door F-150 crew cab, 4x4, a two-tone exterior with running boards, and a suggestion to inspect the <strong>4x4 drivetrain</strong>. Vision could tell you "pickup truck"; only the model turns the picture into a listing and an inspection plan.</p></li>
+  <li><p><strong>A second photo.</strong> Select the <strong>New chat</strong> icon (top right of the chat), attach <code>engine-bay.jpg</code> and ask <code>What am I looking at and which routine maintenance items can you see?</code> Our run named the engine cover, the air intake and the coolant reservoir, for 144 image tokens at <em>low</em> detail:</p>
 <img class="shot" src="images/shots/lab6-multimodal.png" alt="Engine bay photo beside the model's four-bullet answer and token usage" loading="lazy" title="Click to zoom"></li>
-  <li><p>Select <strong>Continue in code</strong> and find the user message in the sample. Its content is a list: a text item and an image item (in the Responses API <code>input_text</code> and <code>input_image</code>; in chat completions <code>text</code> and <code>image_url</code>). That list is the whole trick, and the Cloud Shell tab runs it.</p>
+  <li><p><strong>See the code.</strong> Select <strong>Continue in code</strong> and find the user message in the sample. Its content is a list: a text item and an image item (in the Responses API <code>input_text</code> and <code>input_image</code>; in chat completions <code>text</code> and <code>image_url</code>). That list is the whole trick, and the Cloud Shell tab runs it.</p>
 <p class="insight">An image in a prompt is just one more item in the message.<small>No special endpoint, no vision service: the same chat call you made in Lap 2, with a picture next to the words.</small></p></li>
 </ol>
   </div>
@@ -161,28 +160,28 @@ print(f&quot;  [{r.usage.prompt_tokens} prompt tokens incl. the image]&quot;)</c
 
 Suggested inspection: Check the condition and operation of the truck’s suspension and undercarriage for wear or damage, especially given the vehicle’s age and potential use.
   [308 prompt tokens incl. the image]</span></code></pre>
-<p>Vision found three car boxes, tags and even a tiny bit of text; the model wrote the listing and suggested checking the suspension. <code>"detail": "low"</code> keeps the image at a fixed small token cost; use <code>"high"</code> when you need to read fine print.</p>
+<p>Vision found three car boxes, tags and even a scrap of text; the model wrote the listing and suggested checking the suspension. <code>"detail": "low"</code> keeps the image at a fixed small token cost; use <code>"high"</code> when you need to read fine print.</p>
   </div>
 </div>
 
 <h2>Part 4 · Paint it · image generation</h2>
-<p>Marketing wants the Volt on a wet track before the car exists. That takes a second kind of model: one that outputs pixels instead of words. You deploy it exactly like the chat model in Lap 0.</p>
+<p>Marketing wants the Volt on a wet track before the car exists. That takes a second kind of model: one that outputs pixels instead of words. You deploy it exactly as you deployed the chat model in Lap 0.</p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
 <ol class="steps">
-  <li><p><strong>Deploy the image model.</strong> Same flow as Lap 0: in the left menu select <strong>Models</strong> → <strong>Deploy</strong> ▾ → <strong>Deploy a base model</strong>. Search the catalog for <code>FLUX.2-pro</code> and open the card named exactly <strong>FLUX.2-pro</strong>. Select <strong>Deploy</strong> → <strong>Custom settings</strong> and set:</p>
+  <li><p><strong>Deploy the image model.</strong> In the left menu select <strong>Models</strong> → <strong>Deploy</strong> ▾ → <strong>Deploy a base model</strong>. Search the catalog for <code>FLUX.2-pro</code> and open the card named exactly <strong>FLUX.2-pro</strong>. Select <strong>Deploy</strong> → <strong>Custom settings</strong> and set:</p>
 <ul>
   <li><strong>Deployment name</strong>: <code>flux-2-pro</code>. The scripts in the Cloud Shell tab call this name.</li>
   <li><strong>Deployment type</strong>: <strong>Global Standard</strong>. Image models are offered only as Global Standard.</li>
   <li><strong>Capacity</strong>: <code>1</code>, then <strong>Deploy</strong>.</li>
 </ul>
 <p class="why"><b>Why capacity 1</b>For image models capacity counts requests, not tokens: 1 allows about <strong>one image per minute</strong>, and a <code>429</code> means wait. Each image costs a few cents.</p></li>
-  <li><p><strong>Paint.</strong> When the deployment is ready its <strong>Playground</strong> opens (later: <strong>Models</strong> → <code>flux-2-pro</code> → <strong>Playground</strong>). The bar at the top reads <strong>Model: flux-2-pro</strong> with a <em>Global Standard deployment</em> badge. The prompt box is at the bottom: <em>Describe the image you want to generate</em>, with an image-settings icon under it. Paste and press Enter:</p>
+  <li><p><strong>Paint.</strong> When the deployment is ready its <strong>Playground</strong> opens (later: <strong>Models</strong> → <code>flux-2-pro</code> → <strong>Playground</strong>). The bar at the top reads <strong>Model: flux-2-pro</strong> with a <em>Global Standard deployment</em> badge. Paste this into the prompt box at the bottom (<em>Describe the image you want to generate</em>) and press Enter:</p>
 <pre><code>Dramatic studio photo of the Velocity Volt, a sleek electric sedan concept car in deep metallic red, parked on a wet racetrack at golden hour, low angle, photorealistic</code></pre>
 <img class="shot" src="images/shots/lab5-portal-03-flux.jpg" alt="flux-2-pro image playground: Model flux-2-pro Global Standard deployment, View code, and the render of a red sleek sedan on a wet track at golden hour above the prompt box" loading="lazy" title="Click to zoom">
-<p>Ours came back as a red sleek sedan on a wet track at golden hour. Wait a minute between prompts. <strong>Clear all</strong> starts the canvas over.</p></li>
-  <li><p>Select <strong>View code</strong>. It shows the same request as code: your deployment name and the prompt go in, and the image comes back as base64. The Cloud Shell tab makes that call with <code>curl</code> and <code>make_image.py</code>.</p>
+<p>Ours: a sleek red sedan on a wet track at golden hour. Wait a minute between prompts; <strong>Clear all</strong> starts the canvas over.</p></li>
+  <li><p><strong>See the code.</strong> Select <strong>View code</strong>: your deployment name and the prompt go in, and the image comes back as base64. The Cloud Shell tab makes that call with <code>curl</code> and <code>make_image.py</code>.</p>
 <p class="insight">Words in, pixels out, same deployment habit.<small>Catalog, deploy, playground, code: you have now done it for a chat model and an image model, and the steps did not change.</small></p></li>
 </ol>
   </div>
@@ -194,15 +193,16 @@ Suggested inspection: Check the condition and operation of the truck’s suspens
   --deployment-name flux-2-pro --model-name FLUX.2-pro --model-version 1 --model-format "Black Forest Labs" \
   --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre>
 <p>Capacity 1 allows about <strong>one image per minute</strong>; a <code>429</code> means wait. Each image costs a few cents.</p></li>
-  <li><p><strong>The call from Cloud Shell.</strong> The response carries the image as base64 in <code>data[0].b64_json</code>.</p>
+  <li><p><strong>Paint.</strong> The response carries the image as base64 in <code>data[0].b64_json</code>. The commented lines at the end show the route other image models use; paste the whole block, they will not run.</p>
 <pre><code><span class="cm"># FLUX.2-pro answers on its publisher's native route on the Foundry host:</span>
 curl -s -X POST "$AI_ENDPOINT/providers/blackforestlabs/v1/$IMAGE_MODEL?api-version=preview" \
   -H "api-key: $KEY" -H "Content-Type: application/json" \
   -d '{"model":"flux-2-pro","prompt":"Clean product render of a Velocity Ridge hybrid pickup truck in glacier white, three-quarter front view, on a mountain road at sunrise, photorealistic","width":1024,"height":768}' \
   | jq -r '.data[0].b64_json' | base64 -d &gt; ridge.png &amp;&amp; ls -la ridge.png
-<span class="cm"># FLUX-1.1-pro and the gpt-image models use the Azure OpenAI-style route instead:</span>
-curl -s -X POST "$AI_ENDPOINT/openai/deployments/flux-1-1-pro/images/generations?api-version=2025-04-01-preview" \
-  -H "api-key: $KEY" -H "Content-Type: application/json" -d '{"prompt":"…","n":1,"size":"1024x768"}' | jq -r '.data[0].b64_json' | base64 -d &gt; out.png</code></pre>
+<span class="cm"># FLUX-1.1-pro and the gpt-image models use the Azure OpenAI-style route instead (shown for reference; you have no flux-1-1-pro):
+# curl -s -X POST "$AI_ENDPOINT/openai/deployments/flux-1-1-pro/images/generations?api-version=2025-04-01-preview" \
+#   -H "api-key: $KEY" -H "Content-Type: application/json" -d '{"prompt":"…","n":1,"size":"1024x768"}' | jq -r '.data[0].b64_json' | base64 -d &gt; out.png</span></code></pre>
+<p>A minute later, try <code>make_image.py</code>, which tries both routes:</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/make_image.py
 python make_image.py "Retro 1960s-style advertising poster for Velocity Motors: a cheerful family loading a surfboard onto a teal station wagon, bold typography reading VELOCITY" poster.png</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 5 · Generate an image with a Foundry image model (FLUX.2-pro, FLUX-1.1-pro, gpt-image-1-mini, ...).
@@ -236,7 +236,7 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
 </ol>
   </div>
 </div>
-<p>What we got before the class ran. The first two were generated with FLUX-1.1-pro (East US, Azure OpenAI-style route); the next two with FLUX.2-pro (East US 2, provider route). Same prompts, same script.</p>
+<p>What we got before class: the first two with FLUX-1.1-pro (East US, Azure OpenAI-style route), the next two with FLUX.2-pro (East US 2, provider route). Same prompts, same script.</p>
 <div class="shots2"><img class="shot" src="images/gen/flux-velocity-volt.jpg" alt="Generated: a red electric sedan concept car on a wet racetrack at golden hour" loading="lazy" title="Click to zoom"><img class="shot" src="images/gen/flux-velocity-ridge.jpg" alt="Generated: a white hybrid pickup on a mountain road at sunrise" loading="lazy" title="Click to zoom"></div>
 
 <div class="shots2"><img class="shot" src="images/gen/flux2-velocity-volt.jpg" alt="Generated with FLUX.2-pro: the Velocity Volt on a wet racetrack at golden hour" loading="lazy" title="Click to zoom"><img class="shot" src="images/gen/flux2-retro-poster.jpg" alt="Generated with FLUX.2-pro: a retro Velocity Motors advertising poster" loading="lazy" title="Click to zoom"></div>
@@ -252,12 +252,12 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
 <h2>Troubleshooting</h2>
 <details class="reveal hint"><summary>Vision returns 400 "InvalidImageSize" or "InvalidImageFormat"</summary><div class="body"><p>Images must be JPEG/PNG/GIF/BMP/WEBP/TIFF, under 20 MB, at least 50×50 and at most 16,000 px on a side. The <code>read</code> feature needs text at least about 10 px tall.</p></div></details>
 <details class="reveal hint"><summary>The playground has no Attach files button, or the image is ignored</summary><div class="body"><p>Only multimodal models take images. Check the deployment selector says <code>gpt-4-1-mini</code> (or gpt-4o, gpt-5); embeddings and image models do not take image prompts.</p></div></details>
-<details class="reveal hint"><summary>Portal path: Browse for files cannot find the photos</summary><div class="body"><p>The portal uploads from your laptop. Photos you downloaded in Cloud Shell live in Cloud Shell. Download <a href="downloads/lot-photos.zip">lot-photos.zip</a> in your browser and unzip it first (Part 1, step 1).</p></div></details>
+<details class="reveal hint"><summary>Portal path: Browse for files cannot find the photos</summary><div class="body"><p>The portal uploads from your laptop, not Cloud Shell. Download <a href="downloads/lot-photos.zip">lot-photos.zip</a> in your browser and unzip it first (Part 1, step 1).</p></div></details>
 <details class="reveal hint"><summary>Portal path: the first message returns "ERR_BAD_REQUEST Project not found"</summary><div class="body"><p>An intermittent portal glitch right after <strong>New chat</strong>. Send the same message again; the second try works.</p></div></details>
-<details class="reveal hint"><summary>Portal path: "Leave without saving?" when I leave the playground</summary><div class="body"><p>The playground noticed your Instructions. Nothing in this lap needs them saved: leave without saving. (<strong>Save as agent</strong> would turn the appraiser into an agent, as in Lap 3.)</p></div></details>
+<details class="reveal hint"><summary>Portal path: "Leave without saving?" when I leave the playground</summary><div class="body"><p>The playground noticed your Instructions. Nothing in this lap needs them saved: leave without saving.</p></div></details>
 <details class="reveal hint"><summary>Image generation: 429 RateLimitReached</summary><div class="body"><p>Capacity 1 = one request per minute. Wait 60 seconds. If the whole class is blocked, race control can raise one deployment's capacity.</p></div></details>
-<details class="reveal hint"><summary>Image generation: 404 "Not Found" or 429 on the images/generations route</summary><div class="body"><p>Not every image model is wired to the Azure OpenAI-style <code>/openai/deployments/…/images/generations</code> route. On our East US 2 resource, <code>flux-2-pro</code> returned 404 or 429 there even when idle, but answered immediately on its publisher's route: <code>$AI_ENDPOINT/providers/blackforestlabs/v1/flux-2-pro?api-version=preview</code> with <code>{"model":"flux-2-pro","prompt":…,"width":1024,"height":768}</code>. FLUX-1.1-pro and the gpt-image models work on the images/generations route. <code>make_image.py</code> tries the provider route first and falls back. A real 429 (rate limit) clears after a minute.</p></div></details>
-<details class="reveal hint"><summary>"The deployment type GlobalStandard is not available"</summary><div class="body"><p>Image models are Global Standard only; your resource must allow it (ours in East US 2 does). In the portal, check you chose <strong>Custom settings</strong> and <strong>Global Standard</strong>, and that your resource is in East US 2. Check <code>az cognitiveservices usage list --location $LOC -o table | grep FLUX</code> for quota.</p></div></details>
+<details class="reveal hint"><summary>Image generation: 404 "Not Found" or 429 on the images/generations route</summary><div class="body"><p>Not every image model is wired to the Azure OpenAI-style <code>/openai/deployments/…/images/generations</code> route. On East US 2, <code>flux-2-pro</code> returned 404 or 429 there even when idle, but answered at once on its publisher's route, <code>$AI_ENDPOINT/providers/blackforestlabs/v1/flux-2-pro?api-version=preview</code> (the first command in Part 4). FLUX-1.1-pro and the gpt-image models use images/generations; <code>make_image.py</code> tries the provider route first and falls back. A real 429 clears after a minute.</p></div></details>
+<details class="reveal hint"><summary>"The deployment type GlobalStandard is not available"</summary><div class="body"><p>Image models are Global Standard only, and your resource must be in a region that allows it, as East US 2 does. In the portal, check you chose <strong>Custom settings</strong> and <strong>Global Standard</strong>. Check <code>az cognitiveservices usage list --location $LOC -o table | grep FLUX</code> for quota.</p></div></details>
 
 <h2>Quick quiz</h2>
 <details class="reveal quiz"><summary>You need to count cars in a lot photo. Which feature?</summary><div class="body"><p><strong>Object detection</strong> (the <code>objects</code> feature): labels with bounding boxes. Tags and captions do not locate anything.</p></div></details>
@@ -271,7 +271,7 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
   <li>Vision tasks: classification, detection, captioning, tagging, OCR, people; faces are a separate, restricted service.</li>
   <li>Azure AI Vision returns structured JSON with confidences; a multimodal model returns judgement in prose. Pick by need.</li>
   <li>Images go into a prompt as content items; <code>detail</code> sets the token cost.</li>
-  <li>Image models are deployed like any other (Global Standard, capacity in requests per minute) and called with <code>images/generations</code>.</li>
+  <li>Image models are deployed like any other (Global Standard, capacity in requests per minute) and called with <code>images/generations</code> or, for FLUX.2-pro, the publisher's route.</li>
   <li><code>vision_app.py</code> and <code>make_image.py</code> are your lightweight vision apps.</li>
 </ul>
 <p>Next: turn paperwork into data. <a href="lab6.html">Lap 6 · Paperwork →</a></p>

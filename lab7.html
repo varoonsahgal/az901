@@ -67,7 +67,7 @@
   <li>Fundamentals exams typically run about 45 minutes with roughly 40–60 items: multiple choice, multiple response, drag-and-drop matching, hot-area and short scenario sets. You are expected to <em>recognise</em> Python, REST and CLI, not write them from memory.</li>
   <li>Official preparation: the <a href="https://learn.microsoft.com/credentials/certifications/exams/ai-901/">exam page</a>, the <a href="https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-901">study guide</a>, the free <strong>practice assessment</strong> on AI Skills Navigator (sign in required) and the <a href="https://microsoftlearning.github.io/mslearn-ai-fundamentals/">Microsoft Learning exercises</a> we mirrored today.</li>
 </ul>
-<p class="insight">Every scenario hides a workload. Read the last sentence first, name the input and the output, and the service names itself.</p>
+<p class="insight">Every scenario hides a workload. Find it, and the service names itself.</p>
 <div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Exam-room tactics</span><ul><li>Read the last sentence of the scenario first; it holds the actual question.</li><li>Name the <em>input</em> and the <em>output</em>: that picks the workload, and usually the service.</li><li>Eliminate answers from the wrong layer (a deployment type is never the answer to a responsible-AI question).</li><li>Flag and move on; the clock is the only real opponent.</li></ul></div></div>
 
 <h2 id="practice-exam-40-questions">Practice exam · 40 questions</h2>
@@ -78,15 +78,15 @@
 <div id="licence" class="licence"></div>
 
 <h2 id="cool-down-lap-delete-everything">Cool-down lap · delete everything</h2>
-<p>Everything you built today lives in one resource group. Deleting it removes the Foundry resource, its project, every deployment, agent, vector store and analyzer. Nothing you need survives; the scripts and documents are on this site.</p>
+<p>Everything you built today lives in one resource group. Deleting it removes the Foundry resource, its project, and every deployment, agent, vector store and analyzer inside them. You lose nothing you need: the scripts and documents are on this site. Then you purge the soft-deleted Foundry resource so its name and quota are freed.</p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (portal.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
 <ol class="steps">
   <li><p><strong>Look before you delete.</strong> Open <a href="https://portal.azure.com">portal.azure.com</a>, search the top bar for <strong>Resource groups</strong>, and open <code>rg-ai901-<span class="v" data-v="student">s07</span></code>. The <strong>Overview</strong> lists two resources: your Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> (type <em>Foundry</em>) and your project <code>proj-ai901-<span class="v" data-v="student">s07</span></code> (type <em>Foundry project</em>).</p>
-<p class="why"><b>Why look first</b>Deleting a resource group cannot be undone. Check the name in the title is yours and the list holds only today's work: two resources, nothing else.</p>
+<p class="why"><b>Why look first</b>Deleting a resource group cannot be undone. Check the title shows your number and the list holds only today's two resources.</p>
 <img class="shot" src="images/shots/lab0-portal-13-rg.jpg" alt="Azure portal, resource group rg-ai901-s99 Overview: two resources circled, ai901-s99-pitcrew of type Foundry and proj-ai901-s99 of type Foundry project, both in East US 2" loading="lazy" title="Click to zoom">
-<p>Every deployment, agent, vector store and analyzer you made today lives <em>inside</em> those two, which is why the list is so short.</p></li>
+<p>The list is short because everything else you made today lives <em>inside</em> those two.</p></li>
   <li><p><strong>Delete the group.</strong> Select <strong>Delete resource group</strong> on the toolbar. The <em>Delete a resource group</em> pane lists every dependent resource that will go with it. Then:</p>
 <ul>
   <li><span class="mk">1</span>Type the resource group name, <code>rg-ai901-<span class="v" data-v="student">s07</span></code>, in <strong>Enter resource group name to confirm deletion</strong>.</li>
@@ -94,19 +94,19 @@
 </ul>
 <p class="why"><b>Why type the name</b>The portal makes you prove you mean <em>this</em> group. In a shared subscription the group next to yours belongs to a colleague.</p>
 <img class="shot" src="images/shots/lab7-portal-01-delete.jpg" alt="Delete a resource group pane listing 2 resources being deleted (ai901-s99-pitcrew and proj-ai901-s99), the confirmation box with rg-ai901-s99 typed (1) and the Delete button (2)" loading="lazy" title="Click to zoom">
-<p>Deletion takes a few minutes; a notification tells you when it is done, and the group disappears from the <strong>Resource groups</strong> list.</p></li>
-  <li><p><strong>Purge the soft-deleted resource.</strong> A deleted Foundry resource is not gone yet: it is <em>soft-deleted</em> and kept for 48 hours so it can be recovered. During that time it still reserves the name <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> and still counts against the subscription's quota. Purge it to free both. In Cloud Shell it is one command (the Cloud Shell tab, last block). If the portal's Foundry resources list shows <strong>Manage deleted resources</strong>, purging there does the same; it is optional.</p>
+<p>Deletion takes a few minutes; a notification tells you when it is done.</p></li>
+  <li><p><strong>Purge the soft-deleted resource.</strong> A deleted Foundry resource is not gone yet: it is <em>soft-deleted</em> and kept for 48 hours so it can be recovered. During that time it still reserves the name <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> and still counts against the subscription's quota. Purge it to free both: once the deletion notification arrives, open Cloud Shell and run the Cloud Shell tab's first line (your variables), then its last block. (If the portal's Foundry resources list shows <strong>Manage deleted resources</strong>, you can purge there instead.)</p>
 <p class="insight">Deleted is not the same as gone.<small>Soft delete protects you from a slip of the finger, but the name and the quota stay taken until you purge. Race control purges anything left at the end of the day.</small></p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
-<p>Same result, by command: look, delete, check.</p>
+<p>Same result, by command: look, delete, check, purge.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT
 az resource list --resource-group $RG --query "[].{name:name,type:type}" -o table     <span class="cm"># look before you delete</span>
 az group delete --name $RG --yes --no-wait
 az group list --query "[?starts_with(name,'rg-ai901')].{name:name,state:properties.provisioningState}" -o table</code></pre>
 <img class="shot" src="images/shots/lab7-cleanup.png" alt="Terminal: resource list, then az group delete and the group shown as Deleting" loading="lazy" title="Click to zoom">
-<p>Foundry resources are <em>soft-deleted</em> for 48 hours, which reserves the name and counts against quota. If you want the name back today (or race control wants a clean subscription), purge it. Run this once the group has finished deleting:</p>
+<p>The deleted Foundry resource is <em>soft-deleted</em> for 48 hours: it still reserves its name and counts against quota. Purge it once the group has finished deleting (the group list no longer shows yours):</p>
 <pre><code>az cognitiveservices account list-deleted -o table
 az cognitiveservices account purge --name ai901-$STUDENT-pitcrew --resource-group $RG --location eastus2</code></pre>
   </div>

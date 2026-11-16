@@ -10,8 +10,8 @@ LOC=${LOC:-eastus2}; SUB=$(az account show --query id -o tsv)
 case "${1:-}" in
   prep)
     for ns in Microsoft.CognitiveServices Microsoft.Storage Microsoft.KeyVault Microsoft.Insights; do az provider register --namespace $ns -o none; done
-    echo "Quotas in $LOC (need: gpt4.1-mini Standard ≥ 8K × students, gpt-audio-mini GlobalStandard ≥ 1K × students, FLUX.2-pro ≥ 1 × students, AIServices accounts ≥ students):"
-    az cognitiveservices usage list --location $LOC --query "[?limit > \`0\` && (contains(name.value,'Standard.gpt4.1-mini') || contains(name.value,'gpt-audio-mini') || contains(name.value,'FLUX.2-pro') || contains(name.value,'text-embedding-3-large') || contains(name.value,'AIServices.S0'))].{quota:name.value,used:currentValue,limit:limit}" -o table ;;
+    echo "Quotas in $LOC (need: gpt4.1-mini Standard ≥ 8K × students, gpt4.1 GlobalStandard ≥ 40K × students, gpt-audio-mini GlobalStandard ≥ 1 × students, FLUX.2-pro ≥ 1 × students, text-embedding-3-large Standard ≥ 10K × students, AIServices accounts ≥ students):"
+    az cognitiveservices usage list --location $LOC --query "[?limit > \`0\` && (contains(name.value,'Standard.gpt4.1-mini') || name.value=='OpenAI.GlobalStandard.gpt4.1' || contains(name.value,'gpt-audio-mini') || contains(name.value,'FLUX.2-pro') || contains(name.value,'text-embedding-3-large') || contains(name.value,'AIServices.S0'))].{quota:name.value,used:currentValue,limit:limit}" -o table ;;
   roles)
     while read -r upn; do [ -z "$upn" ] && continue
       for role in b24988ac-6180-42a0-ab88-20f7382dd24c 53ca6127-db72-4b80-b1b0-d745d6d5456d a97b65f3-24c7-4388-baec-2e87135dc908; do az role assignment create --assignee "$upn" --role "$role" --scope /subscriptions/$SUB -o none && echo "$upn ← $(az role definition list --name $role --query [0].roleName -o tsv)"; done  # Contributor, Foundry User, Cognitive Services User (IDs survive renames)
