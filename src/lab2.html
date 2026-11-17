@@ -87,6 +87,9 @@ response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pr
 <h2>Part 3 · The same call as raw HTTP</h2>
 <p>Underneath the playground and every SDK is one REST endpoint; see the raw call once and the rest is obvious. The <code>messages</code> array carries the roles; the response has <code>choices</code> (the answers) and <code>usage</code> (the tokens you pay for).</p>
 <p class="insight">Same shape as Lap 0's caption call, with one new piece: a deployment name in the URL.<small>Endpoint, API version, key in a header, JSON back, just as in Lap 0 Part 4. But the host is now <code>$AOAI_ENDPOINT</code>, and the path names <code>$CHAT_MODEL</code>: you are calling <em>your</em> deployment, not a prebuilt tool. The Instructions box becomes the <code>system</code> message, your question the <code>user</code> message, and the sliders become <code>temperature</code> and <code>max_tokens</code>.</small></p>
+<p><strong>Run it in Cloud Shell.</strong> It uses <code>KEY</code>, <code>AOAI_ENDPOINT</code> and <code>CHAT_MODEL</code> from Part 1. Part 2 kept you in the portal long enough for Cloud Shell to time out (about 20 minutes idle), so check your variables first:</p>
+<pre><code>echo "endpoint=$AOAI_ENDPOINT model=$CHAT_MODEL key=${#KEY} chars"</code></pre>
+<p>You should see your <code>https://ai901-<span class="v" data-v="student">s07</span>-pitcrew.openai.azure.com</code> endpoint, <code>gpt-4-1-mini</code>, and a key length above 0. If anything is blank or the key shows 0 chars, paste the Part 1 block again. Then send the chat call:</p>
 <pre><code>curl -s "$AOAI_ENDPOINT/openai/deployments/$CHAT_MODEL/chat/completions?api-version=2024-10-21" \
   -H "api-key: $KEY" -H "Content-Type: application/json" -d '{
   "messages": [
@@ -96,7 +99,7 @@ response = client.responses.create(model="gpt-4-1-mini", input="…")</code></pr
   "temperature": 0.7, "max_tokens": 40
 }' | jq '{answer: .choices[0].message.content, usage}'</code></pre>
 <img class="shot" src="images/shots/lab6-chat-curl.png" alt="curl chat completion returning a tagline and token usage" loading="lazy" title="Click to zoom">
-<p>The same API with Part 2's full Velo instructions and the tire-pressure question (temperature 0.4) gives the safety-first answer you saw in the playground, plus the token count:</p>
+<p>Nothing more to run here. For comparison, the same API with Part 2's full Velo instructions and the tire-pressure question (temperature 0.4) gives the safety-first answer you saw in the playground, plus the token count:</p>
 <img class="shot" src="images/shots/lab6-chat-concierge.png" alt="Chat card by API: system prompt for Velo, the tire-pressure question, and the model's safety-first answer with token usage" loading="lazy" title="Click to zoom">
 <div class="callout tip"><div class="ico">💡</div><div><span class="box-lbl">Reading the bill</span><p>The concierge answer above cost 81 prompt tokens and 83 completion tokens. At gpt-4.1-mini's list price (about $0.40 per million input tokens and $1.60 per million output; check the catalog for today's numbers) that is roughly <strong>$0.00017</strong>. A thousand customers a day asking five questions each is about a dollar. Images and long documents cost more because they are more tokens.</p></div></div>
 
