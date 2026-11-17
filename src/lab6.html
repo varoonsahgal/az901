@@ -69,7 +69,7 @@ curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&am
   <li><p><strong>Register the models.</strong> In the playground's analyzer dropdown choose <strong>Document fields</strong>. A <em>Model deployments required</em> dialog appears; select <strong>Deploy models</strong>. The <strong>Configure</strong> panel opens on the right:</p>
 <ul>
   <li><span class="mk">1</span><strong>Chat completion model</strong>: <code>gpt-4-1</code>. The list also offers to deploy other models; pick your own under <em>Deployments</em>.</li>
-  <li><strong>Chat completion model (mini)</strong>: <code>gpt-4-1-mini</code></li>
+  <li><strong>Chat completion model (mini)</strong>: <code>gpt-4-1</code> as well, not <code>gpt-4-1-mini</code>. The video synopsis in Part 5 runs on this "mini" slot, and your 8K <code>gpt-4-1-mini</code> is too small for its frames.</li>
   <li><strong>Embedding model</strong>: <code>text-embedding-3-large</code></li>
   <li><span class="mk">2</span>Select <strong>Apply changes</strong>.</li>
 </ul>
@@ -90,7 +90,7 @@ az cognitiveservices account deployment create --name $NAME --resource-group $RG
   <li><p><strong>Register the models</strong>, once per resource. The keys on the left are the service's model aliases; the values are your deployment names. There are two kinds of key: the <code>prebuilt-analyzer-…</code> roles that prebuilt analyzers ask for, and plain catalog names (<code>gpt-4.1-mini</code>) that your own analyzers ask for in Part 3. Both end up at a deployment you made.</p>
 <pre><code>curl -s -X PATCH "$AI_ENDPOINT/contentunderstanding/defaults?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" \
   -H "Content-Type: application/merge-patch+json" \
-  -d '{"modelDeployments":{"prebuilt-analyzer-completion":"gpt-4-1","gpt-4.1":"gpt-4-1","prebuilt-analyzer-completion-mini":"gpt-4-1-mini","prebuilt-analyzer-embedding":"text-embedding-3-large","gpt-4.1-mini":"gpt-4-1-mini","text-embedding-3-large":"text-embedding-3-large"}}'
+  -d '{"modelDeployments":{"prebuilt-analyzer-completion":"gpt-4-1","gpt-4.1":"gpt-4-1","prebuilt-analyzer-completion-mini":"gpt-4-1","prebuilt-analyzer-embedding":"text-embedding-3-large","gpt-4.1-mini":"gpt-4-1-mini","text-embedding-3-large":"text-embedding-3-large"}}'
 curl -s "$AI_ENDPOINT/contentunderstanding/analyzers?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '[.value[].analyzerId] | length, .[0:12]'</code></pre>
 <p>The second command lists the prebuilt analyzers (about 90, from <code>prebuilt-invoice</code> to <code>prebuilt-tax.us.w2</code> to <code>prebuilt-videoSynopsis</code>).</p></li>
 </ol>
@@ -243,7 +243,7 @@ sleep 20; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .
 sleep 45; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .result.contents[0].fields.Summary.valueString'</code></pre>
 <img class="shot" src="images/shots/lab6-cu-video.png" alt="Video structure (1280x720, 18 s, key frames, transcript) and a generated synopsis of the teaser" loading="lazy" title="Click to zoom">
 <video controls preload="none" src="downloads/velocity-teaser.mp4" style="width:100%;border-radius:10px;margin:.4em 0 1em"></video>
-<p>Frames cost tokens: even this 18-second teaser failed at 20K TPM, which is why <code>gpt-4-1</code> runs at 40K. A longer clip needs more; in production you size the deployment to the video.</p></li>
+<p>Frames cost tokens: even this 18-second teaser failed at 20K TPM, which is why <code>gpt-4-1</code> runs at 40K. <code>prebuilt-videoSynopsis</code> asks for the <em>mini</em> completion role, which is why Part 1 points that role at <code>gpt-4-1</code> too. A longer clip needs more; in production you size the deployment to the video.</p></li>
 </ol>
 
 <h2>Part 6 · The lightweight app</h2>
@@ -317,7 +317,7 @@ for content in result[&quot;result&quot;][&quot;contents&quot;]:
 <details class="reveal hint"><summary>"Defaults have not yet been set to 'prebuilt-analyzer-embedding'"</summary><div class="body"><p>Run the <code>PATCH …/defaults</code> from Part 1 (or set <strong>Embedding model</strong> in the portal Configure panel) after deploying <code>text-embedding-3-large</code>. Custom document analyzers need both a completion and an embedding mapping.</p></div></details>
 <details class="reveal hint"><summary>"Provided model 'gpt-4.1-mini' is not supported by this analyzer"</summary><div class="body"><p>Some prebuilt analyzers (<code>prebuilt-invoice</code>, <code>prebuilt-receipt</code>…) accept only gpt-4.1 or gpt-5-family models; <code>GET …/analyzers/prebuilt-invoice</code> shows <code>supportedModels</code>. Map <code>prebuilt-analyzer-completion</code> to your <code>gpt-4-1</code> (portal: <strong>Chat completion model</strong> in the Configure panel), or use a custom schema on <code>prebuilt-document</code>, which accepts gpt-4.1-mini.</p></div></details>
 <details class="reveal hint"><summary>410 "The requested API version has been retired"</summary><div class="body"><p>The preview versions (2024-12-01-preview, 2025-05-01-preview) are gone. Use <code>api-version=2025-11-01</code>.</p></div></details>
-<details class="reveal hint"><summary>Status Failed with RateLimit / 429 inside the error</summary><div class="body"><p>The completion deployment ran out of tokens per minute, typically on video, and the analysis fails after several minutes. Check your <code>gpt-4-1</code> is at 40K, not 20K (<code>az cognitiveservices account deployment list -n $NAME -g $RG -o table</code>); re-running the deploy command with <code>--sku-capacity 40</code> raises it in place. Then wait a minute and retry.</p></div></details>
+<details class="reveal hint"><summary>Status Failed with RateLimit / 429 inside the error</summary><div class="body"><p>The completion deployment ran out of tokens per minute, typically on video, and the analysis fails after several minutes. First check the defaults point <code>prebuilt-analyzer-completion-mini</code> at <code>gpt-4-1</code>, not your 8K <code>gpt-4-1-mini</code>: re-run the Part 1 PATCH (portal: Chat completion model (mini) in the Configure panel). Then check your <code>gpt-4-1</code> is at 40K, not 20K (<code>az cognitiveservices account deployment list -n $NAME -g $RG -o table</code>); re-running the deploy command with <code>--sku-capacity 40</code> raises it in place. Then wait a minute and retry.</p></div></details>
 <details class="reveal hint"><summary>404 "Analyzer … with status 'Failed' is not ready"</summary><div class="body"><p>Creation failed (usually a model mapping problem). <code>GET …/analyzers/&lt;id&gt;</code> shows the error; <code>DELETE</code> it, fix the JSON, <code>PUT</code> again.</p></div></details>
 
 <h2>Quick quiz</h2>

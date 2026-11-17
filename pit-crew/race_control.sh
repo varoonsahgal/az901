@@ -5,8 +5,13 @@
 #   ./race_control.sh status               list every rg-ai901-* group, its resources and deployments
 #   ./race_control.sh cost                 cost by student resource group for today (data lags a few hours)
 #   ./race_control.sh cleanup              delete every rg-ai901-* group and purge soft-deleted Foundry resources
+#   ./race_control.sh pause                KILL SWITCH: revoke the students group's roles, then block every ai901-* Foundry resource (keys and Entra both)
+#   ./race_control.sh resume               undo pause: reopen the Foundry resources and restore the group's three roles
 set -euo pipefail
 LOC=${LOC:-eastus2}; SUB=$(az account show --query id -o tsv)
+GROUP=${GROUP:-AI-901 Students}
+ROLES="b24988ac-6180-42a0-ab88-20f7382dd24c 53ca6127-db72-4b80-b1b0-d745d6d5456d a97b65f3-24c7-4388-baec-2e87135dc908"  # Contributor, Foundry User, Cognitive Services User
+accounts() { az cognitiveservices account list --query "[?starts_with(name,'ai901-')].id" -o tsv; }
 case "${1:-}" in
   prep)
     for ns in Microsoft.CognitiveServices Microsoft.Storage Microsoft.KeyVault Microsoft.Insights; do az provider register --namespace $ns -o none; done
@@ -25,5 +30,15 @@ case "${1:-}" in
     for rg in $(az group list --query "[?starts_with(name,'rg-ai901')].name" -o tsv); do echo "deleting $rg"; az group delete -n $rg --yes --no-wait; done
     sleep 60
     az cognitiveservices account list-deleted --query "[?starts_with(name,'ai901')].{name:name,location:location,id:id}" -o tsv | while read -r name loc id; do rg=$(echo "$id" | sed -E 's#.*/resourceGroups/([^/]+)/.*#\1#'); echo "purging $name ($rg, $loc)"; az cognitiveservices account purge -n "$name" -g "$rg" -l "$loc" -o none || true; done ;;
-  *) sed -n '2,8p' "$0" ;;
+  pause)
+    G=$(az ad group show -g "$GROUP" --query id -o tsv)
+    for role in $ROLES; do az role assignment delete --assignee "$G" --role "$role" --scope /subscriptions/$SUB -o none 2>/dev/null && echo "revoked $(az role definition list --name $role --query [0].roleName -o tsv) from $GROUP" || true; done
+    for id in $(accounts); do az resource update --ids "$id" --set properties.publicNetworkAccess=Disabled -o none && echo "blocked ${id##*/}"; done
+    echo "Paused. Calls now fail with 403 'Public access is disabled'; portal role changes take up to ~10 min to reach students. Undo: ./race_control.sh resume" ;;
+  resume)
+    G=$(az ad group show -g "$GROUP" --query id -o tsv)
+    for id in $(accounts); do az resource update --ids "$id" --set properties.publicNetworkAccess=Enabled -o none && echo "reopened ${id##*/}"; done
+    for role in $ROLES; do az role assignment create --assignee-object-id "$G" --assignee-principal-type Group --role "$role" --scope /subscriptions/$SUB -o none && echo "restored $(az role definition list --name $role --query [0].roleName -o tsv) to $GROUP"; done
+    echo "Resumed. Students may need to refresh the portal (or re-run az login in Cloud Shell) to pick the roles back up." ;;
+  *) sed -n '2,9p' "$0" ;;
 esac
