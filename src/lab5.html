@@ -18,6 +18,17 @@
 </div>
 <p>Two tools look at an image today. <strong>Azure AI Vision</strong> (a Foundry Tool) is fast, cheap and structured: JSON with boxes and confidences, in a fraction of a second, for a fraction of a cent. A <strong>multimodal model</strong> (gpt-4.1-mini with an image in the prompt) is slower and costs tokens, but it can <em>reason</em>: write a listing, suggest what to inspect, answer questions.</p>
 <p class="insight">Vision measures. The model judges.<small>Count with Vision, read with Vision, and ask the model only when you need an opinion.</small></p>
+<p>Then a third kind of AI makes images instead of reading them. All three run on the Foundry resource from Lap 0, with the same key. They differ in whether you deploy anything first, and in what comes back:</p>
+<table>
+<thead><tr><th></th><th>Azure AI Vision (Part 2)</th><th>gpt-4-1-mini with an image (Part 3)</th><th>flux-2-pro (Part 4)</th></tr></thead>
+<tbody>
+<tr><td><strong>Kind</strong></td><td>Foundry Tool, prebuilt</td><td>Multimodal model: reads text and images, writes text</td><td>Image-generation model: reads text, writes pixels</td></tr>
+<tr><td><strong>Needs a deployment?</strong></td><td>No, like the Lap 0 caption</td><td>Yes, and you already have it (Lap 0)</td><td>Yes, you deploy it in Part 4</td></tr>
+<tr><td><strong>Address</strong></td><td><code>$ENDPOINT</code> (cognitiveservices)</td><td>The project endpoint, as in Lap 2</td><td><code>$AI_ENDPOINT</code> (services.ai)</td></tr>
+<tr><td><strong>You get back</strong></td><td>JSON: boxes, tags, lines of text, confidences</td><td>Prose: a listing, an opinion, an answer</td><td>An image, as base64</td></tr>
+<tr><td><strong>You pay for</strong></td><td>Each call</td><td>Tokens, and the image counts as tokens</td><td>Each image</td></tr>
+</tbody></table>
+<p class="why"><b>Why it matters</b>This is the same choice Lap 4 made with speech: a prebuilt tool built for one job, or a general model you deploy and prompt. The exam gives you a scenario and expects you to pick the column.</p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>"Interpret visual input in prompts" = send an image to a multimodal chat model as an <code>image_url</code> (or <code>input_image</code>) content item next to text. "Create new visual outputs" = deploy an image-generation model and call <code>images/generations</code> with a prompt. "Vision capabilities in an app" = Azure AI Vision (captions, objects, OCR) or the multimodal model, chosen by whether you need structure or judgement. Face recognition is restricted; people detection is not.</p></div></div>
 
 <h2>Part 1 · Reload your pit board and get the photos</h2>
@@ -30,7 +41,8 @@ export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT FOUNDRY_ENDPOINT_AI=$AI_ENDPOINT AI_KEY=$KEY CHAT_MODEL=gpt-4-1-mini IMAGE_MODEL=flux-2-pro
-curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot &amp;&amp; ls lot</code></pre></li>
+curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot &amp;&amp; ls lot</code></pre>
+<p class="why"><b>Why the extra names</b>The first four lines are the Lap 0 pit board. The fifth line copies those values into the names the Python apps of this lap read (<code>FOUNDRY_ENDPOINT</code>, <code>AI_KEY</code>, <code>IMAGE_MODEL</code>…). Nothing new is created: same resource, same key, different labels.</p></li>
   <li><p><strong>Start Lap 6's engines now.</strong> Still in Cloud Shell, create the two deployments Lap 6 needs, an embedding model and the full gpt-4.1, so they have an hour to settle before you use them. Do this on either path:</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name text-embedding-3-large --model-name text-embedding-3-large --model-version 1 --model-format OpenAI \
@@ -48,18 +60,20 @@ az cognitiveservices account deployment create --name $NAME --resource-group $RG
   <div role="tabpanel">
 <ol class="steps">
   <li><p><strong>Open the OCR playground.</strong> In <a href="https://ai.azure.com">ai.azure.com</a>, in your project, select <strong>Services</strong> in the left menu → <strong>Document Intelligence and Content Understanding</strong> → <strong>OCR (Read)</strong>.</p>
-<p class="why"><b>Why this one</b>OCR needs no model deployment, so it works the moment your resource exists. It is the raw material: every form, sticker and plate is pixels until something turns it into text.</p></li>
+<p class="why"><b>Why this one</b>OCR needs no model deployment, so it works the moment your resource exists. It is the raw material: every form, sticker and plate is pixels until something turns it into text.</p>
+<p class="insight">Same job, two Foundry Tools.<small>This playground belongs to <strong>Content Understanding</strong>, the service Lap 6 is built on. The Cloud Shell tab does the same reading with Azure AI Vision's <code>read</code> feature. Both are prebuilt, neither needs a deployment, and both return lines of text with confidences. Lap 6 shows what Content Understanding adds on top: typed fields.</small></p></li>
   <li><p><strong>Upload the VIN plate.</strong> Check the top of the playground shows <strong>Modality: Document</strong> and the analyzer <strong>OCR (Read)</strong>. In the upload panel on the left, drag <code>vin-plate.png</code> from your laptop onto <strong>Drag &amp; drop files here</strong>, or select <strong>Browse for files</strong>. Microsoft's sample files are listed below it; yours appears at the bottom. Select it, then <strong>Run analysis</strong>.</p></li>
   <li><p><strong>Read the result.</strong> The <strong>Markdown</strong> tab lists every line on the plate in reading order, and the VIN comes back character for character: a line <code>VIN</code>, then <code>1VMSTR8A3RA210077</code>. <strong>Result</strong> is the raw JSON your code would get.</p>
 <img class="shot" src="images/shots/lab5-portal-02-ocr.jpg" alt="Content Understanding playground, Modality Document, analyzer OCR (Read): vin-plate.png uploaded and analysed, the Markdown tab listing each line with the VIN 1VMSTR8A3RA210077 circled" loading="lazy" title="Click to zoom">
 <p class="insight">Seventeen characters, no typos, no model deployed.<small>That is the service desk's VIN retyping gone. A wrong VIN orders the wrong part; OCR on the door-jamb photo removes the human keystroke where the errors happen.</small></p></li>
-  <li><p><strong>Two harder documents.</strong> Run <code>window-sticker.png</code> (34 lines of small print and a price table) and <code>service-note.png</code> (handwriting). Look closely at the torque value in the note: does the playground read <code>100 ft-lb</code>, or something else? The <strong>Code</strong> tab at the top shows the same analysis as code.</p></li>
+  <li><p><strong>Two harder documents.</strong> Run <code>window-sticker.png</code> (34 lines of small print and a price table) and <code>service-note.png</code> (handwriting). Look closely at the torque value in the note: does the playground read <code>100 ft-lb</code>, or something else? The <strong>Code</strong> tab at the top shows the same analysis as code.</p>
+<p class="insight">OCR copies characters. It does not know what they mean.<small>Our API run read the handwritten "100 ft-lb" as "100 ft-16": a plausible shape, a nonsense unit. OCR has no idea what a torque value should look like. The word confidences flag the doubtful ones; deciding what the note <em>meant</em> takes a model (Part 3) or field extraction (Lap 6).</small></p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
 <p>Same reading job by API, plus what the portal cannot show yet: tags, objects with boxes, people and a caption, all from Azure AI Vision's Image Analysis endpoint.</p>
 <ol class="steps">
-  <li><p><strong>Analyse the SUV.</strong> Send the photo as raw bytes twice: one Image Analysis 4.0 request for tags, objects, people and text, then the v3.2 <em>describe</em> operation for a caption:</p>
+  <li><p><strong>Analyse the SUV.</strong> The second call below is the Lap 0 caption call with one change: the photo goes up as raw bytes from <code>lot/</code> (<code>application/octet-stream</code>) instead of as a web URL. The first call is new: Image Analysis 4.0, asking for tags, objects, people and text in one request.</p>
 <pre><code>curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024-02-01&amp;features=tags,objects,people,read" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Content-Type: application/octet-stream" --data-binary @lot/suv-volvo-xc90.jpg | jq '{objects: [.objectsResult.values[] | {name: .tags[0].name, conf: .tags[0].confidence, box: .boundingBox}], tags: [.tagsResult.values[:8][] | .name]}'
 curl -s -X POST "$ENDPOINT/vision/v3.2/describe?maxCandidates=1" \
@@ -82,9 +96,11 @@ curl -s -X POST "$ENDPOINT/computervision/imageanalysis:analyze?api-version=2024
 </ol>
   </div>
 </div>
+<p class="insight">Each Vision feature answers a different question.<small>Tags: <em>what is in the picture?</em> Objects: <em>where is each thing, and how many?</em> Caption: <em>say it in one sentence.</em> OCR: <em>what is written?</em> The exam describes the question and expects the feature.</small></p>
 <p>OCR gives you lines of text. For typed fields (the VIN, the price, the date) you will use Content Understanding in Lap 6.</p>
 
 <h2>Part 3 · The thoughtful eye · a multimodal model</h2>
+<p>Part 2 used a prebuilt tool: nothing to deploy, fixed JSON back. Now switch to the other kind of AI on your resource, the <code>gpt-4-1-mini</code> deployment from Lap 0 that you prompted in Lap 2. Everything you learned about instructions and messages still applies; the only new thing is a picture inside the message.</p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
@@ -161,11 +177,13 @@ print(f&quot;  [{r.usage.prompt_tokens} prompt tokens incl. the image]&quot;)</c
 Suggested inspection: Check the condition and operation of the truck’s suspension and undercarriage for wear or damage, especially given the vehicle’s age and potential use.
   [308 prompt tokens incl. the image]</span></code></pre>
 <p>Vision found three car boxes, tags and even a scrap of text; the model wrote the listing and suggested checking the suspension. <code>"detail": "low"</code> keeps the image at a fixed small token cost; use <code>"high"</code> when you need to read fine print.</p>
+<p class="insight">One script, two ways to sign in.<small>The Vision half sends your <strong>key</strong> to <code>$ENDPOINT</code>, like every curl call in Part 2. The model half uses <code>DefaultAzureCredential</code>, which is <strong>Entra ID</strong> (your Cloud Shell sign-in), and goes to the project endpoint, like Lap 2's chat app. Same resource, two hosts, two kinds of authentication: the Lap 0 picture, in twenty lines of Python.</small></p>
   </div>
 </div>
 
 <h2>Part 4 · Paint it · image generation</h2>
 <p>Marketing wants the Volt on a wet track before the car exists. That takes a second kind of model: one that outputs pixels instead of words. You deploy it exactly as you deployed the chat model in Lap 0.</p>
+<p class="insight">Reading an image and making one take different models.<small><code>gpt-4-1-mini</code> takes images <em>in</em> but only writes text <em>out</em>, so it cannot paint. A model's input and output types (its modalities) decide what it can do, and you pick the model for the output you need.</small></p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
@@ -173,7 +191,7 @@ Suggested inspection: Check the condition and operation of the truck’s suspens
   <li><p><strong>Deploy the image model.</strong> In the left menu select <strong>Models</strong> → <strong>Deploy</strong> ▾ → <strong>Deploy a base model</strong>. Search the catalog for <code>FLUX.2-pro</code> and open the card named exactly <strong>FLUX.2-pro</strong>. Select <strong>Deploy</strong> → <strong>Custom settings</strong> and set:</p>
 <ul>
   <li><strong>Deployment name</strong>: <code>flux-2-pro</code>. The scripts in the Cloud Shell tab call this name.</li>
-  <li><strong>Deployment type</strong>: <strong>Global Standard</strong>. Image models are offered only as Global Standard.</li>
+  <li><strong>Deployment type</strong>: <strong>Global Standard</strong>. Image models are offered only as Global Standard. In the Lap 0 table, that is the type that may run in any region: fine for concept art, worth a second thought for customer data.</li>
   <li><strong>Capacity</strong>: <code>1</code>, then <strong>Deploy</strong>.</li>
 </ul>
 <p class="why"><b>Why capacity 1</b>For image models capacity counts requests, not tokens: 1 allows about <strong>one image per minute</strong>, and a <code>429</code> means wait. Each image costs a few cents.</p></li>
@@ -192,7 +210,8 @@ Suggested inspection: Check the condition and operation of the truck’s suspens
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name flux-2-pro --model-name FLUX.2-pro --model-version 1 --model-format "Black Forest Labs" \
   --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre>
-<p>Capacity 1 allows about <strong>one image per minute</strong>; a <code>429</code> means wait. Each image costs a few cents.</p></li>
+<p>Capacity 1 allows about <strong>one image per minute</strong>; a <code>429</code> means wait. Each image costs a few cents.</p>
+<p class="why"><b>Why "Black Forest Labs"</b>Lap 0's model format was <code>OpenAI</code>. FLUX is made by another company, Black Forest Labs, and sold through the Foundry catalog, so the format names its publisher. It still lands on your resource, uses your key and draws on your quota. That is also why it answers on its publisher's own route in the next step, not the OpenAI-style one.</p></li>
   <li><p><strong>Paint.</strong> The response carries the image as base64 in <code>data[0].b64_json</code>. The commented lines at the end show the route other image models use; paste the whole block, they will not run.</p>
 <pre><code><span class="cm"># FLUX.2-pro answers on its publisher's native route on the Foundry host:</span>
 curl -s -X POST "$AI_ENDPOINT/providers/blackforestlabs/v1/$IMAGE_MODEL?api-version=preview" \
@@ -241,6 +260,7 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
 
 <div class="shots2"><img class="shot" src="images/gen/flux2-velocity-volt.jpg" alt="Generated with FLUX.2-pro: the Velocity Volt on a wet racetrack at golden hour" loading="lazy" title="Click to zoom"><img class="shot" src="images/gen/flux2-retro-poster.jpg" alt="Generated with FLUX.2-pro: a retro Velocity Motors advertising poster" loading="lazy" title="Click to zoom"></div>
 <div class="callout important"><div class="ico">⚖️</div><div><span class="box-lbl">Responsible use</span><p>Generated images from Foundry models include <em>content credentials</em> (C2PA provenance metadata). Do not generate real people, competitors' badges or copyrighted characters; the content filters will refuse some prompts and your brand team will refuse others. Label concept art as such in customer-facing material.</p></div></div>
+<p class="insight">Provenance says where an image came from, not whether it is true.<small>Content credentials let a newsroom or a customer check that the Volt render was made by AI. They do not stop someone screenshotting it and calling it a real car. Labelling and review are still your job: Lap 1's transparency and accountability principles, applied to pixels.</small></p>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You have the VIN read from the plate in the OCR playground (or by <code>read</code>), a JSON analysis with boxes for at least two lot photos, a listing written by the model from a photo (playground or <code>vision_app.py</code>), a deployed <code>flux-2-pro</code> and at least one generated image (playground or PNG on disk).</p></div></div>
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
@@ -263,13 +283,15 @@ print(f&quot;saved {out} ({os.path.getsize(out)//1024} KB) · model {model} · p
 <details class="reveal quiz"><summary>You need to count cars in a lot photo. Which feature?</summary><div class="body"><p><strong>Object detection</strong> (the <code>objects</code> feature): labels with bounding boxes. Tags and captions do not locate anything.</p></div></details>
 <details class="reveal quiz"><summary>How do you send an image to a chat model in the API?</summary><div class="body"><p>As a content item in the user message: <code>{"type": "image_url", "image_url": {"url": "data:image/jpeg;base64,…"}}</code> (or <code>input_image</code> in the Responses API), next to a text item.</p></div></details>
 <details class="reveal quiz"><summary>Which Azure service identifies <em>who</em> a face belongs to, and what is special about it?</summary><div class="body"><p><strong>Azure AI Face</strong>; identification and verification are <strong>Limited Access</strong> and require an approved use case. Azure AI Vision only detects people.</p></div></details>
-<details class="reveal quiz"><summary>Which call produces a picture from a prompt?</summary><div class="body"><p><code>images/generations</code> on an image-model deployment (FLUX, gpt-image), returning base64 image data.</p></div></details>
+<details class="reveal quiz"><summary>Which call produces a picture from a prompt?</summary><div class="body"><p>A text prompt sent to an image-model deployment, which returns base64 image data. For gpt-image and FLUX-1.1-pro that is <code>images/generations</code> (the exam's answer); <code>flux-2-pro</code> today answered on its publisher's route, <code>/providers/blackforestlabs/v1/…</code>. Either way the model is a deployment on your resource, called with your key.</p></div></details>
 <details class="reveal quiz"><summary>When is Azure AI Vision the better choice over a multimodal GPT model?</summary><div class="body"><p>When you need structured output (boxes, OCR lines with coordinates), speed, and low cost at volume. Use the GPT model when you need reasoning or free-text judgement.</p></div></details>
 
 <h2>Pit wall debrief · what you learned</h2>
 <ul>
   <li>Vision tasks: classification, detection, captioning, tagging, OCR, people; faces are a separate, restricted service.</li>
   <li>Azure AI Vision returns structured JSON with confidences; a multimodal model returns judgement in prose. Pick by need.</li>
+  <li>Vision and OCR are Foundry Tools and need no deployment; the multimodal model and the image model are deployments. Reading an image (image in, text out) and making one (text in, image out) take different models.</li>
+  <li>OCR copies characters without understanding them; confidences flag the doubtful ones, and meaning needs a model or Lap 6's fields.</li>
   <li>Images go into a prompt as content items; <code>detail</code> sets the token cost.</li>
   <li>Image models are deployed like any other (Global Standard, capacity in requests per minute) and called with <code>images/generations</code> or, for FLUX.2-pro, the publisher's route.</li>
   <li><code>vision_app.py</code> and <code>make_image.py</code> are your lightweight vision apps.</li>

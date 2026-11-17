@@ -17,6 +17,16 @@
   <div><b>Multimodal audio model</b>A model such as <code>gpt-audio-mini</code> that takes audio in and returns audio and text in one call. No separate recognition or synthesis step; less control over the voice, more natural turn-taking.</div>
 </div>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Match the technique to the output: key phrases → a list of topics; entities → typed things (person, date, product, PII); sentiment → positive/negative/neutral/mixed with scores; summarization → extractive (sentences copied) or abstractive (new text). Speech: recognition is audio→text, synthesis is text→audio, SSML tunes synthesis. Two ways to answer a spoken question: the Speech pipeline (STT → model → TTS) or one multimodal audio model. Know the trade-off: pipeline = control and cheaper models; multimodal = simpler and more natural.</p></div></div>
+<p>Lap 0 split your resource into two kinds of AI: prebuilt <strong>Foundry Tools</strong> that need no deployment, and <strong>models</strong> you must deploy. This lap uses both, sometimes in the same app, so here is who answers each call before you make it.</p>
+<table>
+<thead><tr><th>Call in this lap</th><th>Who answers</th><th>Deployment needed?</th><th>Signs in with</th></tr></thead>
+<tbody>
+<tr><td>Language and Translator (Part 2)</td><td>Prebuilt Foundry Tools</td><td>No</td><td>Key (Cloud Shell) or your sign-in (playgrounds)</td></tr>
+<tr><td>Text to Speech, Speech to Text (Part 3)</td><td>Prebuilt Azure Speech</td><td>No</td><td>Key (Cloud Shell) or your sign-in (playgrounds)</td></tr>
+<tr><td><code>speech_pipeline.py</code> (Part 3)</td><td>Speech, then your <code>gpt-4-1-mini</code>, then Speech</td><td>Yes, the one from Lap 0</td><td>Key for Speech, Entra ID for the model</td></tr>
+<tr><td>Voice mode (Part 3)</td><td>Your Lap 3 agent, with Speech built in</td><td>Yes, the agent's model</td><td>Your sign-in</td></tr>
+<tr><td><code>talk_to_velo.py</code> (Part 4)</td><td>A new <code>gpt-audio-mini</code> deployment</td><td>Yes, you add it in Part 4</td><td>Key</td></tr>
+</tbody></table>
 
 <h2>Part 1 · Reload your pit board</h2>
 <p>The portal playgrounds in Parts 2 and 3 need nothing but <a href="https://ai.azure.com">ai.azure.com</a>. Everyone needs this block in Cloud Shell before a Cloud Shell tab or Part 4, which is code on both paths.</p>
@@ -25,9 +35,11 @@ export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com; export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-4-1-mini AUDIO_MODEL=gpt-audio-mini</code></pre>
+<p class="why"><b>Why the last line</b>Nothing new is created here. The three Python apps in this lap read their settings from environment variables with names of their own (<code>FOUNDRY_ENDPOINT</code>, <code>AI_KEY</code>, <code>SPEECH_REGION</code>…), so the last line copies the Lap 0 values under those names. <code>SPEECH_REGION</code> is your region because Speech's REST hosts are regional.</p>
 
 <h2>Part 2 · Text analysis on customer reviews</h2>
 <p>In the portal you redact a real-looking service ticket, then detect and translate a German complaint. The Cloud Shell tab covers the same techniques by API, plus the ones the portal does not show, starting with sentiment.</p>
+<p class="insight">You could ask <code>gpt-4-1-mini</code> "is this review positive?". So why a separate Language service?<small>In Lap 2 you made the model classify comments with a few-shot prompt, and it worked. Language gives you the same answers as a fixed JSON shape with confidence scores and character offsets, the same every time, with no prompt to write and no deployment to size. Reach for the model when the question is open-ended; reach for Language when you need the same structured answer on forty thousand reviews.</small></p>
 <div class="callout note"><div class="ico">🔑</div><div><span class="box-lbl">The playgrounds use your sign-in, not the key</span><p>The Language, Speech and Translator playgrounds call the service as <em>you</em>. If one fails with <em>CheckAccess request is invalid…</em>, your account is missing the <strong>Cognitive Services User</strong> role: see Troubleshooting. The Cloud Shell tab uses the key and works meanwhile.</p></div></div>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
@@ -78,14 +90,14 @@ export FOUNDRY_ENDPOINT=$ENDPOINT AI_KEY=$KEY SPEECH_REGION=$LOC CHAT_MODEL=gpt-
 <img class="shot" src="images/shots/lab5-langdetect-card.png" alt="Language detection results for five reviews" loading="lazy" title="Click to zoom"></li>
   <li><p><strong>Summarization</strong> is asynchronous. You POST a job to <code>$ENDPOINT/language/analyze-text/jobs?api-version=2024-11-01</code> with tasks <code>ExtractiveSummarization</code> and <code>AbstractiveSummarization</code>, then GET the <code>operation-location</code> URL until <code>status</code> is <code>succeeded</code>. On the Volt press release, extractive picked three real sentences; abstractive wrote a new two-sentence summary.</p>
 <img class="shot" src="images/shots/lab5-summarization-card.png" alt="Extractive summary of three sentences with rank scores, and an abstractive summary" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Translator</strong> is a separate host that takes the same key plus a region header. One call, six languages:</p>
+  <li><p><strong>Translator</strong> is a separate host that takes the same key plus a region header. Every call so far went to your own <code>$ENDPOINT</code>; Translator's text API lives on one global address shared by all of Azure, so the region header tells it which resource your key belongs to. One call, six languages:</p>
 <pre><code>curl -s -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&amp;from=en&amp;to=de&amp;to=ja&amp;to=es&amp;to=fr&amp;to=hi&amp;to=zh-Hans" \
   -H "Ocp-Apim-Subscription-Key: $KEY" -H "Ocp-Apim-Subscription-Region: $LOC" -H "Content-Type: application/json" \
   -d '[{"text":"Welcome to Velocity Motors. The 2027 Velocity Volt charges from 10 to 80 percent in 18 minutes."}]' | jq</code></pre>
 <img class="shot" src="images/shots/lab5-translator-card.png" alt="Brochure line translated into six languages, transliterated Japanese, and dictionary lookup for torque" loading="lazy" title="Click to zoom"></li>
 </ol>
 <h3>The lightweight app</h3>
-<p><code>text_analysis.py</code> does the same work with the <code>azure-ai-textanalytics</code> SDK: one client, five method calls.</p>
+<p><code>text_analysis.py</code> does the same work with the <code>azure-ai-textanalytics</code> SDK: one client, five method calls. Each method is one of the <code>kind</code> values you just typed into curl, so the SDK only saves you the JSON.</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/text_analysis.py &amp;&amp; python text_analysis.py</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 4 · Text analysis with Azure AI Language (a Foundry Tool).
 
@@ -164,6 +176,7 @@ for r in client.recognize_pii_entities(ticket):
 </div>
 
 <h2>Part 3 · Make the car talk · Azure Speech</h2>
+<p>Part 2 worked on text. A driver does not type, so Speech is the bridge: speech-to-text turns a voice into text that Language or a model can use, and text-to-speech turns the answer back into a voice. It is another prebuilt Foundry Tool on the same resource and key, still with no deployment.</p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
@@ -254,7 +267,8 @@ answer  : Please safely pull over and stop your car. Check your brake fluid leve
 spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
 <audio controls src="media/user-brake-question.wav"></audio>
 <audio controls src="media/pipeline-answer.wav"></audio>
-<p>The recognizer heard "<strong>break</strong> warning light", and <code>recognize_once</code> stopped at the first pause, so only the first sentence arrived. Context still carried the model to a sensible answer. A car product would add a phrase list or a custom speech model.</p></li>
+<p>The recognizer heard "<strong>break</strong> warning light", and <code>recognize_once</code> stopped at the first pause, so only the first sentence arrived. Context still carried the model to a sensible answer. A car product would add a phrase list or a custom speech model.</p>
+<p class="insight">The middle of this pipeline is your Lap 2 chat app.<small>Step 2 is the same <code>chat.completions.create</code> call on the same <code>gpt-4-1-mini</code> deployment, signed in with Entra ID through the project. Steps 1 and 3 are Speech, signed in with the key. One app, two kinds of AI, two credentials: exactly the split from Lap 0.</small></p></li>
 </ol>
   </div>
 </div>
@@ -262,7 +276,8 @@ spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
 <h3>Both paths · Voice mode on your agent</h3>
 <ol class="steps">
   <li><p><strong>Let the warranty expert talk.</strong> Open <code>velo-warranty-expert</code> from Lap 3 (left nav <strong>Agents</strong>, then the agent). In the left pane, under the model, switch on <strong>Voice mode</strong>. In the <strong>Configuration</strong> pane (if it does not open, select the cog above the chat), check the speech input and output settings under <strong>Voice mode</strong> and pick a voice. Close it and select <strong>Save</strong>.</p>
-<p class="why"><b>Why it matters</b>This is Voice Live: the recognition and synthesis you just tried, wired into an agent with its instructions and File search, and no audio code of yours. Drivers keep their eyes on the road and still get the cited answer.</p></li>
+<p class="why"><b>Why it matters</b>This is Voice Live: the recognition and synthesis you just tried, wired into an agent with its instructions and File search, and no audio code of yours. Drivers keep their eyes on the road and still get the cited answer.</p>
+<p class="why"><b>Why this agent</b>Lap 3's agent already knows the warranty guide and cites it. Voice mode changes only how the question arrives and how the answer leaves, so everything it learned in Lap 3 still applies.</p></li>
   <li><p><strong>Ask it out loud.</strong> In the <strong>Chat</strong> pane select <strong>Start session</strong>, allow the microphone, wait for <strong>Listening…</strong>, and ask "Does the battery warranty transfer to a second owner?" Watch <strong>Processing…</strong> then <strong>Speaking…</strong>. The <strong>cc</strong> button shows the text; <strong>X</strong> ends the session and shows the transcript. <strong>Continue in code</strong> shows client code that streams audio both ways.</p></li>
 </ol>
 
@@ -272,8 +287,10 @@ spoken  : answer.wav (435 KB, SynthesizingAudioCompleted)</span></code></pre>
   <li><p><strong>Deploy the audio model.</strong> It is Global Standard only, and capacity 1 (1K tokens per minute) is enough for one person: audio costs about 10 tokens per second in and out. Prefer clicks? Deploy it the Lap 0 way (<strong>Models</strong> → <strong>Deploy</strong> → <strong>Deploy a base model</strong>, search <code>gpt-audio-mini</code>, <strong>Custom settings</strong>, deployment name <code>gpt-audio-mini</code>, <strong>Global Standard</strong>, <code>1000</code> tokens per minute) and skip the command.</p>
 <pre><code>az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name gpt-audio-mini --model-name gpt-audio-mini --model-version 2025-10-06 --model-format OpenAI \
-  --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre></li>
+  --sku-name GlobalStandard --sku-capacity 1 -o table</code></pre>
+<p class="why"><b>Why a second deployment</b>Language and Speech needed none, because they are prebuilt tools. <code>gpt-audio-mini</code> is a model, and code never calls a model, only a deployment (Lap 0). Your <code>gpt-4-1-mini</code> cannot take audio in, so the audio model needs its own deployment, with its own name and its own TPM. It is Global Standard because, as the Lap 0 table said, that is the only type this model offers here.</p></li>
   <li><p><strong>Ask it the brake question.</strong> Send the same spoken question straight to the model and get spoken audio plus a transcript back. On the portal path, fetch the question into Cloud Shell first: <code>curl -sO https://varoonsahgal.github.io/az901/downloads/question.wav</code>.</p>
+<p>Read the code below: it is the Lap 2 chat call again, sent to the <code>openai.azure.com</code> host from Lap 0. Only two things changed: the user message holds audio instead of text, and <code>modalities</code> asks for audio back as well as text.</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/talk_to_velo.py
 python talk_to_velo.py question.wav reply.wav</code></pre>
 <pre><code>&quot;&quot;&quot;Lap 4 · Respond to a SPOKEN prompt with a multimodal audio model (gpt-audio-mini).
@@ -307,6 +324,16 @@ saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
   <li><p><strong>Compare the two answers.</strong> Play the pipeline's answer (<code>answer.wav</code>, or the second player in Part 3's Cloud Shell tab) against <code>reply.wav</code> from the audio model. One call instead of three, and the model understood "brake" from context; but you chose neither the voice nor the recogniser, and the deployment costs more per minute of speech.</p></li>
 </ol>
 <p class="insight">Pipeline for control. One model for simplicity.<small>The exam does not ask you to pick a winner. It asks whether you know the trade: a custom brand voice and automotive vocabulary on one side, one call and natural turn-taking on the other.</small></p>
+<p>You have now heard Velo answer a driver three ways. Side by side:</p>
+<table>
+<thead><tr><th></th><th>Pipeline (<code>speech_pipeline.py</code>)</th><th>Voice mode on the agent</th><th>Audio model (<code>talk_to_velo.py</code>)</th></tr></thead>
+<tbody>
+<tr><td><strong>Who hears</strong></td><td>Azure Speech</td><td>Azure Speech, managed for you</td><td>The model itself</td></tr>
+<tr><td><strong>Who answers</strong></td><td><code>gpt-4-1-mini</code></td><td>Your agent: its model, instructions and File search</td><td><code>gpt-audio-mini</code></td></tr>
+<tr><td><strong>Your code</strong></td><td>About twenty lines, three steps</td><td>None</td><td>One call</td></tr>
+<tr><td><strong>Voice and vocabulary</strong></td><td>Any neural voice, SSML, phrase lists</td><td>Pick from a list</td><td>A few built-in voices; context instead of phrase lists</td></tr>
+<tr><td><strong>Pick it when</strong></td><td>Brand voice or custom words matter</td><td>The agent already exists and should talk</td><td>Simplest code and natural turn-taking matter</td></tr>
+</tbody></table>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p><strong>Portal path:</strong> you redacted the service ticket in <strong>Text PII Redaction</strong>, detected and translated the Munich review, played Velo's welcome in <strong>Text to Speech</strong>, and transcribed the brake question (and spotted "break"). <strong>Both paths:</strong> you ran sentiment with opinion mining and <code>text_analysis.py</code>, then <code>talk_to_velo.py</code>, and your agent spoke to you in Voice mode. The Cloud Shell path also ran <code>speech_pipeline.py</code>.</p></div></div>
 
 <div class="mission"><h3><span class="flag">🏁</span>Overtake · if you finish early</h3><p>No steps given. Each takes five to ten minutes.</p><ol>
@@ -338,7 +365,9 @@ saved reply.wav · tokens: 81 audio in, 199 audio out</span></code></pre>
 <ul>
   <li>Azure AI Language: language detection, sentiment with opinion mining, key phrases, entities, PII with redaction, extractive and abstractive summarization; Translator for languages.</li>
   <li>Azure Speech: recognition (display vs lexical text, confidence) and synthesis (neural voices, SSML), both as REST calls or through the Speech SDK; Voice mode puts them inside an agent.</li>
-  <li>Two architectures for a talking assistant: STT → model → TTS, or one multimodal audio model such as gpt-audio-mini.</li>
+  <li>Two architectures for a talking assistant: STT → model → TTS, or one multimodal audio model such as gpt-audio-mini. Voice mode is the pipeline, managed inside an agent.</li>
+  <li>Language, Translator and Speech are prebuilt tools: no deployment, fixed output, scores you can act on. A model answers anything but must be deployed, and an audio model needs its own deployment.</li>
+  <li>One app can mix both, with two credentials: <code>speech_pipeline.py</code> uses the key for Speech and Entra ID for the model.</li>
   <li>Three lightweight apps: <code>text_analysis.py</code>, <code>speech_pipeline.py</code>, <code>talk_to_velo.py</code>.</li>
 </ul>
 <p>Next: Velo gets eyes. <a href="lab5.html">Lap 5 · Eyes on the track →</a></p>

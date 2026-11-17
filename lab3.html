@@ -80,6 +80,17 @@
   <rect x="720" y="30" width="170" height="120" rx="14" fill="#fff" stroke="#DFE4EE"/><text x="805" y="58" text-anchor="middle" font-weight="600" fill="#1B2437">Tools</text><text x="805" y="82" text-anchor="middle" fill="#5B6779">vector store (guide.md)</text><text x="805" y="100" text-anchor="middle" fill="#5B6779">code sandbox</text><text x="805" y="118" text-anchor="middle" fill="#5B6779">web search · functions</text><text x="805" y="136" text-anchor="middle" fill="#5B6779">MCP · AI Search</text>
 </svg><figcaption>Clients send messages into a conversation; the service runs the agent, which may call tools several times before answering.</figcaption></figure>
 <p class="insight">A chat model answers. An agent finishes the job.<small>It decides which tool to call, calls it, reads the result, and keeps going until the task is done. The model is the same; the loop is new.</small></p>
+<p>You already built the "chat model" half in Lap 2. Here is what moves when you upgrade it to an agent:</p>
+<table>
+<thead><tr><th></th><th>Lap 2 · chat app (<code>chat_client.py</code>)</th><th>Lap 3 · agent (<code>agent_client.py</code>)</th></tr></thead>
+<tbody>
+<tr><td><strong>The system prompt lives in</strong></td><td>Your code, sent with every call</td><td>The agent's saved version, in the service</td></tr>
+<tr><td><strong>Conversation history</strong></td><td>Your code keeps a list and resends all of it</td><td>The service keeps it; your code sends a conversation id</td></tr>
+<tr><td><strong>Grounding</strong></td><td>You paste the right sections into the prompt</td><td>File search finds the right section in the whole guide</td></tr>
+<tr><td><strong>Tools</strong></td><td>None: the model can only write text</td><td>Searches files, runs Python, and more</td></tr>
+<tr><td><strong>The call names</strong></td><td>A deployment: <code>gpt-4-1-mini</code></td><td>An agent and version: <code>velo-warranty-expert</code> v3</td></tr>
+</tbody></table>
+<p class="insight">An agent does not replace your deployment. It sits on top of it.<small>Every agent today runs on the <code>gpt-4-1-mini</code> deployment from Lap 0 and shares its 8K tokens per minute. You are adding a new object to your project, not a new model.</small></p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Agentic AI is the workload where the model <em>chooses actions</em>. On the exam: an agent = model + instructions + tools; File search gives it your documents (grounding); Code interpreter lets it compute; function tools call your systems; conversations hold context; a client references the agent by name and version through the Foundry SDK's OpenAI client and the Responses API. Responsible-AI points: instructions are guardrails, tools get least privilege, keep a human in the loop for consequential actions, use tracing and evaluations.</p></div></div>
 
 <h2 id="part-1-reload-your-pit-board"><span class="pn">Part 1</span>Reload your pit board</h2>
@@ -87,6 +98,7 @@
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT; export NAME=ai901-$STUDENT-pitcrew; export LOC=eastus2; export PROJECT=proj-ai901-$STUDENT
 export AI_ENDPOINT=https://$NAME.services.ai.azure.com; export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 curl -sO https://varoonsahgal.github.io/az901/downloads/velocity-warranty-guide.md     <span class="cm"># the knowledge file (also below)</span></code></pre>
+<p class="why"><b>Why no KEY this time</b>Agents live behind the <em>project endpoint</em>, which accepts only Microsoft Entra ID: your Cloud Shell sign-in plus the Foundry User role (Lap 0, Part 0). So this block sets the project endpoint and nothing else. It is the same endpoint Lap 2's chat app used.</p>
 <details class="reveal concept"><summary>The knowledge file · velocity-warranty-guide.md (what the agent will read)</summary><div class="body"><pre><code># Velocity Motors Warranty Guide — 2026 edition (excerpt)
 
 ## 1. Basic (bumper-to-bumper) coverage
@@ -146,7 +158,8 @@ Bring the vehicle to any authorized Velocity Motors dealer. There is no deductib
   <li><p><strong>Give it standing orders.</strong> In <strong>Instructions</strong> paste exactly:</p>
 <pre><code>You are the Velocity Motors warranty expert. Answer ONLY from the warranty guide in your file search knowledge; quote the section number. If the guide does not cover it, say so.</code></pre>
 <p>Now check <strong>Tools</strong>. New agents may arrive with <strong>Web search</strong> already attached, sometimes inside an auto-created <em>…-toolbox</em>. Remove it: <strong>⋮</strong> on the Web search row → <strong>Remove</strong>. If <strong>Remove</strong> is greyed out because the tool sits inside the toolbox, leave it and add this sentence to the end of the instructions: <code>Never use web search.</code></p>
-<p class="why"><b>Why remove it</b>A warranty expert that searches the web will happily quote another brand's warranty, and the customer will hold Velocity to it. Tools are permissions: give an agent only the ones its job needs.</p></li>
+<p class="why"><b>Why remove it</b>A warranty expert that searches the web will happily quote another brand's warranty, and the customer will hold Velocity to it. Tools are permissions: give an agent only the ones its job needs. This is Lap 1's <em>reliability and safety</em> principle turned into a setting.</p>
+<p class="why"><b>Why instructions before the guide</b>These orders mention "your file search knowledge" before it exists. That is fine: nothing runs until you save in step 6. The instructions say <em>how to behave</em>; the guide in the next step says <em>what is true</em>. An agent needs both.</p></li>
 
   <li><p><strong>Give it the guide.</strong> Under <strong>Tools</strong> select <strong>Upload files</strong>. In the <strong>Attach files</strong> dialog:</p>
 <ul>
@@ -156,6 +169,7 @@ Bring the vehicle to any authorized Velocity Motors dealer. There is no deductib
   <li><span class="mk">2</span>The file row shows <em>Uploading</em>, then <em>Success</em>. Wait for <em>Success</em>, then select <strong>Attach</strong>.</li>
 </ul>
 <p class="why"><b>Why a vector index</b>The portal cuts the guide into chunks and stores an embedding (a numeric fingerprint of meaning) for each one, so the agent retrieves the section that answers the question instead of guessing from memory.</p>
+<p class="insight">Lap 2 pasted the pages. File search fetches them.<small>It is the same grounding idea: put the right text in front of the model and tell it to stay inside it. In Lap 2 you chose three sections by hand. Now, for each question, the agent searches the whole guide and pulls in only the chunks that match. That is retrieval-augmented generation (RAG), and it scales to a guide of a thousand pages.</small></p>
 <img class="shot" src="images/shots/lab3-portal-03-upload.jpg" alt="Attach files dialog: Create a new index, vector index name warranty-guide (1), velocity-warranty-guide.md uploading (2), and the Attach button" loading="lazy" title="Click to zoom"></li>
 
   <li><p><strong>Save a version.</strong> <strong>Tools</strong> now lists <strong>File search</strong> <span class="mk">1</span>. Select <strong>Save</strong> <span class="mk">2</span>. The header changes to <strong>Version: 2</strong>.</p>
@@ -177,6 +191,7 @@ Bring the vehicle to any authorized Velocity Motors dealer. There is no deductib
 <p><strong>Fix it.</strong> Add this sentence to the end of the instructions:</p>
 <pre><code>If no section states the answer, reply: The guide does not say.</code></pre>
 <p>Select <strong>Save</strong> (Version 3), start a new chat with the new-chat button, and ask the windshield question again, then the battery question.</p>
+<p class="why"><b>Why fix the instructions, not the file</b>The guide was right; the agent's judgment about it was loose. Facts go in knowledge, behaviour goes in instructions. Editing the guide to add "windshields are not covered" would patch one question and leave the habit of stretching in place.</p>
 <p class="why"><b>Why re-ask both</b>A stricter rule can over-correct. You want "The guide does not say" for glass and still a full answer for the battery. Testing both after every change is the habit that keeps agents safe to ship.</p></li>
 
   <li><p><strong>Read the agent as code.</strong> Select the <strong>YAML</strong> tab. You see <code>metadata</code>, <code>object: agent.version</code>, <code>id: velo-warranty-expert:2</code>, <code>version: "2"</code>, and a <code>definition</code> with <code>kind: prompt</code>, <code>model: gpt-4-1-mini</code>, your <code>instructions</code> and the <code>tools</code>. The screenshot was taken at version 2; yours shows your latest saved version (3 after the fix).</p>
@@ -187,6 +202,7 @@ Bring the vehicle to any authorized Velocity Motors dealer. There is no deductib
 
 <h2 id="part-3-give-an-agent-a-calculator-code-interpreter"><span class="pn">Part 3</span>Give an agent a calculator · Code interpreter</h2>
 <p>Language models predict tokens, not sums, so they are poor at arithmetic. Code interpreter gives an agent a Python sandbox: it writes the code, runs it, and reports the result.</p>
+<p class="why"><b>Why a second agent</b>You could add Code interpreter to the warranty expert, but its job is to quote the guide, and every tool it holds is one more thing it might reach for. One agent per job keeps each one's tools small and its tests simple. (The last Overtake challenge asks when one agent with two tools is the better design.)</p>
 <ol class="steps">
   <li><p><strong>Create a second agent.</strong> <strong>Agents</strong> → <strong>New agent ▾</strong> → <strong>Build an agent</strong>, exactly as in Part 2. Name it <code>velo-data-analyst</code>, interaction mode <strong>Text</strong>, then <strong>Create agent and open playground</strong>. Check the model is <code>gpt-4-1-mini</code> and paste these instructions:</p>
 <pre><code>You are a data analyst for Velocity Motors. Use the code interpreter to compute answers precisely and show the Python you ran.</code></pre></li>
@@ -202,9 +218,18 @@ Bring the vehicle to any authorized Velocity Motors dealer. There is no deductib
 <p class="insight">$62.99625 is the fingerprint of real code.<small>A model predicting digits writes what tax lines usually look like. Python computes exactly 7.5% of $839.95, then rounds the total the way an accountant would.</small></p>
 <p>You can also upload a CSV and ask for a chart; the sandbox returns image files.</p></li>
 </ol>
+<p class="insight">Each tool patches one thing a model cannot do on its own.<small>Pick tools by the gap, not by what the menu offers.</small></p>
+<table>
+<thead><tr><th>The model on its own…</th><th>Tool that fixes it</th><th>What to watch</th></tr></thead>
+<tbody>
+<tr><td>Does not know your documents</td><td><strong>File search</strong> (today: the warranty guide)</td><td>Citations show where it looked, not that the answer is there</td></tr>
+<tr><td>Cannot do exact arithmetic</td><td><strong>Code interpreter</strong> (today: the invoice)</td><td>Runs in a sandbox; it cannot reach your systems</td></tr>
+<tr><td>Does not know today's news or prices</td><td><strong>Web search</strong> (Grounding with Bing)</td><td>Data leaves the Azure compliance boundary</td></tr>
+<tr><td>Cannot act in your business systems</td><td><strong>Function</strong>, <strong>OpenAPI</strong> or <strong>MCP</strong> tools</td><td>Least privilege, and a human approves anything consequential</td></tr>
+</tbody></table>
 
 <h2 id="part-4-publish-and-call-it-from-code"><span class="pn">Part 4</span>Publish and call it from code</h2>
-<p>An agent helps only once people and apps can reach it: first a web page, then a Python client in Cloud Shell.</p>
+<p>An agent helps only once people and apps can reach it: first a web page, then a Python client in Cloud Shell. Both are just new clients on the left of the Part 0 picture; the agent itself does not change.</p>
 <ol class="steps">
   <li><p><strong>Preview web app.</strong> In the agent playground of <code>velo-warranty-expert</code>, open <strong>Publish ▾</strong> in the header and select <strong>Preview web app</strong>. A chat page opens in a new tab; ask it the battery question. This is how a non-technical colleague would test your agent; the same menu offers Microsoft 365 Copilot and Teams for real users.</p></li>
   <li><p><strong>See the client code.</strong> Select <strong>&lt;/&gt; Continue in code</strong> in the header. The Python sample installs <code>azure-ai-projects&gt;=2.1.0</code>, creates an <code>AIProjectClient</code> with <code>DefaultAzureCredential()</code>, calls <code>get_openai_client()</code>, and sends a prompt with <code>responses.create(...)</code> passing <code>extra_body={"agent_reference": {"name": "velo-warranty-expert", "version": "…", "type": "agent_reference"}}</code> with the version you saved. Our version of that sample adds a conversation and a loop:</p>
@@ -237,7 +262,8 @@ if len(sys.argv) &gt; 1:
     ask(&quot; &quot;.join(sys.argv[1:]))
 else:
     while (q := input(&quot;\nYou&gt; &quot;).strip()).lower() not in (&quot;quit&quot;, &quot;exit&quot;, &quot;&quot;):
-        ask(q)</code></pre></li>
+        ask(q)</code></pre>
+<p class="insight">Compare it with Lap 2's <code>chat_client.py</code>: the code got smaller.<small>That script carried the system prompt and a growing <code>history</code> list, and named a deployment. This one carries none of that. It names an agent and a version, and passes a conversation id. The instructions, the guide and the tools all live in the saved version in your project, so you can improve the agent without touching or redeploying this file.</small></p></li>
   <li><p><strong>Run it against your agent.</strong> Set <code>AGENT_VERSION</code> to the number in the playground's <strong>Version</strong> box: 3 after the windshield fix. Do not rely on the script's default of 1: that is the agent as it was created, before your instructions and File search. (Our run below was against an agent built from code, which is why it says v1.)</p>
 <pre><code>export AGENT_VERSION=3     <span class="cm"># the number in the Version box</span>
 python agent_client.py "A customer bought a used 2023 Volt last week. How long is the battery still covered, and what paperwork do they need for a claim?"</code></pre>
@@ -248,7 +274,7 @@ velo-warranty-expert&gt; The high-voltage battery on a 2023 Velocity Volt is cov
 To make a warranty claim, the customer needs to bring the vehicle to any authorized Velocity Motors dealer. There is no deductible for warranty repairs. Loaner vehicles are provided for repairs expected to take more than 4 hours. It does not specify any additional paperwork needed besides taking the vehicle to the dealer for the claim【5:4.2, 4.3, 7†velocity-warranty-guide.md】.
    [tools used: file_search_call]</span></code></pre>
 <p>The marker <code>【5:4.2, 4.3, 7†velocity-warranty-guide.md】</code> is the file-search citation: chunk 5, sections 4.2, 4.3 and 7 of the guide; a real app would render it as a link. <code>[tools used: file_search_call]</code> is our client printing the tool items from <code>r.output</code>.</p>
-<p>For contrast, try a prompt-only agent with no tools. Build <code>velo-pit-crew</code> in thirty seconds (<strong>New agent ▾</strong> → <strong>Build an agent</strong>, instructions <em>Answer briefly; if you don't know a Velocity-specific fact, say so and suggest the guide.</em>, <strong>Save</strong>) and call it with the number in its own Version box:</p>
+<p>For contrast, try a prompt-only agent with no tools. Only <code>AGENT_NAME</code> changes in the command below: same script, same model, a different agent, and you will see how much the answer depends on the tools. Build <code>velo-pit-crew</code> in thirty seconds (<strong>New agent ▾</strong> → <strong>Build an agent</strong>, instructions <em>Answer briefly; if you don't know a Velocity-specific fact, say so and suggest the guide.</em>, <strong>Save</strong>) and call it with the number in its own Version box:</p>
 <pre><code>AGENT_NAME=velo-pit-crew AGENT_VERSION=2 python agent_client.py "Quick: what tire pressure should I tell a Summit owner?"</code></pre>
 <pre><code><span class="out">Talking to agent velo-pit-crew v1 · conversation conv_052f7bf41d806…
 
@@ -266,6 +292,15 @@ conversation = openai.conversations.create()
 r = openai.responses.create(conversation=conversation.id, input="Does the Volt battery warranty transfer?",
     extra_body={"agent_reference": {"name": agent.name, "version": str(agent.version), "type": "agent_reference"}})
 print(r.output_text)</code></pre>
+<p>Each line matches a click from Part 2:</p>
+<table>
+<thead><tr><th>In the portal you…</th><th>In code it is…</th></tr></thead>
+<tbody>
+<tr><td>Uploaded the guide into a new index (step 5)</td><td><code>vector_stores.create</code> + <code>files.upload_and_poll</code></td></tr>
+<tr><td>Set model, instructions and tools, then selected Save (steps 3 to 6)</td><td><code>agents.create_version(... PromptAgentDefinition(...))</code></td></tr>
+<tr><td>Selected the new-chat button</td><td><code>conversations.create()</code></td></tr>
+<tr><td>Typed in Chat</td><td><code>responses.create(... agent_reference ...)</code></td></tr>
+</tbody></table>
 <p>Agents built this way are the same objects as the ones you clicked together. Below, a warranty expert and a data analyst created from code and called from Cloud Shell. The code-built expert made the same windshield stretch from section 1: the fix lives in the instructions, not the tool. The analyst rounded the tax to $63.00 for display; the total is the same.</p>
 <div class="shots2"><img class="shot" src="images/shots/lab3-agent-knowledge.png" alt="Code-built warranty agent: battery warranty 8 years/100,000 miles transfers (section 4), no deductible and loaner over 4 hours (section 7), windshield from road debris not covered (section 1); file_search_call shown" loading="lazy" title="Click to zoom"><img class="shot" src="images/shots/lab3-agent-code.png" alt="Code-built Code interpreter agent: explains the steps, runs Python, returns subtotal $839.95, tax $63.00, total $902.95" loading="lazy" title="Click to zoom"></div></li>
 </ol>
@@ -294,7 +329,9 @@ print(r.output_text)</code></pre>
 
 <h2 id="pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</h2>
 <ul>
-  <li>An agent is a model plus instructions plus tools, run and remembered by the Foundry Agent Service.</li>
+  <li>An agent is a model plus instructions plus tools, run and remembered by the Foundry Agent Service. It runs on a deployment you already have; it does not replace it.</li>
+  <li>Compared with Lap 2's chat app, the prompt, the history and the grounding move out of your code and into the service. Instructions say how to behave; knowledge says what is true.</li>
+  <li>Choose tools by the gap they fill: your documents (File search), exact maths (Code interpreter), fresh facts (Web search), your systems (functions, MCP).</li>
   <li>File search turns documents into knowledge the agent can cite; Code interpreter turns it into a reliable calculator.</li>
   <li>Conversations carry context; new chat means new memory.</li>
   <li>Publish gives you a preview web app; the Foundry SDK gives you a client in a handful of lines, pinned to an agent name and version with <code>agent_reference</code>.</li>

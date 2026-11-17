@@ -27,6 +27,17 @@
 
 <h2>Cool-down lap · delete everything</h2>
 <p>Everything you built today lives in one resource group. Deleting it removes the Foundry resource, its project, and every deployment, agent, vector store and analyzer inside them. You lose nothing you need: the scripts and documents are on this site. Then you purge the soft-deleted Foundry resource so its name and quota are freed.</p>
+<p class="insight">This is why Lap 0 started with a resource group.<small>You made the folder before anything went in it, so now one delete empties the whole garage. Nobody has to remember a list of seven laps of work.</small></p>
+<table>
+<thead><tr><th>What you built</th><th>Lap</th><th>Where it lives</th><th>Gone when the group is deleted?</th></tr></thead>
+<tbody>
+<tr><td>Foundry resource, its key and three host names</td><td>0</td><td>The resource group</td><td>Yes, then purge it</td></tr>
+<tr><td>Project</td><td>0</td><td>Inside the Foundry resource</td><td>Yes</td></tr>
+<tr><td>Model deployments (<code>gpt-4-1-mini</code>, audio, FLUX, <code>gpt-4-1</code>, embeddings)</td><td>0, 4, 5, 6</td><td>Inside the Foundry resource</td><td>Yes, and their quota goes back to the class pool after the purge</td></tr>
+<tr><td>Agents, uploaded files, vector store</td><td>3</td><td>Inside the project</td><td>Yes</td></tr>
+<tr><td>Analyzers and the model registration</td><td>6</td><td>Inside the Foundry resource</td><td>Yes</td></tr>
+<tr><td>Your sign-in and its three roles</td><td>0</td><td>Microsoft Entra ID and the subscription, not your group</td><td>No: race control looks after those</td></tr>
+</tbody></table>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (portal.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
@@ -44,11 +55,12 @@
 <img class="shot" src="images/shots/lab7-portal-01-delete.jpg" alt="Delete a resource group pane listing 2 resources being deleted (ai901-s99-pitcrew and proj-ai901-s99), the confirmation box with rg-ai901-s99 typed (1) and the Delete button (2)" loading="lazy" title="Click to zoom">
 <p>Deletion takes a few minutes; a notification tells you when it is done.</p></li>
   <li><p><strong>Purge the soft-deleted resource.</strong> A deleted Foundry resource is not gone yet: it is <em>soft-deleted</em> and kept for 48 hours so it can be recovered. During that time it still reserves the name <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> and still counts against the subscription's quota. Purge it to free both: once the deletion notification arrives, open Cloud Shell and run the Cloud Shell tab's first line (your variables), then its last block. (If the portal's Foundry resources list shows <strong>Manage deleted resources</strong>, you can purge there instead.)</p>
-<p class="insight">Deleted is not the same as gone.<small>Soft delete protects you from a slip of the finger, but the name and the quota stay taken until you purge. Race control purges anything left at the end of the day.</small></p></li>
+<p class="insight">Deleted is not the same as gone.<small>Soft delete protects you from a slip of the finger, but the name and the quota stay taken until you purge. Race control purges anything left at the end of the day.</small></p>
+<p class="why"><b>Why this order</b>Purge only works on something already soft-deleted, so it has to wait for step 2 to finish. And purge is the one step with no way back: once it runs, the resource cannot be recovered. Look, delete, then purge.</p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
-<p>Same result, by command: look, delete, check, purge.</p>
+<p>Same result, by command: look, delete, check, purge. You only need two of your Lap 0 variables: everything else you built is found through the resource group.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>; export RG=rg-ai901-$STUDENT
 az resource list --resource-group $RG --query "[].{name:name,type:type}" -o table     <span class="cm"># look before you delete</span>
 az group delete --name $RG --yes --no-wait
@@ -80,6 +92,6 @@ az cognitiveservices account purge --name ai901-$STUDENT-pitcrew --resource-grou
   <li>Analysed reviews and tickets with Azure AI Language, made the car speak with SSML, transcribed speech, switched on Voice mode, and answered a spoken question with gpt-audio-mini (Lap 4).</li>
   <li>Read photos with Azure AI Vision and a multimodal model, and generated concept-car images with FLUX (Lap 5).</li>
   <li>Turned an invoice, a window sticker, lot photos, a narration and a video into typed fields with Content Understanding (Lap 6).</li>
-  <li>Scored a practice exam and deleted your garage (Lap 7).</li>
+  <li>Scored a practice exam and deleted your garage (Lap 7): one resource group delete removes everything inside it, and a purge frees the name and quota that soft delete still holds.</li>
 </ul>
 <p>Thank you for driving. <a href="index.html">Back to the start →</a></p>

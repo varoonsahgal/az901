@@ -70,6 +70,19 @@
   <div><b>Result shape</b><code>result.contents[]</code>: one entry per document, image, audio track or video segment, each with <code>markdown</code>, <code>fields</code> (<code>valueString</code>, <code>valueNumber</code>, <code>valueArray</code>…, plus <code>confidence</code> and <code>source</code> for extracted fields), and for media, <code>startTimeMs</code>/<code>endTimeMs</code>, transcripts and key frames.</div>
 </div>
 <p class="insight">Send a file, get fields.<small>Documents, images, audio and video all come back in the same shape: markdown of the content, plus the typed fields you named. One habit, four modalities.</small></p>
+<p class="insight">Content Understanding is a Foundry Tool that borrows your models.<small>Lap 0 split the resource into two kinds of AI: prebuilt tools such as Vision, which need no deployment, and models such as <code>gpt-4.1-mini</code>, which do. Content Understanding sits on both sides. Its own reading layer (OCR, layout, transcription) works like Vision; turning that text into fields calls deployments <em>you</em> own, so you deploy them and tell the service which ones to use. That is all of Part 1.</small></p>
+<h3>Why not just ask gpt-4.1-mini?</h3>
+<p>Lap 5 showed <code>gpt-4.1-mini</code> a photo and Lap 2 got JSON out of it, so a fair question is what this service adds. It wraps the model in everything a production extraction job needs:</p>
+<table>
+<thead><tr><th></th><th>Prompting a model yourself (Laps 2 and 5)</th><th>Content Understanding (this lap)</th></tr></thead>
+<tbody>
+<tr><td><strong>Input</strong></td><td>Text and images you put in the prompt</td><td>Documents, images, audio and video files, any length</td></tr>
+<tr><td><strong>Reading</strong></td><td>The model reads the raw pixels or text</td><td>OCR, layout, transcription and key frames first, then the model reads clean markdown</td></tr>
+<tr><td><strong>Output</strong></td><td>Whatever text the model writes; you parse it and hope</td><td>Typed fields from your schema: numbers are numbers, dates are dates</td></tr>
+<tr><td><strong>Can I check it?</strong></td><td>No source, no confidence</td><td>Extracted fields carry a page location and a confidence score</td></tr>
+<tr><td><strong>Reuse</strong></td><td>Copy the prompt into every app</td><td>Save it once as an analyzer; every app calls it by ID</td></tr>
+</tbody></table>
+<p class="why"><b>Why it matters</b>For one photo in a chat, prompting is fine. For 900 invoices a month that land in a finance system, you want the same fields, the same types and a confidence to route doubtful ones to a person. On the exam, "extract fields from forms, recordings or video" points here; "describe or reason about an image" points to a multimodal model.</p>
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Documents and forms → prebuilt analyzers or a custom schema on <code>prebuilt-document</code>. Images → a custom schema on <code>prebuilt-image</code> (classify / describe). Audio → transcript, then fields such as summary, topics, sentiment (<code>prebuilt-callCenter</code>). Video → shots, key frames, transcript, synopsis (<code>prebuilt-video</code>, <code>prebuilt-videoSynopsis</code>). The playground is at <strong>Services → Document Intelligence and Content Understanding</strong>; the API (<code>2025-11-01</code>) is asynchronous; analyzer IDs cannot contain hyphens.</p></div></div>
 
 <h2 id="part-1-get-the-files-and-register-the-models"><span class="pn">Part 1</span>Get the files and register the models</h2>
@@ -84,6 +97,7 @@ curl -sLo narration.mp3 https://varoonsahgal.github.io/az901/media/velo-andrew-m
 curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&amp; unzip -oq lot-photos.zip -d lot</code></pre></li>
 </ol>
 <p>Content Understanding reads pixels and sound itself, but turning them into <em>fields</em> takes language models you deploy and register with it.</p>
+<p class="why"><b>Why two steps</b>Deploying and registering are different jobs. <em>Deploying</em> puts a model on your resource, exactly as you did with <code>gpt-4-1-mini</code> in Lap 0. <em>Registering</em> tells Content Understanding which of your deployments to call, because it cannot guess: your deployment names are yours to choose. The service then bills those calls to your deployments' tokens per minute, which is why their capacity matters later in this lap.</p>
 <div class="callout tip"><div class="ico">⏱️</div><div><span class="box-lbl">Deployed them in Lap 5?</span><p>If you ran Lap 5 Part 1 step 3, <code>text-embedding-3-large</code> and <code>gpt-4-1</code> already exist: skip the deploy steps below (portal steps 1 and 2, Cloud Shell step 1) and go straight to registering them. Check with <code>az cognitiveservices account deployment list -n $NAME -g $RG -o table</code>. Creating them now instead? Do Part 2's OCR and layout first: those need no GPT model, and Content Understanding needs ten to fifteen minutes to see a brand-new gpt-4-1 reliably.</p></div></div>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
@@ -126,7 +140,7 @@ curl -sLO https://varoonsahgal.github.io/az901/downloads/lot-photos.zip &amp;&am
 az cognitiveservices account deployment create --name $NAME --resource-group $RG \
   --deployment-name gpt-4-1 --model-name gpt-4.1 --model-version 2025-04-14 --model-format OpenAI \
   --sku-name GlobalStandard --sku-capacity 40 -o table</code></pre></li>
-  <li><p><strong>Register the models</strong>, once per resource. The keys on the left are the service's model aliases; the values are your deployment names.</p>
+  <li><p><strong>Register the models</strong>, once per resource. The keys on the left are the service's model aliases; the values are your deployment names. There are two kinds of key: the <code>prebuilt-analyzer-…</code> roles that prebuilt analyzers ask for, and plain catalog names (<code>gpt-4.1-mini</code>) that your own analyzers ask for in Part 3. Both end up at a deployment you made.</p>
 <pre><code>curl -s -X PATCH "$AI_ENDPOINT/contentunderstanding/defaults?api-version=2025-11-01" -H "Ocp-Apim-Subscription-Key: $KEY" \
   -H "Content-Type: application/merge-patch+json" \
   -d '{"modelDeployments":{"prebuilt-analyzer-completion":"gpt-4-1","gpt-4.1":"gpt-4-1","prebuilt-analyzer-completion-mini":"gpt-4-1-mini","prebuilt-analyzer-embedding":"text-embedding-3-large","gpt-4.1-mini":"gpt-4-1-mini","text-embedding-3-large":"text-embedding-3-large"}}'
@@ -147,8 +161,10 @@ curl -s "$AI_ENDPOINT/contentunderstanding/analyzers?api-version=2025-11-01" -H 
 <img class="shot" src="images/shots/lab6-portal-02-invoice.jpg" alt="Document fields analysis of service-invoice.png: colour-coded boxes on the invoice, and the Fields tab with InvoiceNumber INV-48213 79.40%, InvoiceDate October 28, 2026 72.60% and DueDate 72.00%, each with a p.1 badge" loading="lazy" title="Click to zoom">
 <p>Then open the other tabs: <strong>Markdown</strong> (the invoice as text), <strong>Tables</strong> (the parts and labour lines), and <strong>Result</strong>, the raw JSON your code would get, including the tokens the analysis used.</p>
 <p class="insight">Every field points back to the paper.<small>The page badge and the coloured box are the field's source. A clerk checks a 72% date against the document in one glance instead of retyping the invoice.</small></p></li>
-  <li><p><strong>Invoice specialists.</strong> Look in the <strong>Procurement</strong> group for analyzers built for invoices and purchase paperwork. Run one on the same file and compare its field list with Document fields.</p></li>
-  <li><p><strong>No model at all.</strong> Switch the analyzer to <strong>Layout</strong> (or <strong>OCR (Read)</strong>) and run <code>window-sticker.png</code>. The <strong>Markdown</strong> tab shows the heading <code>2026 VELOCITY STRATA SPORT</code>, the equipment list and the price table, in reading order. That markdown is what the language model reads when you ask for fields.</p></li>
+  <li><p><strong>Invoice specialists.</strong> Look in the <strong>Procurement</strong> group for analyzers built for invoices and purchase paperwork. Run one on the same file and compare its field list with Document fields.</p>
+<p class="why"><b>Why compare</b>Document fields is built for any document. A specialist is built for one kind of paperwork and returns a fixed, documented list of fields (the Cloud Shell tab's <code>prebuilt-invoice</code> knows thirty, plus line items). A fixed list is what a finance system needs: map the columns once, and every invoice lands in the same place.</p></li>
+  <li><p><strong>No model at all.</strong> Switch the analyzer to <strong>Layout</strong> (or <strong>OCR (Read)</strong>) and run <code>window-sticker.png</code>. The <strong>Markdown</strong> tab shows the heading <code>2026 VELOCITY STRATA SPORT</code>, the equipment list and the price table, in reading order. That markdown is what the language model reads when you ask for fields.</p>
+<p class="why"><b>Why step down a layer</b>Steps 1 to 3 showed the finished fields. This shows what sits underneath: the reading layer, which needs none of the deployments you registered. It runs before every field analyzer, and Part 3 builds directly on top of it.</p></li>
 </ol>
   </div>
   <div role="tabpanel" hidden>
@@ -173,9 +189,17 @@ sleep 20; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.re
 
 <h2 id="part-3-build-your-own-analyzer-the-window-sticker"><span class="pn">Part 3</span>Build your own analyzer · the window sticker</h2>
 <p>Prebuilt analyzers know other people's paperwork. The Velocity window sticker is ours: no prebuilt knows that the used-car team wants the VIN, the total MSRP and the options with their prices. So you build an analyzer: pick a base, name the fields, and describe each one in plain English.</p>
+<p class="insight">An analyzer is a saved recipe, not a model.<small>It is a few lines of JSON: a base that does the reading (here <code>prebuilt-document</code>, the layout you just saw), a field schema, and the name of a model to fill it in. Nothing is trained. Change a description and re-create the analyzer, and the next run follows the new instruction.</small></p>
+<table>
+<thead><tr><th></th><th>Prebuilt analyzer</th><th>Custom analyzer</th></tr></thead>
+<tbody>
+<tr><td><strong>Fields</strong></td><td>Chosen by Microsoft (<code>InvoiceNumber</code>, <code>TotalAmount</code>…)</td><td>Chosen by you (<code>VIN</code>, <code>TotalMSRP</code>…)</td></tr>
+<tr><td><strong>You write</strong></td><td>Nothing; call it by ID</td><td>A base, a schema and a description per field</td></tr>
+<tr><td><strong>Pick it when</strong></td><td>The paperwork is common: invoices, receipts, IDs, tax forms, calls</td><td>The paperwork is yours, or you want different fields</td></tr>
+</tbody></table>
 <div class="callout note"><div class="ico">🧭</div><div><span class="box-lbl">The portal door</span><p>The playground's <strong>Customize in CU Studio</strong> button (top right) opens <strong>Content Understanding Studio</strong>, a separate site for building your own analyzers with clicks. Explore it if you finish early. Here you write the analyzer as JSON in Cloud Shell, because JSON shows most clearly what matters: each field's type, its method and the description the model follows.</p></div></div>
 <ol class="steps">
-  <li><p><strong>Describe the fields you want.</strong> The <code>description</code> is the instruction; <code>method</code> says whether to copy, write or choose.</p>
+  <li><p><strong>Describe the fields you want.</strong> The <code>description</code> is the instruction; <code>method</code> says whether to copy, write or choose. Each description is a small prompt, so the Lap 2 rules apply: be specific ("17-character" beats "the VIN"). The <code>models</code> line asks for <code>gpt-4.1-mini</code> by its catalog name; the Part 1 registration maps that to your <code>gpt-4-1-mini</code> deployment. Custom analyzers accept mini, so the cheaper engine does this job.</p>
 <pre><code>cat &gt; sticker-analyzer.json &lt;&lt;'JSON'
 {
   "description": "Velocity Motors window sticker key facts",
@@ -212,6 +236,7 @@ sleep 20; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq '.status, (.re
 
 <h2 id="part-4-images-lot-photos-into-a-table"><span class="pn">Part 4</span>Images · lot photos into a table</h2>
 <p>A second analyzer of your own, this time on photographs: base it on <code>prebuilt-image</code>, use <code>classify</code> with an <code>enum</code> where you want controlled values, and <code>generate</code> for free text. The script creates it, waits, then runs four lot photos through it.</p>
+<p class="why"><b>Why another image tool</b>Lap 5 read photos twice: Azure AI Vision returned fixed tags and boxes, and <code>gpt-4.1-mini</code> wrote a free-text listing. This is the third option, between the two: the model looks at the photo, but its answer must fit columns you defined. Use it when the photos are going into a spreadsheet or inventory system, not a chat. Only the base changed from Part 3; the PUT, the wait and the analyze call are the same.</p>
 <pre><code>cat &gt; lot-analyzer.json &lt;&lt;'JSON'
 {
   "description": "Dealer lot photo triage",
@@ -238,9 +263,11 @@ for f in suv-volvo-xc90 pickup-ford-f150 traffic-auckland bicycles-wall; do
 done</code></pre>
 <img class="shot" src="images/shots/lab6-cu-lot-photos.png" alt="Six photos with VehicleType, PrimaryColor, VehicleCount, PeopleVisible, Setting and a generated summary each" loading="lazy" title="Click to zoom">
 <p>One row per photo (our screenshot has six). The traffic photo counted 38 vehicles; the convertible became a "coupe" because that was the closest allowed value, which is exactly what an enum is for.</p>
+<p class="insight">Classify keeps a column clean. Generate fills it with whatever the model says.<small>With an enum, "SUV", "suv" and "sport utility" can only ever come back as <code>suv</code>, so you can filter and count the column. The cost is precision: a convertible has to become the nearest allowed value. Add the value to the enum if it matters to the business.</small></p>
 
 <h2 id="part-5-audio-and-video"><span class="pn">Part 5</span>Audio and video</h2>
 <p>The service desk records every call. Nobody listens to them twice. Content Understanding turns a call into a summary and a list of topics a manager can scan.</p>
+<p class="why"><b>Why after Lap 4</b>Lap 4 turned speech into text with Azure Speech, and the text was where it stopped. Here transcription is only the reading layer, as OCR was for the invoice. The same field step then runs on the transcript, so a call ends up as fields just like a document does.</p>
 <div class="tabs">
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
@@ -274,6 +301,7 @@ sleep 45; curl -s "$OP" -H "Ocp-Apim-Subscription-Key: $KEY" | jq -r '.status, .
 
 <h2 id="part-6-the-lightweight-app"><span class="pn">Part 6</span>The lightweight app</h2>
 <p>Everything above is one function: send bytes, poll, print fields. <code>extract_info.py</code> is that function with a command line. Any analyzer, any modality.</p>
+<p class="why"><b>Why poll</b>The video step above waits 45 seconds, and a long contract could take minutes, which is longer than one HTTP request should stay open. So the service answers at once with <code>202</code> and a ticket (<code>Operation-Location</code>), and the app checks the ticket every few seconds. Every <code>sleep</code> in this lap's curl commands was a guess at how long that takes; the script replaces the guess with a loop. It signs in with the resource key from Lap 0, like the other Foundry Tool calls.</p>
 <pre><code>curl -sO https://varoonsahgal.github.io/az901/pit-crew/extract_info.py
 python extract_info.py velocityWindowSticker window-sticker.png
 python extract_info.py prebuilt-audio narration.mp3</code></pre>
@@ -355,6 +383,8 @@ for content in result[&quot;result&quot;][&quot;contents&quot;]:
 <h2 id="pit-wall-debrief-what-you-learned">Pit wall debrief · what you learned</h2>
 <ul>
   <li>Content Understanding is one API for documents, images, audio and video: analyzers, field schemas, async operations, typed results with confidence.</li>
+  <li>It is a Foundry Tool that borrows your models: its own layer reads the file (OCR, layout, transcription), then <em>your</em> registered deployments turn the text into fields. Deploy, then register.</li>
+  <li>Compared with prompting a model directly, it adds the reading layer, typed fields, sources and confidence, and a reusable analyzer ID. An analyzer is a saved recipe, not a trained model.</li>
   <li>Prebuilt analyzers for common forms, runnable in the portal playground (Document fields, Call center, OCR, Layout); custom analyzers (base + schema) for your own paperwork and photos.</li>
   <li>Field methods: extract (with source), generate (composed), classify (enum). Models are registered once per resource.</li>
   <li>Audio gives transcripts and call-center fields; video gives key frames, transcripts and a synopsis.</li>

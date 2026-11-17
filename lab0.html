@@ -109,6 +109,16 @@
 <div class="callout exam"><div class="ico">🎯</div><div><span class="box-lbl">Exam lens</span><p>Expect questions like "a dealership must keep customer data in the United States; which deployment type?" (Data Zone or Standard) or "what does TPM limit?" (tokens per minute per deployment, drawn from a per-region quota). Capacity is set <em>per deployment</em>; quota is shared <em>per model per region per subscription</em>, which is exactly why twenty of us deploy small.</p></div></div>
 
 <h2 id="part-1-open-cloud-shell"><span class="pn">Part 1</span>Open Cloud Shell</h2>
+<p>Today you work through three doors into the same Azure subscription. They look like different products, but they all change the same resources, so it pays to know which door does what before you open any of them.</p>
+<table>
+<thead><tr><th></th><th>Azure portal</th><th>Foundry portal</th><th>Cloud Shell</th></tr></thead>
+<tbody>
+<tr><td><strong>Address</strong></td><td><a href="https://portal.azure.com">portal.azure.com</a></td><td><a href="https://ai.azure.com">ai.azure.com</a></td><td><a href="https://shell.azure.com">shell.azure.com</a>, or <code>&gt;_</code> in the Azure portal</td></tr>
+<tr><td><strong>It is about</strong></td><td>Every Azure resource of every kind: who can touch it, where it lives, what it costs</td><td>AI work only: projects, models, deployments, agents, playgrounds</td><td>The same Azure, typed: the <code>az</code> CLI, Python and <code>curl</code></td></tr>
+<tr><td><strong>You use it today to</strong></td><td>Create the resource group, check roles, see the bill, delete everything in Lap 7</td><td>Build the project, deploy models, try prompts, build the agent</td><td>Run the lightweight apps and raw HTTP calls, and do anything faster than clicks</td></tr>
+<tr><td><strong>Think of it as</strong></td><td>The building's management office</td><td>The workshop inside the building</td><td>The service hatch: no screens, same building</td></tr>
+</tbody></table>
+<p class="insight">Two portals, one set of resources.<small>Create a deployment in the Foundry portal and it shows up in the Azure portal and in <code>az</code> straight away. The Azure portal answers "what exists and who pays"; the Foundry portal answers "what can this AI do". Exam questions about RBAC, regions or cost point to the Azure portal; questions about playgrounds, agents or model catalogs point to Foundry.</small></p>
 <p>Even if you drive the portal today, open Cloud Shell now and leave the tab open. The portal path of Part 3 ends by handing your garage to it, and Part 4 makes your first call from it.</p>
 <ol class="steps">
   <li><p>Open <a href="https://portal.azure.com">portal.azure.com</a> and sign in with the username and Temporary Access Pass the instructor gave you. In the top bar click the <strong>Cloud Shell</strong> icon (<code>&gt;_</code>), or go straight to <a href="https://shell.azure.com">shell.azure.com</a>.</p></li>
@@ -120,6 +130,7 @@
 
 <h2 id="part-2-your-pit-board-variables"><span class="pn">Part 2</span>Your pit board variables</h2>
 <p>This block defines the names every command uses. Paste it at the start of <em>every</em> lab and every new Cloud Shell session. If you set the pit board above, it already contains your number.</p>
+<p class="why"><b>Why now</b>These are just names, and nothing exists yet. Part 3 creates real things with exactly these names, whether you click or type. Agreeing the names first means the portal path and the Cloud Shell path end up in the same place, and every later lap can find your resources from these five lines.</p>
 <pre><code>export STUDENT=<span class="v" data-v="student">s07</span>                      <span class="cm"># your number from the whiteboard</span>
 export RG=rg-ai901-$STUDENT                 <span class="cm"># your resource group</span>
 export NAME=ai901-$STUDENT-pitcrew          <span class="cm"># your Foundry resource · must be unique worldwide</span>
@@ -133,7 +144,7 @@ echo $RG $NAME $LOC $PROJECT</code></pre>
   <div role="tablist" aria-label="Choose a path"><button role="tab" aria-selected="true">Portal path (ai.azure.com)</button><button role="tab">Cloud Shell path (under the hood)</button></div>
   <div role="tabpanel">
 <p>Build the garage with clicks. This is the path we recommend: the exam asks about the portal, and seeing each screen makes the four objects (resource group, Foundry resource, project, deployment) real. Every screenshot is from a real run, with the fields you touch numbered.</p>
-<p class="insight">You will use two websites, and they are not the same thing.<small><a href="https://portal.azure.com">portal.azure.com</a> is the <strong>Azure portal</strong>: every Azure resource, its access and its bill. <a href="https://ai.azure.com">ai.azure.com</a> is the <strong>Foundry portal</strong>: projects, models, agents and playgrounds. Step 1 happens in the first; everything after it in the second.</small></p>
+<p>Step 1 happens in the <strong>Azure portal</strong> (the management office), steps 2 to 6 in the <strong>Foundry portal</strong> (the workshop), and step 7 in <strong>Cloud Shell</strong>: the three doors from Part 1, in that order.</p>
 <ol class="route">
   <li><b>Resource group</b><span>the folder that holds and costs it all</span></li>
   <li><b>Foundry resource + project</b><span>the garage, and your workbench inside it</span></li>
@@ -171,6 +182,7 @@ echo $RG $NAME $LOC $PROJECT</code></pre>
 
   <li><p><strong>Find your key and endpoints.</strong> You land on the project <strong>Home</strong> page. The strip near the bottom shows the <strong>API key</strong>, the <strong>Project endpoint</strong> and the <strong>Azure OpenAI endpoint</strong>.</p>
 <p class="why"><b>Why it matters</b>The endpoint says <em>where</em> to send a request; the key proves you are <em>allowed</em> to. These are the same values the Cloud Shell path prints. Do not copy the key into notes or chat: step 7 fetches it straight into Cloud Shell.</p>
+<p class="insight">One key, several addresses.<small>The project endpoint and the Azure OpenAI endpoint are different host names on the <em>same</em> resource, and one key opens both. The host tells Azure which service you want: models, agents, or a prebuilt tool such as Vision (the Part 0 picture shows all three). Part 4 uses the third.</small></p>
 <img class="shot" src="images/shots/portal-12-home.jpg" alt="Project Home page with the API key, project endpoint and Azure OpenAI endpoint strip highlighted" loading="lazy" title="Click to zoom"></li>
 
   <li><p><strong>Deploy the model.</strong> In the left menu select <strong>Models</strong> <span class="mk">1</span>, then <strong>Deploy</strong> <span class="mk">2</span> → <strong>Deploy a base model</strong> <span class="mk">3</span>.</p>
@@ -194,7 +206,7 @@ echo $RG $NAME $LOC $PROJECT</code></pre>
 <img class="shot" src="images/shots/portal-11-playground.jpg" alt="The gpt-4-1-mini playground answering 'Who are you, and what can you do for a car dealership?'" loading="lazy" title="Click to zoom">
 <p class="insight">That answer came from your deployment, on your resource, billed to your resource group.<small>Every lap from here builds on these four objects. Name them in your head now: folder, garage, workbench, engine.</small></p></li>
 
-  <li><p><strong>Hand the garage to Cloud Shell.</strong> Part 4 and the later laps run commands, so connect your shell to what you just built. In the Cloud Shell tab from Part 1, paste the Part 2 block, then:</p>
+  <li><p><strong>Hand the garage to Cloud Shell.</strong> Part 4 and the later laps run commands, so connect your shell to what you just built. Cloud Shell cannot see what you clicked; it only knows the names in your Part 2 variables. These lines use those names to look the resource up, fetch its key and build its addresses. In the Cloud Shell tab from Part 1, paste the Part 2 block, then:</p>
 <pre><code>az cognitiveservices account show -n $NAME -g $RG \
   --query "{kind:kind,sku:sku.name,endpoint:properties.endpoint}" -o jsonc
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
@@ -204,7 +216,7 @@ export AOAI_ENDPOINT=https://$NAME.openai.azure.com
 export PROJECT_ENDPOINT=$AI_ENDPOINT/api/projects/$PROJECT
 az cognitiveservices account deployment list -n $NAME -g $RG -o table
 pip install --user --quiet azure-ai-projects azure-identity azure-ai-textanalytics azure-ai-vision-imageanalysis azure-cognitiveservices-speech openai requests</code></pre>
-<p>The first command should print <code>"kind": "AIServices"</code> and <code>"sku": "S0"</code>; the deployment list should show <code>gpt-4-1-mini</code>, <code>Standard</code>, capacity <code>8</code>. If <code>az</code> says the resource is not found, the names you typed in steps 1 and 3 do not match <code>$RG</code> and <code>$NAME</code>: fix the export, not the resource.</p>
+<p>The first command should print <code>"kind": "AIServices"</code> and <code>"sku": "S0"</code>; the deployment list should show <code>gpt-4-1-mini</code>, <code>Standard</code>, capacity <code>8</code>. If <code>az</code> says the resource is not found, the names you typed in steps 1 and 3 do not match <code>$RG</code> and <code>$NAME</code>: fix the export, not the resource. The last line installs the Python libraries that the apps in Laps 2 to 6 import; it is here so that no later lap starts with a wait.</p>
 <p class="insight">The portal built exactly what the Cloud Shell commands build.<small>Same kind, SKU, custom domain and deployment: we checked both with <code>az</code>. Clicks and commands are two doors into the same garage.</small></p></li>
 </ol>
 <div class="callout note"><div class="ico">📝</div><div><span class="box-lbl">If the portal has moved a button</span><p>These screenshots are from 15 November 2026, and Microsoft redraws Foundry often. The nouns do not change: a resource group holds a Foundry resource, a project lives inside the resource, a deployment is your copy of a model, and a playground tries it. If a screen looks different, look for those nouns, or switch to the Cloud Shell tab.</p></div></div>
@@ -220,7 +232,7 @@ pip install --user --quiet azure-ai-projects azure-identity azure-ai-textanalyti
   --kind AIServices --sku S0 --custom-domain $NAME --assign-identity --allow-project-management true --yes \
   --query "{name:name,kind:kind,sku:sku.name,location:location,endpoint:properties.endpoint,state:properties.provisioningState}" -o jsonc</code></pre>
 <img class="shot" src="images/shots/lab0-create-account.png" alt="Output of creating the AIServices resource with kind, sku S0 and endpoint" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>Keys and endpoints.</strong> Two keys exist so you can rotate one while the other keeps working. Put them in variables; never paste them into chat, slides or Git.</p>
+  <li><p><strong>Keys and endpoints.</strong> The resource from step 2 now exists, so it has keys and addresses to read. Two keys exist so you can rotate one while the other keeps working. Put them in variables; never paste them into chat, slides or Git. The three addresses are the three host names in the Part 0 picture: same resource, same key, different services.</p>
 <pre><code>az cognitiveservices account keys list --name $NAME --resource-group $RG -o jsonc
 export KEY=$(az cognitiveservices account keys list -n $NAME -g $RG --query key1 -o tsv)
 export ENDPOINT=https://$NAME.cognitiveservices.azure.com     <span class="cm"># Vision · Language · Speech · Content Safety</span>
@@ -228,7 +240,7 @@ export AI_ENDPOINT=https://$NAME.services.ai.azure.com        <span class="cm">#
 export AOAI_ENDPOINT=https://$NAME.openai.azure.com           <span class="cm"># OpenAI models · images · audio</span>
 echo $ENDPOINT</code></pre>
 <img class="shot" src="images/shots/lab0-keys.png" alt="Masked keys and the three endpoint host names" loading="lazy" title="Click to zoom"></li>
-  <li><p><strong>The project.</strong> This is what the Foundry portal and SDK connect to.</p>
+  <li><p><strong>The project.</strong> Your workbench inside the resource from step 2, and what the Foundry portal and SDK connect to. It needs the resource to exist first, which is why it comes after it. (The portal path did steps 2 and 4 in one form.)</p>
 <pre><code>az cognitiveservices account project create --name $NAME --resource-group $RG --location $LOC \
   --project-name $PROJECT --display-name "Velocity Motors AI ($STUDENT)" \
   --query "{name:name,state:properties.provisioningState,endpoint:properties.endpoints.\"AI Foundry API\"}" -o jsonc
@@ -260,6 +272,16 @@ python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code><
     "confidence": 0.4857805073261261
   }
 ]</span></code></pre><img class="shot" src="images/photos/classic-rambler.jpg" alt="The photo that was captioned: a red and white 1958 Rambler American" loading="lazy" title="Click to zoom"></div>
+<p class="insight">This call did not use your <code>gpt-4-1-mini</code> deployment.<small>It went to <strong>Azure AI Vision</strong>, a prebuilt Foundry Tool that comes with every <code>AIServices</code> resource. Microsoft trains and runs the captioning model behind it, so there is nothing to deploy: you just call the endpoint with your key. The resource and key are the same as in Part 3; the service is different.</small></p>
+<table>
+<thead><tr><th></th><th>The playground chat (Part 3)</th><th>This caption (Part 4)</th></tr></thead>
+<tbody>
+<tr><td><strong>What answered</strong></td><td>Your deployment of <code>gpt-4.1-mini</code>, a general-purpose model</td><td>Microsoft's prebuilt Vision model, built for one job</td></tr>
+<tr><td><strong>Needs a deployment?</strong></td><td>Yes: you chose its name, type and TPM</td><td>No: it is always there on the resource</td></tr>
+<tr><td><strong>Host</strong></td><td><code>openai.azure.com</code> or <code>services.ai.azure.com</code></td><td><code>cognitiveservices.azure.com</code> (<code>$ENDPOINT</code>)</td></tr>
+<tr><td><strong>You get</strong></td><td>Whatever text you ask for</td><td>A fixed JSON shape: captions with a confidence score</td></tr>
+</tbody></table>
+<p class="why"><b>Why it matters</b>That split runs through the whole day and the whole exam: <em>Foundry Tools</em> (Vision, Language, Speech, Content Understanding) are ready-made, narrow and cheap; <em>Foundry Models</em> must be deployed, and are flexible. Laps 4 to 6 use both for the same job and compare them. Lap 2 is your first code call to the deployment.</p>
 <p class="why"><b>Why v3.2</b>The API version is in the path here (<code>v3.2</code>). Azure AI Vision's newer Image Analysis 4.0 also captions, but only in eight regions (East US, West US, West Europe, North Europe, France Central, Southeast Asia, East Asia, Korea Central). East US 2, chosen because it carries every model we need today, is not one of them, so captions use the v3.2 <em>describe</em> operation, which runs everywhere. Lap 5 uses 4.0 for tags, objects, people and text.</p>
 <div class="callout checkpoint tip"><div class="ico">✅</div><div><span class="box-lbl">Checkpoint</span><p>You should now have: a resource group <code>rg-ai901-<span class="v" data-v="student">s07</span></code>; inside it a Foundry resource <code>ai901-<span class="v" data-v="student">s07</span>-pitcrew</code> with one project and one deployment; variables <code>KEY</code>, <code>ENDPOINT</code>, <code>AI_ENDPOINT</code>, <code>AOAI_ENDPOINT</code>, <code>PROJECT_ENDPOINT</code> set in your shell; and a caption for a 1958 Rambler. To confirm, open <a href="https://portal.azure.com">portal.azure.com</a> → <strong>Resource groups</strong> → yours: it should hold two resources, the Foundry resource and its project (below). If <a href="https://ai.azure.com">ai.azure.com</a> also shows your project, you are out of the pit lane.</p></div></div>
 <img class="shot" src="images/shots/lab0-portal-13-rg.jpg" alt="Azure portal: rg-ai901-s99 holds exactly two resources, ai901-s99-pitcrew (Foundry) and proj-ai901-s99 (Foundry project), both in East US 2" loading="lazy" title="Click to zoom">
@@ -290,6 +312,8 @@ python -c "import azure.ai.projects, openai; print('Foundry SDK ready')"</code><
   <li>Microsoft Foundry is the platform; a <strong>Foundry resource</strong> (kind AIServices) bills and secures it; a <strong>project</strong> is where you work; a <strong>deployment</strong> is your copy of a model with a name and a TPM capacity.</li>
   <li>Deployment types trade residency against capacity: Standard, Data Zone, Global Standard, Provisioned, Batch.</li>
   <li>One resource, one key, three host names. Keys authenticate the resource; Entra ID authenticates <em>you</em>.</li>
+  <li>The Azure portal manages <em>what exists and who pays</em>; the Foundry portal is where the AI work happens; Cloud Shell does either by command. All three change the same resources.</li>
+  <li>Two kinds of AI on one resource: <strong>Foundry Tools</strong> such as Vision are prebuilt and need no deployment; <strong>models</strong> such as <code>gpt-4.1-mini</code> must be deployed before anything can call them.</li>
   <li>In a shared subscription, your student number is your namespace, S0 beats F0, and small deployments keep everyone under quota.</li>
 </ul>
 <p>Next: before we build anything clever, we agree on the rules of the road. <a href="lab1.html">Lap 1 · Race rules →</a></p>
